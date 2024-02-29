@@ -27,3 +27,36 @@ export const sliderData = [
         title: "banner"
     },
 ]
+
+export const categories = [
+    {
+        name: "smartwatch",
+        link: "/shop?category=smartwatch",
+        imageUrl: ""
+    },
+    {
+        name: "smartwatch",
+        link: "/shop?category=smartwatch",
+        imageUrl: ""
+    },
+    {
+        name: "headphone",
+        link: "/shop?category=headphone",
+        imageUrl: ""
+    },
+    {
+        name: "earphone",
+        link: "/shop?category=earphone",
+        imageUrl: ""
+    },
+    {
+        name: "headphone",
+        link: "/shop?category=headphone",
+        imageUrl: ""
+    },
+    {
+        name: "earphone",
+        link: "/shop?category=earphone",
+        imageUrl: ""
+    },
+]

@@ -8,3 +8,7 @@
       @apply transition-all duration-200 cursor-pointer
     }
   }
+
+body{
+  background-color: #F1F2F4;
+}

@@ -9,7 +9,7 @@ import Wallet from "@/components/buttons/Wallet";
 
 const Header = () => {
   return (
-    <div className="w-full shadow-md" >
+    <div className="w-full bg-white shadow-md" >
       <MaxWidthLayout children={<HeaderContent />} />
     </div>
   );
@@ -53,7 +53,7 @@ const HeaderContent = () => {
             ))
             }
             <li>
-            <Wallet text="124" />
+            <Wallet text="1" />
             </li>
           </ul>
         </div>
