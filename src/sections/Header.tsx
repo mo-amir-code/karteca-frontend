@@ -2,10 +2,8 @@ import Image from "next/image";
 import logo from "@/assets/brand/logo.png";
 import SearchBar from "@/components/searchbar";
 import MaxWidthLayout from "@/HOC/MaxWidthLayout";
-import { navbarData } from "@/data";
-import { FaCartShopping } from "react-icons/fa6";
-import { FaUser } from "react-icons/fa6";
-import Wallet from "@/components/buttons/Wallet";
+import RightSideBar from "@/components/header/rightSideBar";
+
 
 const Header = () => {
   return (
@@ -36,29 +34,7 @@ const HeaderContent = () => {
         </div>
 
         {/* Header right part */}
-        <div>
-          <ul className="flex items-center justify-end gap-8" >
-          {
-            navbarData.map((item, idx) => (
-              <li key={idx} className="flex items-center justify-center gap-2 cursor-pointer" >{
-                (()=>{
-                  switch(item.name){
-                    case "Cart":
-                      return <FaCartShopping scale={20} className="text-secondary-color" />
-                    case "Profile":
-                      return <FaUser scale={20} className="text-secondary-color" />
-                    default:
-                      return;
-                  }
-                })()
-              }<span>{item.name}</span></li>
-            ))
-            }
-            <li>
-            <Wallet text="1" />
-            </li>
-          </ul>
-        </div>
+        <RightSideBar />
       </div>
     </header>
   )
