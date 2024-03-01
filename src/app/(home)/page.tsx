@@ -8,12 +8,24 @@ import React from 'react'
 const page = () => {
   return (
     <div className='space-y-3' >
-      <MaxWidthLayout children={<HeroSlider />} />
-      <MaxWidthLayout children={<Categories />} />
-      <MaxWidthLayout children={<TopProducts text='Top Products' />} />
-      <MaxWidthLayout children={<TopProducts text='Best Smartwatch' />} />
-      <MaxWidthLayout children={<TopProducts text='First Choice Earphones' />} />
-      <MaxWidthLayout children={<FooterBanner/>} />
+      <MaxWidthLayout>
+         <HeroSlider />
+      </MaxWidthLayout>
+      <MaxWidthLayout>
+      <Categories />
+      </MaxWidthLayout>
+      <MaxWidthLayout>
+      <TopProducts text='Top Products' />
+      </MaxWidthLayout>
+      <MaxWidthLayout >
+      <TopProducts text='Best Smartwatch' />
+      </MaxWidthLayout>
+      <MaxWidthLayout>
+      <TopProducts text='First Choice Earphones' />
+      </MaxWidthLayout>
+      <MaxWidthLayout>
+      <FooterBanner/>
+      </MaxWidthLayout>
     </div>
   )
 }
