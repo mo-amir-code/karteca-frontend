@@ -21,6 +21,9 @@ const config: Config = {
         "tertiary-color":"#EBEDEF"
       }
     },
+    fontFamily: {
+      poppins: ["Poppins", "sans"]
+    }
   },
   plugins: [],
 };
