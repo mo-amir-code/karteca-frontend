@@ -18,7 +18,9 @@ const config: Config = {
       colors:{
         "primary-color":"#FFD910",
         "secondary-color":"#192330",
-        "tertiary-color":"#EBEDEF"
+        "tertiary-color":"#EBEDEF",
+        "red-color":"#DC2626",
+        "green-color":"#22C55E",
       }
     },
     fontFamily: {
