@@ -61,3 +61,9 @@ body{
 }
 
 /* end humberger menu css */
+
+@media (max-width: 640px){
+  body{
+    background-color: white;
+  }
+}
