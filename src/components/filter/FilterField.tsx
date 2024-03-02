@@ -1,5 +1,5 @@
 "use client";
-import { checkIsSelected } from "@/utils/services";
+import { checkIsSelected, handleSelectUtil } from "@/utils/services";
 import { useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 
@@ -8,39 +8,26 @@ export interface ListType {
   value: string;
 }
 
+export interface FilterFieldType{
+  list: [ListType];
+  isFirst?: boolean;
+  title: string;
+  isSort?: boolean
+}
+
 const FilterField = ({
   list,
   isFirst,
   title,
   isSort,
-}: {
-  list: [ListType];
-  isFirst?: boolean;
-  title: string;
-  isSort?: boolean;
-}) => {
+}: FilterFieldType) => {
   const [selected, setSelected] = useState<ListType | ListType[]>(
     isSort ? list[0] : []
   );
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const handleSelect = ({ target }: { target: ListType }) => {
-    if (isSort) {
-      setSelected(target);
-    } else {
-      const newSelected = [...(selected as [ListType])];
-      const isExist = newSelected.find((item) => item.value === target.value);
-
-      if (!isExist) {
-        newSelected.push(target);
-        setSelected(newSelected);
-      } else {
-        const filtered = newSelected.filter(
-          (item) => item.value !== target.value
-        );
-        setSelected(filtered);
-      }
-    }
+    handleSelectUtil({isSort:isSort?true:false, setSelected, selected, target});
   };
 
   return (
@@ -68,8 +55,16 @@ const FilterField = ({
           />
         </div>
       </div>
-      {!!isOpen && (
-        <div
+      {!!isOpen && <FilterFieldOptions list={list} handleSelect={handleSelect} selected={selected} isSort={isSort?true:false} />}
+    </div>
+  );
+};
+
+export const FilterFieldOptions = ({list, handleSelect, selected, isSort}:{list:[ListType], handleSelect:Function, selected:ListType | ListType[], isSort?:boolean }) => {
+  
+
+  return (
+    <div
           className={`w-full pb-2 overflow-hidden bg-white smooth_transition `}
         >
           <ul>
@@ -93,9 +88,7 @@ const FilterField = ({
             ))}
           </ul>
         </div>
-      )}
-    </div>
-  );
-};
+  )
+}
 
 export default FilterField;
