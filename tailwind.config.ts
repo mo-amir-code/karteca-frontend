@@ -21,6 +21,7 @@ const config: Config = {
         "tertiary-color":"#EBEDEF",
         "red-color":"#DC2626",
         "green-color":"#22C55E",
+        "tag-color":"#E0E0E0",
       }
     },
     fontFamily: {

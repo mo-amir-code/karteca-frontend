@@ -53,10 +53,10 @@ const FilterField = ({
         onClick={() => setIsOpen((prev) => !prev)}
         className="flex p-3 items-center justify-between cursor-pointer"
       >
-        <p className="font-semibold text-base font-lato text-secondary-color">
+        <p className="font-semibold font-lato text-secondary-color">
           {title} {isSort ? ": " + (selected as ListType).name : null}
         </p>
-        <div className="flex items-center justify-center gap-4" >
+        <div className="flex items-center justify-center gap-4">
           {(selected as ListType[]).length > 0
             ? (selected as ListType[]).length
             : null}
@@ -77,14 +77,15 @@ const FilterField = ({
               <li
                 key={idx}
                 onClick={() => handleSelect({ target: li })}
-                className={`py-1 cursor-pointer px-3 ${
+                className={`py-1 cursor-pointer px-3 text-sm ${
                   (selected as ListType).value === li.value ||
-                  !isSort && checkIsSelected({
-                    list: selected as [ListType],
-                    value: li.value,
-                  })
+                  (!isSort &&
+                    checkIsSelected({
+                      list: selected as [ListType],
+                      value: li.value,
+                    }))
                     ? "bg-primary-color"
-                    : "hover:bg-primary-color"
+                    : "hover:bg-primary-color/40"
                 } smooth_transition`}
               >
                 {li.name}

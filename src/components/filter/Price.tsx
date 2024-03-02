@@ -41,7 +41,7 @@ const Price = ({isFirst}:{isFirst?:boolean}) => {
              <p className="font-semibold text-base font-lato text-secondary-color" >Price </p>
              <IoIosArrowDown size={18} className={`text-secondary-color mr-2 smooth_transition ${!isOpen? "rotate-0" : "rotate-180"}`} />
           </div>
-        {!!isOpen && <div className="w-full space-y-8 mb-16 p-3" >
+        {!!isOpen && <div className="w-full space-y-8 p-3" >
             <div className="relative w-full h-[1px] bg-secondary-color" >
                 <input onChange={(event) => handleOnMinValueChange(event.target.value)} type="range" className="absolute top-[50%] z-10 -translate-y-[50%] bg-transparent pointer-events-none appearance-none left-0 w-full input_range" value={minValue} min={0} max={MAX_VALUE} />
                 <input onChange={(event) => handleOnMaxValueChange(event.target.value)} type="range" className="absolute top-[50%] z-10 -translate-y-[50%] bg-transparent pointer-events-none appearance-none left-0 w-full input_range" value={maxValue} min={0} max={MAX_VALUE} />

@@ -2,7 +2,7 @@ import slider1 from "@/assets/slider/1.png"
 import slider2 from "@/assets/slider/2.png"
 import slider3 from "@/assets/slider/3.png"
 
-export const MAX_VALUE = 50000
+export const MAX_VALUE = 5000
 
 export const navbarData = [
     {
@@ -89,7 +89,7 @@ export const discount = [
     },
     {
         name: "30% And Above",
-        value: "20"
+        value: "30"
     },
     {
         name: "20% And Above",
@@ -98,5 +98,43 @@ export const discount = [
     {
         name: "10% And Above",
         value: "10"
+    },
+]
+
+export const rating = [
+    {
+        name: "4★ & above",
+        value: "4"
+    },
+    {
+        name: "3★ & above",
+        value: "3"
+    },
+    {
+        name: "2★ & above",
+        value: "2"
+    },
+]
+
+export const filterCategories  = [
+    {
+        name: "Smartwatch",
+        value: "smartwatch"
+    },
+    {
+        name: "Headphones",
+        value: "headphone"
+    },
+    {
+        name: "Smartphones",
+        value: "smartphone"
+    },
+    {
+        name: "Earphones",
+        value: "earphones"
+    },
+    {
+        name: "Gadgets",
+        value: "geadgets"
     },
 ]
