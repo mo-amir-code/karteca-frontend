@@ -8,7 +8,7 @@ function HomeLayout({
   return (
     <div className="w-full">
       <Header />
-      <main className="my-4 max-w-7xl mx-auto overflow-hidden">{children}</main>
+      <main className="my-4 max-md:my-2 max-w-7xl mx-auto overflow-hidden">{children}</main>
     </div>
   );
 }

@@ -155,3 +155,17 @@ body {
 }
 
 /* end double dot button */
+
+.hide_scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for Firefox */
+.hide_scrollbar {
+  overflow: -moz-scrollbars-none;
+}
+
+/* Hide scrollbar for IE and Edge */
+.hide_scrollbar {
+  -ms-overflow-style: none;
+}

@@ -6,7 +6,7 @@ import Tags from "./Tags";
 
 const Sidebar = () => {
   return (
-    <aside className="flex-[0.23] space-y-6 rounded-md select-none">
+    <aside className="max-w-[276px] max-md:hidden space-y-6 rounded-md select-none">
       <Tags title="Filters" />
       <FilterField title="Sort By" list={sortList as [ListType]} isFirst={true} isSort={true} />
 
