@@ -1,33 +1,33 @@
-import MaxWidthLayout from '@/HOC/MaxWidthLayout'
-import Categories from '@/components/categories'
-import FooterBanner from '@/components/footerBanner/FooterBanner'
-import HeroSlider from '@/components/heroSlider'
-import TopProducts from '@/components/topProducts'
-import React from 'react'
+import MaxWidthLayout from "@/HOC/MaxWidthLayout";
+import Categories from "@/components/categories";
+import FooterBanner from "@/components/footerBanner/FooterBanner";
+import HeroSlider from "@/components/heroSlider";
+import TopProducts from "@/components/topProducts";
+import React from "react";
 
 const page = () => {
   return (
-    <div className='space-y-3' >
+    <div className="space-y-3 max-md:overflow-y-auto">
       <MaxWidthLayout>
-         <HeroSlider />
+        <HeroSlider />
       </MaxWidthLayout>
       <MaxWidthLayout>
-      <Categories />
+        <Categories />
       </MaxWidthLayout>
       <MaxWidthLayout>
-      <TopProducts text='Top Products' />
-      </MaxWidthLayout>
-      <MaxWidthLayout >
-      <TopProducts text='Best Smartwatch' />
+        <TopProducts text="Top Products" />
       </MaxWidthLayout>
       <MaxWidthLayout>
-      <TopProducts text='First Choice Earphones' />
+        <TopProducts text="Best Smartwatch" />
       </MaxWidthLayout>
       <MaxWidthLayout>
-      <FooterBanner/>
+        <TopProducts text="First Choice Earphones" />
+      </MaxWidthLayout>
+      <MaxWidthLayout>
+        <FooterBanner />
       </MaxWidthLayout>
     </div>
-  )
-}
+  );
+};
 
-export default page
+export default page;

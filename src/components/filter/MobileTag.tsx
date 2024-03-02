@@ -18,7 +18,7 @@ const MobileTag = ({
     isSort ? list[0] : []
   );
 
-  const handleSelect = (target: ListType) => {
+  const handleSelect = ({target}:{target:ListType}) => {
     handleSelectUtil({
       isSort: isSort ? true : false,
       setSelected,
@@ -28,6 +28,7 @@ const MobileTag = ({
   };
 
   return (
+    <>
     <div
       onClick={() => setIsOpen((prev) => !prev)}
       style={{ maxWidth: "max-content" }}
@@ -40,10 +41,10 @@ const MobileTag = ({
           !isOpen ? "rotate-0" : "rotate-180"
         }`}
       />
-
-      <div
+    </div>
+    <div
         className={`absolute bottom-0 left-0 w-full py-4 ${
-          isOpen ? "translate-y-0" : "translate-y-[100%]"
+          isOpen ? "translate-y-0" : "translate-y-[100%] hidden"
         } smooth_transition bg-white z-10`}
       >
         <FilterFieldOptions
@@ -53,7 +54,7 @@ const MobileTag = ({
           isSort={isSort ? true : false}
         />
       </div>
-    </div>
+    </>
   );
 };
 

@@ -43,6 +43,7 @@ export const handleSelectUtil = ({
   selected,
   target,
 }: HandleSelectUtilType) => {
+
   if (isSort) {
     setSelected(target);
   } else {
@@ -50,7 +51,7 @@ export const handleSelectUtil = ({
     const isExist = newSelected.find((item) => item.value === target.value);
 
     if (!isExist) {
-      newSelected.push(target);
+      newSelected.push({...target});
       setSelected(newSelected);
     } else {
       const filtered = newSelected.filter(
