@@ -1,12 +1,12 @@
 import Image from "next/image"
 import Link from "next/link"
 import logo from "@/assets/brand/logo.png"
-import Wallet from "@/components/buttons/Wallet"
+import MobileWallet from "@/components/buttons/MobileWallet"
 
 
 const MobileHeader = () => {
   return (
-    <header className="p-2 md:hidden" >
+    <header className="py-2 px-4 md:hidden" >
         <div className="flex items-center justify-between gap-1">
             <div className="flex items-center justify-center w-12 h-12 cursor-pointer max-sm:w-10 max-sm:h-10">
               <Link href={"/"}>
@@ -20,7 +20,7 @@ const MobileHeader = () => {
               </Link>
             </div>
 
-            <Wallet amount="2345" />
+            <MobileWallet amount="23" />
           </div>
 
     </header>
