@@ -2,6 +2,8 @@ import slider1 from "@/assets/slider/1.png"
 import slider2 from "@/assets/slider/2.png"
 import slider3 from "@/assets/slider/3.png"
 
+export const MAX_VALUE = 50000
+
 export const navbarData = [
     {
         name: "Cart",
@@ -77,5 +79,24 @@ export const sortList = [
     {
         name: "Highest First",
         value: "highest"
+    },
+]
+
+export const discount = [
+    {
+        name: "40% And Above",
+        value: "40"
+    },
+    {
+        name: "30% And Above",
+        value: "20"
+    },
+    {
+        name: "20% And Above",
+        value: "20"
+    },
+    {
+        name: "10% And Above",
+        value: "10"
     },
 ]

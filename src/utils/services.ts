@@ -1,3 +1,5 @@
+import { ListType } from "@/components/filter/FilterField"
+
 export const shortProductTitle = ({title}:{title:string}) => {
     return `${title.slice(0, 18)}...`
 }
@@ -13,3 +15,11 @@ export const shortProductTitle = ({title}:{title:string}) => {
 //       toast.error("Something went wrong");
 //     }
 //   }
+
+export const checkIsSelected = ({list, value}:{list: [ListType], value:string}):Boolean => {
+    const isFound = list.find((item) => item.value === value);
+    if(isFound){
+        return true;
+    }
+    return false
+}

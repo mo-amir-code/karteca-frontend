@@ -65,3 +65,93 @@ body {
     background-color: white;
   }
 }
+
+/* Checkbox css */
+.material-checkbox {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  color: #777777;
+  cursor: pointer;
+}
+
+.material-checkbox input[type="checkbox"] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.checkmark {
+  position: relative;
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 12px;
+  border: 2px solid rgb(74, 81, 4);
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+
+.material-checkbox input[type="checkbox"]:checked ~ .checkmark {
+  background-color: rgb(41, 45, 1);
+  border-color: #454B00;
+}
+
+.material-checkbox input[type="checkbox"]:checked ~ .checkmark:after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 6px;
+  width: 4px;
+  height: 10px;
+  border: solid white;
+  border-width: 0 2px 2px 0;
+  transform: rotate(45deg);
+}
+
+.material-checkbox input[type="checkbox"]:focus ~ .checkmark {
+  box-shadow: 0 0 0 2px #FFD910;
+}
+
+.material-checkbox:hover input[type="checkbox"] ~ .checkmark {
+  border-color: #FFD910;
+}
+
+.material-checkbox input[type="checkbox"]:disabled ~ .checkmark {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.material-checkbox input[type="checkbox"]:disabled ~ .checkmark:hover {
+  border-color: #4d4d4d;
+}
+/* end checkbox css */
+
+/* double dot button */
+
+.input_range::-webkit-slider-thumb{
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border:2px solid #FFD910;
+  background: white;
+  pointer-events: auto;
+  appearance: none;
+  cursor: pointer;
+  box-shadow: 0.125rem .5625rem -0.125rem rgba(0, 0, 0, 0.25);
+}
+
+.input_range::-moz-range-thumb{
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  border:2px solid #FFD910;
+  background: white;
+  pointer-events: auto;
+  -moz-appearance: none;
+  cursor: pointer;
+  box-shadow: 0.125rem .5625rem -0.125rem rgba(0, 0, 0, 0.25);
+}
+
+/* end double dot button */
