@@ -8,6 +8,9 @@
   .smooth_transition {
     @apply transition-all duration-200 cursor-pointer;
   }
+  .mobile_view {
+    @apply max-md:h-screen overflow-y-auto;
+  }
 }
 
 body {

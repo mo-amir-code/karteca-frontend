@@ -6,7 +6,7 @@ function HomeLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="w-full">
+    <div className="w-full mobile_view">
       <Header />
       <main className="my-4 max-md:my-2 max-w-7xl mx-auto overflow-hidden">{children}</main>
     </div>

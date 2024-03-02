@@ -8,26 +8,26 @@ export interface ListType {
   value: string;
 }
 
-export interface FilterFieldType{
+export interface FilterFieldType {
   list: [ListType];
   isFirst?: boolean;
   title: string;
-  isSort?: boolean
+  isSort?: boolean;
 }
 
-const FilterField = ({
-  list,
-  isFirst,
-  title,
-  isSort,
-}: FilterFieldType) => {
+const FilterField = ({ list, isFirst, title, isSort }: FilterFieldType) => {
   const [selected, setSelected] = useState<ListType | ListType[]>(
     isSort ? list[0] : []
   );
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const handleSelect = ({ target }: { target: ListType }) => {
-    handleSelectUtil({isSort:isSort?true:false, setSelected, selected, target});
+    handleSelectUtil({
+      isSort: isSort ? true : false,
+      setSelected,
+      selected,
+      target,
+    });
   };
 
   return (
@@ -55,40 +55,53 @@ const FilterField = ({
           />
         </div>
       </div>
-      {!!isOpen && <FilterFieldOptions list={list} handleSelect={handleSelect} selected={selected} isSort={isSort?true:false} />}
+      {!!isOpen && (
+        <FilterFieldOptions
+          list={list}
+          handleSelect={handleSelect}
+          selected={selected}
+          isSort={isSort ? true : false}
+        />
+      )}
     </div>
   );
 };
 
-export const FilterFieldOptions = ({list, handleSelect, selected, isSort}:{list:[ListType], handleSelect:Function, selected:ListType | ListType[], isSort?:boolean }) => {
-  
-
+export const FilterFieldOptions = ({
+  list,
+  handleSelect,
+  selected,
+  isSort,
+}: {
+  list: [ListType];
+  handleSelect: Function;
+  selected: ListType | ListType[];
+  isSort?: boolean;
+}) => {
   return (
-    <div
-          className={`w-full pb-2 overflow-hidden bg-white smooth_transition `}
-        >
-          <ul>
-            {list.map((li, idx) => (
-              <li
-                key={idx}
-                onClick={() => handleSelect({ target: li })}
-                className={`py-1 cursor-pointer px-3 text-sm ${
-                  (selected as ListType).value === li.value ||
-                  (!isSort &&
-                    checkIsSelected({
-                      list: selected as [ListType],
-                      value: li.value,
-                    }))
-                    ? "bg-primary-color"
-                    : "hover:bg-primary-color/40"
-                } smooth_transition`}
-              >
-                {li.name}
-              </li>
-            ))}
-          </ul>
-        </div>
-  )
-}
+    <div className={`w-full pb-2 overflow-hidden bg-white smooth_transition `}>
+      <ul>
+        {list.map((li, idx) => (
+          <li
+            key={idx}
+            onClick={() => handleSelect({ target: li })}
+            className={`py-1 cursor-pointer px-3 text-sm ${
+              (selected as ListType).value === li.value ||
+              (!isSort &&
+                checkIsSelected({
+                  list: selected as [ListType],
+                  value: li.value,
+                }))
+                ? "bg-primary-color"
+                : "hover:bg-primary-color/40"
+            } smooth_transition`}
+          >
+            {li.name}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
 
 export default FilterField;
