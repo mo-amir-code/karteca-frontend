@@ -35,7 +35,7 @@ const RightSideBar = () => {
           </li>
         ))}
         <li>
-          <Wallet text="1" />
+          <Wallet amount="1" />
         </li>
       </ul>
       <span className="w-8 h-8 hidden max-md:block cursor-pointer sm:hidden">

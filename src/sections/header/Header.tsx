@@ -7,7 +7,7 @@ import Link from "next/link";
 
 const Header = () => {
   return (
-    <div className="w-full bg-white shadow-md">
+    <div className="w-full max-md:hidden bg-white shadow-md">
       <MaxWidthLayout>
         <HeaderContent />
       </MaxWidthLayout>
