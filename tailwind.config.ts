@@ -24,7 +24,8 @@ const config: Config = {
       }
     },
     fontFamily: {
-      poppins: ["Poppins", "sans"]
+      poppins: ["Poppins", "sans"],
+      lato: ["Lato", "sans"],
     }
   },
   plugins: [],

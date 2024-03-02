@@ -60,3 +60,22 @@ export const categories = [
         imageUrl: ""
     },
 ]
+
+export const sortList = [
+    {
+        name: "Top Items",
+        value: "top"
+    },
+    {
+        name: "Newest First",
+        value: "new"
+    },
+    {
+        name: "Lowest First",
+        value: "lowest"
+    },
+    {
+        name: "Highest First",
+        value: "highest"
+    },
+]
