@@ -43,7 +43,7 @@ const MobileTag = ({
       />
     </div>
     <div
-        className={`absolute bottom-0 left-0 w-full py-4 ${
+        className={`fixed bottom-0 left-0 w-full py-4 ${
           isOpen ? "translate-y-0" : "translate-y-[100%] hidden"
         } smooth_transition bg-white z-10`}
       >

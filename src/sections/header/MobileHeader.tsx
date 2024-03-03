@@ -10,7 +10,6 @@ const MobileHeader = () => {
   useEffect(() => {
     const onScroll = () => {
       const currentScrollPos = window.pageYOffset;
-      console.log(currentScrollPos, prevScrollPos)
 
       if(prevScrollPos > currentScrollPos){
         setIsUp(true)
