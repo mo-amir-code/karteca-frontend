@@ -1,5 +1,5 @@
 import Link from "next/link";
-import React from "react";
+import React, { memo } from "react";
 import { IoWallet } from "react-icons/io5";
 
 const MobileWallet = ({amount}:{amount:string}) => {
@@ -17,4 +17,4 @@ const MobileWallet = ({amount}:{amount:string}) => {
   );
 };
 
-export default MobileWallet;
+export default memo(MobileWallet);

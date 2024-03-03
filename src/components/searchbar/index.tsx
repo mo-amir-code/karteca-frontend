@@ -1,3 +1,4 @@
+import { memo } from "react";
 import { TfiSearch } from "react-icons/tfi";
 
 const SearchBar = ({isOnMobile}:{isOnMobile?:boolean}) => {
@@ -9,4 +10,4 @@ const SearchBar = ({isOnMobile}:{isOnMobile?:boolean}) => {
   )
 }
 
-export default SearchBar
+export default memo(SearchBar)

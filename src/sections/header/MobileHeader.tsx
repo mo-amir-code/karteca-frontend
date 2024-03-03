@@ -1,33 +1,46 @@
-import Image from "next/image";
-import Link from "next/link";
-import logo from "@/assets/brand/logo.png";
-import MobileWallet from "@/components/buttons/MobileWallet";
-import SearchBar from "@/components/searchbar";
+"use client"
+import MobileHeaderContent from "@/components/header/MobileHeaderContent"
+import { useEffect, useState } from "react"
 
 const MobileHeader = () => {
+  const [isScroll, setIsScroll] = useState<boolean>(false);
+  const [isUp, setIsUp] = useState<boolean>(false);
+  const [prevScrollPos, setPrevScrollPos] = useState<number>(0);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const currentScrollPos = window.pageYOffset;
+      console.log(currentScrollPos, prevScrollPos)
+
+      if(prevScrollPos > currentScrollPos){
+        setIsUp(true)
+      }else{
+        setIsUp(false)
+      }
+
+      setPrevScrollPos(currentScrollPos)
+
+      if(currentScrollPos > 50){
+        setIsScroll(true);
+      }else{
+        setIsScroll(false);
+      }
+    }
+
+    window.addEventListener("scroll", onScroll)
+
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    }
+
+  }, [prevScrollPos]);
+
   return (
-    <header className="w-full py-2 px-4 md:hidden space-y-4 h-[110px]">
-      <div className="flex items-center justify-between gap-1">
-        <div className="flex items-center justify-center w-12 h-12 cursor-pointer max-sm:w-10 max-sm:h-10">
-          <Link href={"/"}>
-            <Image
-              src={logo}
-              alt="memik logo"
-              layout="fixed"
-              height={48}
-              width={48}
-            />
-          </Link>
-        </div>
+    <div className="w-full md:hidden" >
+          <MobileHeaderContent isUp={isUp} isScroll={isScroll} />
+          <div className="max-md:h-[110px]" />
+    </div>
+  )
+}
 
-        <MobileWallet amount="23" />
-      </div>
-
-      <div>
-        <SearchBar isOnMobile={true} />
-      </div>
-    </header>
-  );
-};
-
-export default MobileHeader;
+export default MobileHeader
