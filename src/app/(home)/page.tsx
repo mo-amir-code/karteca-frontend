@@ -7,7 +7,7 @@ import React from "react";
 
 const page = () => {
   return (
-    <div className="space-y-3 max-md:overflow-y-auto">
+    <div className="space-y-3">
       <MaxWidthLayout>
         <HeroSlider />
       </MaxWidthLayout>
