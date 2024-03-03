@@ -11,18 +11,23 @@ const page = () => {
       <MaxWidthLayout>
         <HeroSlider />
       </MaxWidthLayout>
+
       <MaxWidthLayout>
         <Categories />
       </MaxWidthLayout>
+
       <MaxWidthLayout>
         <TopProducts text="Top Products" />
       </MaxWidthLayout>
+
       <MaxWidthLayout>
         <TopProducts text="Best Smartwatch" />
       </MaxWidthLayout>
+
       <MaxWidthLayout>
         <TopProducts text="First Choice Earphones" />
       </MaxWidthLayout>
+      
       <MaxWidthLayout>
         <FooterBanner />
       </MaxWidthLayout>
