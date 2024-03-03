@@ -138,3 +138,26 @@ export const filterCategories  = [
         value: "geadgets"
     },
 ]
+
+export const mobileNavbar = [
+    {
+        name: "Home",
+        path: "/"
+    },
+    {
+        name: "Notifications",
+        path: "/user/notifications"
+    },
+    {
+        name: "Wallet",
+        path: "/user/refer"
+    },
+    {
+        name: "User",
+        path: "/user/:username"
+    },
+    {
+        name: "Cart",
+        path: "/user/cart"
+    },
+]
