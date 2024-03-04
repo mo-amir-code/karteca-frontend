@@ -9,29 +9,22 @@ const page = () => {
   return (
     <div className="space-y-3">
       <MaxWidthLayout>
-        <HeroSlider />
-      </MaxWidthLayout>
-
-      <MaxWidthLayout>
-        <Categories />
-      </MaxWidthLayout>
-
-      <MaxWidthLayout>
-        <TopProducts text="Top Products" />
-      </MaxWidthLayout>
-
-      <MaxWidthLayout>
-        <TopProducts text="Best Smartwatch" />
-      </MaxWidthLayout>
-
-      <MaxWidthLayout>
-        <TopProducts text="First Choice Earphones" />
-      </MaxWidthLayout>
-      
-      <MaxWidthLayout>
-        <FooterBanner />
+        <Wrapper />
       </MaxWidthLayout>
     </div>
+  );
+};
+
+const Wrapper = () => {
+  return (
+    <>
+      <HeroSlider />
+      <Categories />
+      <TopProducts text="Top Products" />
+      <TopProducts text="Best Smartwatch" />
+      <TopProducts text="First Choice Earphones" />
+      <FooterBanner />
+    </>
   );
 };
 

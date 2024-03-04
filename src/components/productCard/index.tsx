@@ -3,6 +3,7 @@ import product from "@/assets/productsImage/dummy2.png";
 import { shortProductTitle } from "@/utils/services";
 import Stars from "./Stars";
 import Actions from "./Actions";
+import Link from "next/link";
 
 const ProductCard = () => {
   
@@ -18,6 +19,7 @@ const ProductCard = () => {
         </div>
 
         {/* Content Area */}
+        <Link href={"/product/435"} >
         <div className="pt-2 pb-1 flex flex-col items-center justify-center gap-1">
           <h1 className="text-xs font-poppins font-medium hover:text-primary-color smooth_transition">
             {shortProductTitle({ title: "Apple Smartwatch With Apple logo" })}
@@ -35,6 +37,7 @@ const ProductCard = () => {
           </div>
           <Stars stars={4.5} reviews={34} />
         </div>
+        </Link>
       </div>
     </div>
   );

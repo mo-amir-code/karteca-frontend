@@ -11,7 +11,7 @@ function HomeLayout({
     <>
       <Header />
       <MobileHeader />
-      <main className="my-4 max-md:my-2 max-w-7xl mx-auto pb-[60px]">{children}</main>
+      <main className="my-4 max-md:my-2 max-w-7xl mx-auto max-md:pb-[60px]">{children}</main>
       <MobileNavbar />
     </>
   );
