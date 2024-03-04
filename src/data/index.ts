@@ -161,3 +161,48 @@ export const mobileNavbar = [
         path: "/user/cart"
     },
 ]
+
+export const colors = [
+    {
+        color: "#FFDA10"
+    },
+    {
+        color: "#252C37"
+    },
+    {
+        color: "#5340FF"
+    },
+    {
+        color: "#FF00FF"
+    },
+]
+
+export const sizes = [
+    {
+        size: 12
+    },
+    {
+        size: 89
+    },
+    {
+        size: 45
+    },
+    {
+        size: 44
+    }
+]
+
+export const claims = [
+    {
+        icon: "genuine",
+        msg: "100% Genuine Products"
+    },
+    {
+        icon: "return",
+        msg: "Easy Return Policy"
+    },
+    {
+        icon: "sold",
+        msg: "MEMIK"
+    },
+]

@@ -20,7 +20,7 @@ const config: Config = {
         "secondary-color":"#192330",
         "tertiary-color":"#EBEDEF",
         "red-color":"#DC2626",
-        "green-color":"#22C55E",
+        "green-color":"#00b533",
         "tag-color":"#E0E0E0",
       }
     },

@@ -172,3 +172,15 @@ body {
 .hide_scrollbar {
   -ms-overflow-style: none;
 }
+
+/* Hide the spinner arrows */
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0; /* Optional - if you want to remove the margin as well */
+}
+
+input[type=number] {
+    /* Optionally, you can add padding to make up for the missing arrows */
+    padding-right: 1em; /* Adjust as needed */
+}

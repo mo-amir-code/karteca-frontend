@@ -1,8 +1,9 @@
+import Hero from "@/components/productDetails/Hero"
 
 const ProductDetails = () => {
     return (
-        <div className="" >
-
+        <div className=" px-4" >
+            <Hero />
         </div>
     )
 }
