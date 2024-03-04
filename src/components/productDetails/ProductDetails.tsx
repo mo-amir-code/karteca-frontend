@@ -15,7 +15,7 @@ const ProductDetails = () => {
       <div className="space-y-2" >
         {/* title */}
         <h1 className="text-lg font-medium text-secondary-color leading-6">
-          Firebolt Smartwatch 13inch Lcd Panel With Amoled Display
+          Firebolt Smartwatch {'13"inch'} Lcd Panel With Amoled Display
         </h1>
 
         {/* rating */}
@@ -91,7 +91,7 @@ const ProductDetails = () => {
                 className="flex-grow outline-none bg-transparent text-sm font-medium"
                 placeholder="Enter Delivery Pincode"
               />
-              <button className="outline-none font-semibold text-primary-color font-lato text-sm">
+              <button style={{width: "max-content"}} className="outline-none font-semibold text-primary-color font-lato text-sm">
                 Check
               </button>
             </div>
