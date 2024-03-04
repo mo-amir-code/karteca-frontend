@@ -15,7 +15,7 @@ const ProductDetails = () => {
       <div className="space-y-2" >
         {/* title */}
         <h1 className="text-lg font-medium text-secondary-color leading-6">
-          Firebolt Smartwatch 13"inch Lcd Panel With Amoled Display
+          Firebolt Smartwatch 13inch Lcd Panel With Amoled Display
         </h1>
 
         {/* rating */}
