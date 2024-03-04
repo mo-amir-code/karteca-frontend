@@ -101,7 +101,7 @@ const ProductDetails = () => {
           <div className="flex max-md:hidden items-center justify-between p-3 bg-tertiary-color" >
             {
                 claims.map((claim, idx) => (
-                    <div className="flex items-center justify-center gap-2 text-sm max-lg:text-xs font-medium" >
+                    <div key={idx} className="flex items-center justify-center gap-2 text-sm max-lg:text-xs font-medium" >
                         {
                             (()=>{
                                 switch(claim.icon){
