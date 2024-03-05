@@ -206,3 +206,22 @@ export const claims = [
         msg: "MEMIK"
     },
 ]
+
+export const productHighlights = [
+    "Guarantee hai bhai product ghar pr aayega.",
+    "Guarantee hai bhai product ghar pr aayega.",
+    "Guarantee hai bhai product ghar pr aayega.",
+    "Guarantee hai bhai product ghar pr aayega.",
+    "Guarantee hai bhai product ghar pr aayega.",
+]
+
+export const productSpecs = {
+    Display: `13"inch sAmoled`,
+    Processor: "MediaTek Dimensity",
+    Price: "teri okat se bahar"
+}
+
+export const productWarranty = {
+    serviceType: "null",
+    covered: "null"
+}

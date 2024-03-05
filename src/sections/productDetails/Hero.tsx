@@ -1,7 +1,7 @@
 "use client";
-import Images from "./Images";
-import ProductButton from "../buttons/ProductButton";
-import ProductDetails from "./ProductDetails";
+import Images from "@/components/productDetails/Images";
+import ProductButton from "@/components/buttons/ProductButton";
+import ProductDetails from "@/components/productDetails/ProductDetails";
 
 const Hero = () => {
 
