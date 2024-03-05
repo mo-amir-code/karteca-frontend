@@ -27,23 +27,19 @@ const CartItem = () => {
               </div>
 
               {/* Product Cost, Quantity */}
-              <div className="flex sm:flex-col max-sm:items-center space-y-4 max-sm:space-x-3">
+              <div className="my-10 flex sm:flex-col max-sm:items-center space-y-4 max-sm:space-x-3">
                 <div className="space-y-1">
                   <h3 className="text-base font-medium text-secondary-color text-end max-sm:text-start max-sm:text-sm">
                     Quantity:
                   </h3>
-                  <div className="text-secondary-color_3 ">
-                    <span className="flex items-center justify-start border-2 border-secondary-color_3 hover:shadow-lg duration-200 transition-all">
-                      <button className=" w-10 max-md:w-6 flex items-center justify-center cursor-pointer hover:text-primary-color duration-200 transition-all">
-                        -
-                      </button>
-                      <span className=" w-10 max-md:w-6 max-md:text-sm max-sm:text-xs flex items-center font-semibold justify-center">
-                        3
-                      </span>
-                      <button className=" w-10 max-md:w-6 flex items-center justify-center cursor-pointer hover:text-primary-color duration-200 transition-all">
-                        +
-                      </button>
-                    </span>
+                  <div className="border rounded-b-lg px-2">
+                    <select className="text-sm outline-none w-full text-center bg-transparent">
+                      <option value={1}>1</option>
+                      <option value={2}>2</option>
+                      <option value={3}>3</option>
+                      <option value={4}>4</option>
+                      <option value={5}>5</option>
+                    </select>
                   </div>
                 </div>
                 <p className="text-base font-medium text-secondary-color text-end max-sm:text-sm">
@@ -52,6 +48,8 @@ const CartItem = () => {
                 </p>
               </div>
             </div>
+
+            {/* Buttons */}
             <div className="flex px-4 max-md:px-2 items-center justify-start gap-2 flex-wrap">
               <button className="flex items-center justify-center text-sm gap-1 bg-primary-color px-4 p-2 rounded-lg shadow-lg smooth_transition hover:-translate-y-1">
                 <FaTrash size={12} />
@@ -62,6 +60,7 @@ const CartItem = () => {
                 <span>Wishlist</span>
               </button>
             </div>
+            {/* End Buttons */}
           </div>
         </div>
       </div>

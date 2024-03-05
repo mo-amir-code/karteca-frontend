@@ -6,7 +6,9 @@ const Cart = () => {
     <div className="mx-auto w-full">
       <div className="w-full flex justify-center py-4 max-lg:flex-col max-lg:gap-6">
         <CartItems />
-        <CartBill />
+        <div className="flex-[0.35]" >
+          <CartBill />
+        </div>
       </div>
     </div>
   );

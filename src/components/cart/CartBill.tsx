@@ -1,6 +1,6 @@
 const CartBill = () => {
   return (
-    <div className="flex-[0.35] w-full max-md:mx-0 mx-2 rounded-lg text-secondary-color p-4">
+    <div className="bg-white w-full max-md:mx-0 mx-2 rounded-lg text-secondary-color p-4">
       <div className="space-y-3">
         <h2 className="text-2xl font-bold">Summary</h2>
         <div className="space-y-1">
