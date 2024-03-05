@@ -10,8 +10,8 @@ const ProductSpecifications = () => {
       <div className="flex-grow">
         <h2 className="text-lg font-semibold font-lato">Specifications</h2>
         <div className="py-3 space-y-3">
-            <SpecsWrapper />
-            <ProductActionButton />
+          <SpecsWrapper />
+          <ProductActionButton />
         </div>
       </div>
       <div className="w-[400px] max-[900px]:hidden bg-red-500 h-8"></div>
@@ -34,7 +34,5 @@ const SpecsWrapper = () => {
     </>
   );
 };
-
-
 
 export default ProductSpecifications;

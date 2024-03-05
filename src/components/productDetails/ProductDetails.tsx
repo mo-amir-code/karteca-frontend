@@ -11,8 +11,7 @@ const ProductDetails = () => {
 
   return (
     <div className="w-full h-full space-y-2 flex flex-col justify-between">
-
-      <div className="space-y-2" >
+      <div className="space-y-2">
         {/* title */}
         <h1 className="text-lg font-medium text-secondary-color leading-6">
           Firebolt Smartwatch {'13"inch'} Lcd Panel With Amoled Display
@@ -73,54 +72,54 @@ const ProductDetails = () => {
               ))}
             </div>
           </div>
-
         </div>
-
       </div>
 
-      <div className="space-y-4" >
-         {/* Pincode check */}
-         <div className="space-y-1 pt-4">
-            <div className="flex items-center justify-start font-semibold text-base text-gray-500">
-              <IoLocationSharp size={20} />
-              <span>Delivery Options</span>
-            </div>
-            <div className="flex items-center justify-center max-w-[250px] border p-2 gap-2 max-md:gap-1">
-              <input
-                type="number"
-                className="w-full outline-none bg-transparent text-sm font-medium"
-                placeholder="Enter Delivery Pincode"
-              />
-              <button style={{width: "max-content"}} className="outline-none font-semibold text-primary-color font-lato text-sm">
-                Check
-              </button>
-            </div>
+      <div className="space-y-4">
+        {/* Pincode check */}
+        <div className="space-y-1 pt-4">
+          <div className="flex items-center justify-start font-semibold text-base text-gray-500">
+            <IoLocationSharp size={20} />
+            <span>Delivery Options</span>
           </div>
+          <div className="flex items-center justify-center max-w-[250px] border p-2 gap-2 max-md:gap-1">
+            <input
+              type="number"
+              className="w-full outline-none bg-transparent text-sm font-medium"
+              placeholder="Enter Delivery Pincode"
+            />
+            <button
+              style={{ width: "max-content" }}
+              className="outline-none font-semibold text-primary-color font-lato text-sm"
+            >
+              Check
+            </button>
+          </div>
+        </div>
 
-          {/* Trust Label */}
-          <div className="flex max-md:hidden items-center justify-between p-3 bg-tertiary-color" >
-            {
-                claims.map((claim, idx) => (
-                    <div key={idx} className="flex items-center justify-center gap-2 text-sm max-lg:text-xs font-medium" >
-                        {
-                            (()=>{
-                                switch(claim.icon){
-                                    case "genuine":
-                                        return <VscWorkspaceTrusted size={16}/>
-                                    case "return":
-                                        return <GiReturnArrow size={16}/>
-                                    case "sold":
-                                        return <span>Sold By: </span>
-                                    default:
-                                        return;
-                                }
-                            })()
-                        }
-                        <span >{claim.msg}</span>
-                    </div>
-                ))
-            }
-          </div>
+        {/* Trust Label */}
+        <div className="flex max-md:hidden items-center justify-between p-3 bg-tertiary-color">
+          {claims.map((claim, idx) => (
+            <div
+              key={idx}
+              className="flex items-center justify-center gap-2 text-sm max-lg:text-xs font-medium"
+            >
+              {(() => {
+                switch (claim.icon) {
+                  case "genuine":
+                    return <VscWorkspaceTrusted size={16} />;
+                  case "return":
+                    return <GiReturnArrow size={16} />;
+                  case "sold":
+                    return <span>Sold By: </span>;
+                  default:
+                    return;
+                }
+              })()}
+              <span>{claim.msg}</span>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
