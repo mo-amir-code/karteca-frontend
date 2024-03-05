@@ -225,3 +225,48 @@ export const productWarranty = {
     serviceType: "null",
     covered: "null"
 }
+
+export const accountSettings = [
+    {
+        name:"Profile Information",
+        path: ""
+    },
+    {
+        name:"Manage Addresses",
+        path: ""
+    },
+]
+
+export const payments = [
+    {
+        name:"Save UPI",
+        path: ""
+    },
+    {
+        name:"Cards",
+        path: ""
+    },
+    {
+        name:"My Wallets",
+        path: ""
+    },
+]
+
+export const mystuffs = [
+    {
+        name:"My Coupon",
+        path: ""
+    },
+    {
+        name:"Reviews & Rating",
+        path: ""
+    },
+    {
+        name:"Notifications",
+        path: ""
+    },
+    {
+        name:"Wishlist",
+        path: ""
+    }
+]
