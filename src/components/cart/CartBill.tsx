@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 const CartBill = () => {
   return (
     <div className="bg-white w-full max-md:mx-0 mx-2 rounded-lg text-secondary-color p-4">
@@ -23,9 +25,9 @@ const CartBill = () => {
             <span>567</span>
           </h3>
         </div>
-        <button className="w-full py-3 font-bold shadow-lg smooth_transition hover:-translate-y-1 flex items-center justify-center bg-primary-color rounded-full">
+        <Link href={"/user/cart/checkout"} className="w-full py-3 font-bold shadow-lg smooth_transition hover:-translate-y-1 flex items-center justify-center bg-primary-color rounded-full">
           Checkout
-        </button>
+        </Link>
       </div>
     </div>
   );
