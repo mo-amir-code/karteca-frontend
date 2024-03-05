@@ -4,11 +4,11 @@
 @tailwind components;
 @tailwind utilities;
 
-@media (max-width: 768px) {
+/* @media (max-width: 768px) {
   :root {
-    font-size: 14px; /* Change root font size to 10px under 768px */
+    font-size: 14px; 
   }
-}
+} */
 
 @layer utilities {
   .smooth_transition {
