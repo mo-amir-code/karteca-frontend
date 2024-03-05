@@ -37,7 +37,7 @@ const MobileHeader = () => {
   return (
     <div className="w-full md:hidden" >
           <MobileHeaderContent isUp={isUp} isScroll={isScroll} />
-          <div className="max-md:h-[110px]" />
+          <div className="max-md:h-[111px]" />
     </div>
   )
 }

@@ -1,7 +1,7 @@
 import Specs from "@/HOC/Specs";
 import Highlights from "@/components/productDetails/Highlights";
-import Warranty from "./Warranty";
-import Specifications from "./Specifications";
+import Warranty from "../../components/productDetails/Warranty";
+import Specifications from "../../components/productDetails/Specifications";
 import { ProductActionButton } from "./Hero";
 
 const ProductSpecifications = () => {
@@ -11,7 +11,9 @@ const ProductSpecifications = () => {
         <h2 className="text-lg font-semibold font-lato">Specifications</h2>
         <div className="py-3 space-y-3">
           <SpecsWrapper />
+          <div className="w-full md:hidden" >
           <ProductActionButton />
+          </div>
         </div>
       </div>
       <div className="w-[400px] max-[900px]:hidden bg-red-500 h-8"></div>

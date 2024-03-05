@@ -4,6 +4,7 @@ import { navbarData } from "@/data";
 import { FaCartShopping } from "react-icons/fa6";
 import { FaUser } from "react-icons/fa6";
 import Wallet from "@/components/buttons/Wallet";
+import Link from "next/link";
 
 const RightSideBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -12,26 +13,30 @@ const RightSideBar = () => {
     <div>
       <ul className="flex items-center justify-end gap-8 max-sm:hidden">
         {navbarData.map((item, idx) => (
-          <li
-            key={idx}
-            className="flex items-center justify-center gap-2 cursor-pointer"
-          >
-            {(() => {
-              switch (item.name) {
-                case "Cart":
-                  return (
-                    <FaCartShopping
-                      scale={20}
-                      className="text-secondary-color"
-                    />
-                  );
-                case "Profile":
-                  return <FaUser scale={20} className="text-secondary-color" />;
-                default:
-                  return;
-              }
-            })()}
-            <span>{item.name}</span>
+          <li key={idx}>
+            <Link
+              href={item.path}
+              className="flex items-center justify-center gap-2 cursor-pointer"
+            >
+              {(() => {
+                switch (item.name) {
+                  case "Cart":
+                    return (
+                      <FaCartShopping
+                        scale={20}
+                        className="text-secondary-color"
+                      />
+                    );
+                  case "Profile":
+                    return (
+                      <FaUser scale={20} className="text-secondary-color" />
+                    );
+                  default:
+                    return;
+                }
+              })()}
+              <span>{item.name}</span>
+            </Link>
           </li>
         ))}
         <li>
