@@ -9,7 +9,7 @@ const Actions = () => {
   const [isFavourite, setIsFavourite] = useState(false);
 
   return (
-    <div className="absolute transition-all ease-in-out duration-500 translate-y-[100%] group-hover:translate-y-0 top-0 left-0 w-full h-full flex items-center justify-center bg-black/50">
+    <div className="absolute max-md:hidden z-20 transition-all ease-in-out duration-500 translate-y-[100%] group-hover:translate-y-0 top-0 left-0 w-full h-full flex items-center justify-center bg-black/50">
       <div className="flex items-center justify-center gap-4">
         <div className="w-[22px]">
           {isFavourite ? (

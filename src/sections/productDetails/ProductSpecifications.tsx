@@ -3,6 +3,8 @@ import Highlights from "@/components/productDetails/Highlights";
 import Warranty from "../../components/productDetails/Warranty";
 import Specifications from "../../components/productDetails/Specifications";
 import { ProductActionButton } from "./Hero";
+import Image from "next/image";
+import sponsor from "@/assets/productsImage/dummy.png"
 
 const ProductSpecifications = () => {
   return (
@@ -16,7 +18,9 @@ const ProductSpecifications = () => {
           </div>
         </div>
       </div>
-      <div className="w-[400px] max-[900px]:hidden bg-red-500 h-8"></div>
+      <div className="w-[400px] max-[900px]:hidden">
+        <Image src={sponsor} alt="sponsor" />
+      </div>
     </div>
   );
 };
