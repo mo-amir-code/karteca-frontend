@@ -85,10 +85,10 @@ const ProductDetails = () => {
               <IoLocationSharp size={20} />
               <span>Delivery Options</span>
             </div>
-            <div className="flex items-center justify-center max-w-[250px] border p-2 gap-2">
+            <div className="flex items-center justify-center max-w-[250px] border p-2 gap-2 max-md:gap-1">
               <input
                 type="number"
-                className="flex-grow outline-none bg-transparent text-sm font-medium"
+                className="w-full outline-none bg-transparent text-sm font-medium"
                 placeholder="Enter Delivery Pincode"
               />
               <button style={{width: "max-content"}} className="outline-none font-semibold text-primary-color font-lato text-sm">

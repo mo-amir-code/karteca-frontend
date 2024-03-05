@@ -19,7 +19,7 @@ const ProductButton = ({
       {(() => {
         switch (icon) {
           case "buy":
-            return <GiElectric size={24} />;
+            return <GiElectric size={20} />;
           case "cart":
             return <FaCartShopping size={20} />;
           default:
