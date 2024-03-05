@@ -2,6 +2,7 @@ import Image from "next/image";
 import productImage from "@/assets/productsImage/dummy2.png";
 import { FaTrash, FaHeart } from "react-icons/fa";
 import Specifications from "../productDetails/Specifications";
+import Stars from "../productCard/Stars";
 
 const CartItem = () => {
   return (
@@ -75,7 +76,7 @@ const MobileCartItem = () => {
       <div className="w-[80px] rounded-lg overflow-hidden space-y-1">
         <Image src={productImage} alt="product" />
         <div className="border rounded-b-lg px-2">
-          <select className="text-sm outline-none w-full text-center">
+          <select className="text-sm outline-none w-full text-center bg-transparent">
             <option value={1}>1</option>
             <option value={2}>2</option>
             <option value={3}>3</option>
@@ -84,18 +85,31 @@ const MobileCartItem = () => {
           </select>
         </div>
       </div>
-      <div className="">
-        <h2 className="font-medium">Ultra Smartwatch First Copy</h2>
-        <div className="flex items-end justify-start py-2 gap-2">
-          <span className="text-lg font-medium text-secondary-color">
-            ₹4,999
-          </span>
-          <span className="text-sm mb-1 line-through text-gray-400 font-medium">
-            ₹6,999
-          </span>
-          <span className="text-sm mb-1 text-green-color font-semibold">
-            20% off
-          </span>
+      <div className="flex flex-col justify-between">
+        <div>
+          <h2 className="font-medium">Ultra Smartwatch First Copy</h2>
+          <Stars stars={3.5} reviews={23} />
+          <div className="flex items-end flex-row-reverse justify-end gap-2">
+            <span className="text-lg font-medium text-secondary-color">
+              ₹4,999
+            </span>
+            <span className="text-sm mb-1 line-through text-gray-400 font-medium">
+              ₹6,999
+            </span>
+            <span className="text-sm mb-1 text-green-color font-semibold">
+              20% off
+            </span>
+          </div>
+        </div>
+        <div className="flex items-center gap-2 justify-center">
+          <button className="w-full rounded-sm flex items-center justify-center text-xs gap-1 bg-primary-color p-1">
+            <FaTrash size={12} />
+            <span>Remove</span>
+          </button>
+          <button className="w-full flex items-center justify-center text-sm gap-1 px-4 p-2">
+            <FaHeart className="text-red-color" size={14} />
+            <span>Wishlist</span>
+          </button>
         </div>
       </div>
     </div>

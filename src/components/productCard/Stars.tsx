@@ -12,7 +12,7 @@ const Stars = ({stars, reviews}:{stars:number, reviews:number}) => {
     })
 
   return (
-    <div className="flex items-center justify-center" >
+    <div className="flex items-center" >
         {starsRating}
         <span className="text-[12px] pl-1" >({reviews})</span>
    </div>
