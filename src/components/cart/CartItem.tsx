@@ -6,7 +6,7 @@ import Specifications from "../productDetails/Specifications";
 const CartItem = () => {
   return (
     <div className="w-full">
-      <div className="flex border-b border-secondary-color py-4 ">
+      <div className="flex border-b max-sm:hidden border-secondary-color py-4 ">
         <div className="max-w-[250px] max-sm:max-w-[200px] rounded-lg overflow-hidden shadow-lg">
           <Image src={productImage} alt="cart image" />
         </div>
@@ -46,7 +46,8 @@ const CartItem = () => {
                   </div>
                 </div>
                 <p className="text-base font-medium text-secondary-color text-end max-sm:text-sm">
-                  <span>Total:</span><span>431</span>
+                  <span>Total:</span>
+                  <span>431</span>
                 </p>
               </div>
             </div>
@@ -61,6 +62,40 @@ const CartItem = () => {
               </button>
             </div>
           </div>
+        </div>
+      </div>
+      <MobileCartItem />
+    </div>
+  );
+};
+
+const MobileCartItem = () => {
+  return (
+    <div className="flex gap-2 border-b sm:hidden border-secondary-color py-4">
+      <div className="w-[80px] rounded-lg overflow-hidden space-y-1">
+        <Image src={productImage} alt="product" />
+        <div className="border rounded-b-lg px-2">
+          <select className="text-sm outline-none w-full text-center">
+            <option value={1}>1</option>
+            <option value={2}>2</option>
+            <option value={3}>3</option>
+            <option value={4}>4</option>
+            <option value={5}>5</option>
+          </select>
+        </div>
+      </div>
+      <div className="">
+        <h2 className="font-medium">Ultra Smartwatch First Copy</h2>
+        <div className="flex items-end justify-start py-2 gap-2">
+          <span className="text-lg font-medium text-secondary-color">
+            ₹4,999
+          </span>
+          <span className="text-sm mb-1 line-through text-gray-400 font-medium">
+            ₹6,999
+          </span>
+          <span className="text-sm mb-1 text-green-color font-semibold">
+            20% off
+          </span>
         </div>
       </div>
     </div>

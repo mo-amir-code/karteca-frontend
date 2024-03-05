@@ -4,6 +4,7 @@ import { useState } from "react";
 import { IoLocationSharp } from "react-icons/io5";
 import { VscWorkspaceTrusted } from "react-icons/vsc";
 import { GiReturnArrow } from "react-icons/gi";
+import PriceAndDiscount from "./PriceAndDiscount";
 
 const ProductDetails = () => {
   const [selectedColor, setSelectedColor] = useState<number>(0);
@@ -20,18 +21,8 @@ const ProductDetails = () => {
         {/* rating */}
         <Rating avgRating={3.5} totalRatings={4356} totalReviews={638} />
 
-        {/* reviews */}
-        <div className="flex items-end justify-start py-2 gap-2">
-          <span className="text-2xl font-medium text-secondary-color">
-            ₹4,999
-          </span>
-          <span className="text-sm mb-1 line-through text-gray-400 font-medium">
-            ₹6,999
-          </span>
-          <span className="text-sm mb-1 text-green-color font-semibold">
-            20% off
-          </span>
-        </div>
+        {/* price */}
+        <PriceAndDiscount />
 
         <div className="space-y-4">
           {/* colors */}
