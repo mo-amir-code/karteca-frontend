@@ -190,3 +190,21 @@ input[type=number] {
     /* Optionally, you can add padding to make up for the missing arrows */
     padding-right: 1em; /* Adjust as needed */
 }
+
+/* Disable ban on hover */
+input:disabled,
+button:disabled {
+  opacity: 0.7; /* Reduce opacity to indicate the disabled state */
+  cursor: not-allowed; /* Change cursor to indicate not allowed */
+}
+
+input:disabled:hover::after,
+button:disabled:hover::after {
+  content: '🚫'; /* Add a ban sign emoji */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20px;
+}
+/* end Disable ban on hover */
