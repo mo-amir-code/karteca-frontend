@@ -12,7 +12,7 @@ const index = () => {
   return (
     <div className="space-y-6 max-w-[600px]">
       <div className="space-y-4">
-        <UserPersonalHOC>
+        <UserPersonalHOC title="Personal Information" >
           <PersonalInfo />
         </UserPersonalHOC>
         {/* end Name area */}
@@ -21,10 +21,10 @@ const index = () => {
       <UserGender />
 
       <div>
-        <UserPersonalHOC>
+        <UserPersonalHOC title="Email Address" >
           <PersonalEmail />
         </UserPersonalHOC>
-        <UserPersonalHOC>
+        <UserPersonalHOC title="Mobile Number" >
           <PersonalMobile />
         </UserPersonalHOC>
       </div>
