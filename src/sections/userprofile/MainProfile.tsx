@@ -13,7 +13,7 @@ const MainProfile = () => {
       {/* <Notifications /> */}
       {/* <ReferDashboard /> */}
       {/* <MyOrders /> */}
-      <OrderDetails />
+      {/* <OrderDetails /> */}
     </div>
   )
 }
