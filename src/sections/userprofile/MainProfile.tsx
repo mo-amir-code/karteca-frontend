@@ -1,8 +1,9 @@
-import React from 'react'
 import UserPersonalInfo from '@/components/userprofile/personalInfo'
 import ManageAddresses from "@/components/userprofile/manageAddresses"
 import Notifications from "@/components/userprofile/notifications"
 import ReferDashboard from "@/components/userprofile/referDashboard"
+import MyOrders from "@/components/userprofile/orders"
+import OrderDetails from "@/components/userprofile/orderDetails"
 
 const MainProfile = () => {
   return (
@@ -10,7 +11,9 @@ const MainProfile = () => {
       {/* <UserPersonalInfo /> */}
       {/* <ManageAddresses /> */}
       {/* <Notifications /> */}
-      <ReferDashboard />
+      {/* <ReferDashboard /> */}
+      {/* <MyOrders /> */}
+      <OrderDetails />
     </div>
   )
 }
