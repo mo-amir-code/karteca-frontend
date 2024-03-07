@@ -9,7 +9,7 @@ const Notification = () => {
             <Image src={ntfLogo} alt='notifications' width={60} height={60}/>
         </div>
         <div className='flex-grow flex text-xs py-1 font-medium flex-col gap-1 justify-between' >
-            <p>High Fashion Standards? You've met your match! Explore our collection from Ginger, Bossini, Melange & more Lorem, ipsum dolor.</p>
+            <p>{"High Fashion Standards? You've met your match! Explore our collection from Ginger, Bossini, Melange & more Lorem, ipsum dolor."}</p>
             <span className='text-gray-500' >02 Feb, 2024</span>
         </div>
     </div>
