@@ -11,9 +11,9 @@ const MainProfile = () => {
       {/* <UserPersonalInfo /> */}
       {/* <ManageAddresses /> */}
       {/* <Notifications /> */}
-      <ReferDashboard />
+      {/* <ReferDashboard /> */}
       {/* <MyOrders /> */}
-      {/* <OrderDetails /> */}
+      <OrderDetails />
     </div>
   )
 }

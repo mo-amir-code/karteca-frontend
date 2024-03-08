@@ -9,7 +9,7 @@ const OrderInfo = () => {
     <div >
       {/* Order id area */}
       <div className="border-t p-2">
-        <span className="text-sm text-gray-500">
+        <span className="text-sm max-sm:text-xs text-gray-500">
           Order Id: HYTF6789FGHJ45F6H7D20KH7
         </span>
       </div>
@@ -21,12 +21,11 @@ const OrderInfo = () => {
             <Image src={pImg} alt="order details" />
           </div>
           <div className="max-w-[600px] space-y-3 text-secondary-color ">
-            <h2 className="font-medium">Upcoming dhansu products</h2>
-            <p className="text-sm font-medium">₹345</p>
-            <p className="text-wrap text-sm">
+            <h2 className="font-medium max-sm:text-sm">Upcoming dhansu products</h2>
+            <p className="text-sm font-medium max-sm:text-xs">₹345</p>
+            <p className="text-wrap text-sm max-sm:text-xs">
               Lorem ipsum, dolor sit amet consectetur adipisicing elit. In
-              tenetur dolores assumenda eum quam dolorem maiores quidem quos
-              doloremque obcaecati?
+              tenetur dolores assumenda eum quam dolorem maiores quidem.
             </p>
           </div>
         </div>
