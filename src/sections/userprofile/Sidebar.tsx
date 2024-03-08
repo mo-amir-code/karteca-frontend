@@ -1,6 +1,6 @@
 import ProfilePath from "@/components/userprofile/ProfilePath"
 import UserNamePlate from "@/components/userprofile/UserNamePlate"
-import { accountSettings, mystuffs, payments } from "@/data"
+import { accountSettings, mystuffs } from "@/data"
 
 
 const Sidebar = () => {
@@ -9,9 +9,8 @@ const Sidebar = () => {
       <UserNamePlate />
       <div className="space-y-2 rounded-lg" >
         <ProfilePath title="My Orders" />
-        <ProfilePath title="Referral Dashboard" />
+        <ProfilePath title="Refer Dashboard" />
         <ProfilePath title="Account Settings" list={accountSettings as [{name:string, path:string}]} />
-        <ProfilePath title="Payments" list={payments as [{name:string, path:string}]} />
         <ProfilePath title="My Stuff" list={mystuffs as [{name:string, path:string}]} />
       </div>
     </aside>

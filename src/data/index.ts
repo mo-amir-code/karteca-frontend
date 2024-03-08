@@ -253,14 +253,14 @@ export const payments = [
 ]
 
 export const mystuffs = [
-    {
-        name:"My Coupon",
-        path: ""
-    },
-    {
-        name:"Reviews & Rating",
-        path: ""
-    },
+    // {
+    //     name:"My Coupon",
+    //     path: ""
+    // },
+    // {
+    //     name:"Reviews & Rating",
+    //     path: ""
+    // },
     {
         name:"Notifications",
         path: ""

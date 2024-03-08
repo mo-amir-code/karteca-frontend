@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import Card from "./Card";
 import LevelEarning from "./LevelEarning";
 import WithdrawalHistory from "./WithdrawalHistory";
@@ -35,4 +35,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default memo(index);

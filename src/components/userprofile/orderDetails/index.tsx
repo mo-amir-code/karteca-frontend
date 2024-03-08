@@ -1,3 +1,4 @@
+import { memo } from "react"
 import OrderInfo from "./OrderInfo"
 
 
@@ -9,4 +10,4 @@ const index = () => {
   )
 }
 
-export default index
+export default memo(index)

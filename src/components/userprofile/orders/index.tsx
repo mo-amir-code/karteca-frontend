@@ -1,3 +1,4 @@
+import { memo } from "react";
 import Order from "./Order";
 
 const index = () => {
@@ -14,4 +15,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default memo(index);

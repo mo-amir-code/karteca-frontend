@@ -1,3 +1,4 @@
+import { memo } from "react";
 import Notification from "./Notification";
 
 const index = () => {
@@ -13,4 +14,4 @@ const index = () => {
   );
 };
 
-export default index;
+export default memo(index);

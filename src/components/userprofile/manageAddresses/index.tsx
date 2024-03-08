@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import AddAddress from './AddAddress'
 import Addresses from './Addresses'
 
@@ -11,4 +11,4 @@ const index = () => {
   )
 }
 
-export default index
+export default memo(index)
