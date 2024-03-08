@@ -12,8 +12,8 @@ const ShareAndCode = ({ referCode }: { referCode: string }) => {
   };
 
   return (
-    <div className="flex items-center gap-4">
-      <button className="px-3 py-1 rounded-full text-sm bg-primary-color font-medium flex items-center gap-2">
+    <div className="flex items-center gap-4 max-md:text-xs">
+      <button className="px-3 py-1 rounded-full max-md:text-xs text-sm bg-primary-color font-medium flex items-center gap-2">
         <FaShare size={16} />
         <span>Share Now</span>
       </button>

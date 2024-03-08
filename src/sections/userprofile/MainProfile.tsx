@@ -7,11 +7,11 @@ import OrderDetails from "@/components/userprofile/orderDetails"
 
 const MainProfile = () => {
   return (
-    <div className='flex-grow max-md:bg-tertiary-color bg-white rounded-lg py-4 px-6' >
+    <div className='flex-grow bg-white rounded-lg py-4 px-6 max-md:px-3' >
       {/* <UserPersonalInfo /> */}
       {/* <ManageAddresses /> */}
       {/* <Notifications /> */}
-      {/* <ReferDashboard /> */}
+      <ReferDashboard />
       {/* <MyOrders /> */}
       {/* <OrderDetails /> */}
     </div>

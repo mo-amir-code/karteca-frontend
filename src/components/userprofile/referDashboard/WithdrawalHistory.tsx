@@ -6,14 +6,14 @@ const WithdrawalHistory = () => {
     <div className="space-y-4" >
         <TableHeading title="Withdrawal History" subline="Your withdrawal history"  />
         <table className="w-full bg-white" >
-            <thead className="py-4 rounded-lg bg-primary-color" >
+            <thead className="py-4 rounded-lg max-md:text-sm bg-primary-color" >
                 <tr>
                     <th>Date</th>
                     <th>Amount</th>
                     <th>Status</th>
                 </tr>
             </thead>
-            <tbody className="text-sm space-y-2" >
+            <tbody className="text-sm max-md:text-xs space-y-2" >
                 <tr className="border" >
                     <td className="text-center" >12/12/1212</td>
                     <td className="text-center" >345</td>

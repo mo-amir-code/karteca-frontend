@@ -1,8 +1,6 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./globals.css";
-
-const inter = Inter({ subsets: ["latin"] });
+import ReduxProvider from "@/components/ReduxProvider";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -15,8 +13,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={"max-md:h-screen max-md:overflow-hidden max-md:overflow-y-auto relative"}>{children}</body>
-    </html>
+    <ReduxProvider>
+      <html lang="en">
+        <body
+          className={
+            "max-md:h-screen max-md:overflow-hidden max-md:overflow-y-auto relative"
+          }
+        >
+          {children}
+        </body>
+      </html>
+    </ReduxProvider>
   );
 }

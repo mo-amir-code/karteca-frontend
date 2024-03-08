@@ -8,7 +8,7 @@ const index = () => {
   return (
     <div>
       <h4 className="font-medium font-poppins">Dashboard</h4>
-      <div className="flex items-center mt-4 gap-4">
+      <div className="flex flex-wrap items-center mt-4 gap-4">
         <Card
           type="totalEarning"
           msg="Your referral total earning is"

@@ -5,7 +5,7 @@ import { accountSettings, mystuffs, payments } from "@/data"
 
 const Sidebar = () => {
   return (
-    <aside className="w-[300px] space-y-8" >
+    <aside className="w-[300px] space-y-8 max-md:hidden" >
       <UserNamePlate />
       <div className="space-y-2 rounded-lg" >
         <ProfilePath title="My Orders" />

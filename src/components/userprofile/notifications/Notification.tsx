@@ -4,9 +4,9 @@ import ntfLogo from "@/assets/brand/logo.png"
 
 const Notification = () => {
   return (
-    <div className='flex py-4 border-t gap-3 smooth_transition hover:bg-primary-color/5 px-2' >
-        <div className='flex items-center justify-center' >
-            <Image src={ntfLogo} alt='notifications' width={60} height={60}/>
+    <div className='flex justify-start py-4 border-t gap-3 smooth_transition hover:bg-primary-color/5 px-2 max-md:px-0' >
+        <div className='flex min-w-[60px] max-w-[60px] items-center justify-center' >
+            <Image src={ntfLogo} alt='notifications' />
         </div>
         <div className='flex-grow flex text-xs py-1 font-medium flex-col gap-1 justify-between' >
             <p>{"High Fashion Standards? You've met your match! Explore our collection from Ginger, Bossini, Melange & more Lorem, ipsum dolor."}</p>
