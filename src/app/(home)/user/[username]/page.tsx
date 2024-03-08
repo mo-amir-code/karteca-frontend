@@ -1,6 +1,5 @@
 import MainProfile from '@/sections/userprofile/MainProfile'
 import Sidebar from '@/sections/userprofile/Sidebar'
-import React from 'react'
 
 const UserProfile = () => {
   return (

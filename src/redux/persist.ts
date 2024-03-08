@@ -1,12 +1,17 @@
 /// <reference types="redux-persist" />
 import { combineReducers } from "@reduxjs/toolkit";
-import { persistReducer } from "redux-persist";
+import { PersistConfig, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage"
 import appSlice from "@/redux/app/appSlice"
 
-const appPersistConfig = {
+const customSerialize = (value: any): any => {
+    return value;
+  };
+
+const appPersistConfig: PersistConfig<any> = {
     key: "app",
-    storage
+    storage,
+    serialize: customSerialize as any
 }
 
 const persistedAppReducer = persistReducer(appPersistConfig, appSlice);
@@ -24,4 +29,4 @@ const persistConfig = {
 
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
-export {persistedReducer}
+export default persistedReducer

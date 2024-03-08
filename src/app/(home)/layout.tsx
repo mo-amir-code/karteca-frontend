@@ -11,14 +11,14 @@ function HomeLayout({
 }>) {
   return (
     <>
-      <ReduxProvider>
-        <Header />
-        <MobileHeader />
-        <main className="my-4 max-md:my-2 max-w-7xl mx-auto max-md:pb-[60px]">
-          <MaxWidthLayout>{children}</MaxWidthLayout>
-        </main>
-        <MobileNavbar />
-      </ReduxProvider>
+    <ReduxProvider>
+      <Header />
+      <MobileHeader />
+      <main className="my-4 max-md:my-2 max-w-7xl mx-auto max-md:pb-[60px]">
+        <MaxWidthLayout>{children}</MaxWidthLayout>
+      </main>
+      <MobileNavbar />
+    </ReduxProvider>
     </>
   );
 }

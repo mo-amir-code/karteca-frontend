@@ -1,7 +1,7 @@
 "use client";
 import { selectDesktop, setProfile } from "@/redux/app/appSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import React, { memo } from "react";
+import React, { memo, useCallback } from "react";
 
 const ProfilePath = ({
   list,
@@ -11,7 +11,7 @@ const ProfilePath = ({
   title: string;
 }) => {
   const dispatch = useAppDispatch();
-  const {profile} = useAppSelector(selectDesktop);
+  const desktop = useAppSelector(selectDesktop);
 
   const handleProfileNavigate = (target: string) => {
     let newTarget;
@@ -43,38 +43,41 @@ const ProfilePath = ({
     }
   };
 
-  const isThisSelected = ({selected, target}:{selected:string, target:string}) => {
+  const isThisSelected = ({
+    selected,
+    target,
+  }: {
+    selected: string;
+    target: string;
+  }) => {
     try {
-      console.log(selected)
-      switch(target){
+      let newTarget;
+      switch (target) {
         case "Profile Information":
-          if(selected === "profile"){
-            return true;
-          }
+          newTarget = "profile";
           break;
         case "Manage Addresses":
-          if(selected === "addresses"){
-            return true;
-          }
+          newTarget = "addresses";
           break;
         case "Notifications":
-          if(selected === "notification"){
-            return true;
-          }
+          newTarget = "notification";
           break;
         case "Wishlist":
-          if(selected === "wishlist"){
-            return true;
-          }
+          newTarget = "wishlist";
           break;
         default:
           return false;
       }
-      return false
+
+      if (newTarget === selected) {
+        return true;
+      }
+      return false;
     } catch (error) {
       console.log("Some Internal Error Occured!");
+      return false;
     }
-  }
+  };
 
   return (
     <div className="bg-white max-md:bg-tertiary-color rounded-lg">
@@ -93,7 +96,11 @@ const ProfilePath = ({
             <li
               key={idx}
               onClick={() => handleProfileNavigate(item.name)}
-              className={`text-sm pl-[60px] ${isThisSelected({selected:profile, target:item.name})? "text-primary-color bg-primary-color/5" : "hover:text-primary-color hover:bg-primary-color/5"} font-medium smooth_transition py-[6px] cursor-pointer smooth_transition`}
+              className={`text-sm pl-[60px] ${
+                isThisSelected({ selected: desktop.profile, target: item.name })
+                  ? "text-primary-color bg-primary-color/5"
+                  : "md:hover:text-primary-color md:hover:bg-primary-color/5"
+              } font-medium py-[6px] cursor-pointer smooth_transition`}
             >
               {item.name}
             </li>

@@ -1,6 +1,10 @@
-import ProfilePath from "@/components/userprofile/ProfilePath"
+ 
+
+import dynamic from "next/dynamic"
+const ProfilePath = dynamic(() => import("@/components/userprofile/ProfilePath"))
 import UserNamePlate from "@/components/userprofile/UserNamePlate"
 import { accountSettings, mystuffs } from "@/data"
+import { memo } from "react"
 
 
 const Sidebar = () => {
@@ -17,4 +21,4 @@ const Sidebar = () => {
   )
 }
 
-export default Sidebar
+export default memo(Sidebar)
