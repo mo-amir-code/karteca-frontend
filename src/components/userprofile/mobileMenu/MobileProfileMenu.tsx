@@ -48,7 +48,7 @@ const MobileProfileMenu = ({title, list, icon}:{title:string, list?:[{name:strin
             <span className="text-primary-color" >{useProfileIcons({icon})}</span>
             <span>{title}</span>
           </div>
-          {!(!!list) && <div onClick={()=>setIsOpen((prev) => !prev)} className="flex items-center justify-center gap-4">
+          {(!!list) && <div onClick={()=>setIsOpen((prev) => !prev)} className="flex items-center justify-center gap-4">
             <IoIosArrowDown
               size={18}
               className={`text-secondary-color ${!isOpen? "-rotate-90" : "rotate-0"} mr-2 smooth_transition`}
@@ -56,7 +56,7 @@ const MobileProfileMenu = ({title, list, icon}:{title:string, list?:[{name:strin
           </div>}
         </div>
         {
-          !!list && <MobileMenuField list={list} handleClick={handleNavigate} />
+          !!list && isOpen && <MobileMenuField list={list} handleClick={handleNavigate} />
         }
       </div>
   );
