@@ -1,11 +1,13 @@
 "use client"
 import MobileHeaderContent from "@/components/header/MobileHeaderContent"
+import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react"
 
 const MobileHeader = () => {
   const [isScroll, setIsScroll] = useState<boolean>(false);
   const [isUp, setIsUp] = useState<boolean>(false);
   const [prevScrollPos, setPrevScrollPos] = useState<number>(0);
+  const path = usePathname();
 
   useEffect(() => {
     const onScroll = () => {
@@ -36,7 +38,7 @@ const MobileHeader = () => {
 
   return (
     <div className="w-full md:hidden" >
-          <MobileHeaderContent isUp={isUp} isScroll={isScroll} />
+          <MobileHeaderContent isUp={isUp} isScroll={isScroll} path={path} />
           <div className="max-md:h-[111px]" />
     </div>
   )

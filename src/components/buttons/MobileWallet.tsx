@@ -1,19 +1,32 @@
-import Link from "next/link";
+"use client";
+import { setMobileProfileMenu, setProfile } from "@/redux/app/appSlice";
+import { useAppDispatch } from "@/redux/hooks";
+import { usePathname, useRouter } from "next/navigation";
 import React, { memo } from "react";
 import { IoWallet } from "react-icons/io5";
 
-const MobileWallet = ({amount}:{amount:string}) => {
+const MobileWallet = ({ amount, isFromHeader }: { amount: string, isFromHeader?:boolean }) => {
+  const dispatch = useAppDispatch();
+  const navigate = useRouter();
+  const path = usePathname();
+
+  const handleNavigate = () => {
+    dispatch(setProfile({ profile: "dashboard" }));
+    dispatch(setMobileProfileMenu({ isProfileMenuOpen: false }));
+    navigate.push("/user/name");
+  };
+
   return (
-    <Link
+    <button
+      onClick={() => handleNavigate()}
       style={{ width: amount.length * 12 + 56 }}
-      href={"/user/refer"}
-      className="flex items-center justify-center gap-2 bg-primary-color py-1 rounded-md smooth_transition"
+      className={`flex items-center ${isFromHeader && path.startsWith("/user/") && "max-md:bg-white"} justify-center gap-2 bg-primary-color py-1 rounded-md smooth_transition`}
     >
       <span>
         <IoWallet size={20} className="text-secondary-color" />
       </span>{" "}
-      <span className="whitespace-nowrap" >₹{amount}</span>
-    </Link>
+      <span className="whitespace-nowrap">₹{amount}</span>
+    </button>
   );
 };
 

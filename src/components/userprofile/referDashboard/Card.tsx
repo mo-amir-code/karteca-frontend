@@ -14,18 +14,17 @@ const Card = ({
   isWithdrawalActive?: boolean;
 }) => {
   return (
-    <div className="p-3 w-[120px] space-y-1 shadow-md rounded-[12px] bg-white text-secondary-color">
+    <div className="p-3 w-[120px] max-sm:w-[100px] smooth_transition space-y-1 shadow-md rounded-[12px] bg-white text-secondary-color">
       {(() => {
         switch (type) {
           case "totalEarning":
-            return <GiCash size={28} className="text-green-color" />;
+            return <GiCash className="w-[28px] h-[28px] max-sm:w-[24px] max-sm:h-[24px] text-green-color" />;
           case "totalWithdrawal":
-            return <IoIosCash size={28} className="text-red-color" />;
+            return <IoIosCash className="w-[28px] h-[28px] max-sm:w-[24px] max-sm:h-[24px] text-red-color" />;
           case "isWithdrawalActive":
             return (
               <PiBankFill
-                size={28}
-                className={`${
+                className={`w-[28px] h-[28px] max-sm:w-[24px] max-sm:h-[24px] ${
                   isWithdrawalActive ? "text-green-color" : "text-red-color"
                 }`}
               />
@@ -34,9 +33,9 @@ const Card = ({
             return;
         }
       })()}
-      <p className="text-xs">{msg}</p>
+      <p className="text-xs max-sm:text-[10px]">{msg}</p>
       <p
-        className={`font-medium ${
+        className={`font-medium max-sm:text-xs ${
           type === "totalEarning"
             ? "text-green-color"
             : type === "totalWithdrawal"

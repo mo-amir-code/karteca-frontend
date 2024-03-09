@@ -3,16 +3,17 @@ import { mobileNavbar } from "@/data";
 import { HiHome, HiBell } from "react-icons/hi";
 import { HiWallet, HiUserCircle } from "react-icons/hi2";
 import { FaCartShopping } from "react-icons/fa6";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { useAppDispatch } from "@/redux/hooks";
-import { setMobileProfileMenu, setProfile } from "@/redux/app/appSlice";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { selectDesktop, selectMobile, setMobileProfileMenu, setProfile } from "@/redux/app/appSlice";
 
 const MobileNavbar = () => {
   const [selected, setSelected] = useState(0);
   const pathname = usePathname();
   const dispatch = useAppDispatch();
+  const {profile} = useAppSelector(selectDesktop);
 
   const handleMobileNavbar = ({target}:{target:string}) => {
     if(target === "home" || target === "cart" || target === "profile"){
@@ -24,6 +25,28 @@ const MobileNavbar = () => {
     dispatch(setProfile({profile:target}))
     dispatch(setMobileProfileMenu({isProfileMenuOpen:false}));
   }
+
+
+  useEffect(() => {
+    if(pathname === "/") setSelected(0);
+    if(pathname === "/user/cart") setSelected(4);
+    else if(pathname.startsWith("/user/")){
+      switch(profile){
+        case "profile":
+          setSelected(3);
+          break;
+        case "notification":
+          setSelected(1);
+          break;
+        case "dashboard":
+          setSelected(2);
+          break;
+        default:
+          setSelected(3);
+      }
+    }
+  }, [pathname]);
+
 
   return (
     <nav
