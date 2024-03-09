@@ -1,17 +1,8 @@
 "use client";
 import { useAppSelector } from "@/redux/hooks";
 import { selectDesktop, selectMobile } from "@/redux/app/appSlice";
-import dynamic from "next/dynamic";
-import { ComponentType } from "react";
-import Loader from "@/components/loader/Loader";
 import MobileProfile from "@/components/userprofile/mobileMenu";
-
-const withLoadingIndicator = (
-  importComponent: () => Promise<{ default: ComponentType<any> }>
-) =>
-  dynamic(() => importComponent(), {
-    loading: () => <Loader />,
-  });
+import useMainProfile from "../../components/customHooks/useMainProfile";
 
 const MainProfile = () => {
   const { profile } = useAppSelector(selectDesktop);
@@ -19,55 +10,12 @@ const MainProfile = () => {
 
   return (
     <div className="flex-grow bg-white rounded-lg py-4 px-6 max-md:px-3">
-      {isProfileMenuOpen ? (
-        <MobileProfile />
-      ) : (
-        (() => {
-          switch (profile) {
-            case "profile":
-              return <UserPersonalInfo />;
-            case "addresses":
-              return <ManageAddresses />;
-            case "notification":
-              return <Notifications />;
-            case "dashboard":
-              return <ReferDashboard />;
-            case "orders":
-              return <MyOrders />;
-            case "orderDetails":
-              return <OrderDetails />;
-            case "wishlist":
-              return <Wishlist />;
-            default:
-              return;
-          }
-        })()
-      )}
+      <div className="max-md:hidden w-full h-full">{useMainProfile({ profile })}</div>
+      <div className="md:hidden">
+        {isProfileMenuOpen ? <MobileProfile /> : useMainProfile({ profile })}
+      </div>
     </div>
   );
 };
 
 export default MainProfile;
-
-const UserPersonalInfo = dynamic(
-  () => import("@/components/userprofile/personalInfo"),
-  { ssr: false }
-);
-const ManageAddresses = withLoadingIndicator(
-  () => import("@/components/userprofile/manageAddresses")
-);
-const Notifications = withLoadingIndicator(
-  () => import("@/components/userprofile/notifications")
-);
-const ReferDashboard = withLoadingIndicator(
-  () => import("@/components/userprofile/referDashboard")
-);
-const MyOrders = withLoadingIndicator(
-  () => import("@/components/userprofile/orders")
-);
-const OrderDetails = withLoadingIndicator(
-  () => import("@/components/userprofile/orderDetails")
-);
-const Wishlist = withLoadingIndicator(
-  () => import("@/components/userprofile/wishlist")
-);

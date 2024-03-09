@@ -6,10 +6,24 @@ import { FaCartShopping } from "react-icons/fa6";
 import { useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import { useAppDispatch } from "@/redux/hooks";
+import { setMobileProfileMenu, setProfile } from "@/redux/app/appSlice";
 
 const MobileNavbar = () => {
   const [selected, setSelected] = useState(0);
   const pathname = usePathname();
+  const dispatch = useAppDispatch();
+
+  const handleMobileNavbar = ({target}:{target:string}) => {
+    if(target === "home" || target === "cart" || target === "profile"){
+      dispatch(setProfile({profile:"profile"}));
+      dispatch(setMobileProfileMenu({isProfileMenuOpen:true}));
+      return;
+    }
+    
+    dispatch(setProfile({profile:target}))
+    dispatch(setMobileProfileMenu({isProfileMenuOpen:false}));
+  }
 
   return (
     <nav
@@ -30,15 +44,15 @@ const MobileNavbar = () => {
               {(() => {
                 switch (nav.name) {
                   case "Home":
-                    return <HiHome size={24} />;
+                    return <HiHome onClick={()=>handleMobileNavbar({target: "home"})} size={24} />;
                   case "Notifications":
-                    return <HiBell size={24} />;
+                    return <HiBell onClick={()=>handleMobileNavbar({target:"notification"})} size={24} />;
                   case "Wallet":
-                    return <HiWallet size={24} />;
+                    return <HiWallet onClick={()=>handleMobileNavbar({target:"dashboard"})} size={24} />;
                   case "User":
-                    return <HiUserCircle size={24} />;
+                    return <HiUserCircle onClick={()=>handleMobileNavbar({target:"profile"})} size={24} />;
                   case "Cart":
-                    return <FaCartShopping size={24} />;
+                    return <FaCartShopping onClick={()=>handleMobileNavbar({target: "cart"})} size={24} />;
                   default:
                     return;
                 }
