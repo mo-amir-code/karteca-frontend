@@ -10,7 +10,7 @@ const MainProfile = () => {
   const mainProfile = useMainProfile({ profile });
 
   return (
-    <div className="flex-grow bg-white rounded-lg py-4 px-6 max-md:px-3">
+    <div className="flex-grow bg-white rounded-lg py-4 px-6 max-md:px-3 max-sm:px-2">
       <div className="max-md:hidden w-full h-full">{mainProfile}</div>
       <div className="md:hidden">
         {isProfileMenuOpen ? <MobileProfile /> : mainProfile}
