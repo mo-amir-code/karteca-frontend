@@ -49,7 +49,7 @@ const MobileTag = ({
       >
         <FilterFieldOptions
           list={list}
-          handleSelect={handleSelect}
+          handleClick={handleSelect}
           selected={selected}
           isSort={isSort ? true : false}
         />
