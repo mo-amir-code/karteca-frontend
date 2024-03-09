@@ -7,12 +7,13 @@ import useMainProfile from "../../components/customHooks/useMainProfile";
 const MainProfile = () => {
   const { profile } = useAppSelector(selectDesktop);
   const { isProfileMenuOpen } = useAppSelector(selectMobile);
+  const mainProfile = useMainProfile({ profile });
 
   return (
     <div className="flex-grow bg-white rounded-lg py-4 px-6 max-md:px-3">
-      <div className="max-md:hidden w-full h-full">{useMainProfile({ profile })}</div>
+      <div className="max-md:hidden w-full h-full">{mainProfile}</div>
       <div className="md:hidden">
-        {isProfileMenuOpen ? <MobileProfile /> : useMainProfile({ profile })}
+        {isProfileMenuOpen ? <MobileProfile /> : mainProfile}
       </div>
     </div>
   );
