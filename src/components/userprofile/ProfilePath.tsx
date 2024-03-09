@@ -2,13 +2,16 @@
 import { selectDesktop, setProfile } from "@/redux/app/appSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import React, { memo, useCallback } from "react";
+import useProfileIcons from "../customHooks/useProfileIcons";
 
 const ProfilePath = ({
   list,
   title,
+  icon
 }: {
   list?: [{ name: string; path: string }];
   title: string;
+  icon:string
 }) => {
   const dispatch = useAppDispatch();
   const desktop = useAppSelector(selectDesktop);
@@ -85,7 +88,9 @@ const ProfilePath = ({
         onClick={() => handleProfileNavigate(title)}
         className="flex items-center gap-2 p-2 cursor-pointer"
       >
-        <div className="w-11 h-11 rounded-full bg-primary-color"></div>
+        <div className="w-[40px] h-[40px] flex items-center justify-center rounded-full text-primary-color">
+          {useProfileIcons({icon})}
+        </div>
         <span className="text-base text-gray-500 font-semibold font-lato">
           {title}
         </span>

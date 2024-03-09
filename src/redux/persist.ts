@@ -4,14 +4,10 @@ import { PersistConfig, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage"
 import appSlice from "@/redux/app/appSlice"
 
-const customSerialize = (value: any): any => {
-    return value;
-  };
 
 const appPersistConfig: PersistConfig<any> = {
     key: "app",
-    storage,
-    serialize: customSerialize as any
+    storage
 }
 
 const persistedAppReducer = persistReducer(appPersistConfig, appSlice);
@@ -23,8 +19,7 @@ const rootReducer = combineReducers({
 
 const persistConfig = {
     key: "root",
-    storage,
-    whitelist: ["app"]
+    storage
 };
 
 

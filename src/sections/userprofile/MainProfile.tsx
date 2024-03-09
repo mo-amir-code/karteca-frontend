@@ -1,9 +1,10 @@
 "use client";
 import { useAppSelector } from "@/redux/hooks";
-import { selectDesktop } from "@/redux/app/appSlice";
+import { selectDesktop, selectMobile } from "@/redux/app/appSlice";
 import dynamic from "next/dynamic";
 import { ComponentType } from "react";
 import Loader from "@/components/loader/Loader";
+import MobileProfile from "@/components/userprofile/mobileMenu";
 
 const withLoadingIndicator = (
   importComponent: () => Promise<{ default: ComponentType<any> }>
@@ -14,29 +15,34 @@ const withLoadingIndicator = (
 
 const MainProfile = () => {
   const { profile } = useAppSelector(selectDesktop);
+  const { isProfileMenuOpen } = useAppSelector(selectMobile);
 
   return (
     <div className="flex-grow bg-white rounded-lg py-4 px-6 max-md:px-3">
-      {(() => {
-        switch (profile) {
-          case "profile":
-            return <UserPersonalInfo />;
-          case "addresses":
-            return <ManageAddresses />;
-          case "notification":
-            return <Notifications />;
-          case "dashboard":
-            return <ReferDashboard />;
-          case "orders":
-            return <MyOrders />;
-          case "orderDetails":
-            return <OrderDetails />;
-          case "wishlist":
-            return <Wishlist />;
-          default:
-            return;
-        }
-      })()}
+      {isProfileMenuOpen ? (
+        <MobileProfile />
+      ) : (
+        (() => {
+          switch (profile) {
+            case "profile":
+              return <UserPersonalInfo />;
+            case "addresses":
+              return <ManageAddresses />;
+            case "notification":
+              return <Notifications />;
+            case "dashboard":
+              return <ReferDashboard />;
+            case "orders":
+              return <MyOrders />;
+            case "orderDetails":
+              return <OrderDetails />;
+            case "wishlist":
+              return <Wishlist />;
+            default:
+              return;
+          }
+        })()
+      )}
     </div>
   );
 };

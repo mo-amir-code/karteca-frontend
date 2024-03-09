@@ -228,12 +228,10 @@ export const productWarranty = {
 
 export const accountSettings = [
     {
-        name:"Profile Information",
-        path: ""
+        name:"Profile Information"
     },
     {
-        name:"Manage Addresses",
-        path: ""
+        name:"Manage Addresses"
     },
 ]
 
@@ -262,11 +260,9 @@ export const mystuffs = [
     //     path: ""
     // },
     {
-        name:"Notifications",
-        path: ""
+        name:"Notifications"
     },
     {
-        name:"Wishlist",
-        path: ""
+        name:"Wishlist"
     }
 ]

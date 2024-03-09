@@ -58,7 +58,7 @@ const FilterField = ({ list, isFirst, title, isSort }: FilterFieldType) => {
       {!!isOpen && (
         <FilterFieldOptions
           list={list}
-          handleSelect={handleSelect}
+          handleClick={handleSelect}
           selected={selected}
           isSort={isSort ? true : false}
         />
@@ -69,12 +69,12 @@ const FilterField = ({ list, isFirst, title, isSort }: FilterFieldType) => {
 
 export const FilterFieldOptions = ({
   list,
-  handleSelect,
+  handleClick,
   selected,
   isSort,
 }: {
   list: [ListType];
-  handleSelect: Function;
+  handleClick: Function;
   selected: ListType | ListType[];
   isSort?: boolean;
 }) => {
@@ -85,7 +85,7 @@ export const FilterFieldOptions = ({
         {list.map((li, idx) => (
           <li
             key={idx}
-            onClick={() => handleSelect({ target: li })}
+            onClick={() => handleClick({ target: li })}
             className={`py-1 cursor-pointer px-3 text-sm ${
               (selected as ListType).value === li.value ||
               (!isSort &&
