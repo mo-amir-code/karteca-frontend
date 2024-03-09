@@ -14,7 +14,7 @@ const Order = ({isFirst}:{isFirst?:boolean}) => {
             <p className="text-sm text-gray-500 max-sm:text-xs" >Ultra Smartwatch with ulimited battery</p>
         </div>
         <span className="absolute top-1/2 group-hover:bg-tertiary-color -translate-y-1/2 right-2 bg-white p-4" >
-        <MdKeyboardArrowRight size={20} />
+           <MdKeyboardArrowRight size={20} />
         </span>
     </div>
   )

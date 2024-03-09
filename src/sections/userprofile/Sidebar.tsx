@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic"
 const ProfilePath = dynamic(() => import("@/components/userprofile/ProfilePath"))
 import UserNamePlate from "@/components/userprofile/UserNamePlate"
-import { accountSettings, mystuffs } from "@/data"
+import { accountSettings, help, mystuffs } from "@/data"
 import { memo } from "react"
 
 
@@ -16,6 +16,7 @@ const Sidebar = () => {
         <ProfilePath icon="dashboard" title="Refer Dashboard" />
         <ProfilePath icon="account" title="Account Settings" list={accountSettings as [{name:string, path:string}]} />
         <ProfilePath icon="stuff" title="My Stuff" list={mystuffs as [{name:string, path:string}]} />
+        <ProfilePath icon="support" title="Help & Support" list={help as [{name:string, path:string}]} />
       </div>
     </aside>
   )

@@ -2,7 +2,6 @@ import Address from "./Address"
 
 
 const Addresses = () => {
-    
 
   return (
     <div>

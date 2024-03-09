@@ -1,7 +1,7 @@
 "use client";
 import { selectDesktop, setProfile } from "@/redux/app/appSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import React, { memo, useCallback } from "react";
+import React, { memo } from "react";
 import useProfileIcons from "../customHooks/useProfileIcons";
 
 const ProfilePath = ({

@@ -1,5 +1,5 @@
 import MobileProfileMenu from "./MobileProfileMenu";
-import { accountSettings, mystuffs } from "@/data";
+import { accountSettings, help, mystuffs } from "@/data";
 import ShortDashboard from "./ShortDashboard";
 
 const index = () => {
@@ -18,6 +18,11 @@ const index = () => {
           list={mystuffs as [{ name: string }]}
           title="My Stuff"
           icon="stuff"
+        />
+        <MobileProfileMenu
+          list={help as [{ name: string }]}
+          title="Help & Support"
+          icon="support"
         />
       </div>
     </div>

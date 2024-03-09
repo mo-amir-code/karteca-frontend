@@ -1,20 +1,24 @@
-import Categories from "@/components/categories";
-import FooterBanner from "@/components/footerBanner/FooterBanner";
-import HeroSlider from "@/components/heroSlider";
-import TopProducts from "@/components/topProducts";
-import React from "react";
+import { ComponentType } from "react";
+import dynamic from "next/dynamic";
+import Loader from "@/components/loader/Loader";
+
+const withLoadingIndicator = (
+  importComponent: () => Promise<{ default: ComponentType<any> }>
+) =>
+  dynamic(() => importComponent(), {
+    loading: () => <Loader />,
+  });
+
+
 
 const page = () => {
   return (
     <div className="space-y-3">
-      <HeroSlider />
-      <Categories />
-      <TopProducts text="Top Products" />
-      <TopProducts text="Best Smartwatch" />
-      <TopProducts text="First Choice Earphones" />
-      <FooterBanner />
+      <DynamicImport />
     </div>
   );
 };
 
 export default page;
+
+const DynamicImport = withLoadingIndicator(()=>import("@/components/home/ImportComponents"));

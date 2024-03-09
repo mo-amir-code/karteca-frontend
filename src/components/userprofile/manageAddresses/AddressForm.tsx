@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import AddressInputField from "./AddressInputField";
 import { useForm } from "react-hook-form";
 
-const AddressForm = () => {
+const AddressForm = ({setIsOpen}:{setIsOpen:Function}) => {
   const [addressType, setAddressType] = useState<string>("home");
   const {
     register,
@@ -22,6 +22,7 @@ const AddressForm = () => {
       onSubmit={handleSubmit((data: FormData) => handleOnSubmit(data))}
       className="p-3 bg-primary-color/5 space-y-3 smooth_transition"
     >
+      <span className="font-medium text-lg max-md:text-base max-sm:text-sm" >Add Address</span>
       <div className="flex items-center gap-4">
         <AddressInputField
           name="name"
@@ -105,7 +106,7 @@ const AddressForm = () => {
         <button type="submit" className="px-5 py-3 bg-blue-600">
           SAVE ADDRESS
         </button>
-        <button className="px-5 py-3 text-red-color">CANCEL</button>
+        <span onClick={()=>setIsOpen(false)} className="px-5 py-3 text-red-color">CANCEL</span>
       </div>
     </form>
   );

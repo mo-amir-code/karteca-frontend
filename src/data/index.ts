@@ -233,6 +233,12 @@ export const accountSettings = [
     {
         name:"Manage Addresses"
     },
+    {
+        name:"Change Password"
+    },
+    {
+        name:"Log out"
+    },
 ]
 
 export const payments = [
@@ -265,4 +271,19 @@ export const mystuffs = [
     {
         name:"Wishlist"
     }
+]
+
+export const help = [
+    {
+        name:"About Us"
+    },
+    {
+        name:"Contact Us"
+    },
+    {
+        name:"Terms & Conditions"
+    },
+    {
+        name:"Privacy Policy"
+    },
 ]
