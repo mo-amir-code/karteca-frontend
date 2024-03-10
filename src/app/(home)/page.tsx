@@ -21,4 +21,4 @@ const page = () => {
 
 export default page;
 
-const DynamicImport = withLoadingIndicator(()=>import("@/components/home/ImportComponents"));
+const DynamicImport = withLoadingIndicator(()=>import("@/app/(home)/ImportComponents"));

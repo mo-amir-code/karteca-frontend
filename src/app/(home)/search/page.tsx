@@ -1,29 +1,26 @@
-import Image from "next/image";
-import banner from "@/assets/slider/1.png";
-import Filter from "@/components/filter";
-import MobileFilter from "@/components/filter/MobileFilter";
+import Loader from "@/components/loader/Loader";
+import dynamic from "next/dynamic";
+import { ComponentType } from "react";
+
+const withLoadingIndicator = (
+  importComponent: () => Promise<{ default: ComponentType<any> }>
+) =>
+  dynamic(() => importComponent(), {
+    loading: () => (
+      <div className="w-full h-full">
+        <Loader />
+      </div>
+    ),
+  });
 
 const Search = () => {
   return (
     <div className="space-y-6 max-md:space-y-0">
-      <div className="max-md:hidden">
-          <ShopBanner />
-      </div>
-
-      {/* Mobile filter */}
-        <MobileFilter />
-
-        <Filter />
-    </div>
-  );
-};
-
-const ShopBanner = () => {
-  return (
-    <div className="pt-2">
-      <Image src={banner} alt="Footer banner" />
+      <DynamicImports />
     </div>
   );
 };
 
 export default Search;
+
+const DynamicImports = withLoadingIndicator(() => import("./Imports"));

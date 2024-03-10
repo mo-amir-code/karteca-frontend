@@ -12,13 +12,11 @@ const withLoadingIndicator = (
 const ProductDetails = () => {
     return (
         <div className="px-4 space-y-4" >
-            <Hero />
-            <ProductSpecifications />
+          <DynamicImport />
         </div>
     )
 }
 
 export default ProductDetails
 
-const Hero = withLoadingIndicator(() => import("@/sections/productDetails/Hero"));
-const ProductSpecifications = withLoadingIndicator(() => import("@/sections/productDetails/ProductSpecifications"));
+const DynamicImport = withLoadingIndicator(() => import("./Imports"));
