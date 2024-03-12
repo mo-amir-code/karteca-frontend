@@ -20,10 +20,10 @@ const MobileWallet = ({ amount, isFromHeader }: { amount: string, isFromHeader?:
     <button
       onClick={() => handleNavigate()}
       style={{ width: amount.length * 12 + 56 }}
-      className={`flex items-center ${isFromHeader && path.startsWith("/user/") && "max-md:bg-white"} justify-center gap-2 bg-primary-color py-1 rounded-md smooth_transition`}
+      className={`flex items-center ${isFromHeader && path.startsWith("/user/")? "max-md:bg-white max-md:text-primary-color" : "max-md:text-text-color"} justify-center gap-2 bg-primary-color py-1 rounded-md smooth_transition`}
     >
       <span>
-        <IoWallet size={20} className="text-secondary-color" />
+        <IoWallet size={20} />
       </span>{" "}
       <span className="whitespace-nowrap">₹{amount}</span>
     </button>

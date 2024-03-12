@@ -27,7 +27,7 @@ const Logo = () => {
           />
         </Link>
       ) : (
-        <FiArrowLeft onClick={()=>handleMobileMenu()} size={24} />
+        <FiArrowLeft onClick={()=>handleMobileMenu()} className="text-text-color" size={24} />
       )}
     </div>
   );

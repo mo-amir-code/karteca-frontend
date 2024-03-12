@@ -6,7 +6,7 @@ const LevelEarning = () => {
     <div className="space-y-4" >
         <TableHeading isWallet title="Levels Of Earning" subline="Your referral earning of each level" />
         <table className="w-full bg-white" >
-            <thead className="py-4 rounded-lg max-md:text-sm bg-primary-color" >
+            <thead className="py-4 rounded-lg max-md:text-sm text-text-color bg-primary-color" >
                 <tr>
                     <th>Level</th>
                     <th>Lock</th>

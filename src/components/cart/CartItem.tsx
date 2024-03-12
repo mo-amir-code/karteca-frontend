@@ -51,7 +51,7 @@ const CartItem = () => {
 
             {/* Buttons */}
             <div className="flex px-4 max-md:px-2 items-center justify-start gap-2 flex-wrap">
-              <button className="flex items-center justify-center text-sm gap-1 bg-primary-color px-4 p-2 rounded-lg shadow-lg smooth_transition hover:-translate-y-1">
+              <button className="flex items-center justify-center text-sm gap-1 text-text-color bg-primary-color px-4 p-2 rounded-lg shadow-lg smooth_transition hover:-translate-y-1">
                 <FaTrash size={12} />
                 <span>Remove</span>
               </button>
@@ -101,7 +101,7 @@ const MobileCartItem = () => {
           </div>
         </div>
         <div className="flex items-center gap-2 justify-center">
-          <button className="w-full rounded-sm flex items-center justify-center text-xs gap-1 bg-primary-color p-1">
+          <button className="w-full text-text-color rounded-sm flex items-center justify-center text-xs gap-1 bg-primary-color p-1">
             <FaTrash size={12} />
             <span>Remove</span>
           </button>

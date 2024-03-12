@@ -16,12 +16,14 @@ const config: Config = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       colors:{
-        "primary-color":"#FFD910",
+        "primary-color":"#744CCD",
         "secondary-color":"#192330",
         "tertiary-color":"#EBEDEF",
         "red-color":"#DC2626",
         "green-color":"#00b533",
         "tag-color":"#E0E0E0",
+        "stars-color":"#FFD910",
+        "text-color":"#ffffff",
       }
     },
     fontFamily: {
@@ -32,3 +34,5 @@ const config: Config = {
   plugins: [],
 };
 export default config;
+
+// "primary-color":"#FFD910",

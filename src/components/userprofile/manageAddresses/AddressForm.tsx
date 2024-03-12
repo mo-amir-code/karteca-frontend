@@ -102,7 +102,7 @@ const AddressForm = ({setIsOpen}:{setIsOpen:Function}) => {
       </div>
       {/* End Address Type Field */}
 
-      <div className="flex pt-4 items-center gap-3 font-medium text-sm text-white">
+      <div className="flex pt-4 items-center gap-3 font-medium text-sm text-text-color">
         <button type="submit" className="px-5 py-3 bg-blue-600">
           SAVE ADDRESS
         </button>

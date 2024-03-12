@@ -25,7 +25,7 @@ const CartBill = () => {
             <span>567</span>
           </h3>
         </div>
-        <Link href={"/user/cart/checkout"} className="w-full py-3 font-bold shadow-lg smooth_transition hover:-translate-y-1 flex items-center justify-center bg-primary-color rounded-full">
+        <Link href={"/user/cart/checkout"} className="w-full text-text-color py-3 font-bold shadow-lg smooth_transition hover:-translate-y-1 flex items-center justify-center bg-primary-color rounded-full">
           Checkout
         </Link>
       </div>
