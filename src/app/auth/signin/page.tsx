@@ -4,7 +4,7 @@ import { ContactInputField as InputField } from "@/components/checkout/Form";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 
-const page = () => {
+const Sigin = () => {
 
   const {
     register,
@@ -56,4 +56,4 @@ const page = () => {
 
 
 
-export default page;
+export default Sigin;
