@@ -10,19 +10,17 @@ const Actions = () => {
 
   return (
     <div className="absolute max-md:hidden z-20 transition-all ease-in-out duration-500 translate-y-[100%] group-hover:translate-y-0 top-0 left-0 w-full h-full flex items-center justify-center bg-black/50">
-      <div className="flex items-center justify-center gap-4">
+      <div className="flex items-center text-text-color justify-center gap-4">
         <div className="w-[22px]">
           {isFavourite ? (
             <IoMdHeart
               onClick={() => setIsFavourite((prev) => !prev)}
               size={22}
-              className="text-primary-color"
             />
           ) : (
             <CiHeart
               onClick={() => setIsFavourite((prev) => !prev)}
               size={22}
-              className="text-primary-color"
             />
           )}
         </div>
@@ -31,13 +29,11 @@ const Actions = () => {
             <FaCartShopping
               onClick={() => setIsCart((prev) => !prev)}
               size={20}
-              className="text-primary-color"
             />
           ) : (
             <CiShoppingCart
               onClick={() => setIsCart((prev) => !prev)}
               size={22}
-              className="text-primary-color"
             />
           )}
         </div>

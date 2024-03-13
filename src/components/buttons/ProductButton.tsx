@@ -14,7 +14,7 @@ const ProductButton = ({
   return (
     <button
       onClick={() => btnAction()}
-      className="flex items-center gap-1 justify-center w-full smooth_transition md:hover:shadow-md bg-primary-color font-poppins border rounded-sm py-2 font-bold max-md:text-xs max-md:font-semibold"
+      className="flex items-center gap-1 text-text-color justify-center w-full smooth_transition md:hover:shadow-md bg-primary-color font-poppins border rounded-sm py-2 font-bold max-md:text-xs max-md:font-semibold"
     >
       {(() => {
         switch (icon) {

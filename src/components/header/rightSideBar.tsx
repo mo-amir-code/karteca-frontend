@@ -5,9 +5,20 @@ import { FaCartShopping } from "react-icons/fa6";
 import { FaUser } from "react-icons/fa6";
 import Wallet from "@/components/buttons/Wallet";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useAppDispatch } from "@/redux/hooks";
+import { setProfile } from "@/redux/app/appSlice";
 
 const RightSideBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useRouter();
+  const dispatch = useAppDispatch();
+
+
+  const handleWallet = () => {
+    navigate.push("/user/username");
+    dispatch(setProfile({profile:"dashboard"}));
+  }
 
   return (
     <div>
@@ -40,7 +51,7 @@ const RightSideBar = () => {
           </li>
         ))}
         <li>
-          <Wallet amount="1" />
+          <Wallet handleClick={handleWallet} amount="1" />
         </li>
       </ul>
       <span className="w-8 h-8 hidden max-md:block cursor-pointer sm:hidden">

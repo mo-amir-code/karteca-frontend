@@ -7,6 +7,8 @@ import { MdEmail } from "react-icons/md";
 import { RiEarthFill } from "react-icons/ri";
 import { TbBuildingEstate, TbDialpadFilled } from "react-icons/tb";
 import { TiUser } from "react-icons/ti";
+import { MdOutlinePassword } from "react-icons/md";
+import { LuNetwork } from "react-icons/lu";
 
 
 const Form = () => {
@@ -42,15 +44,17 @@ const Form = () => {
     )
 }
 
-const ContactInputField = ({placeHolder, icon, type, register}:{placeHolder:string, icon:string, type:string, register?:any}) => {
+export const ContactInputField = ({placeHolder, icon, type, register}:{placeHolder:string, icon:string, type:string, register?:any}) => {
     return (
-        <div className="w-full cursor-pointer flex-1 text-xl py-3 gap-2 border-2 border-secondary-color_3 px-2 hover:border-primary-color hover:shadow-lg shadow-primary-color on_focus transition-all duration-200 text-secondary-color_3 flex items-center justify-start" >
+        <div className="w-full text-primary-color cursor-pointer flex-1 text-xl py-3 gap-2 border-2 border-secondary-color_3 px-2 hover:border-primary-color hover:shadow-lg shadow-primary-color on_focus transition-all duration-200 text-secondary-color_3 flex items-center justify-start" >
             {(():any=>{
                 switch(icon){
                     case "name":
                         return <TiUser size={20} />;
                     case "phone":
                         return <TbDialpadFilled size={20} />
+                    case "referCode":
+                        return <LuNetwork size={20} />
                     case "email":
                         return <MdEmail size={20} />
                     case "address":
@@ -65,11 +69,13 @@ const ContactInputField = ({placeHolder, icon, type, register}:{placeHolder:stri
                         return <GiFamilyHouse size={20} />
                     case "mobileNo":
                         return <TbDialpadFilled size={20} />
+                    case "password":
+                        return <MdOutlinePassword size={20} />
                     default:
                         console.log("something went wrong")
                 }
             })()}
-            <input type={type} {...register? {...register(icon, {required:true})} : null} className="text-base font-normal bg-transparent outline-none group w-full" placeholder={placeHolder} />
+            <input type={type} {...register? {...register(icon, {required:true})} : null} className="text-base font-normal text-secondary-color bg-transparent outline-none group w-full" placeholder={placeHolder} />
         </div>
     )
 }

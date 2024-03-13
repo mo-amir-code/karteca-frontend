@@ -1,9 +1,8 @@
-import Link from "next/link";
 import { IoWallet } from "react-icons/io5";
 
-const Wallet = ({amount}:{amount: string}) => {
+const Wallet = ({amount, handleClick}:{amount: string, handleClick:Function}) => {
   return (
-    <Link style={{width: amount.length * 12 + 56}} href={"/user/refer"} className="flex text-text-color items-center smooth_transition cursor-pointer justify-center hover:shadow-md p-2 gap-2 rounded-md bg-primary-color" ><span className="whitespace-nowrap" ><IoWallet size={20}/></span> <span>₹{amount}</span></Link>
+    <button onClick={()=>handleClick()} style={{width: amount.length * 12 + 56}} className="flex text-text-color items-center smooth_transition cursor-pointer justify-center hover:shadow-md p-2 gap-2 rounded-md bg-primary-color" ><span className="whitespace-nowrap" ><IoWallet size={20}/></span> <span>₹{amount}</span></button>
   )
 }
 
