@@ -6,11 +6,13 @@ const productsApi = createApi({
         baseUrl: "http://localhost:8080/api/v1/product"
     }),
     endpoints: (builder) => ({
-        getTopProducts: builder.query<APIRequestType, string>({query: (t) => "top"})
+        getTopProducts: builder.query<APIRequestType, string>({query: (t) => "top"}),
+        getLatestProducts: builder.query<APIRequestType, string>({query: (t) => "latest"}),
+        getBestCombosProducts: builder.query<APIRequestType, string>({query: (t) => "combos"})
     })
 });
 
-export const { useGetTopProductsQuery } = productsApi
+export const { useGetTopProductsQuery, useGetLatestProductsQuery, useGetBestCombosProductsQuery } = productsApi
 
 
 export default productsApi

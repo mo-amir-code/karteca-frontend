@@ -18,4 +18,13 @@ const rootReducer = combineReducers({
     [productsApi.reducerPath]: productsApi.reducer
 });
 
-export default rootReducer
+
+const persistConfig = {
+    key: "root",
+    storage,
+    whitelist: [appSlice.name]
+};
+
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+export default persistedReducer
