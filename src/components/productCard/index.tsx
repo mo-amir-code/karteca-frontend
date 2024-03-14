@@ -5,7 +5,7 @@ import Stars from "./Stars";
 import Actions from "./Actions";
 import Link from "next/link";
 
-const ProductCard = ({data}:{data:ProductCardType}) => {
+const ProductCard = ({data}:{data?:ProductCardType}) => {
   return (
     <Link href={"/product/435"}>
       <div className="flex items-center justify-center select-none">
@@ -19,11 +19,11 @@ const ProductCard = ({data}:{data:ProductCardType}) => {
           {/* Content Area */}
           <div className="pt-2 pb-1 flex flex-col items-center justify-center gap-1">
             <h1 className="text-xs font-poppins font-medium hover:text-primary-color smooth_transition">
-              {shortProductTitle({ title: data.title })}
+              {shortProductTitle({ title: data?.title || "Test" })}
             </h1>
             <div className="flex items-center justify-center gap-1">
               <div className="flex items-center justify-center gap-1">
-                <span className="text-xs font-poppins font-semibold">₹{data.price}</span>
+                <span className="text-xs font-poppins font-semibold">₹{data?.price || 234}</span>
                 <span className="text-xs font-poppins font-semibold line-through text-red-color">
                   ₹964
                 </span>
