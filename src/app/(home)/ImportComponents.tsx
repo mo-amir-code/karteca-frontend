@@ -12,9 +12,9 @@ const ImportComponents = () => {
   const [shouldCombosFetch, setShouldCombosFetch] = useState<boolean>(true);
   const latestRef = useRef(null);
   const comboRef = useRef(null);
-  const {isLoading:isTopLoading, data:topData} = useGetTopProductsQuery("fetch");
-  const {isLoading:isLatestLoading, data:latestData} = shouldLatestFetch? useGetLatestProductsQuery("fetch") : {isLoading: true, data:null};
-  const {isLoading:isCombosLoading, data:combosData} = shouldCombosFetch? useGetBestCombosProductsQuery("fetch") : {isLoading: true, data:null};
+  const {isLoading:isTopLoading, data:topData} = useGetTopProductsQuery("");
+  const {isLoading:isLatestLoading, data:latestData} = useGetLatestProductsQuery("");
+  const {isLoading:isCombosLoading, data:combosData} = useGetBestCombosProductsQuery("");
 
   useEffect(() => {
     const latestObserver = new IntersectionObserver((entries) => {
