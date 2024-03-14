@@ -1,5 +1,5 @@
 "use client";
-import { setMobileProfileMenu, setProfile } from "@/redux/app/appSlice";
+import { setMobileProfileMenu, setProfile } from "@/redux/slices/app/appSlice";
 import { useAppDispatch } from "@/redux/hooks";
 import { usePathname, useRouter } from "next/navigation";
 import React, { memo } from "react";

@@ -4,7 +4,7 @@ import MobileMenuField from "./MobileMenuField";
 import useProfileIcons from "@/components/customHooks/useProfileIcons";
 import { useState } from "react";
 import { useAppDispatch } from "@/redux/hooks";
-import { setMobileProfileMenu, setProfile } from "@/redux/app/appSlice";
+import { setMobileProfileMenu, setProfile } from "@/redux/slices/app/appSlice";
 
 const MobileProfileMenu = ({title, list, icon}:{title:string, list?:[{name:string}], icon:string}) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);

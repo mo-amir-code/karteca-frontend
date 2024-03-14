@@ -4,7 +4,7 @@ import Link from "next/link";
 import logo from "@/assets/brand/logo.png";
 import { FiArrowLeft } from "react-icons/fi";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { selectMobile, setMobileProfileMenu } from "@/redux/app/appSlice";
+import { selectMobile, setMobileProfileMenu } from "@/redux/slices/app/appSlice";
 
 const Logo = () => {
   const { isProfileMenuOpen } = useAppSelector(selectMobile);

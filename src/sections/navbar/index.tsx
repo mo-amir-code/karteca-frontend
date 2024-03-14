@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { selectDesktop, setMobileProfileMenu, setProfile } from "@/redux/app/appSlice";
+import { selectDesktop, setMobileProfileMenu, setProfile } from "@/redux/slices/app/appSlice";
 
 const MobileNavbar = () => {
   const [selected, setSelected] = useState(0);

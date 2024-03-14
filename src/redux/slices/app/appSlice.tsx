@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { AppSliceType } from "./appTypes";
-import { RootState } from "../store";
+import { RootState } from "../../store";
 
 const initialState = {
     desktop:{
@@ -29,4 +29,4 @@ export const {setProfile, setMobileProfileMenu} = appSlice.actions;
 export const selectDesktop = (state: RootState) => state.app.desktop;
 export const selectMobile = (state: RootState) => state.app.mobile;
 
-export default appSlice.reducer
+export default appSlice

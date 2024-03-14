@@ -2,7 +2,8 @@
 import { combineReducers } from "@reduxjs/toolkit";
 import { PersistConfig, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage"
-import appSlice from "@/redux/app/appSlice"
+import appSlice from "@/redux/slices/app/appSlice"
+import productsApi from "./queries/products/productsAPI";
 
 
 const appPersistConfig: PersistConfig<any> = {
@@ -10,18 +11,11 @@ const appPersistConfig: PersistConfig<any> = {
     storage
 }
 
-const persistedAppReducer = persistReducer(appPersistConfig, appSlice);
+const persistedAppReducer = persistReducer(appPersistConfig, appSlice.reducer);
 
 const rootReducer = combineReducers({
-    app:persistedAppReducer
+    [appSlice.name]:persistedAppReducer,
+    [productsApi.reducerPath]: productsApi.reducer
 });
 
-
-const persistConfig = {
-    key: "root",
-    storage
-};
-
-
-const persistedReducer = persistReducer(persistConfig, rootReducer);
-export default persistedReducer
+export default rootReducer

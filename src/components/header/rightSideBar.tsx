@@ -7,7 +7,7 @@ import Wallet from "@/components/buttons/Wallet";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAppDispatch } from "@/redux/hooks";
-import { setProfile } from "@/redux/app/appSlice";
+import { setProfile } from "@/redux/slices/app/appSlice";
 
 const RightSideBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);

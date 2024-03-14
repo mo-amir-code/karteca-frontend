@@ -1,6 +1,6 @@
 "use client";
 import { useAppSelector } from "@/redux/hooks";
-import { selectDesktop, selectMobile } from "@/redux/app/appSlice";
+import { selectDesktop, selectMobile } from "@/redux/slices/app/appSlice";
 import MobileProfile from "@/components/userprofile/mobileMenu";
 import useMainProfile from "../../components/customHooks/useMainProfile";
 
