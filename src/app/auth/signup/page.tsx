@@ -1,23 +1,39 @@
-"use client"
+"use client";
 import SubmitButton from "@/components/auth/SubmitButton";
 import { ContactInputField as InputField } from "@/components/checkout/Form";
+import { useSignupUserMutation } from "@/redux/queries/auth/authAPI";
+import { AuthSignupUserType } from "@/redux/queries/auth/authTypes";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 
 const Signup = () => {
+  const [signupUser] = useSignupUserMutation();
 
-  const {
-    register,
-    handleSubmit,
-    reset
-  } = useForm<FormData>();
+  const { register, handleSubmit, reset } = useForm<FormData>();
 
+  const handleOnSubmit = async (data: any) => {
+    try {
+      const newData: AuthSignupUserType = {
+        name: data.name,
+        email: data.email,
+        referredUserReferCode: data.referredUserReferCode,
+        gender: data.gender,
+        password: data.password,
+        phone: data.phone,
+        address: {
+          country: "INDIA",
+          state: data.state,
+          city: data.city,
+        },
+      };
 
-  const handleOnSubmit = (data:FormData) => {
-    console.log(data);
-    reset();
-  }
-
+      const response = await signupUser(newData);
+      
+      
+    } catch (error) {
+      console.log("Something went wrong!");
+    }
+  };
 
   return (
     <form
@@ -31,6 +47,14 @@ const Signup = () => {
         placeHolder="Full Name"
         type="text"
         icon="name"
+        required
+      />
+      <InputField
+        register={register}
+        placeHolder="Email"
+        type="email"
+        icon="email"
+        required
       />
       <InputField
         register={register}
@@ -40,33 +64,44 @@ const Signup = () => {
       />
       <InputField
         register={register}
+        placeHolder="Male, Female or Transgender"
+        type="text"
+        icon="gender"
+        required
+      />
+      <InputField
+        register={register}
         placeHolder="Referral Code"
         type="text"
-        icon="referCode"
+        icon="referredUserReferCode"
       />
       <InputField
         register={register}
         placeHolder="State"
         type="text"
         icon="state"
+        required
       />
       <InputField
         register={register}
         placeHolder="City"
         type="text"
         icon="city"
+        required
       />
       <InputField
         register={register}
         placeHolder="Password"
         type="password"
         icon="password"
+        required
       />
       <InputField
         register={register}
         placeHolder="Confirm Password"
         type="password"
         icon="password"
+        required
       />
       <div className="flex items-center justify-between">
         <span className="hover:text-primary-color smooth_transition">
@@ -83,7 +118,5 @@ const Signup = () => {
     </form>
   );
 };
-
-
 
 export default Signup;

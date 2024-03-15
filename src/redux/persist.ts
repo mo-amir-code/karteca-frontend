@@ -4,6 +4,7 @@ import { PersistConfig, persistReducer } from "redux-persist";
 import storage from "redux-persist/lib/storage"
 import appSlice from "@/redux/slices/app/appSlice"
 import productsApi from "./queries/products/productsAPI";
+import authApi from "./queries/auth/authAPI";
 
 
 const appPersistConfig: PersistConfig<any> = {
@@ -15,7 +16,8 @@ const persistedAppReducer = persistReducer(appPersistConfig, appSlice.reducer);
 
 const rootReducer = combineReducers({
     [appSlice.name]:persistedAppReducer,
-    [productsApi.reducerPath]: productsApi.reducer
+    [productsApi.reducerPath]: productsApi.reducer,
+    [authApi.reducerPath]: authApi.reducer
 });
 
 

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import authBg from "@/assets/auth/authbg.jpg"
+import Link from "next/link";
 
 const layout = ({
   children,
@@ -16,7 +17,7 @@ const layout = ({
           <div className="flex flex-col justify-center w-full gap-12">
             <div className="">
               <h1 className="font-bold font-teko text-4xl text-secondary-color max-md:text-3xl">
-                Welcome to <span className="text-primary-color">PayKart</span>
+                Welcome to <Link href={"/"} className="text-primary-color">PayKart</Link>
               </h1>
               <h2 className="font-medium text-xl italic text-secondary-color -mt-3 max-md:text-lg">
                 Buy Smarter Today
