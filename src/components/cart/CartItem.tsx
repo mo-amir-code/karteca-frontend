@@ -21,7 +21,7 @@ const CartItem = () => {
                     Ultra Smartwatch First Copy, Original Okat se bahar
                   </h2>
                   <div>
-                    <Specifications />
+                    <Specifications specs={{type:"testing"}} />
                   </div>
                 </div>
               </div>
