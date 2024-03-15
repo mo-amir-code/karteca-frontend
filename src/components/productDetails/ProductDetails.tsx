@@ -1,14 +1,14 @@
 import { IoLocationSharp } from "react-icons/io5";
 import PriceAndDiscount from "./PriceAndDiscount";
-import { CheckDelivery, Colors, Sizes } from "./Components";
+import Colors from "./Colors";
+// import Sizes from "./Sizes";
 import { ProductDetailsHeroType } from "@/sections/productDetails/Hero";
 import ClaimLabels from "./ClaimLabels";
 import Rating from "./Rating";
-
+import CheckDeliveryPincode from "./CheckDeliveryPincode";
 
 
 const ProductDetails = ({data, totalRating, totalReviews, avgRating}:ProductDetailsHeroType) => {
-
   return (
     <div className="w-full h-full space-y-2 flex flex-col justify-between">
       <div className="space-y-2">
@@ -31,10 +31,10 @@ const ProductDetails = ({data, totalRating, totalReviews, avgRating}:ProductDeta
           </div>
 
           {/* sizes */}
-          <div className="space-y-1">
+          {/* <div className="space-y-1">
             <p className="text-sm font-semibold">Size</p>
             <Sizes/>
-          </div>
+          </div> */}
         </div>
       </div>
 
@@ -45,7 +45,7 @@ const ProductDetails = ({data, totalRating, totalReviews, avgRating}:ProductDeta
             <IoLocationSharp size={20} />
             <span>Delivery Options</span>
           </div>
-          <CheckDelivery />
+          <CheckDeliveryPincode />
         </div>
 
         {/* Trust Label */}

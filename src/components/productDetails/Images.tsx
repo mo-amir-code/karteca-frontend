@@ -1,7 +1,8 @@
 "use client"
 import Image from "next/image";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import ProductButton from "../buttons/ProductButton";
+import { useSearchParams } from "next/navigation";
 
 const Images = ({productThumbnail, productImages}:{productThumbnail:string, productImages:string[]}) => {
   const [thumbnail, setThumbnail] = useState<string>(productThumbnail);
@@ -40,12 +41,23 @@ const Images = ({productThumbnail, productImages}:{productThumbnail:string, prod
   );
 };
 
-export const ProductActionButton = () => {
-  const handleBuyNow = () => {};
+export const ProductActionButton = () => {  
+  const searchParams = useSearchParams();
+  const queries = new URLSearchParams(searchParams.toString());
+
+  const handleCart = useCallback(() => {
+    const color = queries.get("color");
+    
+  }, []);
+
+  const handleBuyNow = useCallback(() => {
+    
+  }, []);
+
 
   return (
     <div className="flex items-center gap-1">
-      <ProductButton text="ADD TO CART" icon="cart" btnAction={handleBuyNow} />
+      <ProductButton text="ADD TO CART" icon="cart" btnAction={handleCart} />
       <ProductButton text="BUY NOW" icon="buy" btnAction={handleBuyNow} />
     </div>
   );

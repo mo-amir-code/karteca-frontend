@@ -3,7 +3,7 @@ import { mobileNavbar } from "@/data";
 import { HiHome, HiBell } from "react-icons/hi";
 import { HiWallet, HiUserCircle } from "react-icons/hi2";
 import { FaCartShopping } from "react-icons/fa6";
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
@@ -27,7 +27,7 @@ const MobileNavbar = () => {
   }
 
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if(pathname === "/") setSelected(0);
     if(pathname === "/user/cart") setSelected(4);
     else if(pathname.startsWith("/user/")){

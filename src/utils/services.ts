@@ -1,4 +1,5 @@
 import { ListType } from "@/components/filter/FilterField";
+import { ReadonlyURLSearchParams } from "next/navigation";
 
 export const shortProductTitle = ({ title }: { title: string }) => {
   return `${title.slice(0, 18)}...`;
@@ -60,3 +61,9 @@ export const handleSelectUtil = ({
     }
   }
 };
+
+export const createURL = (pathname:string, params: URLSearchParams | ReadonlyURLSearchParams) => {
+  const paramsString = params.toString();
+  const queryString = `${paramsString.length? "?" : ""}${paramsString}`
+  return `${pathname}${queryString}`
+}
