@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 const productsApi = createApi({
     reducerPath: "productsAPI",
     baseQuery: fetchBaseQuery({
-        baseUrl: "http://localhost:8080/api/v1/product"
+        baseUrl: process.env.NEXT_PUBLIC_DEVELOPMENT === "development" ? "http://localhost:8080/api/v1/product" : "https://memik-backend.onrender.com/api/v1/product"
     }),
     endpoints: (builder) => ({
         getTopProducts: builder.query<APIRequestType, string>({query: (t) => "top"}),
