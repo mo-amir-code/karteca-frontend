@@ -6,7 +6,7 @@ const withLoadingIndicator = (
   importComponent: () => Promise<{ default: ComponentType<any> }>
 ) =>
   dynamic(() => importComponent(), {
-    loading: () => <div className="w-full h-full" ><Loader /></div>,
+    loading: () => <div className="w-full h-[300px]" ><Loader /></div>,
   });
 
 const ProductDetails = () => {

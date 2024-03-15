@@ -1,67 +1,39 @@
-import { claims, colors, sizes } from "@/data";
-import RatingCard from "./RatingCard";
-import { useState } from "react";
 import { IoLocationSharp } from "react-icons/io5";
-import { VscWorkspaceTrusted } from "react-icons/vsc";
-import { GiReturnArrow } from "react-icons/gi";
 import PriceAndDiscount from "./PriceAndDiscount";
+import { CheckDelivery, Colors, Sizes } from "./Components";
+import { ProductDetailsHeroType } from "@/sections/productDetails/Hero";
+import ClaimLabels from "./ClaimLabels";
+import Rating from "./Rating";
 
-const ProductDetails = () => {
-  const [selectedColor, setSelectedColor] = useState<number>(0);
-  const [selectedSize, setSelectedSize] = useState<number>(sizes[0].size);
+
+
+const ProductDetails = ({data, totalRating, totalReviews, avgRating}:ProductDetailsHeroType) => {
 
   return (
     <div className="w-full h-full space-y-2 flex flex-col justify-between">
       <div className="space-y-2">
         {/* title */}
         <h1 className="text-lg font-medium text-secondary-color leading-6">
-          Firebolt Smartwatch {'13"inch'} Lcd Panel With Amoled Display
+          {data.title}
         </h1>
 
         {/* rating */}
-        <Rating avgRating={3.5} totalRatings={4356} totalReviews={638} />
+        <Rating avgRating={avgRating} totalRatings={totalRating} totalReviews={totalReviews} />
 
         {/* price */}
-        <PriceAndDiscount />
+        <PriceAndDiscount price={data.price} discount={data.discount} />
 
         <div className="space-y-4">
           {/* colors */}
           <div className="space-y-1">
             <p className="text-sm font-semibold">Color</p>
-            <div className="flex items-center justify-start gap-2">
-              {colors.map((color, idx) => (
-                <span
-                  onClick={() => setSelectedColor(idx)}
-                  key={idx}
-                  style={{ backgroundColor: color.color }}
-                  className={`w-6 h-6 rounded-md smooth_transition ${
-                    selectedColor === idx
-                      ? "shadow-md scale-110 border-primary-color"
-                      : "hover:shadow-md"
-                  } border-2 border-transparent`}
-                />
-              ))}
-            </div>
+            <Colors colors={data.colors} />
           </div>
 
           {/* sizes */}
           <div className="space-y-1">
             <p className="text-sm font-semibold">Size</p>
-            <div className="flex items-center justify-start gap-2">
-              {sizes.map((size, idx) => (
-                <span
-                  onClick={() => setSelectedSize(size.size)}
-                  key={idx}
-                  className={`w-10 py-1 rounded-md smooth_transition ${
-                    selectedSize === size.size
-                      ? "shadow-md border-primary-color"
-                      : "hover:shadow-md border-transparent"
-                  } border text-center `}
-                >
-                  {size.size}
-                </span>
-              ))}
-            </div>
+            <Sizes/>
           </div>
         </div>
       </div>
@@ -73,64 +45,12 @@ const ProductDetails = () => {
             <IoLocationSharp size={20} />
             <span>Delivery Options</span>
           </div>
-          <div className="flex items-center justify-center max-w-[250px] border p-2 gap-2 max-md:gap-1">
-            <input
-              type="number"
-              className="w-full outline-none bg-transparent text-sm font-medium"
-              placeholder="Enter Delivery Pincode"
-            />
-            <button
-              style={{ width: "max-content" }}
-              className="outline-none font-semibold text-primary-color font-lato text-sm"
-            >
-              Check
-            </button>
-          </div>
+          <CheckDelivery />
         </div>
 
         {/* Trust Label */}
-        <div className="flex max-md:hidden items-center justify-between p-3 bg-tertiary-color">
-          {claims.map((claim, idx) => (
-            <div
-              key={idx}
-              className="flex items-center justify-center gap-2 text-sm max-lg:text-xs font-medium"
-            >
-              {(() => {
-                switch (claim.icon) {
-                  case "genuine":
-                    return <VscWorkspaceTrusted size={16} />;
-                  case "return":
-                    return <GiReturnArrow size={16} />;
-                  case "sold":
-                    return <span>Sold By: </span>;
-                  default:
-                    return;
-                }
-              })()}
-              <span>{claim.msg}</span>
-            </div>
-          ))}
-        </div>
+        <ClaimLabels />
       </div>
-    </div>
-  );
-};
-
-const Rating = ({
-  avgRating,
-  totalRatings,
-  totalReviews,
-}: {
-  avgRating: number;
-  totalRatings: number;
-  totalReviews: number;
-}) => {
-  return (
-    <div className="flex items-center justify-start gap-2">
-      <RatingCard avgRating={avgRating} />
-      <p className="text-sm font-medium text-gray-500 mb-[2px]">
-        {totalRatings} Rating & {totalReviews} Reviews
-      </p>
     </div>
   );
 };

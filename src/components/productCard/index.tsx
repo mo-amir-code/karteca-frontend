@@ -1,18 +1,17 @@
 import Image from "next/image";
-import product from "@/assets/productsImage/dummy2.png";
-import { shortProductTitle } from "@/utils/services";
+import { calculateDiscountedPrice, shortProductTitle } from "@/utils/services";
 import Stars from "./Stars";
 import Actions from "./Actions";
 import Link from "next/link";
 
 const ProductCard = ({data}:{data?:ProductCardType}) => {
   return (
-    <Link href={"/product/435"}>
+    <Link href={`/product/${data?._id || 435}`}>
       <div className="flex items-center justify-center select-none">
         <div className="max-w-[216px] max-[460px]:w-[176px] bg-white max-sm:bg-[#F1F2F4] p-2 rounded-xl smooth_transition hover:shadow-md">
           {/* Media Area */}
           <div className="w-[200px] max-[460px]:w-[160px] group rounded-lg overflow-hidden relative">
-            <Image src={product} alt="product image" />
+            <Image src={data?.thumbnail || ""} alt="product image" width={216} height={260} />
             <Actions />
           </div>
 
@@ -23,16 +22,16 @@ const ProductCard = ({data}:{data?:ProductCardType}) => {
             </h1>
             <div className="flex items-center justify-center gap-1">
               <div className="flex items-center justify-center gap-1">
-                <span className="text-xs font-poppins font-semibold">₹{data?.price || 234}</span>
+                <span className="text-xs font-poppins font-semibold">₹{calculateDiscountedPrice(data?.price, data?.discount)}</span>
                 <span className="text-xs font-poppins font-semibold line-through text-red-color">
-                  ₹964
+                  ₹{data?.price}
                 </span>
               </div>
               <span className="text-xs font-poppins font-medium text-green-color pl-1 border-l">
-                12% Off
+                {data?.discount || 12}% Off
               </span>
             </div>
-            <Stars stars={4.5} reviews={34} />
+            <Stars stars={data?.ratingAndReviews?.avgRating || 0} reviews={data?.ratingAndReviews?.avgRating || 0} />
           </div>
         </div>
       </div>

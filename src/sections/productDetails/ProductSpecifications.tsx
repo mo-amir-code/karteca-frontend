@@ -2,17 +2,24 @@ import Specs from "@/HOC/Specs";
 import Highlights from "@/components/productDetails/Highlights";
 import Warranty from "../../components/productDetails/Warranty";
 import Specifications from "../../components/productDetails/Specifications";
-import { ProductActionButton } from "./Hero";
 import Image from "next/image";
 import sponsor from "@/assets/productsImage/dummy.png"
+import { ProductActionButton } from "@/components/productDetails/Images";
 
-const ProductSpecifications = () => {
+type ProductSpecsType = {
+  highlights:string[], 
+  specs:Object, 
+  warranty:object,
+  description: string
+}
+
+const ProductSpecifications = ({highlights, specs, warranty, description}:ProductSpecsType) => {
   return (
     <div className="flex bg-white p-3 max-md:px-0">
       <div className="flex-grow">
         <h2 className="text-lg font-semibold font-lato">Specifications</h2>
         <div className="py-3 space-y-3">
-          <SpecsWrapper />
+          <SpecsWrapper highlights={highlights} specs={specs} warranty={warranty} description={description}/>
           <div className="w-full md:hidden" >
           <ProductActionButton />
           </div>
@@ -25,17 +32,20 @@ const ProductSpecifications = () => {
   );
 };
 
-const SpecsWrapper = () => {
+const SpecsWrapper = ({highlights, specs, warranty, description}:ProductSpecsType) => {
   return (
     <>
+    <Specs title="Description" >
+      <p className="text-xs" >{description}</p>
+    </Specs>
       <Specs title="Highlights">
-        <Highlights />
+        <Highlights highlights={highlights} />
       </Specs>
-      <Specs title="Product Specs">
-        <Specifications />
+      <Specs title="Product Specifications">
+        <Specifications specs={specs}  />
       </Specs>
       <Specs title="Warranty">
-        <Warranty />
+        <Warranty warranty={warranty} />
       </Specs>
     </>
   );
