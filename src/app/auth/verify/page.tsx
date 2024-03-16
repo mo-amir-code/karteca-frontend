@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 
-const page = () => {
+const Verify = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [verifyUser] = useVerifyUserMutation();
   const router = useRouter();
@@ -52,4 +52,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Verify;
