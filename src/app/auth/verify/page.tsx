@@ -3,7 +3,7 @@ import SubmitButton from "@/components/auth/SubmitButton";
 import { ContactInputField as InputField } from "@/components/checkout/Form";
 import { useVerifyUserMutation } from "@/redux/queries/auth/authAPI";
 import { useRouter } from "next/navigation";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 const Verify = () => {
@@ -13,7 +13,7 @@ const Verify = () => {
 
   const { register, handleSubmit, reset } = useForm<FormData>();
 
-  const handleOnSubmit = useCallback(async (data: { otp: string }) => {
+  const handleOnSubmit = async (data: { otp: string }) => {
     try {
       setIsLoading(true);
 
@@ -21,7 +21,7 @@ const Verify = () => {
         data: APIRequestType;
       };
 
-      if (resData.success) {
+      if (resData?.success) {
         router.push("/");
       }
 
@@ -31,7 +31,7 @@ const Verify = () => {
       setIsLoading(false);
       console.log(error);
     }
-  }, []);
+  };
 
   return (
     <form

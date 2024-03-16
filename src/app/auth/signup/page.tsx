@@ -5,7 +5,7 @@ import { useSignupUserMutation } from "@/redux/queries/auth/authAPI";
 import { AuthSignupUserType } from "@/redux/queries/auth/authTypes";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
 
 const Signup = () => {
@@ -15,7 +15,7 @@ const Signup = () => {
 
   const { register, handleSubmit, reset } = useForm<FormData>();
 
-  const handleOnSubmit = useCallback(async (data: any) => {
+  const handleOnSubmit = async (data: any) => {
     try {
       setIsLoading(true);
       const newData: AuthSignupUserType = {
@@ -46,7 +46,7 @@ const Signup = () => {
       setIsLoading(false);
       console.log(error);
     }
-  }, []);
+  };
 
   return (
     <form
