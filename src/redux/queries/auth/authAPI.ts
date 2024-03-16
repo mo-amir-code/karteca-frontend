@@ -1,5 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import { AuthSignupUserType } from "./authTypes";
+import { AuthSigninUserType, AuthSignupUserType } from "./authTypes";
 
 
 const authApi = createApi({
@@ -15,14 +15,33 @@ const authApi = createApi({
             query: (post) => ({
                 url: "signup",
                 method: "POST",
-                body:post
+                body:post,
+                credentials: "include"
+            })
+        }),
+
+        signinUser: builder.mutation<APIRequestType, AuthSigninUserType>({
+            query: (post) => ({
+                url: "signin",
+                method: "POST",
+                body:post,
+                credentials: "include"
+            })
+        }),
+
+        verifyUser: builder.mutation<APIRequestType, {otp:string}>({
+            query: (post) => ({
+                url: "verify",
+                method: "POST",
+                body:post,
+                credentials: "include"
             })
         })
     })
 });
 
 
-export const {useSignupUserMutation} = authApi;
+export const {useSignupUserMutation, useSigninUserMutation, useVerifyUserMutation} = authApi;
 
 
 export default authApi

@@ -4,15 +4,20 @@ import { ContactInputField as InputField } from "@/components/checkout/Form";
 import { useSignupUserMutation } from "@/redux/queries/auth/authAPI";
 import { AuthSignupUserType } from "@/redux/queries/auth/authTypes";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 
 const Signup = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const [signupUser] = useSignupUserMutation();
+  const router = useRouter();
 
   const { register, handleSubmit, reset } = useForm<FormData>();
 
-  const handleOnSubmit = async (data: any) => {
+  const handleOnSubmit = useCallback(async (data: any) => {
     try {
+      setIsLoading(true);
       const newData: AuthSignupUserType = {
         name: data.name,
         email: data.email,
@@ -27,13 +32,21 @@ const Signup = () => {
         },
       };
 
-      const response = await signupUser(newData);
-      
-      
+      const { data: resData } = (await signupUser(newData)) as {
+        data: APIRequestType;
+      };
+
+      if (resData.success) {
+        router.push("/auth/verify");
+      }
+
+      setIsLoading(false);
+      reset();
     } catch (error) {
-      console.log("Something went wrong!");
+      setIsLoading(false);
+      console.log(error);
     }
-  };
+  }, []);
 
   return (
     <form
@@ -114,7 +127,7 @@ const Signup = () => {
           </Link>
         </span>
       </div>
-      <SubmitButton name="Sign up" />
+      <SubmitButton name="Sign up" isLoading={isLoading} />
     </form>
   );
 };

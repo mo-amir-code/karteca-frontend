@@ -10,6 +10,7 @@
   }
 } */
 
+
 @layer utilities {
   .smooth_transition {
     @apply transition-all duration-200 cursor-pointer;
@@ -22,6 +23,57 @@
 body {
   background-color: #f1f2f4;
 }
+
+
+/* Button loader */
+.loader {
+  border: 3px solid #744CCD;
+  border-left-color: transparent;
+  border-radius: 50%;
+}
+
+.loader {
+  border: 3px solid #744CCD;
+  border-left-color: transparent;
+  width: 26px;
+  height: 26px;
+}
+
+.loader {
+  border: 3px solid #744CCD;
+  border-left-color: transparent;
+  width: 26px;
+  height: 26px;
+  animation: spin89345 1s linear infinite;
+}
+
+@keyframes spin89345 {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* End button loader */
+
+
+/* Disabling input tag type number for increament and decreament */
+
+ /* Chrome, Safari, Edge, Opera */
+ /* input::-webkit-outer-spin-button,
+ input::-webkit-inner-spin-button {
+     -webkit-appearance: none;
+     margin: 0;
+ } */
+
+ /* Firefox */
+ /* input[type="number"] {
+     -moz-appearance: textfield;
+ } */
+ /* End  */
 
 /* humberger menu css */
 

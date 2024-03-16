@@ -13,3 +13,8 @@ export interface AuthSignupAddressType {
   state: string;
   city: string;
 }
+
+export interface AuthSigninUserType{
+  email:string;
+  password:string
+}
