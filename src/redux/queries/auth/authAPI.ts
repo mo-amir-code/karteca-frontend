@@ -1,15 +1,11 @@
-import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import { createApi } from "@reduxjs/toolkit/query/react";
 import { AuthSigninUserType, AuthSignupUserType } from "./authTypes";
+import { fetchBaseQueryBaseUrlConfiguration } from "../products/productsAPI";
 
 
 const authApi = createApi({
     reducerPath: "authAPI",
-    baseQuery: fetchBaseQuery({
-        baseUrl:
-          process.env.NEXT_PUBLIC_DEVELOPMENT === "development"
-            ? "http://localhost:8080/api/v1/auth"
-            : "https://memik-backend.onrender.com/api/v1/auth",
-      }),
+    baseQuery: fetchBaseQueryBaseUrlConfiguration("auth"),
     endpoints: (builder) => ({
         signupUser: builder.mutation<APIRequestType, AuthSignupUserType>({
             query: (post) => ({
