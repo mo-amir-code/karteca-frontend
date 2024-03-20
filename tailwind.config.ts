@@ -24,6 +24,7 @@ const config: Config = {
         "tag-color":"#E0E0E0",
         "stars-color":"#FFD910",
         "text-color":"#ffffff",
+        "warning-color":"#FFCC00",
       }
     },
     fontFamily: {

@@ -11,6 +11,9 @@ const authApi = createApi({
             query: (post) => ({
                 url: "signup",
                 method: "POST",
+                headers:{
+                    "Content-Type":"application/json"
+                },
                 body:post,
                 credentials: "include"
             })

@@ -5,6 +5,7 @@ import storage from "redux-persist/lib/storage"
 import appSlice from "@/redux/slices/app/appSlice"
 import productsApi from "./queries/products/productsAPI";
 import authApi from "./queries/auth/authAPI";
+import authSlice from "./slices/auth/authSlice";
 
 
 const appPersistConfig: PersistConfig<any> = {
@@ -12,10 +13,17 @@ const appPersistConfig: PersistConfig<any> = {
     storage
 }
 
+const authPersistConfig: PersistConfig<any> = {
+    key: "auth",
+    storage
+}
+
 const persistedAppReducer = persistReducer(appPersistConfig, appSlice.reducer);
+const persistedAuthReducer = persistReducer(authPersistConfig, authSlice.reducer);
 
 const rootReducer = combineReducers({
     [appSlice.name]:persistedAppReducer,
+    [authSlice.name]:persistedAuthReducer,
     [productsApi.reducerPath]: productsApi.reducer,
     [authApi.reducerPath]: authApi.reducer
 });
@@ -24,7 +32,7 @@ const rootReducer = combineReducers({
 const persistConfig = {
     key: "root",
     storage,
-    whitelist: [appSlice.name]
+    whitelist: [appSlice.name, authSlice.name]
 };
 
 
