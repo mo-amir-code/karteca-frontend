@@ -9,6 +9,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 const SigninForm = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -31,6 +32,7 @@ const SigninForm = () => {
       if(resData.success){
         dispatch(loginUser({userId:resData.data.userId, name:resData.data.name}));
         router.push("/");
+        toast.success("Logged In");
       }
 
       
@@ -63,7 +65,9 @@ const SigninForm = () => {
       />
       <div className="flex items-center justify-between">
         <span className="hover:text-primary-color smooth_transition">
-          Forgot Password?{" "}
+          <Link href={"/auth/forgot-password"} >
+             Forgot Password?{" "}
+          </Link>
           <Link
             href={"/auth/signup"}
             className="text-primary-color hover:text-secondary-color"

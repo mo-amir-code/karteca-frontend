@@ -35,12 +35,30 @@ const authApi = createApi({
                 body:post,
                 credentials: "include"
             })
+        }),
+
+        forgotPassword: builder.mutation<APIRequestType, {email:string}>({
+            query: (post) => ({
+                url: "forgot-password",
+                method: "POST",
+                body:post,
+                credentials: "include"
+            })
+        }),
+
+        resetPassword: builder.mutation<APIRequestType, {otp:number, token?:string | undefined, newPassword:string}>({
+            query: (post) => ({
+                url: "reset-password",
+                method: "PATCH",
+                body:post,
+                credentials: "include"
+            })
         })
     })
 });
 
 
-export const {useSignupUserMutation, useSigninUserMutation, useVerifyUserMutation} = authApi;
+export const {useSignupUserMutation, useSigninUserMutation, useVerifyUserMutation, useForgotPasswordMutation, useResetPasswordMutation} = authApi;
 
 
 export default authApi

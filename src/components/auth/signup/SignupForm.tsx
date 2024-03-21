@@ -7,11 +7,12 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 
 const SignupForm = () => {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [signupUser] = useSignupUserMutation();
-  const [passwordMatch, setPasswordMatch] = useState(false);
+  const [passwordMatch, setPasswordMatch] = useState<boolean>(false);
   const router = useRouter();
 
   const {
@@ -26,8 +27,8 @@ const SignupForm = () => {
       if (data.password !== data.confirmPassword) {
         setPasswordMatch(true);
         return;
-      }else{
-        setPasswordMatch(false)
+      } else {
+        setPasswordMatch(false);
       }
       setIsLoading(true);
 
@@ -45,19 +46,27 @@ const SignupForm = () => {
         },
       };
 
-      const { data: resData } = (await signupUser(newData)) as {
+      const { data: resData, error } = (await signupUser(newData)) as {
         data: APIRequestType;
+        error?: {
+          data: any;
+          status: number;
+        };
       };
-
-      if (resData?.success) {
-        router.push("/auth/verify");
-      }
-
       setIsLoading(false);
       reset();
-    } catch (error) {
+
+      if (error?.status === 409) {
+        toast.error(error.data.message);
+      }
+      
+      if (resData?.success) {
+        router.push("/auth/verify");
+        toast.success("OTP sent")
+      }
+    } catch (error: any) {
+      console.error("Error happend during signup", error);
       setIsLoading(false);
-      console.log(error);
     }
   };
 
