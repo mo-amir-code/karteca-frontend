@@ -28,7 +28,7 @@ const authApi = createApi({
             })
         }),
 
-        verifyUser: builder.mutation<APIRequestType, {otp:string}>({
+        verifyUser: builder.mutation<APIRequestType, {otp:number}>({
             query: (post) => ({
                 url: "verify",
                 method: "POST",
