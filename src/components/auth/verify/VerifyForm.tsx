@@ -14,7 +14,7 @@ const VerifyForm = () => {
   
     const { register, handleSubmit, reset } = useForm<FormData>();
   
-    const handleOnSubmit = async (data: { otp: string }) => {
+    const handleOnSubmit = async (data: { otp: number }) => {
       try {
         setIsLoading(true);
   
