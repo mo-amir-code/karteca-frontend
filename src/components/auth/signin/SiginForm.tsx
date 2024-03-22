@@ -15,7 +15,7 @@ const SigninForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [signinUser] = useSigninUserMutation();
   const router = useRouter()
-  const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch()
 
   const { register, handleSubmit, reset } = useForm<FormData>();
 
