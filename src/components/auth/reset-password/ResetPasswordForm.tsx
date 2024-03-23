@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import SubmitButton from "../SubmitButton";
 import toast from "react-hot-toast";
 import { useResetPasswordMutation } from "@/redux/queries/auth/authAPI";
+import { APIRequestType } from "@/redux/RootTypes";
 
 const ResetPasswordForm = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);

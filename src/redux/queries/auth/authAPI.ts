@@ -1,6 +1,7 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { AuthSigninUserType, AuthSignupUserType } from "./authTypes";
 import { fetchBaseQueryBaseUrlConfiguration } from "../products/productsAPI";
+import { APIRequestType } from "@/redux/RootTypes";
 
 
 const authApi = createApi({

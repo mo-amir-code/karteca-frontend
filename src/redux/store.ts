@@ -3,11 +3,12 @@ import { persistStore } from "redux-persist";
 import persistedReducer from "./persist";
 import productsAPI from "./queries/products/productsAPI";
 import authApi from "./queries/auth/authAPI";
+import userAPI from "./queries/user/userAPI";
 
 export const store = configureStore({
   reducer: persistedReducer,
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware({ serializableCheck: false }).concat([productsAPI.middleware, authApi.middleware]),
+    getDefaultMiddleware({ serializableCheck: false }).concat([productsAPI.middleware, authApi.middleware, userAPI.middleware]),
 });
 
 export const persistedStore = persistStore(store);

@@ -1,3 +1,4 @@
+import { APIRequestType } from "@/redux/RootTypes";
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
 export const fetchBaseQueryBaseUrlConfiguration = (basePath:string) => fetchBaseQuery({

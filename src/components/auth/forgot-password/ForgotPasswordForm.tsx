@@ -6,6 +6,7 @@ import SubmitButton from '@/components/auth/SubmitButton';
 import { useForgotPasswordMutation } from '@/redux/queries/auth/authAPI';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
+import { APIRequestType } from '@/redux/RootTypes';
 
 const ForgotPasswordForm = () => {
     const [isLoading, setIsLoading] = useState(false);

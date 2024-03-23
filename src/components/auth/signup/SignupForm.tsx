@@ -1,6 +1,7 @@
 "use client";
 import SubmitButton from "@/components/auth/SubmitButton";
 import { ContactInputField as InputField } from "@/components/checkout/Form";
+import { APIRequestType } from "@/redux/RootTypes";
 import { useSignupUserMutation } from "@/redux/queries/auth/authAPI";
 import { AuthSignupUserType } from "@/redux/queries/auth/authTypes";
 import Link from "next/link";

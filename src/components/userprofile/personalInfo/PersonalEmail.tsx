@@ -1,9 +1,9 @@
 import React from "react";
 import UserInputField from "../UserInputField";
 
-const PersonalEmail = () => {
+const PersonalEmail = ({email}:{email:string}) => {
   return (
-    <UserInputField value="mo.amir.code@gmail.com" isDisabled={true} />
+    <UserInputField fieldName="email" value={email} />
   );
 };
 

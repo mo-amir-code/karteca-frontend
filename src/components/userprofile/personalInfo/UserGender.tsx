@@ -1,32 +1,14 @@
 import React from "react";
+import SelectGender from "./SelectGender";
 
-const UserGender = () => {
+const UserGender = ({gender}:{gender:string}) => {
   return (
     <>
       {/* Gender area */}
       <div className="space-y-2">
         <span className="text-sm text-secondary-color">Your Gender</span>
         <form className="flex items-center gap-2 text-sm text-secondary-color">
-          <label htmlFor="" className="flex items-center gap-2">
-            <input
-              disabled={true}
-              type="radio"
-              name="gender"
-              className="cursor-pointer"
-              value={"male"}
-            />
-            Male
-          </label>
-          <label htmlFor="" className="flex items-center gap-2">
-            <input
-              disabled={true}
-              type="radio"
-              name="gender"
-              className="cursor-pointer"
-              value={"female"}
-            />
-            Female
-          </label>
+          <SelectGender gender={gender} />
         </form>
       </div>
       {/* End gender area */}

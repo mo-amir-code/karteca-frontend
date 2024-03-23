@@ -11,7 +11,7 @@ export const navbarData = [
     },
     {
         name: "Profile",
-        path: "/user/:username"
+        path: "/user/"
     },
 ]
 

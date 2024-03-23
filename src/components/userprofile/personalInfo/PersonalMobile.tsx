@@ -1,9 +1,9 @@
 import React from "react";
 import UserInputField from "../UserInputField";
 
-const PersonalMobile = () => {
+const PersonalMobile = ({phone}:{phone:string}) => {
   return (
-    <UserInputField value="6395212960" isDisabled={true} />
+    <UserInputField fieldName="phone" value={phone} />
   );
 };
 

@@ -1,6 +1,7 @@
 "use client"
 import SubmitButton from "@/components/auth/SubmitButton";
 import { ContactInputField as InputField } from "@/components/checkout/Form";
+import { APIRequestType } from "@/redux/RootTypes";
 import { useVerifyUserMutation } from "@/redux/queries/auth/authAPI";
 import { useRouter } from "next/navigation";
 import { useState } from "react";

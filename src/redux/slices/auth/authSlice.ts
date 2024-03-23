@@ -3,21 +3,21 @@ import { AuthSliceType } from "./authTypes";
 import { RootState } from "@/redux/store";
 
 
-const initialState:AuthSliceType = {
+const initialState = {
     isUserLoggedIn: false,
     loggedInUserId: null,
     loggedInUserName: null
-}
+} as AuthSliceType
 
 const authSlice = createSlice({
     name: "auth",
     initialState,
     reducers: {
         loginUser(state, action){
-            const {userId, username} = action.payload;
+            const {userId, name} = action.payload;
             state.isUserLoggedIn = true;
             state.loggedInUserId = userId;
-            state.loggedInUserName = username;
+            state.loggedInUserName = name;
         },
         logoutUser(state, action){
             Object.assign(state, initialState);

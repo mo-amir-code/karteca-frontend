@@ -6,13 +6,15 @@ import { FaUser } from "react-icons/fa6";
 import Wallet from "@/components/buttons/Wallet";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useAppDispatch } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { setProfile } from "@/redux/slices/app/appSlice";
+import { selectLoggedInUserName } from "@/redux/slices/auth/authSlice";
 
 const RightSideBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useRouter();
   const dispatch = useAppDispatch();
+  const loggedInUserName = useAppSelector(selectLoggedInUserName);
 
 
   const handleWallet = () => {
@@ -26,7 +28,7 @@ const RightSideBar = () => {
         {navbarData.map((item, idx) => (
           <li key={idx}>
             <Link
-              href={item.path}
+              href={item.path === "/user/" ? `${item.path}${loggedInUserName?.replace(" ", "").toLocaleLowerCase()}` : item.path}
               className="flex items-center justify-center gap-2 cursor-pointer"
             >
               {(() => {

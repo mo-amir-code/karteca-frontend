@@ -1,12 +1,11 @@
 import UserInputField from "../UserInputField";
 
-const PersonalInfo = () => {
+const PersonalInfo = ({name}:{name:string}) => {
   return (
     <>
       {/* Name area */}
       <div className="flex items-center gap-4">
-        <UserInputField value="Mohd" isDisabled={true} />
-        <UserInputField value="Amir" isDisabled={true} />
+        <UserInputField fieldName={"name"} value={name} />
       </div>
     </>
   );
