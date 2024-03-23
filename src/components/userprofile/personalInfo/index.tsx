@@ -18,7 +18,7 @@ import { useUserContext } from "@/context/UserContext";
 import { UpdateUserType } from "@/redux/queries/user/userTypes";
 import { APIRequestType } from "@/redux/RootTypes";
 
-const index = () => {
+const PersonalInfoIndex = () => {
   const [isButtonLoading, setIsButtonLoading] = useState<boolean>(false);
   const loggedInUserId = useAppSelector(selectLoggedInUserId);
   const { data, isLoading, isError, isSuccess } = useGetUserInfoQuery(
@@ -92,4 +92,4 @@ const index = () => {
   );
 };
 
-export default memo(index);
+export default memo(PersonalInfoIndex);
