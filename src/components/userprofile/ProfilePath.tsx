@@ -3,6 +3,8 @@ import { selectDesktop, setProfile } from "@/redux/slices/app/appSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import React, { memo } from "react";
 import useProfileIcons from "../customHooks/useProfileIcons";
+import { logoutUser } from "@/redux/slices/auth/authSlice";
+import { useRouter } from "next/navigation";
 
 const ProfilePath = ({
   list,
@@ -15,6 +17,7 @@ const ProfilePath = ({
 }) => {
   const dispatch = useAppDispatch();
   const desktop = useAppSelector(selectDesktop);
+  const router = useRouter();
 
   const handleProfileNavigate = (target: string) => {
     let newTarget;
@@ -30,6 +33,10 @@ const ProfilePath = ({
         break;
       case "Manage Addresses":
         newTarget = "addresses";
+        break;
+      case "Log out":
+        dispatch(logoutUser(null));
+        router.push("/");
         break;
       case "Notifications":
         newTarget = "notification";

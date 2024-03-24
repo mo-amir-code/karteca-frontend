@@ -30,16 +30,21 @@ const userContextReducerInitialeValue = {
 
 interface UserContextType extends UserContextReducerType {
   dispatch: Function;
+  isAddressEdit: string | null,
+  setIsAddressEdit: Function
 }
 
 const userContextInitialValue = {
   ...userContextReducerInitialeValue,
   dispatch: () => {},
+  isAddressEdit: null,
+  setIsAddressEdit: () => {}
 };
 
 const UserContext = createContext<UserContextType>(userContextInitialValue);
 
 const UserContextProvider = ({ children }: { children: ReactNode }) => {
+  const [isAddressEdit, setIsAddressEdit] = useState<string | null>(null)
   const reducer = (
     state: UserContextReducerType,
     action: { type: string; payload: any }
@@ -72,7 +77,7 @@ const UserContextProvider = ({ children }: { children: ReactNode }) => {
   );
 
   return (
-    <UserContext.Provider value={{ ...state, dispatch }}>
+    <UserContext.Provider value={{ ...state, dispatch, isAddressEdit, setIsAddressEdit }}>
       {children}0
     </UserContext.Provider>
   );

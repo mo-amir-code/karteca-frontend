@@ -1,16 +1,18 @@
 "use client"
-import { useState } from "react";
+import { useUserContext } from "@/context/UserContext";
 import AddressForm from "./AddressForm"
 import AddressInfo from "./AddressInfo"
+import { UserAddressType } from "@/redux/queries/user/userTypes";
 
 
-const Address = ({isFirst}:{isFirst?:boolean}) => {
-  const [isOpen, setIsOpen] = useState<boolean>(false);
+const Address = ({data, isFirst}:{data: UserAddressType, isFirst?:boolean}) => {
+  const {isAddressEdit, setIsAddressEdit} = useUserContext();
 
   return (
     <div className={`border ${!isFirst && "border-t-0"} select-none`} >
-        <AddressInfo />
-        {!!isOpen && <AddressForm setIsOpen={setIsOpen} />}
+      {
+        isAddressEdit === data._id? <AddressForm data={data} /> : <AddressInfo data={data} />
+      }
     </div>
   )
 }

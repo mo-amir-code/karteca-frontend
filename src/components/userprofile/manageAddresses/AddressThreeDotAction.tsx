@@ -1,16 +1,27 @@
 "use client"
+import { useUserContext } from "@/context/UserContext";
+import { APIRequestType } from "@/redux/RootTypes";
+import { useDeleteUserAddressMutation } from "@/redux/queries/user/userAPI";
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { PiDotsThreeVerticalBold } from "react-icons/pi";
 
-const AddressThreeDotAction = () => {
+const AddressThreeDotAction = ({addressId}:{addressId:string}) => {
     const [isOpen, setIsOpen] = useState<boolean>(false);
+    const {setIsAddressEdit} = useUserContext();
+    const [deleteUserAddress] = useDeleteUserAddressMutation();
 
     const handleEdit = () => {
-      console.log("Edit");
+      setIsAddressEdit(addressId);
     }
     
-    const handleDelete = () => {
-      console.log("Delete");
+    const handleDelete = async () => {
+      const {data} = await deleteUserAddress({addressId}) as {data: APIRequestType};
+      if(data?.success){
+        toast.success("Address Deleted")
+      }else{
+        toast.error("Internal Error Occurred!");
+      }
     }
 
   return (

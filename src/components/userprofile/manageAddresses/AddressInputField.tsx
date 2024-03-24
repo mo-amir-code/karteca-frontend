@@ -5,6 +5,7 @@ const AddressInputField = ({
   register,
   isRequired,
   errors,
+  defaultValue
 }: {
   name: string;
   placeholder: string;
@@ -12,6 +13,7 @@ const AddressInputField = ({
   register: any;
   isRequired?: boolean;
   errors: any;
+  defaultValue?: string | number
 }) => {
   return (
     <div className="w-full smooth_transition" >
@@ -21,6 +23,7 @@ const AddressInputField = ({
           placeholder={placeholder}
           {...register(name, { required: isRequired ? true : false })}
           className="bg-transparent outline-none w-full"
+          defaultValue={defaultValue}
         />
       </div>
       <p className="text-red-color text-xs px-1 mt-1 h-4" >{errors[name] && `${name} is required`}</p>
