@@ -3,13 +3,16 @@ import productImage from "@/assets/productsImage/dummy2.png";
 import { FaTrash, FaHeart } from "react-icons/fa";
 import Specifications from "../productDetails/Specifications";
 import Stars from "../productCard/Stars";
+import { CartItemDataType } from "@/redux/queries/cart/cartTypes";
+import Quantity from "./Quantity";
+import Buttons from "./Buttons";
 
-const CartItem = () => {
+const CartItem = ({cartData}:{cartData:CartItemDataType}) => {
   return (
     <div className="w-full">
       <div className="flex border-b max-sm:hidden border-secondary-color py-4 ">
         <div className="max-w-[250px] max-sm:max-w-[200px] rounded-lg overflow-hidden shadow-lg">
-          <Image src={productImage} alt="cart image" />
+          <Image src={cartData.product.thumbnail} alt="cart image" width={250} height={200} />
         </div>
         <div className="flex-grow">
           <div className="max-md:space-y-2 flex flex-col max-sm:gap-4 justify-between h-full">
@@ -18,47 +21,27 @@ const CartItem = () => {
               <div className="flex flex-col justify-between items-start">
                 <div className="space-y-2">
                   <h2 className="text-lg leading-5 max-sm:leading-5 font-semibold max-sm:text-lg hover:text-primary-color smooth_transition">
-                    Ultra Smartwatch First Copy, Original Okat se bahar
+                    {cartData.product.title}
                   </h2>
                   <div>
-                    <Specifications specs={{type:"testing"}} />
+                    <Specifications specs={cartData.product.specifications} />
                   </div>
                 </div>
               </div>
 
               {/* Product Cost, Quantity */}
               <div className="my-10 flex sm:flex-col max-sm:items-center space-y-4 max-sm:space-x-3">
-                <div className="space-y-1">
-                  <h3 className="text-base font-medium text-secondary-color text-end max-sm:text-start max-sm:text-sm">
-                    Quantity:
-                  </h3>
-                  <div className="border rounded-b-lg px-2">
-                    <select className="text-sm outline-none w-full text-center bg-transparent">
-                      <option value={1}>1</option>
-                      <option value={2}>2</option>
-                      <option value={3}>3</option>
-                      <option value={4}>4</option>
-                      <option value={5}>5</option>
-                    </select>
-                  </div>
-                </div>
+                <Quantity quantity={cartData.quantity} cartId={cartData._id} />
                 <p className="text-base font-medium text-secondary-color text-end max-sm:text-sm">
                   <span>Total:</span>
-                  <span>431</span>
+                  <span>₹{cartData.currentPrice * cartData.quantity}</span>
                 </p>
               </div>
             </div>
 
             {/* Buttons */}
             <div className="flex px-4 max-md:px-2 items-center justify-start gap-2 flex-wrap">
-              <button className="flex items-center justify-center text-sm gap-1 text-text-color bg-primary-color px-4 p-2 rounded-lg shadow-lg smooth_transition hover:-translate-y-1">
-                <FaTrash size={12} />
-                <span>Remove</span>
-              </button>
-              <button className="flex items-center justify-center text-sm gap-1 px-4 p-2">
-                <FaHeart className="text-red-color" size={14} />
-                <span>Wishlist</span>
-              </button>
+              <Buttons cartId={cartData._id} />
             </div>
             {/* End Buttons */}
           </div>

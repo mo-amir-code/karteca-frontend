@@ -83,14 +83,14 @@ export const ProductActionButton = () => {
       discount
     }
 
-    const {data:res, error:{data:errorRes}} = await addToCart(cartData) as {data: APIRequestType, error: {data: APIRequestType, status: number}}
+    const {data:res, error} = await addToCart(cartData) as {data: APIRequestType, error: {data: APIRequestType, status: number}}
 
     if(res?.success){
       toast.success(res.message);
     }
 
-    if(errorRes && type !== "buy"){
-      toast.error(errorRes.message);
+    if(error && type !== "buy"){
+      toast.error(error.data.message);
     }
 
     if(type === "buy") router.push("/user/cart");
