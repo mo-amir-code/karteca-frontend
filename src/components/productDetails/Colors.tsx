@@ -1,20 +1,18 @@
 "use client";
+import { useQueryContext } from "@/context/QueryContext";
+import { quantities } from "@/data";
 import { createURL } from "@/utils/services";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { memo, useCallback, useEffect, useState } from "react";
 
-const Colors = ({ colors }: { colors: string[] }) => {
+const Color = ({ colors }: { colors: string[] }) => {
   const [selectedColor, setSelectedColor] = useState<string>(colors[0]);
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const queries = new URLSearchParams(searchParams.toString());
+  const {queries, handleSetQueries} = useQueryContext();
 
   const handleSelectColor = useCallback(
     (color: string) => {
       queries.set("color", color.replace("#", ""));
-      const queryUrl = createURL(pathname, queries);
-      router.push(queryUrl, { scroll: false });
+      handleSetQueries()
       setSelectedColor(color);
     },
     [selectedColor]
@@ -29,8 +27,7 @@ const Colors = ({ colors }: { colors: string[] }) => {
     } else {
       queries.set("color", selectedColor.replace("#", ""));
     }
-    const queryUrl = createURL(pathname, queries);
-    router.push(queryUrl, { scroll: false });
+    handleSetQueries();
   }, []);
 
   return (
@@ -51,4 +48,45 @@ const Colors = ({ colors }: { colors: string[] }) => {
   );
 };
 
-export default memo(Colors);
+const Quantity = () => {
+  const [quantity, setQuantity] = useState<number>(0);
+  const {queries, handleSetQueries} = useQueryContext();
+
+  const handleSelectQuantity = useCallback(
+    (qty: number) => {
+      queries.set("quantity", qty.toString());
+      handleSetQueries();
+      setQuantity(qty);
+    },
+    [quantity]
+  );
+
+  useEffect(() => {
+    const quantity = queries.get("quantity");
+
+    if (quantity) {
+      queries.set("quantity", quantity);
+      setQuantity(parseInt(quantity));
+    } else {
+      queries.set("quantity", "1");
+    }
+    handleSetQueries();
+  }, []);
+
+  return (
+    <div className="flex items-center justify-start gap-2">
+      <select value={quantity} onChange={(e)=>handleSelectQuantity(parseInt(e.target.value))} className="hide_scrollbar px-2 outline-none border border-primary-color" >
+        {
+          quantities.map((qty) => (
+            <option key={qty} value={qty} className="" >{qty}</option>
+          ))
+        }
+      </select>
+    </div>
+  );
+};
+
+const Colors = memo(Color);
+const SelectQuantity = memo(Quantity);
+
+export {Colors, SelectQuantity};

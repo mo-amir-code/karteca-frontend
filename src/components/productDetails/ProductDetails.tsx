@@ -1,6 +1,6 @@
 import { IoLocationSharp } from "react-icons/io5";
 import PriceAndDiscount from "./PriceAndDiscount";
-import Colors from "./Colors";
+import {Colors, SelectQuantity} from "./Colors";
 // import Sizes from "./Sizes";
 import { ProductDetailsHeroType } from "@/sections/productDetails/Hero";
 import ClaimLabels from "./ClaimLabels";
@@ -9,6 +9,8 @@ import CheckDeliveryPincode from "./CheckDeliveryPincode";
 
 
 const ProductDetails = ({data, totalRating, totalReviews, avgRating}:ProductDetailsHeroType) => {
+  
+
   return (
     <div className="w-full h-full space-y-2 flex flex-col justify-between">
       <div className="space-y-2">
@@ -30,11 +32,11 @@ const ProductDetails = ({data, totalRating, totalReviews, avgRating}:ProductDeta
             <Colors colors={data.colors} />
           </div>
 
-          {/* sizes */}
-          {/* <div className="space-y-1">
-            <p className="text-sm font-semibold">Size</p>
-            <Sizes/>
-          </div> */}
+          {/* Quantity */}
+          <div className="space-y-1">
+            <p className="text-sm font-semibold">Quantity</p>
+            <SelectQuantity/>
+          </div>
         </div>
       </div>
 

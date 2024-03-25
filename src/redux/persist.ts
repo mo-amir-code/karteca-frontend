@@ -7,6 +7,7 @@ import productsApi from "./queries/products/productsAPI";
 import authApi from "./queries/auth/authAPI";
 import authSlice from "./slices/auth/authSlice";
 import userAPI from "./queries/user/userAPI";
+import cartAPI from "./queries/cart/cartAPI";
 
 
 const appPersistConfig: PersistConfig<any> = {
@@ -28,6 +29,7 @@ const rootReducer = combineReducers({
     [productsApi.reducerPath]: productsApi.reducer,
     [authApi.reducerPath]: authApi.reducer,
     [userAPI.reducerPath]: userAPI.reducer,
+    [cartAPI.reducerPath]: cartAPI.reducer,
 });
 
 
