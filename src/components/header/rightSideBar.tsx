@@ -23,8 +23,8 @@ const RightSideBar = () => {
   const loggedInUserName = useAppSelector(selectLoggedInUserName);
   const loggedInUserId = useAppSelector(selectLoggedInUserId);
   const isUserLoggedIn = useAppSelector(selectIsUserLoggedIn);
-  const { data, isSuccess } = loggedInUserId ? useGetCartCountsQuery(loggedInUserId) : { data: null, isSuccess:false };
-  const { data:wishlistData, isSuccess:wishtlistSuccess } = loggedInUserId ? useGetUserWishlistItemsQuery(loggedInUserId) : { data: null, isSuccess:false };
+  const { data, isSuccess } = useGetCartCountsQuery(loggedInUserId!);
+  const { data:wishlistData, isSuccess:wishtlistSuccess } = useGetUserWishlistItemsQuery(loggedInUserId!);
 
   const handleWallet = () => {
     if(isUserLoggedIn){
