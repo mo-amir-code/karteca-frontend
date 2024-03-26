@@ -4,7 +4,8 @@ import { RootState } from "@/redux/store";
 
 
 const initialState = {
-    cartItems: []
+    cartItems: [],
+    wishlistItems: []
 } as UserSliceType
 
 const userSlice = createSlice({
@@ -14,12 +15,16 @@ const userSlice = createSlice({
         setUserCartItems(state, action){
             state.cartItems = action.payload;
         },
+        setUserWishlistItems(state, action){
+            state.wishlistItems = action.payload;
+        },
     }
 });
 
 
-export const {setUserCartItems} = userSlice.actions;
+export const {setUserCartItems, setUserWishlistItems} = userSlice.actions;
 
 export const selectUserCartItems = (state: RootState) => state.user.cartItems;
+export const selectUserWishlistItems = (state: RootState) => state.user.wishlistItems;
 
 export default userSlice;

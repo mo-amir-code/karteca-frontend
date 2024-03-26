@@ -4,53 +4,53 @@ import { navbarData } from "@/data";
 import { FaCartShopping } from "react-icons/fa6";
 import { FaUser } from "react-icons/fa6";
 import Wallet from "@/components/buttons/Wallet";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { setProfile } from "@/redux/slices/app/appSlice";
 import {
+  selectIsUserLoggedIn,
   selectLoggedInUserId,
   selectLoggedInUserName,
 } from "@/redux/slices/auth/authSlice";
 import { useGetCartCountsQuery } from "@/redux/queries/cart/cartAPI";
-import { setUserCartItems } from "@/redux/slices/user/userSlice";
+import { setUserCartItems, setUserWishlistItems } from "@/redux/slices/user/userSlice";
+import { useGetUserWishlistItemsQuery } from "@/redux/queries/user/userAPI";
 
 const RightSideBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
-  const navigate = useRouter();
+  const router = useRouter();
   const dispatch = useAppDispatch();
   const loggedInUserName = useAppSelector(selectLoggedInUserName);
   const loggedInUserId = useAppSelector(selectLoggedInUserId);
-  const { data, isSuccess } = loggedInUserId
-    ? useGetCartCountsQuery(loggedInUserId)
-    : { data: null, isSuccess:false };
+  const isUserLoggedIn = useAppSelector(selectIsUserLoggedIn);
+  const { data, isSuccess } = loggedInUserId ? useGetCartCountsQuery(loggedInUserId) : { data: null, isSuccess:false };
+  const { data:wishlistData, isSuccess:wishtlistSuccess } = loggedInUserId ? useGetUserWishlistItemsQuery(loggedInUserId) : { data: null, isSuccess:false };
 
   const handleWallet = () => {
-    navigate.push("/user/username");
-    dispatch(setProfile({ profile: "dashboard" }));
+    if(isUserLoggedIn){
+      router.push(`/user/${loggedInUserName}`);
+      dispatch(setProfile({ profile: "dashboard" }));
+    }else router.push("/auth/signin");
   };
 
+  const handleNavigate = (path:string) => {
+    if(isUserLoggedIn){
+      router.push(path);
+    }else router.push("/auth/signin");
+  }
+
   useEffect(() => {
-    if(isSuccess){
-      dispatch(setUserCartItems(data?.data));
+    if(isUserLoggedIn){
+      if(isSuccess) dispatch(setUserCartItems(data?.data));
+      if(wishtlistSuccess) dispatch(setUserWishlistItems(wishlistData?.data));
     }
-  }, [data]);
+  }, [data, wishlistData]);
 
   return (
     <div>
       <ul className="flex items-center justify-end gap-8 max-sm:hidden">
         {navbarData.map((item, idx) => (
-          <li key={idx}>
-            <Link
-              href={
-                item.path === "/user/"
-                  ? `${item.path}${loggedInUserName
-                      ?.replace(" ", "")
-                      .toLocaleLowerCase()}`
-                  : item.path
-              }
-              className="flex items-center justify-center gap-2 cursor-pointer"
-            >
+          <li key={idx} onClick={()=>handleNavigate(item.path === "/user/"? `${item.path}${loggedInUserName?.replace(" ", "").toLocaleLowerCase()}` : item.path)} className="flex items-center justify-center gap-2 cursor-pointer" >
               {(() => {
                 switch (item.name) {
                   case "Cart":
@@ -72,7 +72,6 @@ const RightSideBar = () => {
                 }
               })()}
               <span>{item.name}</span>
-            </Link>
           </li>
         ))}
         <li>

@@ -6,7 +6,7 @@ import { UpdateUserType, UserAddressType } from "./userTypes";
 const userAPI = createApi({
   reducerPath: "userAPI",
   baseQuery: fetchBaseQueryBaseUrlConfiguration("user"),
-  tagTypes: ["updateUser", "updateAddress"],
+  tagTypes: ["updateUser", "updateAddress", "updateWishlist"],
   endpoints: (builder) => ({
     getUserInfo: builder.query<APIRequestType, string>({
       query: (userId) => ({
@@ -27,6 +27,40 @@ const userAPI = createApi({
         credentials: "include",
       }),
       providesTags: ["updateAddress"],
+    }),
+    getUserWishlistItems: builder.query<APIRequestType, string>({
+      query: (userId) => ({
+        url: `wishlist/items/${userId}`,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      }),
+      providesTags: ["updateWishlist"],
+    }),
+    addUserWishlistItem: builder.mutation<APIRequestType, {userId:string, productId:string}>({
+      query: (data) => ({
+        url: `wishlist/items`,
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: data
+      }),
+      invalidatesTags: ["updateWishlist"],
+    }),
+    deleteUserWishlistItem: builder.mutation<APIRequestType, {userId:string, productId:string}>({
+      query: (data) => ({
+        url: `wishlist/items`,
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: data
+      }),
+      invalidatesTags: ["updateWishlist"],
     }),
     updateUserInfo: builder.mutation<APIRequestType, UpdateUserType>({
       query: (updatedUserData) => ({
@@ -85,7 +119,10 @@ export const {
   useGetUserAddressessQuery,
   useAddUserAddressMutation,
   useDeleteUserAddressMutation,
-  useUpdateUserAddressMutation
+  useUpdateUserAddressMutation,
+  useGetUserWishlistItemsQuery,
+  useAddUserWishlistItemMutation,
+  useDeleteUserWishlistItemMutation
 } = userAPI;
 
 export default userAPI;

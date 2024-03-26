@@ -1,3 +1,4 @@
 export interface UserSliceType{
-    cartItems: string[]
+    cartItems: string[],
+    wishlistItems: string[]
 }

@@ -4,7 +4,7 @@ import { HiHome, HiBell } from "react-icons/hi";
 import { HiWallet, HiUserCircle } from "react-icons/hi2";
 import { FaCartShopping } from "react-icons/fa6";
 import { memo, useCallback, useLayoutEffect, useState } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import {
@@ -12,23 +12,31 @@ import {
   setMobileProfileMenu,
   setProfile,
 } from "@/redux/slices/app/appSlice";
+import { selectIsUserLoggedIn, selectLoggedInUserName } from "@/redux/slices/auth/authSlice";
 
 const MobileNavbar = () => {
   const [selected, setSelected] = useState(0);
   const pathname = usePathname();
+  const router = useRouter();
   const dispatch = useAppDispatch();
+  const isUserLoggedIn = useAppSelector(selectIsUserLoggedIn);
+  const loggedInUserName = useAppSelector(selectLoggedInUserName);
   const { profile } = useAppSelector(selectDesktop);
 
   const handleMobileNavbar = useCallback(
-    ({ target }: { target: string }) => {
-      if (target === "home" || target === "cart" || target === "profile") {
-        dispatch(setProfile({ profile: "profile" }));
-        dispatch(setMobileProfileMenu({ isProfileMenuOpen: true }));
-        return;
+    ({ target, path }: { target: string, path:string }) => {
+      if (isUserLoggedIn) {
+        if (target === "home" || target === "cart" || target === "profile") {
+          dispatch(setProfile({ profile: "profile" }));
+          dispatch(setMobileProfileMenu({ isProfileMenuOpen: true }));
+          return;
+        }
+        dispatch(setProfile({ profile: target }));
+        dispatch(setMobileProfileMenu({ isProfileMenuOpen: false }));
+        router.push(path);
+      }else{
+        router.push("/auth/signin");
       }
-
-      dispatch(setProfile({ profile: target }));
-      dispatch(setMobileProfileMenu({ isProfileMenuOpen: false }));
     },
     [selected]
   );
@@ -68,13 +76,12 @@ const MobileNavbar = () => {
               selected === idx ? "text-primary-color" : ""
             } smooth_transition`}
           >
-            <Link href={nav.path}>
               {(() => {
                 switch (nav.name) {
                   case "Home":
                     return (
                       <HiHome
-                        onClick={() => handleMobileNavbar({ target: "home" })}
+                        onClick={() => handleMobileNavbar({ target: "home", path: nav.path })}
                         size={24}
                       />
                     );
@@ -82,7 +89,7 @@ const MobileNavbar = () => {
                     return (
                       <HiBell
                         onClick={() =>
-                          handleMobileNavbar({ target: "notification" })
+                          handleMobileNavbar({ target: "notification", path: nav.path })
                         }
                         size={24}
                       />
@@ -91,7 +98,7 @@ const MobileNavbar = () => {
                     return (
                       <HiWallet
                         onClick={() =>
-                          handleMobileNavbar({ target: "dashboard" })
+                          handleMobileNavbar({ target: "dashboard", path: `${nav.path}${loggedInUserName}` })
                         }
                         size={24}
                       />
@@ -100,7 +107,7 @@ const MobileNavbar = () => {
                     return (
                       <HiUserCircle
                         onClick={() =>
-                          handleMobileNavbar({ target: "profile" })
+                          handleMobileNavbar({ target: "profile", path: `${nav.path}${loggedInUserName}` })
                         }
                         size={24}
                       />
@@ -108,7 +115,7 @@ const MobileNavbar = () => {
                   case "Cart":
                     return (
                       <FaCartShopping
-                        onClick={() => handleMobileNavbar({ target: "cart" })}
+                        onClick={() => handleMobileNavbar({ target: "cart", path: nav.path })}
                         size={24}
                       />
                     );
@@ -116,7 +123,6 @@ const MobileNavbar = () => {
                     return;
                 }
               })()}
-            </Link>
           </li>
         ))}
       </ul>

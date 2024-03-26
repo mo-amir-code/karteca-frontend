@@ -40,7 +40,7 @@ const CartItem = ({cartData}:{cartData:CartItemDataType}) => {
 
             {/* Buttons */}
             <div className="flex px-4 max-md:px-2 items-center justify-start gap-2 flex-wrap">
-              <Buttons cartId={cartData._id} />
+              <Buttons productId={cartData._id} cartId={cartData._id} />
             </div>
             {/* End Buttons */}
           </div>
@@ -91,7 +91,7 @@ const MobileCartItm = ({cartData}:{cartData:CartItemDataType}) => {
             <FaHeart className="text-red-color" size={14} />
             <span>Wishlist</span>
           </button> */}
-          <Buttons isOnMobile cartId={cartData._id} />
+          <Buttons productId={cartData._id} isOnMobile cartId={cartData._id} />
         </div>
       </div>
     </div>

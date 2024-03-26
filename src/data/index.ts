@@ -150,11 +150,11 @@ export const mobileNavbar = [
   },
   {
     name: "Wallet",
-    path: "/user/refer",
+    path: "/user/",
   },
   {
     name: "User",
-    path: "/user/:username",
+    path: "/user/",
   },
   {
     name: "Cart",
