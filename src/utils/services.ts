@@ -67,3 +67,8 @@ export const createURL = (pathname:string, params: URLSearchParams | ReadonlyURL
   const queryString = `${paramsString.length? "?" : ""}${paramsString}`
   return `${pathname}${queryString}`
 }
+
+export const isItemInCart = (productId:string, items:string[]):boolean => {
+  const isExist = items.find((item) => productId == item);
+  return isExist? true : false
+}

@@ -1,18 +1,17 @@
 import Image from "next/image";
-import productImage from "@/assets/productsImage/dummy2.png";
-import { FaTrash, FaHeart } from "react-icons/fa";
 import Specifications from "../productDetails/Specifications";
 import Stars from "../productCard/Stars";
 import { CartItemDataType } from "@/redux/queries/cart/cartTypes";
 import Quantity from "./Quantity";
 import Buttons from "./Buttons";
+import { memo } from "react";
 
 const CartItem = ({cartData}:{cartData:CartItemDataType}) => {
   return (
     <div className="w-full">
       <div className="flex border-b max-sm:hidden border-secondary-color py-4 ">
         <div className="max-w-[250px] max-sm:max-w-[200px] rounded-lg overflow-hidden shadow-lg">
-          <Image src={cartData.product.thumbnail} alt="cart image" width={250} height={200} />
+          <Image src={cartData.product.thumbnail} priority={false} alt="cart image" width={250} height={200} />
         </div>
         <div className="flex-grow">
           <div className="max-md:space-y-2 flex flex-col max-sm:gap-4 justify-between h-full">
@@ -47,29 +46,29 @@ const CartItem = ({cartData}:{cartData:CartItemDataType}) => {
           </div>
         </div>
       </div>
-      <MobileCartItem />
     </div>
   );
 };
 
-const MobileCartItem = () => {
+const MobileCartItm = ({cartData}:{cartData:CartItemDataType}) => {
   return (
     <div className="flex gap-2 border-b sm:hidden border-secondary-color py-4">
       <div className="w-[80px] rounded-lg overflow-hidden space-y-1">
-        <Image src={productImage} alt="product" />
+        <Image src={cartData.product.thumbnail} priority={false} alt="product" width={80} height={100} />
         <div className="border rounded-b-lg px-2">
-          <select className="text-sm outline-none w-full text-center bg-transparent">
+          <Quantity isOnMobile quantity={cartData.quantity} cartId={cartData._id} />
+          {/* <select className="text-sm outline-none w-full text-center bg-transparent">
             <option value={1}>1</option>
             <option value={2}>2</option>
             <option value={3}>3</option>
             <option value={4}>4</option>
             <option value={5}>5</option>
-          </select>
+          </select> */}
         </div>
       </div>
       <div className="flex flex-col justify-between">
         <div>
-          <h2 className="font-medium">Ultra Smartwatch First Copy</h2>
+          <h2 className="font-medium">{cartData.product.title}</h2>
           <Stars stars={3.5} reviews={23} />
           <div className="flex items-end flex-row-reverse justify-end gap-2">
             <span className="text-lg font-medium text-secondary-color">
@@ -84,18 +83,21 @@ const MobileCartItem = () => {
           </div>
         </div>
         <div className="flex items-center gap-2 justify-center">
-          <button className="w-full text-text-color rounded-sm flex items-center justify-center text-xs gap-1 bg-primary-color p-1">
+          {/* <button className="w-full text-text-color rounded-sm flex items-center justify-center text-xs gap-1 bg-primary-color p-1">
             <FaTrash size={12} />
             <span>Remove</span>
           </button>
           <button className="w-full flex items-center justify-center text-sm gap-1 px-4 p-2">
             <FaHeart className="text-red-color" size={14} />
             <span>Wishlist</span>
-          </button>
+          </button> */}
+          <Buttons isOnMobile cartId={cartData._id} />
         </div>
       </div>
     </div>
   );
 };
 
-export default CartItem;
+export const MobileCartItem = memo(MobileCartItm);
+
+export default memo(CartItem);

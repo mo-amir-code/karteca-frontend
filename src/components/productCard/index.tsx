@@ -12,7 +12,7 @@ const ProductCard = ({data}:{data?:ProductCardType}) => {
           {/* Media Area */}
           <div className="w-[200px] max-[460px]:w-[160px] group rounded-lg overflow-hidden relative">
             <Image src={data?.thumbnail || ""} alt="product image" width={216} height={260} />
-            <Actions />
+            <Actions productId={data?._id!} />
           </div>
 
           {/* Content Area */}

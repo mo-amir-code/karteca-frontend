@@ -8,6 +8,7 @@ import authApi from "./queries/auth/authAPI";
 import authSlice from "./slices/auth/authSlice";
 import userAPI from "./queries/user/userAPI";
 import cartAPI from "./queries/cart/cartAPI";
+import userSlice from "./slices/user/userSlice";
 
 
 const appPersistConfig: PersistConfig<any> = {
@@ -24,8 +25,9 @@ const persistedAppReducer = persistReducer(appPersistConfig, appSlice.reducer);
 const persistedAuthReducer = persistReducer(authPersistConfig, authSlice.reducer);
 
 const rootReducer = combineReducers({
-    [appSlice.name]:persistedAppReducer,
-    [authSlice.name]:persistedAuthReducer,
+    [appSlice.name]: persistedAppReducer,
+    [authSlice.name]: persistedAuthReducer,
+    [userSlice.name]: userSlice.reducer,
     [productsApi.reducerPath]: productsApi.reducer,
     [authApi.reducerPath]: authApi.reducer,
     [userAPI.reducerPath]: userAPI.reducer,

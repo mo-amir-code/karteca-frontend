@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { navbarData } from "@/data";
 import { FaCartShopping } from "react-icons/fa6";
 import { FaUser } from "react-icons/fa6";
@@ -8,19 +8,33 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { setProfile } from "@/redux/slices/app/appSlice";
-import { selectLoggedInUserName } from "@/redux/slices/auth/authSlice";
+import {
+  selectLoggedInUserId,
+  selectLoggedInUserName,
+} from "@/redux/slices/auth/authSlice";
+import { useGetCartCountsQuery } from "@/redux/queries/cart/cartAPI";
+import { setUserCartItems } from "@/redux/slices/user/userSlice";
 
 const RightSideBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useRouter();
   const dispatch = useAppDispatch();
   const loggedInUserName = useAppSelector(selectLoggedInUserName);
-
+  const loggedInUserId = useAppSelector(selectLoggedInUserId);
+  const { data, isSuccess } = loggedInUserId
+    ? useGetCartCountsQuery(loggedInUserId)
+    : { data: null, isSuccess:false };
 
   const handleWallet = () => {
     navigate.push("/user/username");
-    dispatch(setProfile({profile:"dashboard"}));
-  }
+    dispatch(setProfile({ profile: "dashboard" }));
+  };
+
+  useEffect(() => {
+    if(isSuccess){
+      dispatch(setUserCartItems(data?.data));
+    }
+  }, [data]);
 
   return (
     <div>
@@ -28,17 +42,26 @@ const RightSideBar = () => {
         {navbarData.map((item, idx) => (
           <li key={idx}>
             <Link
-              href={item.path === "/user/" ? `${item.path}${loggedInUserName?.replace(" ", "").toLocaleLowerCase()}` : item.path}
+              href={
+                item.path === "/user/"
+                  ? `${item.path}${loggedInUserName
+                      ?.replace(" ", "")
+                      .toLocaleLowerCase()}`
+                  : item.path
+              }
               className="flex items-center justify-center gap-2 cursor-pointer"
             >
               {(() => {
                 switch (item.name) {
                   case "Cart":
                     return (
-                      <FaCartShopping
-                        scale={20}
-                        className="text-secondary-color"
-                      />
+                      <div className="relative">
+                        <FaCartShopping
+                          scale={20}
+                          className="text-secondary-color"
+                        />
+                        {data?.data.length? <span className="absolute -top-[55%] text-white w-4 h-4 flex items-center justify-center -right-1/3 text-[10px] p-1 rounded-full bg-primary-color font-semibold" >{data?.data.length}</span> : null }
+                      </div>
                     );
                   case "Profile":
                     return (

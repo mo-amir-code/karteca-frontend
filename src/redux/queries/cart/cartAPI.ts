@@ -16,7 +16,17 @@ const cartAPI = createApi({
         },
         credentials: "include",
       }),
-      providesTags: ["updateCart"]
+      providesTags: ["updateCart"],
+    }),
+    getCartCounts: builder.query<APIRequestType, string>({
+      query: (userId) => ({
+        url: `/count/${userId}`,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      }),
+      providesTags: ["updateCart"],
     }),
     addToCart: builder.mutation<APIRequestType, APICartType>({
       query: (cartData) => ({
@@ -28,9 +38,12 @@ const cartAPI = createApi({
         credentials: "include",
         body: cartData,
       }),
-      invalidatesTags: ["updateCart"]
+      invalidatesTags: ["updateCart"],
     }),
-    updateCart: builder.mutation<APIRequestType, {cartId:string, quantity: number}>({
+    updateCart: builder.mutation<
+      APIRequestType,
+      { cartId: string; quantity: number }
+    >({
       query: (cartData) => ({
         url: "/",
         method: "PATCH",
@@ -40,7 +53,7 @@ const cartAPI = createApi({
         credentials: "include",
         body: cartData,
       }),
-      invalidatesTags: ["updateCart"]
+      invalidatesTags: ["updateCart"],
     }),
     deleteCart: builder.mutation<APIRequestType, string>({
       query: (cartId) => ({
@@ -51,11 +64,17 @@ const cartAPI = createApi({
         },
         credentials: "include",
       }),
-      invalidatesTags: ["updateCart"]
+      invalidatesTags: ["updateCart"],
     }),
   }),
 });
 
-export const { useAddToCartMutation, useGetCartItemsQuery, useUpdateCartMutation, useDeleteCartMutation } = cartAPI;
+export const {
+  useAddToCartMutation,
+  useGetCartItemsQuery,
+  useUpdateCartMutation,
+  useDeleteCartMutation,
+  useGetCartCountsQuery
+} = cartAPI;
 
 export default cartAPI;
