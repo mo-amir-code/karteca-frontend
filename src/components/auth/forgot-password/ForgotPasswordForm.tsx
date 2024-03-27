@@ -1,7 +1,7 @@
 "use client"
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form';
-import { ContactInputField as InputField } from "@/components/checkout/Form";
+import InputField from "@/components/checkout/InputField";
 import SubmitButton from '@/components/auth/SubmitButton';
 import { useForgotPasswordMutation } from '@/redux/queries/auth/authAPI';
 import toast from 'react-hot-toast';

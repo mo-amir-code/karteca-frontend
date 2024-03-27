@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { ContactInputField as InputField } from "@/components/checkout/Form";
+import InputField from "@/components/checkout/InputField";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useForm } from "react-hook-form";
 import SubmitButton from "../SubmitButton";
