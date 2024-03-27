@@ -11,7 +11,7 @@ interface ProductContextType extends ProductReducerType{
     dispatch: Dispatch<ProductAction>
 }
 
-enum ProductActionTypes {
+export enum ProductActionTypes {
     UpdateCurrentPrice = "currentPrice",
     UpdateTotalAmount = "totalAmount",
     UpdateDiscount = "discount",
