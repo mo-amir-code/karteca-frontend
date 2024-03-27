@@ -1,4 +1,4 @@
-import { ReactNode, createContext, useContext, useReducer } from "react";
+import { Dispatch, ReactNode, createContext, useContext, useReducer } from "react";
 
 interface ProductReducerType{
     currentPrice: number,
@@ -8,8 +8,42 @@ interface ProductReducerType{
 }
 
 interface ProductContextType extends ProductReducerType{
-    dispatch: Function
+    dispatch: Dispatch<ProductAction>
 }
+
+enum ProductActionTypes {
+    UpdateCurrentPrice = "currentPrice",
+    UpdateTotalAmount = "totalAmount",
+    UpdateDiscount = "discount",
+    UpdateQuantity = "quantity",
+}
+
+// Define action interfaces
+interface UpdateCurrentPriceAction {
+    type: ProductActionTypes.UpdateCurrentPrice;
+    payload: number;
+}
+
+interface UpdateTotalAmountAction {
+    type: ProductActionTypes.UpdateTotalAmount;
+    payload: number;
+}
+
+interface UpdateDiscountAction {
+    type: ProductActionTypes.UpdateDiscount;
+    payload: number;
+}
+
+interface UpdateQuantityAction {
+    type: ProductActionTypes.UpdateQuantity;
+    payload: number;
+}
+
+type ProductAction =
+    | UpdateCurrentPriceAction
+    | UpdateTotalAmountAction
+    | UpdateDiscountAction
+    | UpdateQuantityAction;
 
 const productReducerInitialValue = {
     currentPrice: 0,
@@ -31,16 +65,16 @@ const ProductContext = createContext<ProductContextType>(productContextInitialVa
 const ProductContextProvider = ({children}:{children:ReactNode}) => {
     const reducer = (
         state: ProductReducerType,
-        action: { type: string; payload: any }
+        action: ProductAction
       ) => {
         switch (action.type) {
-            case "currentPrice":
+            case ProductActionTypes.UpdateCurrentPrice:
                 return {...state, currentPrice: action.payload};
-            case "totalAmount":
+            case ProductActionTypes.UpdateTotalAmount:
                 return {...state, totalAmount: action.payload};
-            case "discount":
+            case ProductActionTypes.UpdateDiscount:
                 return {...state, discount: action.payload};
-            case "quantity":
+            case ProductActionTypes.UpdateQuantity:
                 return {...state, quantity: action.payload};
           default:
             return state;

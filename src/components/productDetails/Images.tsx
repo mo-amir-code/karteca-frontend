@@ -129,9 +129,6 @@ export const ProductActionButton = () => {
       return;
     }
 
-
-    console.log(productId, currentPrice, totalAmount)
-
     if (!productId || currentPrice === 0 || totalAmount === 0) {
       toast.error("Something gone wrong!");
       return;
@@ -164,7 +161,7 @@ export const ProductActionButton = () => {
     }
 
     if (type === "buy") router.push("/user/cart");
-  }, []);
+  }, [totalAmount]);
 
   return (
     <div className="flex items-center gap-1">
