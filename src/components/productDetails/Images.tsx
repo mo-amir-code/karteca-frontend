@@ -129,7 +129,7 @@ export const ProductActionButton = () => {
       return;
     }
 
-    if (!productId) {
+    if (!productId || currentPrice === 0 || totalAmount === 0) {
       toast.error("Something gone wrong!");
       return;
     }

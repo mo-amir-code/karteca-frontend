@@ -1,4 +1,5 @@
 "use client";
+import { useProductContext } from "@/context/ProductContext";
 import { useQueryContext } from "@/context/QueryContext";
 import { quantities } from "@/data";
 import { memo, useCallback, useEffect, useState } from "react";
@@ -49,9 +50,11 @@ const Color = ({ colors }: { colors: string[] }) => {
 const Quantity = () => {
   const [quantity, setQuantity] = useState<number>(0);
   const {queries, handleSetQueries} = useQueryContext();
+  const {dispatch} = useProductContext();
 
   const handleSelectQuantity = useCallback(
     (qty: number) => {
+      dispatch({type: "quantity", payload: qty});
       queries.set("quantity", qty.toString());
       handleSetQueries();
       setQuantity(qty);

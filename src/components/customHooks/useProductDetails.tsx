@@ -1,6 +1,5 @@
 "use client";
 import { useProductContext } from "@/context/ProductContext";
-import { useQueryContext } from "@/context/QueryContext";
 import { calculateDiscountedPrice } from "@/utils/services";
 import { useEffect } from "react";
 
@@ -11,28 +10,25 @@ const useProductDetails = ({
   price: number;
   discount: number;
 }) => {
-  const {queries} = useQueryContext();
   const currentPrice = calculateDiscountedPrice(price, discount)!;
-  const qty = queries.get("quantity");
-  const {dispatch} = useProductContext();
+  const {dispatch, quantity} = useProductContext();
 
   useEffect(() => {
-    const qty = queries.get("quantity");
 
     if (price && discount) {
-      if (currentPrice && qty) {
+      if (currentPrice) {
         dispatch({type: "currentPrice", payload: Math.floor(currentPrice)});
         dispatch({type: "discount", payload: discount});
-        dispatch({type: "totalAmount", payload: Math.floor(parseInt(qty) * currentPrice)});
+        dispatch({type: "totalAmount", payload: Math.floor(quantity * currentPrice)});
       }
     }
   }, []);
   
   useEffect(() => {
-    if(qty && currentPrice){
-      dispatch({type: "totalAmount", payload: Math.floor(parseInt(qty) * currentPrice)});
+    if(currentPrice){
+      dispatch({type: "totalAmount", payload: Math.floor(quantity * currentPrice)});
     }
-  },[qty]);
+  },[quantity]);
 
   return;
 };
