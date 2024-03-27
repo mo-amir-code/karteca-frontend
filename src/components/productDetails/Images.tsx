@@ -129,6 +129,9 @@ export const ProductActionButton = () => {
       return;
     }
 
+
+    console.log(productId, currentPrice, totalAmount)
+
     if (!productId || currentPrice === 0 || totalAmount === 0) {
       toast.error("Something gone wrong!");
       return;
@@ -140,8 +143,8 @@ export const ProductActionButton = () => {
     const cartData: APICartType = {
       userId: loggedInUserId,
       product: productId,
-      color: color!,
-      quantity: parseInt(quantity!),
+      color: color,
+      quantity: quantity,
       totalAmount,
       currentPrice,
       discount,
