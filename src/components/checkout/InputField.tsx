@@ -30,7 +30,7 @@ const InputField = ({
   }) => {
     return (
       <div className="w-full" >
-        <div className="w-full text-primary-color cursor-pointer flex-1 text-xl py-3 gap-2 border-2 border-secondary-color_3 px-2 hover:border-primary-color hover:shadow-lg shadow-primary-color on_focus transition-all duration-200 text-secondary-color_3 flex items-center justify-start">
+        <div className="w-full text-primary-color cursor-pointer flex-1 text-xl gap-2 border-2 border-secondary-color_3 py-3 px-2 max-md:py-2 max-md:px-1 hover:border-primary-color hover:shadow-lg shadow-primary-color on_focus transition-all duration-200 text-secondary-color_3 flex items-center justify-start">
           {((): any => {
             switch (icon) {
               case "name":
@@ -72,7 +72,7 @@ const InputField = ({
           <input
             type={type}
             {...(register ? {...register(icon, { required: required }) } : null)}
-            className={`text-base font-normal ${
+            className={`text-base max-md:text-sm font-normal ${
               isCenter && "text-center"
             } text-secondary-color bg-transparent outline-none group w-full`}
             placeholder={placeHolder}

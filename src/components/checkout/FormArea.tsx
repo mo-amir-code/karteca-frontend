@@ -10,13 +10,13 @@ const FormArea = () => {
             <div className="space-y-8" >
                 {/* add address */}
                 <div className="space-y-2 px-6 py-6 shadow-md bg-white rounded-lg" >
-                    <h2 className="text-2xl font-semibold" >Add Address</h2>
+                    <h2 className="text-xl font-semibold max-md:text-lg max-sm:text-base" >Add Address</h2>
                     <Form />
                 </div>
 
                 {/* Select Address */}
                 <div className="space-y-2 px-6 py-6 bg-white shadow-md rounded-lg">
-                    <h2 className="text-2xl font-semibold" >Select Address</h2>
+                    <h2 className="text-2xl font-semibold max-md:text-lg max-sm:text-base" >Select Address</h2>
                     <Addresses isCheckout={true} />
                 </div>
             </div>

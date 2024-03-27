@@ -101,7 +101,7 @@ const Form = () => {
           register={register}
         />
       </div>
-      <button className="px-4 py-2 rounded-lg text-text-color bg-primary-color max-sm:text-base font-semibold shadow-lg hover:-translate-y-1 smooth_transition">
+      <button className="px-4 py-2 max-md:py-[6px] max-md:px-3 rounded-lg text-text-color bg-primary-color max-md:text-sm font-semibold shadow-lg hover:-translate-y-1 smooth_transition">
         Submit
       </button>
     </form>

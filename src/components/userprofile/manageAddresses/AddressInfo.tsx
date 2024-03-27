@@ -4,7 +4,7 @@ import { UserAddressType } from "@/redux/queries/user/userTypes";
 
 const AddressInfo = ({data}:{data:UserAddressType}) => {
   return (
-    <div className="p-3 text-sm">
+    <div className="p-3 text-sm max-md:text-xs">
       <div className="flex items-center justify-between">
         <span className="px-[6px] py-[1px] text-gray-500 bg-tertiary-color text-[10px] font-medium">
           {data.type.toUpperCase()}
