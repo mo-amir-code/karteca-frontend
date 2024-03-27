@@ -3,13 +3,24 @@ import { useUserContext } from "@/context/UserContext";
 import AddressForm from "./AddressForm"
 import AddressInfo from "./AddressInfo"
 import { UserAddressType } from "@/redux/queries/user/userTypes";
+import { useEffect } from "react";
 
 
-const Address = ({data, isFirst}:{data: UserAddressType, isFirst?:boolean}) => {
-  const {isAddressEdit, setIsAddressEdit} = useUserContext();
+const Address = ({data, isFirst, isCheckout}:{data: UserAddressType, isFirst?:boolean, isCheckout?:boolean}) => {
+  const {isAddressEdit, selectedAddress, dispatch} = useUserContext();
+
+  const handleSelectDeliveryAddress = () => {
+    if(isCheckout) dispatch({type: "selectAddress", payload: data._id});
+  }
+  
+  useEffect(() => {
+    if(isFirst){
+      dispatch({type: "selectAddress", payload: data._id});
+    }
+  }, []);
 
   return (
-    <div className={`border ${!isFirst && "border-t-0"} select-none`} >
+    <div onClick={()=>handleSelectDeliveryAddress()} className={`border ${isCheckout && "cursor-pointer"} smooth_transition ${(!isFirst && selectedAddress !== data._id) && "border-t-transparent"} ${(isCheckout && selectedAddress === data._id)? "border-primary-color" : null} select-none`} >
       {
         isAddressEdit === data._id? <AddressForm data={data} /> : <AddressInfo data={data} />
       }

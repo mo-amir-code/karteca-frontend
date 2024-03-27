@@ -9,7 +9,7 @@ const AddressInfo = ({data}:{data:UserAddressType}) => {
         <span className="px-[6px] py-[1px] text-gray-500 bg-tertiary-color text-[10px] font-medium">
           {data.type.toUpperCase()}
         </span>
-        <AddressThreeDotAction addressId={data._id}  />
+        <AddressThreeDotAction addressId={data._id!}  />
       </div>
       <div className="flex items-center gap-4 mt-2 font-medium">
         <span>{data.name}</span>

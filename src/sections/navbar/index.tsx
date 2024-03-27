@@ -29,6 +29,7 @@ const MobileNavbar = () => {
         if (target === "home" || target === "cart" || target === "profile") {
           dispatch(setProfile({ profile: "profile" }));
           dispatch(setMobileProfileMenu({ isProfileMenuOpen: true }));
+          router.push(path);
           return;
         }
         dispatch(setProfile({ profile: target }));

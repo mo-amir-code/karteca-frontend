@@ -1,23 +1,39 @@
 "use client";
 import { useForm } from "react-hook-form";
-import { FaAddressCard } from "react-icons/fa";
-import { FaMapLocationDot } from "react-icons/fa6";
-import { GiFamilyHouse } from "react-icons/gi";
-import { MdEmail } from "react-icons/md";
-import { RiEarthFill } from "react-icons/ri";
-import { TbBuildingEstate, TbDialpadFilled } from "react-icons/tb";
-import { TiUser } from "react-icons/ti";
-import { MdOutlinePassword } from "react-icons/md";
-import { LuNetwork } from "react-icons/lu";
-import { BsGenderAmbiguous } from "react-icons/bs";
 import { memo } from "react";
+import InputField from "./InputField";
+import {
+  UserAddressFormType,
+  UserAddressType,
+} from "@/redux/queries/user/userTypes";
+import { useAppSelector } from "@/redux/hooks";
+import { selectLoggedInUserId } from "@/redux/slices/auth/authSlice";
+import toast from "react-hot-toast";
+import { useAddUserAddressMutation } from "@/redux/queries/user/userAPI";
 
 const Form = () => {
   const { register, handleSubmit, reset } = useForm<FormData>();
+  const loggedInUserId = useAppSelector(selectLoggedInUserId);
+  const [addAddress] = useAddUserAddressMutation();
 
-  const handleResetFormWithSubmit = (data: any) => {
-    reset();
-    console.log(data);
+  const handleResetFormWithSubmit = async (data: UserAddressFormType) => {
+    if (!loggedInUserId) {
+      toast.error("Login your account");
+      return;
+    }
+
+    try {
+      const newAddress: UserAddressType = {
+        ...data,
+        userId: loggedInUserId,
+      };
+      await addAddress(newAddress);
+    } catch (error) {
+      toast.error("Internal Error Occurred!");
+    } finally {
+      reset();
+      toast.success("Address added");
+    }
   };
 
   return (
@@ -25,55 +41,63 @@ const Form = () => {
       onSubmit={handleSubmit((data: any) => handleResetFormWithSubmit(data))}
       className="space-y-4"
     >
-      <ContactInputField
+      <InputField
         placeHolder="Full name"
         icon="name"
         type="text"
         register={register}
       />
-      <ContactInputField
+      <InputField
         placeHolder="Email"
         icon="email"
         type="email"
         register={register}
       />
-      <ContactInputField
+      <InputField
         placeHolder="Address"
         icon="address"
         type="text"
         register={register}
       />
       <div className="flex items-center max-sm:flex-col justify-center gap-2">
-        <ContactInputField
+        <InputField
           placeHolder="Country"
           icon="country"
           type="text"
           register={register}
         />
-        <ContactInputField
+        <InputField
           placeHolder="State"
           icon="state"
           type="text"
           register={register}
         />
       </div>
-      <ContactInputField
-        placeHolder="City"
-        icon="city"
-        type="text"
-        register={register}
-      />
       <div className="flex items-center max-sm:flex-col justify-center gap-2">
-        <ContactInputField
+        <InputField
           placeHolder="Postal Code"
           icon="postalCode"
           type="number"
           register={register}
         />
-        <ContactInputField
+        <InputField
+          placeHolder="City"
+          icon="city"
+          type="text"
+          register={register}
+        />
+      </div>
+      <div className="flex items-center max-sm:flex-col justify-center gap-2">
+        <InputField
           placeHolder="Mobile Number"
-          icon="mobileNo"
+          icon="phone"
           type="number"
+          register={register}
+        />
+        <InputField
+          placeHolder="Home or Work"
+          icon="type"
+          type="text"
           register={register}
         />
       </div>
@@ -81,74 +105,6 @@ const Form = () => {
         Submit
       </button>
     </form>
-  );
-};
-
-export const ContactInputField = ({
-  placeHolder,
-  icon,
-  type,
-  register,
-  required,
-  isCenter,
-  error
-}: {
-  placeHolder: string;
-  icon: string;
-  type: string;
-  register?: any;
-  required?: boolean;
-  isCenter?: boolean;
-  error?:string | null
-}) => {
-  return (
-    <div>
-      <div className="w-full text-primary-color cursor-pointer flex-1 text-xl py-3 gap-2 border-2 border-secondary-color_3 px-2 hover:border-primary-color hover:shadow-lg shadow-primary-color on_focus transition-all duration-200 text-secondary-color_3 flex items-center justify-start">
-        {((): any => {
-          switch (icon) {
-            case "name":
-              return <TiUser size={20} />;
-            case "phone":
-              return <TbDialpadFilled size={20} />;
-            case "referredUserReferCode":
-              return <LuNetwork size={20} />;
-            case "email":
-              return <MdEmail size={20} />;
-            case "address":
-              return <FaAddressCard size={20} />;
-            case "country":
-              return <RiEarthFill size={20} />;
-            case "state":
-              return <TbBuildingEstate size={20} />;
-            case "postalCode":
-              return <FaMapLocationDot size={20} />;
-            case "city":
-              return <GiFamilyHouse size={20} />;
-            case "mobileNo":
-              return <TbDialpadFilled size={20} />;
-            case "password":
-              return <MdOutlinePassword size={20} />;
-            case "confirmPassword":
-              return <MdOutlinePassword size={20} />;
-            case "otp":
-              return <MdOutlinePassword size={20} />;
-            case "gender":
-              return <BsGenderAmbiguous size={20} />;
-            default:
-              console.log("something went wrong");
-          }
-        })()}
-        <input
-          type={type}
-          {...(register ? {...register(icon, { required: required }) } : null)}
-          className={`text-base font-normal ${
-            isCenter && "text-center"
-          } text-secondary-color bg-transparent outline-none group w-full`}
-          placeholder={placeHolder}
-        />
-      </div>
-      <span className="text-xs text-red-color" >{error?? null}</span>
-    </div>
   );
 };
 

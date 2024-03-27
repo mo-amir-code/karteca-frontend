@@ -18,6 +18,6 @@ export interface UserAddressFormType{
 }
 
 export interface UserAddressType extends UserAddressFormType{
-    _id: string;
+    _id?: string;
     userId: string;
   }

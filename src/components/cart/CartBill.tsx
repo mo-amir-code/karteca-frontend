@@ -1,4 +1,5 @@
 import Link from "next/link";
+import CheckoutButton from "./CheckoutButton";
 
 const CartBill = ({totalAmount}:{totalAmount:number}) => {
   return (
@@ -25,9 +26,7 @@ const CartBill = ({totalAmount}:{totalAmount:number}) => {
             <span>₹{totalAmount + 54}</span>
           </h3>
         </div>
-        <Link href={"/user/cart/checkout"} className="w-full text-text-color py-3 font-bold shadow-lg smooth_transition hover:-translate-y-1 flex items-center justify-center bg-primary-color rounded-full">
-          Checkout
-        </Link>
+        <CheckoutButton />
       </div>
     </div>
   );

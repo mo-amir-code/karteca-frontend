@@ -8,7 +8,7 @@ import FullLoader from "@/components/loader/FullLoader"
 import { UserAddressType } from "@/redux/queries/user/userTypes"
 
 
-const Addresses = () => {
+const Addresses = ({isCheckout}:{isCheckout?:boolean}) => {
   const loggedInUserId = useAppSelector(selectLoggedInUserId);
   const {isLoading, data, isSuccess, isError} = useGetUserAddressessQuery(loggedInUserId as string);
 
@@ -24,7 +24,7 @@ const Addresses = () => {
 
   return (
     <div>
-      {isSuccess? data.data.map((item:UserAddressType, idx:number) => <Address data={item} key={item._id} isFirst={idx===0?true:false} />) : "Error"}
+      {isSuccess? data.data.map((item:UserAddressType, idx:number) => <Address isCheckout={isCheckout} data={item} key={item._id} isFirst={idx===0?true:false} />) : "Error"}
     </div>
   )
 }

@@ -1,3 +1,4 @@
+import Addresses from "../userprofile/manageAddresses/Addresses"
 import Form from "./Form"
 
 
@@ -14,9 +15,10 @@ const FormArea = () => {
                 </div>
 
                 {/* Select Address */}
-                {/* <div className="space-y-2 px-6 py-6 bg-white shadow-md rounded-lg">
+                <div className="space-y-2 px-6 py-6 bg-white shadow-md rounded-lg">
                     <h2 className="text-2xl font-semibold" >Select Address</h2>
-                </div> */}
+                    <Addresses isCheckout={true} />
+                </div>
             </div>
         </div>
     )
