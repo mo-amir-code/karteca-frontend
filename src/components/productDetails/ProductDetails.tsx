@@ -1,7 +1,6 @@
 import { IoLocationSharp } from "react-icons/io5";
 import PriceAndDiscount from "./PriceAndDiscount";
 import {Colors, SelectQuantity} from "./Colors";
-// import Sizes from "./Sizes";
 import { ProductDetailsHeroType } from "@/sections/productDetails/Hero";
 import ClaimLabels from "./ClaimLabels";
 import Rating from "./Rating";

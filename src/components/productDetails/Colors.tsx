@@ -1,8 +1,6 @@
 "use client";
 import { useQueryContext } from "@/context/QueryContext";
 import { quantities } from "@/data";
-import { createURL } from "@/utils/services";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { memo, useCallback, useEffect, useState } from "react";
 
 const Color = ({ colors }: { colors: string[] }) => {

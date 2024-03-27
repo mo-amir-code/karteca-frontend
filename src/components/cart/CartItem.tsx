@@ -40,7 +40,7 @@ const CartItem = ({cartData}:{cartData:CartItemDataType}) => {
 
             {/* Buttons */}
             <div className="flex px-4 max-md:px-2 items-center justify-start gap-2 flex-wrap">
-              <Buttons productId={cartData._id} cartId={cartData._id} />
+              <Buttons productId={cartData.product._id} cartId={cartData._id} />
             </div>
             {/* End Buttons */}
           </div>

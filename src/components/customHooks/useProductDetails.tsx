@@ -1,7 +1,7 @@
 "use client";
+import { useProductContext } from "@/context/ProductContext";
 import { useQueryContext } from "@/context/QueryContext";
-import { calculateDiscountedPrice, createURL } from "@/utils/services";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { calculateDiscountedPrice } from "@/utils/services";
 import { useEffect } from "react";
 
 const useProductDetails = ({
@@ -11,27 +11,26 @@ const useProductDetails = ({
   price: number;
   discount: number;
 }) => {
-  const {queries, handleSetQueries} = useQueryContext();
+  const {queries} = useQueryContext();
   const currentPrice = calculateDiscountedPrice(price, discount)!;
   const qty = queries.get("quantity");
+  const {dispatch} = useProductContext();
 
   useEffect(() => {
     const qty = queries.get("quantity");
 
     if (price && discount) {
       if (currentPrice && qty) {
-        queries.set("currentprice", Math.floor(currentPrice).toString());
-        queries.set("discount", discount.toString());
-        queries.set("totalamount", Math.floor(parseInt(qty) * currentPrice).toString());
-        handleSetQueries();
+        dispatch({type: "currentPrice", payload: Math.floor(currentPrice)});
+        dispatch({type: "discount", payload: discount});
+        dispatch({type: "totalAmount", payload: Math.floor(parseInt(qty) * currentPrice)});
       }
     }
   }, []);
   
   useEffect(() => {
     if(qty && currentPrice){
-      queries.set("totalamount", Math.floor(parseInt(qty) * currentPrice).toString());
-      handleSetQueries();
+      dispatch({type: "totalAmount", payload: Math.floor(parseInt(qty) * currentPrice)});
     }
   },[qty]);
 

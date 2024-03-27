@@ -20,6 +20,7 @@ import {
   useAddUserWishlistItemMutation,
   useDeleteUserWishlistItemMutation,
 } from "@/redux/queries/user/userAPI";
+import { useProductContext } from "@/context/ProductContext";
 
 const Images = ({
   productThumbnail,
@@ -119,6 +120,7 @@ export const ProductActionButton = () => {
   const isUserLoggedIn = useAppSelector(selectIsUserLoggedIn);
   const router = useRouter();
   const { queries, productId } = useQueryContext();
+  const { currentPrice, totalAmount, discount } = useProductContext();
   const [addToCart] = useAddToCartMutation();
 
   const handleCart = useCallback(async (type: string) => {
@@ -134,9 +136,6 @@ export const ProductActionButton = () => {
 
     const color = queries.get("color");
     const quantity = queries.get("quantity");
-    const discount = queries.get("discount");
-    const currentPrice = queries.get("currentprice");
-    const totalAmount = queries.get("totalamount");
 
     const cartData: APICartType = {
       userId: loggedInUserId,
