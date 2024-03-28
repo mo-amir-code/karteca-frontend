@@ -27,21 +27,15 @@ body {
 
 /* Button loader */
 .loader {
-  border: 3px solid #744CCD;
-  border-left-color: transparent;
   border-radius: 50%;
 }
 
 .loader {
-  border: 3px solid #744CCD;
-  border-left-color: transparent;
   width: 26px;
   height: 26px;
 }
 
 .loader {
-  border: 3px solid #744CCD;
-  border-left-color: transparent;
   width: 26px;
   height: 26px;
   animation: spin89345 1s linear infinite;

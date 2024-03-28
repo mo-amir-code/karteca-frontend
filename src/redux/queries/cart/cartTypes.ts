@@ -14,6 +14,7 @@ export interface CartItemDataType{
     totalAmount: number,
     discount: number,
     currentPrice: number,
+    color: undefined | string,
     product: {
         _id:string,
         title: string,

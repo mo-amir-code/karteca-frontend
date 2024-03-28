@@ -5,6 +5,7 @@ import productsAPI from "./queries/products/productsAPI";
 import authApi from "./queries/auth/authAPI";
 import userAPI from "./queries/user/userAPI";
 import cartAPI from "./queries/cart/cartAPI";
+import orderAPI from "./queries/order/orderAPI";
 
 export const store = configureStore({
   reducer: persistedReducer,
@@ -13,7 +14,8 @@ export const store = configureStore({
       productsAPI.middleware,
       authApi.middleware,
       userAPI.middleware,
-      cartAPI.middleware
+      cartAPI.middleware,
+      orderAPI.middleware
     ]),
 });
 

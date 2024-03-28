@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import ReduxProvider from "@/components/ReduxProvider";
 import { Toaster } from "react-hot-toast";
+import Headers from "./Headers";
 
 export const metadata: Metadata = {
   title: "Paykart - Earn & Shop",
@@ -15,6 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Headers />
       <body
         className={
           "max-md:h-screen max-md:overflow-hidden max-md:overflow-y-auto relative"

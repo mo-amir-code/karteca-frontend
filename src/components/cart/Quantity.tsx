@@ -24,7 +24,7 @@ const Quantity = ({quantity, cartId, isOnMobile}:{quantity: number, cartId: stri
         <select
           onChange={(e)=> handleQtyChange(parseInt(e.target.value))}
           defaultValue={quantity}
-          className="text-sm outline-none w-full text-center bg-transparent"
+          className="text-sm hide_scrollbar outline-none w-full text-center bg-transparent"
         >
             {
                 quantities.map((qty) => (
