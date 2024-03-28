@@ -1,3 +1,5 @@
+import Script from "next/script";
+
 interface RazorpayInstance {
   new(options: RazorpayOptions): Razorpay;
 }
@@ -36,9 +38,9 @@ declare global {
 
 const Headers = () => {
   return (
-    <head>
-      <script src="https://checkout.razorpay.com/v1/checkout.js" />
-    </head>
+    <>
+      <Script src="https://checkout.razorpay.com/v1/checkout.js" />
+    </>
   );
 };
 

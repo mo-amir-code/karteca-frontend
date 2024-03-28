@@ -15,16 +15,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <>
+      <html lang="en">
+        <body
+          className={
+            "max-md:h-screen max-md:overflow-hidden max-md:overflow-y-auto relative"
+          }
+        >
+          <ReduxProvider>{children}</ReduxProvider>
+          <Toaster />
+        </body>
+      </html>
       <Headers />
-      <body
-        className={
-          "max-md:h-screen max-md:overflow-hidden max-md:overflow-y-auto relative"
-        }
-      >
-        <ReduxProvider>{children}</ReduxProvider>
-        <Toaster />
-      </body>
-    </html>
+    </>
   );
 }
