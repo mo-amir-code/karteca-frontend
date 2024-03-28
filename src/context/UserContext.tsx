@@ -15,7 +15,9 @@ export interface UserContextReducerType {
   isGenderDisable: boolean;
   phone: string | undefined;
   isPhoneDisable: boolean;
-  selectedAddress: string | null
+  selectedAddress: string | null;
+  selectedPaymentMode: string,
+  itemTotalAmount: number
 }
 
 const userContextReducerInitialeValue = {
@@ -27,7 +29,9 @@ const userContextReducerInitialeValue = {
   isGenderDisable: true,
   phone: undefined,
   isPhoneDisable: true,
-  selectedAddress: null
+  selectedAddress: null,
+  selectedPaymentMode: "online",
+  itemTotalAmount:0
 };
 
 interface UserContextType extends UserContextReducerType {
@@ -69,7 +73,11 @@ const UserContextProvider = ({ children }: { children: ReactNode }) => {
       case "disableedit":
         return { ...state, isPhoneDisable: true, isNameDisable: true, isEmailDisable: true, isGenderDisable:true};
       case "selectAddress":
-        return {...state, selectedAddress: action.payload}
+        return {...state, selectedAddress: action.payload};
+      case "selectPaymentMode":
+        return {...state, selectedPaymentMode: action.payload};
+      case "itemsTotalAmount":
+        return {...state, itemTotalAmount: action.payload};
       default:
         return state;
     }

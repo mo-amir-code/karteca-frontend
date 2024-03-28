@@ -1,19 +1,14 @@
 "use client";
 import CartBill from "@/components/cart/CartBill";
 import CartItems from "@/components/cart/CartItems";
+import useFetchCartItems from "@/components/customHooks/useFetchCartItems";
 import FullLoader from "@/components/loader/FullLoader";
-import { useAppSelector } from "@/redux/hooks";
-import { useGetCartItemsQuery } from "@/redux/queries/cart/cartAPI";
 import { CartItemDataType } from "@/redux/queries/cart/cartTypes";
-import { selectLoggedInUserId } from "@/redux/slices/auth/authSlice";
-import { useMemo } from "react";
+import { memo } from "react";
 import toast from "react-hot-toast";
 
 const Cart = () => {
-  const loggedInUserId = useAppSelector(selectLoggedInUserId);
-  const { data, isLoading, isSuccess, isError } = useGetCartItemsQuery(
-    loggedInUserId!
-  );
+  const {data, totalAmount, isSuccess, isLoading, isError} = useFetchCartItems();
 
   if (isError) {
     toast.error("Internal Error Occurred");
@@ -22,15 +17,12 @@ const Cart = () => {
   if (isLoading) {
     return <FullLoader />;
   }
-
-  const totalAmount = data?.data?.reduce((total: number, item:CartItemDataType) => {
-        return item.currentPrice*item.quantity + total
-      }, 0);
+  
 
   return (
     <div className="mx-auto w-full">
       {isSuccess ? (
-        data.data.length ? (
+        data?.data?.length ? (
           <div className="w-full flex justify-center py-4 max-lg:flex-col max-lg:gap-6">
             <CartItems data={data.data as CartItemDataType[]} />
             <div className="flex-[0.35]">
@@ -47,4 +39,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default memo(Cart);
