@@ -11,11 +11,6 @@ const Layout = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
   const dispatch = useAppDispatch();
 
-  if (!isPaymentPageEnable) {
-    router.push("/");
-    return null;
-  }
-
   useEffect(() => {
     const handlePayment = () => {
       dispatch(setPaymentStatusPage(false));
@@ -27,6 +22,13 @@ const Layout = ({ children }: { children: ReactNode }) => {
       window.removeEventListener('beforeunload', handlePayment);
     };
   }, []); 
+
+  
+  if (!isPaymentPageEnable) {
+    router.push("/");
+    return null;
+  }
+
 
   return <>{children}</>;
 };
