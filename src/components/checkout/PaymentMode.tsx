@@ -1,6 +1,6 @@
 "use client";
 import { useUserContext } from "@/context/UserContext";
-import React, { useCallback, useState } from "react";
+import React, { useCallback } from "react";
 import { IoCash } from "react-icons/io5";
 import { PiContactlessPaymentFill } from "react-icons/pi";
 

@@ -4,16 +4,19 @@ import Image from "next/image";
 import success from "@/assets/payment/success.svg";
 import { useRouter } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { selectLoggedInUserName } from "@/redux/slices/auth/authSlice";
+import { selectLoggedInUserId, selectLoggedInUserName } from "@/redux/slices/auth/authSlice";
 import { setMobileProfileMenu, setPaymentStatusPage, setProfile } from "@/redux/slices/app/appSlice";
+import { useGetCartCountsQuery } from "@/redux/queries/cart/cartAPI";
 
 const Success = () => {
   const [count, setCount] = useState<number>(10);
   const router = useRouter();
   const loggedInUserName = useAppSelector(selectLoggedInUserName);
+  const loggedInUserId = useAppSelector(selectLoggedInUserId);
   const dispatch = useAppDispatch();
 
   const handleRedirect = () => {
+    useGetCartCountsQuery(loggedInUserId!);
     dispatch(setProfile({ profile: "orders" }));
     dispatch(setMobileProfileMenu({ isProfileMenuOpen: false }));
     dispatch(setPaymentStatusPage(false));
@@ -47,7 +50,7 @@ const Success = () => {
           className="w-[400px] max-md:w-[300px] max-sm:w-[200px]"
         />
         <p className="w-full text-green-color md:text-2xl text-xl text-center font-semibold">
-        Payment Recieved
+          Payment Recieved
         </p>
         <span className="max-md:text-sm">
           You will be redirect in {count} seconds

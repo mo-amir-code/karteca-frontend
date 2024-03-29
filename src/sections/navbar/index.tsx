@@ -39,7 +39,7 @@ const MobileNavbar = () => {
         router.push("/auth/signin");
       }
     },
-    [selected]
+    [selected, isUserLoggedIn, dispatch, profile]
   );
 
   useLayoutEffect(() => {

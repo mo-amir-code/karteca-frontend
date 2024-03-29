@@ -161,7 +161,7 @@ export const ProductActionButton = () => {
     }
 
     if (type === "buy") router.push("/user/cart");
-  }, [totalAmount, queries]);
+  }, [totalAmount, queries, addToCart, isUserLoggedIn, loggedInUserId, currentPrice, discount, productId]);
 
   return (
     <div className="flex items-center gap-1">

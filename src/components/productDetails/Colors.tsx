@@ -14,7 +14,7 @@ const Color = ({ colors }: { colors: string[] }) => {
       handleSetQueries()
       setSelectedColor(color);
     },
-    [selectedColor]
+    [selectedColor, queries]
   );
 
   useEffect(() => {
@@ -59,7 +59,7 @@ const Quantity = () => {
       handleSetQueries();
       setQuantity(qty);
     },
-    [quantity]
+    [quantity, queries, dispatch]
   );
 
   useEffect(() => {

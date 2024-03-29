@@ -5,10 +5,13 @@ import useProfileIcons from "@/components/customHooks/useProfileIcons";
 import { useState } from "react";
 import { useAppDispatch } from "@/redux/hooks";
 import { setMobileProfileMenu, setProfile } from "@/redux/slices/app/appSlice";
+import { logoutUser } from "@/redux/slices/auth/authSlice";
+import { useRouter } from "next/navigation";
 
 const MobileProfileMenu = ({title, list, icon}:{title:string, list?:[{name:string}], icon:string}) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const dispatch = useAppDispatch();
+  const router = useRouter();
 
   const handleNavigate = ({target}:{target:string}) => {
     let newTarget;
@@ -30,6 +33,9 @@ const MobileProfileMenu = ({title, list, icon}:{title:string, list?:[{name:strin
         break;
       case "Wishlist":
         newTarget = "wishlist";
+      case "Log out":
+        dispatch(logoutUser(null));
+        router.push("/auth/signin");
         break;
       default:
         return;
