@@ -14,9 +14,10 @@ const Success = () => {
   const loggedInUserName = useAppSelector(selectLoggedInUserName);
   const loggedInUserId = useAppSelector(selectLoggedInUserId);
   const dispatch = useAppDispatch();
-
-  const handleRedirect = () => {
-    useGetCartCountsQuery(loggedInUserId!);
+  const {refetch} = useGetCartCountsQuery(loggedInUserId!);
+  
+  const handleRedirect = async () => {
+    await refetch();
     dispatch(setProfile({ profile: "orders" }));
     dispatch(setMobileProfileMenu({ isProfileMenuOpen: false }));
     dispatch(setPaymentStatusPage(false));
