@@ -6,7 +6,7 @@ import {
 import { useRouter } from "next/navigation";
 import { ReactNode, useEffect } from "react";
 
-const layout = ({ children }: { children: ReactNode }) => {
+const Layout = ({ children }: { children: ReactNode }) => {
   const isPaymentPageEnable = useAppSelector(selectIsPaymentStatusPageEnable);
   const router = useRouter();
   const dispatch = useAppDispatch();
@@ -31,4 +31,4 @@ const layout = ({ children }: { children: ReactNode }) => {
   return <>{children}</>;
 };
 
-export default layout;
+export default Layout;
