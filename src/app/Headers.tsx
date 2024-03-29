@@ -5,18 +5,13 @@ interface RazorpayInstance {
 }
 
 interface RazorpayOptions {
-  key_id: string;
-  key_secret: string;
+  key: string;
   image: string;
   handler: (response: any) => void;
-  callback_url: string,
   prefill: {
     name: string;
     email: string;
     contact: string;
-  };
-  notes: {
-    address: string;
   };
   theme: {
     color: string;

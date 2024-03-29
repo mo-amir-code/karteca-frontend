@@ -23,3 +23,21 @@ export interface CartItemDataType{
         specifications: object
     }
 }
+
+export interface PaymentOrderType{
+    key: string; 
+    amount: number;
+    currency: string; 
+    name: string;
+    orderId: string; 
+    callback_url: string,
+    prefill: {
+        name: string,
+        email: string,
+        contact: string
+    },
+    theme: {
+        color: string
+    },
+    transactionId: string
+}

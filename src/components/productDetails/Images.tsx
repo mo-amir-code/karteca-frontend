@@ -161,7 +161,7 @@ export const ProductActionButton = () => {
     }
 
     if (type === "buy") router.push("/user/cart");
-  }, [totalAmount]);
+  }, [totalAmount, queries]);
 
   return (
     <div className="flex items-center gap-1">

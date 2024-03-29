@@ -10,6 +10,7 @@ import userAPI from "./queries/user/userAPI";
 import cartAPI from "./queries/cart/cartAPI";
 import userSlice from "./slices/user/userSlice";
 import orderAPI from "./queries/order/orderAPI";
+import paymentAPI from "./queries/payment/paymentAPI";
 
 
 const appPersistConfig: PersistConfig<any> = {
@@ -34,6 +35,7 @@ const rootReducer = combineReducers({
     [userAPI.reducerPath]: userAPI.reducer,
     [cartAPI.reducerPath]: cartAPI.reducer,
     [orderAPI.reducerPath]: orderAPI.reducer,
+    [paymentAPI.reducerPath]: paymentAPI.reducer,
 });
 
 
