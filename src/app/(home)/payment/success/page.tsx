@@ -7,7 +7,7 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { selectLoggedInUserName } from "@/redux/slices/auth/authSlice";
 import { setMobileProfileMenu, setPaymentStatusPage, setProfile } from "@/redux/slices/app/appSlice";
 
-const Success = ({ msg = "Payment Recieved" }: { msg: string }) => {
+const Success = () => {
   const [count, setCount] = useState<number>(10);
   const router = useRouter();
   const loggedInUserName = useAppSelector(selectLoggedInUserName);
@@ -47,7 +47,7 @@ const Success = ({ msg = "Payment Recieved" }: { msg: string }) => {
           className="w-[400px] max-md:w-[300px] max-sm:w-[200px]"
         />
         <p className="w-full text-green-color md:text-2xl text-xl text-center font-semibold">
-          {msg}
+        Payment Recieved
         </p>
         <span className="max-md:text-sm">
           You will be redirect in {count} seconds

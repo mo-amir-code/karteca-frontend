@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation'
 import { useAppDispatch } from '@/redux/hooks'
 import { setPaymentStatusPage } from '@/redux/slices/app/appSlice'
 
-const Failure = ({msg="Payment Failed"}:{msg:string}) => {
+const Failure = () => {
     const [count, setCount] = useState<number>(10);
     const router = useRouter();
     const dispatch = useAppDispatch();
@@ -37,7 +37,7 @@ const Failure = ({msg="Payment Failed"}:{msg:string}) => {
     <div className='flex items-center justify-center min-h-[80vh] max-sm:min-h-[70vh]' >
         <div className='w-full flex flex-col items-center justify-center' >
               <Image src={failure} alt='failure' className='w-[400px] max-md:w-[300px] max-sm:w-[200px]' />
-              <p className='w-full text-red-color md:text-2xl text-xl text-center font-semibold' >{msg}</p>
+              <p className='w-full text-red-color md:text-2xl text-xl text-center font-semibold' >Payment Failed</p>
               <span className='max-md:text-sm' >You will be redirect in {count} seconds</span>
               <button onClick={()=> handleRedirect()} className='px-4 py-1 rounded-lg bg-red-color text-white text-sm md:hover:shadow-lg smooth_transition font-semibold mt-2' >Retry</button>
         </div>
