@@ -6,7 +6,7 @@ import { useGetUserWishlistQuery } from "@/redux/queries/user/userAPI"
 import { selectLoggedInUserId } from "@/redux/slices/auth/authSlice"
 import toast from "react-hot-toast"
 
-const index = () => {
+const Wishlist = () => {
   const loggedInUserId = useAppSelector(selectLoggedInUserId);
   const {data, isSuccess, isError} = useGetUserWishlistQuery(loggedInUserId!);
 
@@ -28,4 +28,4 @@ const index = () => {
   )
 }
 
-export default index
+export default Wishlist
