@@ -27,7 +27,7 @@ const PersonalInfoIndex = () => {
   const [updateUser] = useUpdateUserInfoMutation();
   const { name, email, phone, gender, dispatch } = useUserContext();
 
-  if (isError) {
+  if (isError && loggedInUserId) {
     toast.error("Something went wrong!");
   }
 

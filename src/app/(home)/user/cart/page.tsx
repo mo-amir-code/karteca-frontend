@@ -3,6 +3,7 @@ import CartBill from "@/components/cart/CartBill";
 import CartItems from "@/components/cart/CartItems";
 import useFetchCartItems from "@/components/customHooks/useFetchCartItems";
 import FullLoader from "@/components/loader/FullLoader";
+import Empty from "@/components/notfound/Empty";
 import { CartItemDataType } from "@/redux/queries/cart/cartTypes";
 import { memo } from "react";
 import toast from "react-hot-toast";
@@ -30,7 +31,7 @@ const Cart = () => {
             </div>
           </div>
         ) : (
-          "null"
+          <div className="flex items-center justify-center min-h-[80vh] max-md:min-h-[65vh]" ><Empty msg="Items Not Found" /></div>
         )
       ) : (
         <h2>Server Error</h2>

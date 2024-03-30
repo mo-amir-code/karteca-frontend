@@ -1,10 +1,12 @@
 "use client"
-import { useState } from "react"
+import { useLayoutEffect, useState } from "react"
 import { MAX_VALUE } from "@/data"; 
 import { IoIosArrowDown } from "react-icons/io";
+import { useQueryContext } from "@/context/QueryContext";
 
 
 const Price = ({isFirst}:{isFirst?:boolean}) => {
+    const {queries, handleSetQueries} = useQueryContext();
     const [minValue, setMinValue] = useState<number>(0);
     const [maxValue, setMaxValue] = useState<number>(MAX_VALUE);
     const [minTimedOut, setMinTimedOut] = useState<any>(null)
@@ -18,7 +20,8 @@ const Price = ({isFirst}:{isFirst?:boolean}) => {
 
         clearTimeout(minTimedOut);
         setMinTimedOut(setTimeout(() => {
-            
+            queries.set("minvalue", value);
+            handleSetQueries();
         }, 500));
     }
 
@@ -30,9 +33,19 @@ const Price = ({isFirst}:{isFirst?:boolean}) => {
 
         clearTimeout(maxTimedOut);
         setMaxTimedOut(setTimeout(() => {
-            
+            queries.set("maxvalue", value);
+            handleSetQueries();
         }, 500));
     }
+
+
+    useLayoutEffect(() => {
+        const min = queries.get("minvalue");
+        const max = queries.get("maxvalue");
+        
+        if(min) setMinValue(parseInt(min));
+        if(max) setMaxValue(parseInt(max)); 
+    }, []);
 
 
     return (

@@ -38,6 +38,16 @@ const userAPI = createApi({
       }),
       providesTags: ["updateWishlist"],
     }),
+    getUserWishlist: builder.query<APIRequestType, string>({
+      query: (userId) => ({
+        url: `wishlist/${userId}`,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      }),
+      providesTags: ["updateWishlist"],
+    }),
     addUserWishlistItem: builder.mutation<APIRequestType, {userId:string, productId:string}>({
       query: (data) => ({
         url: `wishlist/items`,
@@ -122,7 +132,8 @@ export const {
   useUpdateUserAddressMutation,
   useGetUserWishlistItemsQuery,
   useAddUserWishlistItemMutation,
-  useDeleteUserWishlistItemMutation
+  useDeleteUserWishlistItemMutation,
+  useGetUserWishlistQuery
 } = userAPI;
 
 export default userAPI;

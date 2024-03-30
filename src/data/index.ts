@@ -70,7 +70,7 @@ export const sortList = [
   },
   {
     name: "Newest First",
-    value: "new",
+    value: "newest",
   },
   {
     name: "Lowest First",

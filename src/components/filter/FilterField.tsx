@@ -1,6 +1,12 @@
 "use client";
-import { checkIsSelected, handleSelectUtil } from "@/utils/services";
-import { useState } from "react";
+import { useQueryContext } from "@/context/QueryContext";
+import {
+  checkIsSelected,
+  filterSearchQueryField,
+  handleSelectUtil,
+  setSortQuery,
+} from "@/utils/services";
+import { useLayoutEffect, useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 
 export interface ListType {
@@ -16,12 +22,40 @@ export interface FilterFieldType {
 }
 
 const FilterField = ({ list, isFirst, title, isSort }: FilterFieldType) => {
+  const { queries, handleSetQueries } = useQueryContext();
   const [selected, setSelected] = useState<ListType | ListType[]>(
     isSort ? list[0] : []
   );
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
-  const handleSelect = ({ target }: { target: ListType }) => {
+  const handleSelect = ({
+    target,
+    field,
+  }: {
+    target: ListType;
+    field: string;
+  }) => {
+    let newField: string = filterSearchQueryField(field);
+
+    if (newField === "sort") {
+      queries.set(newField, target.value);
+    } else {
+      const oldQuery = queries.getAll(newField);
+      if (oldQuery[0]) {
+        const queryStringArr = oldQuery[0].toString().split(",");
+        const isExists = queryStringArr.find(
+          (qry: string) => qry === target.value
+        );
+        if (isExists) {
+          const filteredQuery = queryStringArr.filter(
+            (qry: string) => qry !== target.value
+          );
+          queries.set(newField, filteredQuery);
+        } else queries.set(newField, [...queryStringArr, target.value]);
+      } else queries.set(newField, target.value);
+    }
+    handleSetQueries();
+
     handleSelectUtil({
       isSort: isSort ? true : false,
       setSelected,
@@ -29,6 +63,31 @@ const FilterField = ({ list, isFirst, title, isSort }: FilterFieldType) => {
       target,
     });
   };
+
+  useLayoutEffect(() => {
+    const newField: string = filterSearchQueryField(title.toLowerCase());
+    const query = queries.get(newField);
+    let target: ListType | ListType[];
+    if (newField === "sort") {
+      target = {
+        name: setSortQuery(query || "newest"),
+        value: query || "newest",
+      };
+
+      if(!query) {
+        queries.set("sort", "newest");
+        handleSetQueries();
+      }
+    } else {
+      target = !!query?.length && query?.split(",").map((qry: string) => {
+        return {
+          name: setSortQuery(qry),
+          value: qry,
+        };
+      }) || [];
+    }
+    setSelected(target);
+  }, [queries]);
 
   return (
     <div
@@ -41,11 +100,11 @@ const FilterField = ({ list, isFirst, title, isSort }: FilterFieldType) => {
         className="flex p-3 items-center justify-between cursor-pointer"
       >
         <p className="font-semibold font-lato text-secondary-color">
-          {title} {isSort ? ": " + (selected as ListType).name : null}
+          {title} {isSort ? ": " + (selected as ListType)?.name : null}
         </p>
         <div className="flex items-center justify-center gap-4">
-          {(selected as ListType[]).length > 0
-            ? (selected as ListType[]).length
+          {(selected as ListType[])?.length > 0
+            ? (selected as ListType[])?.length
             : null}
           <IoIosArrowDown
             size={18}
@@ -61,6 +120,7 @@ const FilterField = ({ list, isFirst, title, isSort }: FilterFieldType) => {
           handleClick={handleSelect}
           selected={selected}
           isSort={isSort ? true : false}
+          fieldName={title.toLowerCase()}
         />
       )}
     </div>
@@ -72,29 +132,30 @@ export const FilterFieldOptions = ({
   handleClick,
   selected,
   isSort,
+  fieldName,
 }: {
   list: [ListType];
   handleClick: Function;
   selected: ListType | ListType[];
   isSort?: boolean;
+  fieldName?: string;
 }) => {
-
   return (
     <div className={`w-full pb-2 overflow-hidden bg-white smooth_transition `}>
       <ul>
         {list.map((li, idx) => (
           <li
             key={idx}
-            onClick={() => handleClick({ target: li })}
+            onClick={() => handleClick({ target: li, field: fieldName })}
             className={`py-1 cursor-pointer px-3 text-sm ${
-              (selected as ListType).value === li.value ||
+              (selected as ListType)?.value === li?.value ||
               (!isSort &&
                 checkIsSelected({
                   list: selected as [ListType],
                   value: li.value,
                 }))
-                ? "bg-primary-color"
-                : "hover:bg-primary-color/40"
+                ? "bg-primary-color text-white"
+                : "hover:bg-primary-color/40 hover:text-white"
             } smooth_transition`}
           >
             {li.name}

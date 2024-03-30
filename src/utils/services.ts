@@ -72,3 +72,37 @@ export const isItemExist = (productId:string, items:string[]):boolean => {
   const isExist = items.find((item) => productId == item);
   return isExist? true : false
 }
+
+export const filterSearchQueryField = (field:string) => {
+  switch(field){
+    case "sort by": return "sort"; 
+    case "categories": return "category";
+    case "customer ratings": return "rating";
+    default:
+      return field
+  }
+}
+
+export const setSortQuery = (value:string) => {
+  switch(value){
+    case "10":
+      return `${value}% And Above`;
+    case "20":
+      return `${value}% And Above`;
+    case "30":
+      return `${value}% And Above`;
+    case "40":
+      return `${value}% And Above`;
+  }
+
+  switch(value){
+    case "2":
+      return `${value}★ & above`;
+    case "3":
+      return `${value}★ & above`;
+    case "4":
+      return `${value}★ & above`;
+  }
+
+  return `${value.at(0)?.toUpperCase() + value.slice(1)}`
+}
