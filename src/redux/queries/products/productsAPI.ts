@@ -21,6 +21,12 @@ const productsApi = createApi({
     getProductById: builder.query<APIRequestType, string>({
       query: (productId) => productId,
     }),
+    getProductCategories: builder.query<APIRequestType, null>({
+      query: () => "categories",
+    }),
+    getFilterProducts: builder.query<APIRequestType, string>({
+      query: (query) => `search?${query}`,
+    }),
   }),
 });
 
@@ -29,6 +35,8 @@ export const {
   useGetLatestProductsQuery,
   useGetBestCombosProductsQuery,
   useGetProductByIdQuery,
+  useGetProductCategoriesQuery,
+  useGetFilterProductsQuery
 } = productsApi;
 
 export default productsApi;
