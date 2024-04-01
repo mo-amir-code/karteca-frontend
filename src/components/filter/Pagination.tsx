@@ -19,7 +19,7 @@ const Pagination = ({page}:{page:number}) => {
         queries.set("page", currentPage - 1);
         handleSetQueries();
     }
-    else if(currentPage < page){
+    else if(direction === "next" && currentPage < page){
         setCurrentPage((prev) => prev + 1); 
         queries.set("page", currentPage + 1);
         handleSetQueries();
@@ -44,7 +44,7 @@ const Pagination = ({page}:{page:number}) => {
 
   return (
     <div className="w-full flex items-center mt-8 justify-center gap-3">
-      <span onClick={()=>handleMovePage("prev")} className="w-10 h-10 smooth_transition max-md:border-primary-color md:hover:text-white hover:shadow-lg hover:bg-primary-color flex items-center justify-center font-[Teko] font-bold border-2 border-secondary-color_3 cursor-pointer">
+      <span aria-disabled={currentPage === 1} onClick={()=>handleMovePage("prev")} className="w-10 h-10 smooth_transition max-md:border-primary-color md:hover:text-white hover:shadow-lg md:hover:bg-primary-color flex items-center justify-center font-[Teko] font-bold border-2 border-secondary-color_3 cursor-pointer">
         <CgChevronLeft className="w-4 h-4" />
       </span>
       {Array.from({length: page}, (_, index) => index + 1).map((n) => {
@@ -71,7 +71,7 @@ const Pagination = ({page}:{page:number}) => {
           );
         }
       })}
-      <span onClick={()=>handleMovePage("next")} className="w-10 h-10 smooth_transition hover:shadow-lg max-md:border-primary-color md:hover:text-white hover:bg-primary-color flex items-center justify-center font-[Teko] font-bold border-2 border-secondary-color_3 cursor-pointer">
+      <span aria-disabled={currentPage === page} onClick={()=>handleMovePage("next")} className="w-10 h-10 smooth_transition hover:shadow-lg max-md:border-primary-color md:hover:text-white md:hover:bg-primary-color flex items-center justify-center font-[Teko] font-bold border-2 border-secondary-color_3 cursor-pointer">
         <CgChevronRight className="w-4 h-4" />
       </span>
     </div>

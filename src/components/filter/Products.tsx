@@ -26,7 +26,7 @@ const Products = () => {
   }, [seachQueries]);
 
   if (isLoading || isFetching) {
-    return <div className="h-screen w-full" ><FullLoader /></div>;
+    return <div className="h-screen flex items-center justify-center w-full" ><FullLoader /></div>;
   }
 
   return (
