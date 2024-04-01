@@ -1,21 +1,25 @@
-"use client"
-import React from 'react'
-import FilterField, { ListType } from './FilterField'
-import { useGetProductCategoriesQuery } from '@/redux/queries/products/productsAPI'
-import MobileTag from './MobileTag'
+"use client";
+import React from "react";
+import { ListType } from "./FilterField";
+import { useGetProductCategoriesQuery } from "@/redux/queries/products/productsAPI";
+import FilterWithState from "./FilterWithState";
 
-const Categories = ({isFromMobile}:{isFromMobile?:boolean}) => {
-    const {data, isSuccess} = useGetProductCategoriesQuery(null);
+const Categories = ({ isFromMobile, isFirst }: { isFromMobile?: boolean, isFirst?: boolean }) => {
+  const { data, isSuccess } = useGetProductCategoriesQuery(null);
 
-    if(isFromMobile && isSuccess){
-      return <MobileTag title="Categories" list={data?.data as [ListType]} />
-    }
-    
+  if (isFromMobile && isSuccess) {
+    return <FilterWithState title="Categories" list={data?.data as [ListType]} isFromMobile />;
+  }
+
   return (
     <>
-    <FilterField title="Categories" list={data?.data as [ListType]} isFirst={true} />
+      <FilterWithState
+        title="Categories"
+        list={data?.data as [ListType]}
+        isFirst={isFirst}
+      />
     </>
-  )
-}
+  );
+};
 
-export default Categories
+export default Categories;

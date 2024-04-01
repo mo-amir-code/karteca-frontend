@@ -1,25 +1,28 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 import { IoIosArrowDown } from "react-icons/io";
 import { FilterFieldOptions, ListType } from "./FilterField";
-import { filterSearchQueryField, handleSelectUtil } from "@/utils/services";
+import { filterSearchQueryField, handleSelectUtil, setSortQuery } from "@/utils/services";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { selectSearchTag, setSearchTag } from "@/redux/slices/app/appSlice";
 import { useQueryContext } from "@/context/QueryContext";
+
+export interface MobileTagType{
+  title: string;
+  list: [ListType];
+  isSort?: boolean;
+  selected: ListType | ListType[],
+  setSelected: Function
+}
 
 const MobileTag = ({
   title,
   list,
   isSort,
-}: {
-  title: string;
-  list: [ListType];
-  isSort?: boolean;
-}) => {
+  selected,
+  setSelected
+}: MobileTagType) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
-  const [selected, setSelected] = useState<ListType | ListType[]>(
-    isSort ? list[0] : []
-  );
   const selectedSearchTag = useAppSelector(selectSearchTag);
   const dispatch = useAppDispatch();
   const {queries, handleSetQueries} = useQueryContext();
@@ -72,6 +75,31 @@ const MobileTag = ({
       setIsOpen(false);
     }
   }, [selectedSearchTag]);
+
+  useLayoutEffect(() => {
+    const newField: string = filterSearchQueryField(title.toLowerCase());
+    const query = queries.get(newField);
+    let target: ListType | ListType[];
+    if (newField === "sort") {
+      target = {
+        name: setSortQuery(query || "newest"),
+        value: query || "newest",
+      };
+
+      if(!query) {
+        queries.set("sort", "newest");
+        handleSetQueries();
+      }
+    } else {
+      target = !!query?.length && query?.split(",").map((qry: string) => {
+        return {
+          name: setSortQuery(qry),
+          value: qry,
+        };
+      }) || [];
+    }
+    setSelected(target);
+  }, [queries]);
   
 
   return (

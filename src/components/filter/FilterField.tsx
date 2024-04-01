@@ -19,13 +19,13 @@ export interface FilterFieldType {
   isFirst?: boolean;
   title: string;
   isSort?: boolean;
+  selected: ListType | ListType[],
+  setSelected: Function
 }
 
-const FilterField = ({ list, isFirst, title, isSort }: FilterFieldType) => {
+const FilterField = ({ list, isFirst, title, isSort, selected, setSelected }: FilterFieldType) => {
   const { queries, handleSetQueries } = useQueryContext();
-  const [selected, setSelected] = useState<ListType | ListType[]>(
-    isSort ? list[0] : []
-  );
+
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const handleSelect = ({
