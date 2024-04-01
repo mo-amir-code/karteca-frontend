@@ -8,7 +8,7 @@ const SubmitButton = ({ name, icon, isLoading }: { name: string; icon?: string, 
         className="px-8 h-10 w-full gap-1 border-2 border-primary-color smooth_transition hover:shadow-lg py-2 flex items-center justify-center"
       >
         {
-          isLoading? <div><ButtonLoader /></div> : <span className="text-lg font-medium">{name}</span> 
+          isLoading? <div><ButtonLoader /></div> : <span className="text-lg max-md:text-sm font-medium">{name}</span> 
         }
       </button>
     </div>

@@ -142,7 +142,7 @@ const SignupForm = () => {
           error={passwordMatch ? "Password did not matched" : null}
         />
         <div className="flex items-center justify-between">
-          <span className="hover:text-primary-color smooth_transition">
+          <span className="hover:text-primary-color max-md:text-sm max-sm:text-xs smooth_transition">
             Already a member?{" "}
             <Link
               href={"/auth/signin"}

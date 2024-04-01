@@ -18,7 +18,7 @@ const Heading = () => {
     }
 
   return (
-    <h2 className="font-medium text-xl italic text-secondary-color -mt-3 max-md:text-lg">
+    <h2 className="font-medium text-xl italic text-secondary-color -mt-3 max-md:text-base">
       {getByPath(path)}
     </h2>
   );

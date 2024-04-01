@@ -65,7 +65,7 @@ const SigninForm = () => {
         icon="password"
       />
       <div className="flex items-center justify-between">
-        <span className="hover:text-primary-color smooth_transition">
+        <span className="hover:text-primary-color max-md:text-sm max-sm:text-xs smooth_transition">
           <Link href={"/auth/forgot-password"} >
              Forgot Password?{" "}
           </Link>
