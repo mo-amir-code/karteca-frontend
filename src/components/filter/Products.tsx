@@ -10,7 +10,7 @@ import Pagination from "./Pagination";
 const Products = () => {
   const [query, setQuery] = useState<string>("");
   const seachQueries = useSearchParams();
-  const { data, isLoading, isSuccess, isError, refetch } =
+  const { data, isLoading, isSuccess, isFetching, refetch } =
     useGetFilterProductsQuery(query);
 
   useLayoutEffect(() => {
@@ -25,7 +25,7 @@ const Products = () => {
     };
   }, [seachQueries]);
 
-  if (isLoading) {
+  if (isLoading || isFetching) {
     return <div className="h-screen w-full" ><FullLoader /></div>;
   }
 

@@ -1,6 +1,7 @@
+import Categories from "./Categories";
 import { ListType } from "./FilterField";
 import MobileTag from "./MobileTag"
-import { discount, filterCategories, rating, sortList } from "@/data";
+import { discount, rating, sortList } from "@/data";
 
 
 const MobileFilter = () => {
@@ -8,7 +9,7 @@ const MobileFilter = () => {
     <div className="p-2 hidden max-md:flex overflow-x-auto hide_scrollbar items-center justify-start gap-2" >
         <MobileTag title="Sort By" list={sortList as [ListType]} isSort={true} />
         <MobileTag title="Discount" list={discount as [ListType]} />
-        <MobileTag title="Categories" list={filterCategories as [ListType]} />
+        <Categories isFromMobile  />
         <MobileTag title="Rating" list={rating as [ListType]} />
     </div>
   )
