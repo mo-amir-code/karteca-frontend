@@ -7,7 +7,8 @@ const initialState = {
         profile: "profile"
     },
     mobile:{
-        isProfileMenuOpen: true 
+        isProfileMenuOpen: true,
+        searchTag: null
     },
     isPaymentStatusPageEnable: false
 } as AppSliceType
@@ -26,12 +27,16 @@ const appSlice = createSlice({
         setPaymentStatusPage(state, action){
             state.isPaymentStatusPageEnable = action.payload;
         },
+        setSearchTag(state, action){
+            state.mobile.searchTag = action.payload;
+        },
     }
 });
 
-export const {setProfile, setMobileProfileMenu, setPaymentStatusPage} = appSlice.actions;
+export const {setProfile, setMobileProfileMenu, setPaymentStatusPage, setSearchTag} = appSlice.actions;
 export const selectDesktop = (state: RootState) => state.app.desktop;
 export const selectMobile = (state: RootState) => state.app.mobile;
 export const selectIsPaymentStatusPageEnable = (state: RootState) => state.app.isPaymentStatusPageEnable;
+export const selectSearchTag = (state: RootState) => state.app.mobile.searchTag;
 
 export default appSlice

@@ -9,5 +9,6 @@ interface DesktopApp{
 }
 
 interface MobileApp{
-    isProfileMenuOpen: boolean 
+    isProfileMenuOpen: boolean;
+    searchTag: string | null
 }

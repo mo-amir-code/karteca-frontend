@@ -155,7 +155,7 @@ export const FilterFieldOptions = ({
                   value: li.value,
                 }))
                 ? "bg-primary-color text-white"
-                : "hover:bg-primary-color/40 hover:text-white"
+                : "md:hover:bg-primary-color/40 md:hover:text-white"
             } smooth_transition`}
           >
             {li.name}
