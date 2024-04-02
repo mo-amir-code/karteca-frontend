@@ -7,7 +7,7 @@ import FullLoader from "@/components/loader/FullLoader";
 import { GetOrderType } from "@/redux/queries/order/orderTypes";
 import Empty from "@/components/notfound/Empty";
 
-const index = () => {
+const Index = () => {
   const loggedInUserId = useAppSelector(selectLoggedInUserId);
   const {data, isLoading, isFetching, isSuccess} = useGetOrderQuery(loggedInUserId!);
 
@@ -32,4 +32,4 @@ const index = () => {
   );
 };
 
-export default memo(index);
+export default memo(Index);
