@@ -12,3 +12,11 @@ export interface PostOrderItemType {
   deliveryAddress: string;
   totalAmount: number;
 }
+
+export interface GetOrderType{
+  _id: string;
+  product:{
+    title: string;
+    thumbnail: string
+  };
+}

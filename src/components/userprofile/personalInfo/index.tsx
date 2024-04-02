@@ -73,14 +73,14 @@ const PersonalInfoIndex = () => {
             {/* end Name area */}
           </div>
 
-          <UserGender gender={data.data.gender} />
+          <UserGender gender={data?.data?.gender} />
 
           <div>
             <UserPersonalHOC fieldName="email" title="Email Address">
-              <PersonalEmail email={data.data.email} />
+              <PersonalEmail email={data?.data?.email} />
             </UserPersonalHOC>
             <UserPersonalHOC fieldName="phone" title="Mobile Number">
-              <PersonalMobile phone={data.data.phone} />
+              <PersonalMobile phone={data?.data?.phone} />
             </UserPersonalHOC>
           </div>
           <CommonButton name="Submit" handleClick={handleSubmit} isLoading={isButtonLoading} />

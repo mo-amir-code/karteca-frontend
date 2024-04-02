@@ -52,7 +52,7 @@ const CheckoutButton = () => {
       const orders: [PostOrderItemType] = data?.data.map(
         (item: CartItemDataType) => {
           return {
-            product: item._id,
+            product: item.product._id,
             purchasedPrice: item.currentPrice,
             color: item.color,
             quantity: item.quantity,
