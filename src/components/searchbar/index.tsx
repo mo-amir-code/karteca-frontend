@@ -1,11 +1,12 @@
 "use client";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { memo, useCallback, useState } from "react";
 import { TfiSearch } from "react-icons/tfi";
 
 const SearchBar = ({ isOnMobile }: { isOnMobile?: boolean }) => {
   const [query, setQuery] = useState<string | null>(null);
   const router = useRouter();
+  const pathname = usePathname();
 
   const handleSearch = useCallback(() => {
       setQuery(null);  
@@ -32,8 +33,8 @@ const SearchBar = ({ isOnMobile }: { isOnMobile?: boolean }) => {
           className="outline-none text-sm py-1 bg-transparent w-full"
         />
       </div>
-      {!!query && <button onClick={()=>handleSearch()} className="bg-primary-color px-4 rounded-md">
-        <TfiSearch size={20} className="text-white" />
+      {!!query && <button onClick={()=>handleSearch()} className={`${pathname.startsWith("/user/")? "bg-white" : "bg-primary-color" } px-4 rounded-md`}>
+        <TfiSearch size={20} className={pathname.startsWith("/user/")? "text-primary-color" : "text-white"} />
       </button>}
     </div>
   );

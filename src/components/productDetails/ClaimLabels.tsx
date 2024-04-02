@@ -4,7 +4,7 @@ import { GiReturnArrow } from "react-icons/gi";
 
 const ClaimLabels = () => {
   return (
-    <div className="flex max-md:hidden items-center justify-between p-3 bg-tertiary-color">
+    <div className="flex max-md:hidden bottom_to_top_ani items-center justify-between p-3 bg-tertiary-color">
           {claims.map((claim, idx) => (
             <div
               key={idx}

@@ -49,7 +49,7 @@ const MobileProfileMenu = ({title, list, icon}:{title:string, list?:[{name:strin
   }
 
   return (
-      <div className={`font-lato bg-white border-t`}>
+      <div className={`font-lato bottom_to_top_ani bg-white border-t`}>
         <div className="flex p-3 items-center justify-between cursor-pointer">
           <div onClick={()=>handleNavigate({target:icon})} className="font-semibold w-full flex items-center gap-2 font-lato text-secondary-color">
             <span className="text-primary-color" >{useProfileIcons({icon})}</span>

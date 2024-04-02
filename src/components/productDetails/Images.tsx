@@ -168,7 +168,7 @@ export const ProductActionButton = () => {
   }, [totalAmount, queries, addToCart, isUserLoggedIn, loggedInUserId, currentPrice, discount, productId]);
 
   return (
-    <div className="flex items-center gap-1">
+    <div className="flex items-center bottom_to_top_ani gap-1">
       <ProductButton text="ADD TO CART" icon="cart" btnAction={handleCart} />
       <ProductButton text="BUY NOW" icon="buy" btnAction={handleCart} />
     </div>
