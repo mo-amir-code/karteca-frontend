@@ -17,7 +17,7 @@ const Wishlist = () => {
   return (
     <div className="space-y-6">
       <h4 className="font-medium">Wishlist</h4>
-      {isSuccess && !!data.data.length? <div className="flex items-center gap-2 flex-wrap" >
+      {isSuccess && !!data?.data?.length? <div className="flex items-center gap-2 flex-wrap" >
         {
           data.data.map((item:ProductCardType) => (
             <ProductCard key={item._id} data={item} />
