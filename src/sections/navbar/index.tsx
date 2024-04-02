@@ -13,6 +13,7 @@ import {
   setProfile,
 } from "@/redux/slices/app/appSlice";
 import { selectIsUserLoggedIn, selectLoggedInUserName } from "@/redux/slices/auth/authSlice";
+import { selectUserCartItems } from "@/redux/slices/user/userSlice";
 
 const MobileNavbar = () => {
   const [selected, setSelected] = useState(0);
@@ -21,6 +22,7 @@ const MobileNavbar = () => {
   const dispatch = useAppDispatch();
   const isUserLoggedIn = useAppSelector(selectIsUserLoggedIn);
   const loggedInUserName = useAppSelector(selectLoggedInUserName);
+  const cartItems = useAppSelector(selectUserCartItems);
   const { profile } = useAppSelector(selectDesktop);
 
   const handleMobileNavbar = useCallback(
@@ -75,7 +77,7 @@ const MobileNavbar = () => {
             key={nav.name}
             className={`cursor-pointer ${
               selected === idx ? "text-primary-color" : ""
-            } smooth_transition`}
+            } smooth_transition relative`}
           >
               {(() => {
                 switch (nav.name) {
@@ -115,10 +117,13 @@ const MobileNavbar = () => {
                     );
                   case "Cart":
                     return (
+                      <>
                       <FaCartShopping
                         onClick={() => handleMobileNavbar({ target: "cart", path: nav.path })}
                         size={24}
-                      />
+                        />
+                        {cartItems?.length? <span className="absolute -top-[40%] text-white w-4 h-4 flex items-center justify-center -right-1/3 text-[10px] p-1 rounded-full bg-primary-color font-semibold" >{cartItems?.length}</span> : null }
+                        </>
                     );
                   default:
                     return;

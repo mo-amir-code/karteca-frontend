@@ -57,8 +57,8 @@ const Images = ({
           await deleteItemFromUserWishlist({userId: loggedInUserId!, productId});
         }
         else{
-          await addItemToUserWishlist({ userId: loggedInUserId!, productId });
           setIsWishlist(true);
+          await addItemToUserWishlist({ userId: loggedInUserId!, productId });
         }
       } else router.push("/auth/signin");
     } catch (error) {
