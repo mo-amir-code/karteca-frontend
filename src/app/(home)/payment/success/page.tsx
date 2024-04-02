@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { selectLoggedInUserId, selectLoggedInUserName } from "@/redux/slices/auth/authSlice";
 import { setMobileProfileMenu, setPaymentStatusPage, setProfile } from "@/redux/slices/app/appSlice";
-import { useGetCartCountsQuery } from "@/redux/queries/cart/cartAPI";
+import { useGetCartCountsQuery, useGetCartItemsQuery } from "@/redux/queries/cart/cartAPI";
 
 const Success = () => {
   const [count, setCount] = useState<number>(10);
@@ -15,15 +15,15 @@ const Success = () => {
   const loggedInUserId = useAppSelector(selectLoggedInUserId);
   const dispatch = useAppDispatch();
   const {refetch} = useGetCartCountsQuery(loggedInUserId!);
+  const {refetch:refetchCartItems} = useGetCartItemsQuery(loggedInUserId!);
   
   const handleRedirect = async () => {
     await refetch();
+    await refetchCartItems();
     dispatch(setProfile({ profile: "orders" }));
     dispatch(setMobileProfileMenu({ isProfileMenuOpen: false }));
     dispatch(setPaymentStatusPage(false));
-    router.push(
-      `/user/${loggedInUserName?.replace(" ", "").toLocaleLowerCase()}`
-    );
+    router.push(`/user/${loggedInUserName?.replace(" ", "").toLocaleLowerCase()}`);
   };
 
   useEffect(() => {
