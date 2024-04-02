@@ -20,7 +20,7 @@ const Index = () => {
       <h2 className="text-secondary-color font-medium">My Orders</h2>
       <div>
         {
-          !!isSuccess && data.data.length>0? data?.data?.map((order:GetOrderType, idx:number) => {
+          !!isSuccess && data?.data?.length>0? data?.data?.map((order:GetOrderType, idx:number) => {
             if(idx === 0) return <Order isFirst data={order} />
             else return <Order data={order} />
           })
