@@ -479,3 +479,20 @@ button:disabled:hover::after {
 }
 
 /* End payment mode selection css */
+
+/* card */
+
+.bottom_to_top_ani{
+  animation: card_ani 0.5s ease-in-out;
+}
+
+@keyframes card_ani {
+  0%{
+    transform: translateY(20%);
+  }
+  100%{
+    transform: translateY(0%);
+  }
+}
+
+/* end card */

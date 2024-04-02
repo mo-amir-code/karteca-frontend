@@ -6,7 +6,7 @@ import Link from "next/link";
 
 const ProductCard = ({data}:{data?:ProductCardType}) => {
   return (
-    <Link href={`/product/${data?._id || 435}`}>
+    <Link className="bottom_to_top_ani" href={`/product/${data?._id || 435}`}>
       <div className="flex items-center justify-center select-none">
         <div className="max-w-[216px] max-[460px]:w-[176px] bg-white max-sm:bg-[#F1F2F4] p-2 rounded-xl smooth_transition hover:shadow-md">
           {/* Media Area */}

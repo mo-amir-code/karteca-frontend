@@ -32,7 +32,7 @@ const UserPersonalHOC = ({children, title, fieldName}:{children:ReactNode, title
   }
 
   return (
-    <div className="space-y-2 py-4">
+    <div className="space-y-2 py-4 bottom_to_top_ani">
       <div className="flex items-center gap-4">
         <h4 className="text-lg max-sm:text-sm font-medium text-secondary-color">
           {title}

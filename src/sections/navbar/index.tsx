@@ -110,7 +110,7 @@ const MobileNavbar = () => {
                     return (
                       <HiUserCircle
                         onClick={() =>
-                          handleMobileNavbar({ target: "profile", path: `${nav.path}${loggedInUserName}` })
+                          handleMobileNavbar({ target: "profile", path: `${nav.path}${loggedInUserName?.replace(" ", "").toLowerCase()}` })
                         }
                         size={24}
                       />

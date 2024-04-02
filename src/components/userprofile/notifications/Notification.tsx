@@ -4,7 +4,7 @@ import ntfLogo from "@/assets/brand/logo.png"
 
 const Notification = () => {
   return (
-    <div className='flex justify-start py-4 border-t gap-3 smooth_transition hover:bg-primary-color/5 px-2 max-md:px-0' >
+    <div className='flex bottom_to_top_ani justify-start py-4 border-t gap-3 smooth_transition hover:bg-primary-color/5 px-2 max-md:px-0' >
         <div className='flex min-w-[60px] max-w-[60px] items-center justify-center' >
             <Image src={ntfLogo} alt='notifications' />
         </div>

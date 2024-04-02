@@ -8,8 +8,8 @@ import { memo } from "react";
 
 const CartItem = ({cartData}:{cartData:CartItemDataType}) => {
   return (
-    <div className="w-full">
-      <div className="flex border-b max-sm:hidden border-secondary-color py-4 ">
+    <div className="w-full bottom_to_top_ani smooth_transition">
+      <div className="flex smooth_transition border-b max-sm:hidden border-secondary-color py-4 ">
         <div className="max-w-[250px] max-sm:max-w-[200px] rounded-lg overflow-hidden shadow-lg">
           <Image src={cartData.product.thumbnail} priority={false} alt="cart image" width={250} height={200} />
         </div>
@@ -53,7 +53,7 @@ const CartItem = ({cartData}:{cartData:CartItemDataType}) => {
 
 const MobileCartItm = ({cartData}:{cartData:CartItemDataType}) => {
   return (
-    <div className="flex gap-2 border-b sm:hidden border-secondary-color py-4">
+    <div className="flex gap-2 bottom_to_top_ani border-b sm:hidden border-secondary-color py-4">
       <div className="w-[80px] rounded-lg overflow-hidden space-y-1">
         <Image src={cartData.product.thumbnail} placeholder="blur" blurDataURL={cartData.product.thumbnail} priority={false} alt="product" width={80} height={100} />
         <div className="border rounded-b-lg px-2">
