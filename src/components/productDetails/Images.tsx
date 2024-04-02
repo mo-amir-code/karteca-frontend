@@ -52,10 +52,14 @@ const Images = ({
   const handleFavourite = async () => {
     try {
       if (isUserLoggedIn) {
-        if (isWishlist)
+        if (isWishlist){
+          setIsWishlist(false);
           await deleteItemFromUserWishlist({userId: loggedInUserId!, productId});
-        else
+        }
+        else{
           await addItemToUserWishlist({ userId: loggedInUserId!, productId });
+          setIsWishlist(true);
+        }
       } else router.push("/auth/signin");
     } catch (error) {
       toast.error("Something went wrong!");
