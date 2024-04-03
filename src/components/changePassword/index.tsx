@@ -9,7 +9,7 @@ import { useAppSelector } from "@/redux/hooks";
 import { selectLoggedInUserId } from "@/redux/slices/auth/authSlice";
 import toast from "react-hot-toast";
 import { APIRequestType } from "@/redux/RootTypes";
-import Button from "./Button";
+import SubmitButton from "../auth/SubmitButton";
 
 export interface ChangePasswordType {
   password: string;
@@ -82,7 +82,7 @@ const ChangePassword = () => {
             placeHolder="Enter New Password"
             icon="newPassword"
           />
-          <Button isLoading={isLoading} name="Change Password" />
+          <SubmitButton isLoading={isLoading} name="Change Password" />
         </form>
         <button onClick={()=>handleClose()} className="absolute top-4 right-4 text-red-color" ><IoIosClose size={24} /></button>
       </div>
