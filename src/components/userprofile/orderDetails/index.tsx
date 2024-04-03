@@ -9,7 +9,7 @@ import NotFound from "@/components/notfound/NotFound"
 import { OrderDetailsType } from "@/redux/queries/order/orderTypes"
 
 
-const index = () => {
+const Index = () => {
   const orderId = useAppSelector(selectCurrentOrderId);
   const {data, isLoading, isSuccess, isFetching} = useGetOrderDetailsByIdQuery(orderId!);
 
@@ -26,4 +26,4 @@ const index = () => {
   )
 }
 
-export default memo(index)
+export default memo(Index)
