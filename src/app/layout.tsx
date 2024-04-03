@@ -3,11 +3,17 @@ import "./globals.css";
 import ReduxProvider from "@/components/ReduxProvider";
 import { Toaster } from "react-hot-toast";
 import Headers from "./Headers";
+import { Poppins, Teko } from "next/font/google"
 
 export const metadata: Metadata = {
   title: "Paykart - Earn & Shop",
   description: "Share & Earn money | Shop on PayKart",
 };
+
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800"]
+})
 
 export default function RootLayout({
   children,
@@ -18,9 +24,7 @@ export default function RootLayout({
     <>
       <html lang="en">
         <body
-          className={
-            "max-md:h-screen max-md:overflow-hidden max-md:overflow-y-auto relative"
-          }
+          className={poppins.className + "max-md:h-screen max-md:overflow-hidden max-md:overflow-y-auto relative"}
         >
           <ReduxProvider>{children}</ReduxProvider>
           <Toaster />

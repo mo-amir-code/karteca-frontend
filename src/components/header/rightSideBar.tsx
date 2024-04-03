@@ -13,8 +13,12 @@ import {
   selectLoggedInUserName,
 } from "@/redux/slices/auth/authSlice";
 import { useGetCartCountsQuery } from "@/redux/queries/cart/cartAPI";
-import { setUserCartItems, setUserWishlistItems } from "@/redux/slices/user/userSlice";
+import {
+  setUserCartItems,
+  setUserWishlistItems,
+} from "@/redux/slices/user/userSlice";
 import { useGetUserWishlistItemsQuery } from "@/redux/queries/user/userAPI";
+import useFetchReferEarning from "../customHooks/useFetchReferEarning";
 
 const RightSideBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -24,25 +28,26 @@ const RightSideBar = () => {
   const loggedInUserId = useAppSelector(selectLoggedInUserId);
   const isUserLoggedIn = useAppSelector(selectIsUserLoggedIn);
   const { data, isSuccess } = useGetCartCountsQuery(loggedInUserId!);
-  const { data:wishlistData, isSuccess:wishtlistSuccess } = useGetUserWishlistItemsQuery(loggedInUserId!);
+  const { data: wishlistData, isSuccess: wishtlistSuccess } = useGetUserWishlistItemsQuery(loggedInUserId!);
+  const { referData, referIsSuccess } = useFetchReferEarning(loggedInUserId!);
 
   const handleWallet = () => {
-    if(isUserLoggedIn){
+    if (isUserLoggedIn) {
       router.push(`/user/${loggedInUserName}`);
       dispatch(setProfile({ profile: "dashboard" }));
-    }else router.push("/auth/signin");
+    } else router.push("/auth/signin");
   };
 
-  const handleNavigate = (path:string) => {
-    if(isUserLoggedIn){
+  const handleNavigate = (path: string) => {
+    if (isUserLoggedIn) {
       router.push(path);
-    }else router.push("/auth/signin");
-  }
+    } else router.push("/auth/signin");
+  };
 
   useEffect(() => {
-    if(isUserLoggedIn){
-      if(isSuccess) dispatch(setUserCartItems(data?.data));
-      if(wishtlistSuccess) dispatch(setUserWishlistItems(wishlistData?.data));
+    if (isUserLoggedIn) {
+      if (isSuccess) dispatch(setUserCartItems(data?.data));
+      if (wishtlistSuccess) dispatch(setUserWishlistItems(wishlistData?.data));
     }
   }, [data, wishlistData]);
 
@@ -50,33 +55,49 @@ const RightSideBar = () => {
     <div>
       <ul className="flex items-center justify-end gap-8 max-sm:hidden">
         {navbarData.map((item, idx) => (
-          <li key={idx} onClick={()=>handleNavigate(item.path === "/user/"? `${item.path}${loggedInUserName?.replace(" ", "").toLocaleLowerCase()}` : item.path)} className="flex items-center justify-center gap-2 cursor-pointer" >
-              {(() => {
-                switch (item.name) {
-                  case "Cart":
-                    return (
-                      <div className="relative">
-                        <FaCartShopping
-                          scale={20}
-                          className="text-secondary-color"
-                        />
-                        {data?.data.length? <span className="absolute -top-[55%] text-white w-4 h-4 flex items-center justify-center -right-1/3 text-[10px] p-1 rounded-full bg-primary-color font-semibold" >{data?.data.length}</span> : null }
-                      </div>
-                    );
-                  case "Profile":
-                    return (
-                      <FaUser scale={20} className="text-secondary-color" />
-                    );
-                  default:
-                    return;
-                }
-              })()}
-              <span>{item.name}</span>
+          <li
+            key={idx}
+            onClick={() =>
+              handleNavigate(
+                item.path === "/user/"
+                  ? `${item.path}${loggedInUserName
+                      ?.replace(" ", "")
+                      .toLocaleLowerCase()}`
+                  : item.path
+              )
+            }
+            className="flex items-center justify-center gap-2 cursor-pointer"
+          >
+            {(() => {
+              switch (item.name) {
+                case "Cart":
+                  return (
+                    <div className="relative">
+                      <FaCartShopping
+                        scale={20}
+                        className="text-secondary-color"
+                      />
+                      {data?.data.length ? (
+                        <span className="absolute -top-[55%] text-white w-4 h-4 flex items-center justify-center -right-1/3 text-[10px] p-1 rounded-full bg-primary-color font-semibold">
+                          {data?.data.length}
+                        </span>
+                      ) : null}
+                    </div>
+                  );
+                case "Profile":
+                  return <FaUser scale={20} className="text-secondary-color" />;
+                default:
+                  return;
+              }
+            })()}
+            <span>{item.name}</span>
           </li>
         ))}
-        <li>
-          <Wallet handleClick={handleWallet} amount="1" />
-        </li>
+        {!!referIsSuccess && (
+          <li>
+            <Wallet handleClick={handleWallet} amount={referData?.data} />
+          </li>
+        )}
       </ul>
       <span className="w-8 h-8 hidden max-md:block cursor-pointer sm:hidden">
         <button

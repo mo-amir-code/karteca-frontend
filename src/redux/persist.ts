@@ -11,6 +11,7 @@ import cartAPI from "./queries/cart/cartAPI";
 import userSlice from "./slices/user/userSlice";
 import orderAPI from "./queries/order/orderAPI";
 import paymentAPI from "./queries/payment/paymentAPI";
+import referAPI from "./queries/refer/referAPI";
 
 
 const appPersistConfig: PersistConfig<any> = {
@@ -36,6 +37,7 @@ const rootReducer = combineReducers({
     [cartAPI.reducerPath]: cartAPI.reducer,
     [orderAPI.reducerPath]: orderAPI.reducer,
     [paymentAPI.reducerPath]: paymentAPI.reducer,
+    [referAPI.reducerPath]: referAPI.reducer
 });
 
 
