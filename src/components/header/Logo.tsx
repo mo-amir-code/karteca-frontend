@@ -4,14 +4,16 @@ import Link from "next/link";
 import logo from "@/assets/brand/logo.png";
 import { FiArrowLeft } from "react-icons/fi";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { selectMobile, setMobileProfileMenu } from "@/redux/slices/app/appSlice";
+import { selectDesktop, selectMobile, setMobileProfileMenu, setProfile } from "@/redux/slices/app/appSlice";
 
 const Logo = () => {
-  const { isProfileMenuOpen } = useAppSelector(selectMobile);
   const dispatch = useAppDispatch();
+  const { isProfileMenuOpen } = useAppSelector(selectMobile);
+  const { profile } = useAppSelector(selectDesktop);
   
   const handleMobileMenu = () => {
-    dispatch(setMobileProfileMenu({isProfileMenuOpen: true}))
+    if(profile === "orderDetails") dispatch(setProfile({profile: "orders"}));
+    else dispatch(setMobileProfileMenu({isProfileMenuOpen: true}))
   }
 
   return (

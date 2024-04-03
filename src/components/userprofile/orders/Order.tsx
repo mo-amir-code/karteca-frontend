@@ -1,21 +1,23 @@
+"use client"
 import { GetOrderType } from "@/redux/queries/order/orderTypes";
-import Image from "next/image"
-import { MdKeyboardArrowRight } from "react-icons/md";
+import OrderInfo from "./OrderInfo";
+import { useAppDispatch } from "@/redux/hooks";
+import { useCallback } from "react";
+import { setProfile } from "@/redux/slices/app/appSlice";
 
 
 const Order = ({isFirst, data}:{isFirst?:boolean, data:GetOrderType}) => {
+  const dispatch = useAppDispatch();
+
+
+  const handleOrderSet = useCallback(() => {
+    dispatch(setProfile({profile: "orderDetails"}));
+  }, [dispatch, data._id]);
+
+
   return (
-    <div className={`flex bottom_to_top_ani items-center py-4 gap-4 border-b ${isFirst && "border-t"} relative smooth_transition group md:hover:bg-tertiary-color px-2`} >
-        <div className="w-[60px] max-sm:w-[40px]" >
-            <Image src={data?.product?.thumbnail} alt={data?.product?.title} width={60} height={60}/>
-        </div>
-        <div>
-            <span className="text-secondary-color max-sm:text-sm" >Delivery on Jan 16</span>
-            <p className="text-sm text-gray-500 max-sm:text-xs" >{data?.product?.title}</p>
-        </div>
-        <span className="absolute top-1/2 group-hover:bg-tertiary-color -translate-y-1/2 right-2 bg-white p-4" >
-           <MdKeyboardArrowRight size={20} />
-        </span>
+    <div onClick={()=> handleOrderSet()} >
+      <OrderInfo isFirst={isFirst} data={data} />
     </div>
   )
 }
