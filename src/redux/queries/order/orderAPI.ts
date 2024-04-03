@@ -30,10 +30,19 @@ const orderAPI = createApi({
                 credentials: "include",
             }),
             providesTags: ["updateOrder"]
+        }),
+        getOrderDetailsById: builder.query<APIRequestType, string>({
+            query: (orderId) => ({
+                url: `/details/${orderId}`,
+                headers:{
+                    "Content-Type":"application/json"
+                },
+                credentials: "include",
+            })
         })
     })
 });
 
-export const {useCreateOrderMutation, useGetOrderQuery} = orderAPI;
+export const {useCreateOrderMutation, useGetOrderQuery, useGetOrderDetailsByIdQuery} = orderAPI;
 
 export default orderAPI

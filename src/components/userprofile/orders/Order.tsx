@@ -3,7 +3,7 @@ import { GetOrderType } from "@/redux/queries/order/orderTypes";
 import OrderInfo from "./OrderInfo";
 import { useAppDispatch } from "@/redux/hooks";
 import { useCallback } from "react";
-import { setProfile } from "@/redux/slices/app/appSlice";
+import { setCurrentOrderId, setProfile } from "@/redux/slices/app/appSlice";
 
 
 const Order = ({isFirst, data}:{isFirst?:boolean, data:GetOrderType}) => {
@@ -12,6 +12,7 @@ const Order = ({isFirst, data}:{isFirst?:boolean, data:GetOrderType}) => {
 
   const handleOrderSet = useCallback(() => {
     dispatch(setProfile({profile: "orderDetails"}));
+    dispatch(setCurrentOrderId(data._id));
   }, [dispatch, data._id]);
 
 

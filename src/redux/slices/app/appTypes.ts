@@ -1,7 +1,8 @@
 export interface AppSliceType{
     desktop:DesktopApp,
     mobile:MobileApp,
-    isPaymentStatusPageEnable: boolean
+    isPaymentStatusPageEnable: boolean,
+    currentOrderId: string | null
 }
 
 interface DesktopApp{

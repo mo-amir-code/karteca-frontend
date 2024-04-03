@@ -130,3 +130,19 @@ export const filterTagFields = (
   else filter = [...filter, { field: field, value: value as string }];
   return filter
 };
+
+export const deliveryStatus = (status:string) => {
+  switch(status){
+    case "panding":
+      return 1;
+    case "dispatched":
+      return 36;
+    case "shipped":
+      return 66;
+    case "delivered":
+      return 100;
+    default:
+      return 1;
+  }
+
+}
