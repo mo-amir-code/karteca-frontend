@@ -5,6 +5,7 @@ import React, { memo } from "react";
 import useProfileIcons from "../customHooks/useProfileIcons";
 import { logoutUser } from "@/redux/slices/auth/authSlice";
 import { useRouter } from "next/navigation";
+import { useUserContext } from "@/context/UserContext";
 
 const ProfilePath = ({
   list,
@@ -18,6 +19,7 @@ const ProfilePath = ({
   const dispatch = useAppDispatch();
   const desktop = useAppSelector(selectDesktop);
   const router = useRouter();
+  const {dispatch:userContextDispatch} = useUserContext();
 
   const handleProfileNavigate = (target: string) => {
     let newTarget;
@@ -40,6 +42,9 @@ const ProfilePath = ({
         break;
       case "Notifications":
         newTarget = "notification";
+        break;
+      case "Change Password":
+        userContextDispatch({type:"changePassword", payload: true})
         break;
       case "Wishlist":
         newTarget = "wishlist";

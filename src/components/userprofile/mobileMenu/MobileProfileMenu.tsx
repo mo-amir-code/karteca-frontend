@@ -7,11 +7,13 @@ import { useAppDispatch } from "@/redux/hooks";
 import { setMobileProfileMenu, setProfile } from "@/redux/slices/app/appSlice";
 import { logoutUser } from "@/redux/slices/auth/authSlice";
 import { useRouter } from "next/navigation";
+import { useUserContext } from "@/context/UserContext";
 
 const MobileProfileMenu = ({title, list, icon}:{title:string, list?:[{name:string}], icon:string}) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const dispatch = useAppDispatch();
   const router = useRouter();
+  const { dispatch:userContextDispatch } = useUserContext();
 
   const handleNavigate = ({target}:{target:string}) => {
     let newTarget;
@@ -30,6 +32,8 @@ const MobileProfileMenu = ({title, list, icon}:{title:string, list?:[{name:strin
         break;
       case "Notifications":
         newTarget = "notification";
+      case "Change Password":
+        userContextDispatch({type: "changePassword", payload: true});
         break;
       case "Wishlist":
         newTarget = "wishlist";

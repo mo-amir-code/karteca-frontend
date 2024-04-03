@@ -1,7 +1,7 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { fetchBaseQueryBaseUrlConfiguration } from "../products/productsAPI";
 import { APIRequestType } from "@/redux/RootTypes";
-import { UpdateUserType, UserAddressType } from "./userTypes";
+import { APIChangePasswordType, UpdateUserType, UserAddressType } from "./userTypes";
 
 const userAPI = createApi({
   reducerPath: "userAPI",
@@ -119,6 +119,17 @@ const userAPI = createApi({
         body: updateAddress,
       }),
       invalidatesTags: ["updateAddress"],
+    }),
+    updateUserPassword: builder.mutation<APIRequestType, APIChangePasswordType>({
+      query: (updatePassword) => ({
+        url: "password",
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+        body: updatePassword,
+      })
     })
   }),
 });
@@ -133,7 +144,8 @@ export const {
   useGetUserWishlistItemsQuery,
   useAddUserWishlistItemMutation,
   useDeleteUserWishlistItemMutation,
-  useGetUserWishlistQuery
+  useGetUserWishlistQuery,
+  useUpdateUserPasswordMutation
 } = userAPI;
 
 export default userAPI;

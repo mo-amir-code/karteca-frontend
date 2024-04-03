@@ -1,3 +1,5 @@
+import { ChangePasswordType } from "@/components/changePassword";
+
 export interface UpdateUserType {
     userId: string,
     name:string,
@@ -21,3 +23,7 @@ export interface UserAddressType extends UserAddressFormType{
     _id?: string;
     userId: string;
   }
+
+export interface APIChangePasswordType extends ChangePasswordType{
+    userId: string
+}

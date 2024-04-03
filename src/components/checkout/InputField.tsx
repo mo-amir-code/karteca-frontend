@@ -9,6 +9,7 @@ import { MdOutlinePassword } from "react-icons/md";
 import { LuNetwork } from "react-icons/lu";
 import { BsGenderAmbiguous } from "react-icons/bs";
 import { MdHomeWork } from "react-icons/md";
+import { MdLockReset } from "react-icons/md";
 
 
 const InputField = ({
@@ -59,6 +60,8 @@ const InputField = ({
                 return <MdOutlinePassword size={20} />;
               case "confirmPassword":
                 return <MdOutlinePassword size={20} />;
+              case "newPassword":
+                return <MdLockReset size={20} />;
               case "otp":
                 return <MdOutlinePassword size={20} />;
               case "type":
