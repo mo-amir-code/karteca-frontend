@@ -7,15 +7,18 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { selectLoggedInUserId, selectLoggedInUserName } from "@/redux/slices/auth/authSlice";
 import { setMobileProfileMenu, setPaymentStatusPage, setProfile } from "@/redux/slices/app/appSlice";
 import { useGetCartCountsQuery, useGetCartItemsQuery } from "@/redux/queries/cart/cartAPI";
+import { useQueryContext } from "@/context/QueryContext";
 
 const Success = () => {
   const [count, setCount] = useState<number>(10);
   const router = useRouter();
+  const { queries } = useQueryContext();
   const loggedInUserName = useAppSelector(selectLoggedInUserName);
   const loggedInUserId = useAppSelector(selectLoggedInUserId);
   const dispatch = useAppDispatch();
   const {refetch} = useGetCartCountsQuery(loggedInUserId!);
   const {refetch:refetchCartItems} = useGetCartItemsQuery(loggedInUserId!);
+  const mode = queries.get("mode");
   
   const handleRedirect = async () => {
     await refetch();
@@ -51,7 +54,7 @@ const Success = () => {
           className="w-[400px] max-md:w-[300px] max-sm:w-[200px]"
         />
         <p className="w-full text-green-color md:text-2xl text-xl text-center font-semibold">
-          Payment Recieved
+          {mode === "online"? "Payment Recieved" : "Order placed"}
         </p>
         <span className="max-md:text-sm">
           You will be redirect in {count} seconds

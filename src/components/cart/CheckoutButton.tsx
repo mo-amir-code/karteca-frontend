@@ -24,6 +24,10 @@ import {
 } from "@/redux/queries/payment/paymentType";
 import { setPaymentStatusPage } from "@/redux/slices/app/appSlice";
 
+interface PaymentModeType extends APIRequestType{
+  paymentMode: "online" | "cash"
+}
+
 const CheckoutButton = () => {
   const router = useRouter();
   const path = usePathname().split("/").at(-1);
@@ -34,6 +38,32 @@ const CheckoutButton = () => {
   const [createOrder] = useCreateOrderMutation();
   const [verifyPayment] = useVerifyPaymentMutation();
   const dispatch = useAppDispatch();
+
+  const handleVerifyPayment = async ({
+    response,
+    transactionId,
+  }: {
+    response: RazorpayReponseType;
+    transactionId: string;
+  }) => {
+    const verifyAPIData: VerifyPaymentType = {
+      orderId: response.razorpay_order_id,
+      paymentId: response.razorpay_payment_id,
+      signature: response.razorpay_signature,
+      transactionId: transactionId,
+    };
+
+    const { data: verifyData } = (await verifyPayment(verifyAPIData)) as {
+      data: APIRequestType;
+    };
+
+    if (verifyData?.success) {
+      dispatch(setPaymentStatusPage(true));
+      router.push("/payment/success");
+    } else {
+      router.push("/payment/failure");
+    }
+  };
 
   const handleCheckout = useCallback(async () => {
     setIsLoading(true);
@@ -68,11 +98,14 @@ const CheckoutButton = () => {
         userId: loggedInUserId,
       };
 
-      const { data: resData } = (await createOrder(completeOrders)) as {
-        data: APIRequestType;
+      const { data: resData } = (await createOrder(
+        completeOrders
+      )) as {
+        data: PaymentModeType;
+        paymentMode: "cash" | "online";
       };
 
-      if (resData.success) {
+      if (resData?.success && resData.paymentMode === "online") {
         const {
           key,
           name,
@@ -91,29 +124,19 @@ const CheckoutButton = () => {
           amount: amount,
           order_id: orderId,
           image: "",
-          handler: async function (response: RazorpayReponseType) {
-            const verifyAPIData: VerifyPaymentType = {
-              orderId: response.razorpay_order_id,
-              paymentId: response.razorpay_payment_id,
-              signature: response.razorpay_signature,
-              transactionId: transactionId,
-            };
-
-            const { data: verifyData } = (await verifyPayment(verifyAPIData)) as { data: APIRequestType };
-
-            if (verifyData.success) {
-              dispatch(setPaymentStatusPage(true));
-              router.push("/payment/success");
-            } else {
-              router.push("/payment/failure");
-            }
-          },
+          handler: async (response: RazorpayReponseType) =>
+            await handleVerifyPayment({ response, transactionId }),
           prefill,
           theme,
         };
 
         const razr = new window.Razorpay(options);
         razr.open();
+      }
+
+      if (resData?.success && resData.paymentMode === "cash") {
+        dispatch(setPaymentStatusPage(true));
+        router.push("/payment/success?mode=cash");
       }
     } catch (error) {
       toast.error("Something went wrong");
@@ -127,7 +150,7 @@ const CheckoutButton = () => {
     data,
     selectedAddress,
     selectedPaymentMode,
-    createOrder,
+    createOrder
   ]);
 
   return (

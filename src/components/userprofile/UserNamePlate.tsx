@@ -1,3 +1,4 @@
+import UserName from "./UserName"
 
 
 const UserNamePlate = () => {
@@ -8,7 +9,7 @@ const UserNamePlate = () => {
         </div>
         <div className="flex flex-col justify-between py-[3px]" >
             <span className="text-[11px]" >Hello,</span>
-            <span className="text-sm font-medium" >Mo Amir</span>
+            <UserName />
         </div>
     </div>
   )
