@@ -1,10 +1,11 @@
+import { ReferLevelEarningType } from "@/redux/queries/refer/referTypes"
 import TableHeading from "./TableHeading"
 
 
-const LevelEarning = () => {
+const LevelEarning = ({data, currenAmount}:{data:ReferLevelEarningType[], currenAmount:number}) => {
   return (
     <div className="space-y-4" >
-        <TableHeading isWallet title="Levels Of Earning" subline="Your referral earning of each level" />
+        <TableHeading amount={currenAmount} isWallet title="Levels Of Earning" subline="Your referral earning of each level" />
         <table className="w-full bg-white" >
             <thead className="py-4 rounded-lg max-md:text-sm text-text-color bg-primary-color" >
                 <tr>
@@ -15,24 +16,14 @@ const LevelEarning = () => {
                 </tr>
             </thead>
             <tbody className="text-sm max-md:text-xs space-y-2" >
-                <tr className="border" >
-                    <td className="text-center" >1</td>
-                    <td className="text-center" >12</td>
-                    <td className="text-center" >24</td>
-                    <td className="text-center" >244</td>
+                {data.map((level, idx) => (
+                <tr key={idx} className="border" >
+                    <td className="text-center" >{level.level}</td>
+                    <td className="text-center" >{level.withdrawalDisabledUsers}</td>
+                    <td className="text-center" >{level.withdrawalEnabledUsers}</td>
+                    <td className="text-center" >₹{level.earning}</td>
                 </tr>
-                <tr className="border" >
-                    <td className="text-center" >1</td>
-                    <td className="text-center" >12</td>
-                    <td className="text-center" >24</td>
-                    <td className="text-center" >244</td>
-                </tr>
-                <tr className="border" >
-                    <td className="text-center" >1</td>
-                    <td className="text-center" >12</td>
-                    <td className="text-center" >24</td>
-                    <td className="text-center" >244</td>
-                </tr>
+                ))}
             </tbody>
         </table>
     </div>

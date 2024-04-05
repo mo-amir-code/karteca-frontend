@@ -2,7 +2,7 @@ import Image from "next/image";
 import refer from "@/assets/refer/refer.svg";
 import ShareAndCode from "./ShareAndCode";
 
-const ReferNow = () => {
+const ReferNow = ({referCode}:{referCode:string}) => {
   return (
     <div className="flex max-sm:gap-2 w-full mt-32">
       <div className="w-[400px] max-md:w-[200px] max-sm:w-[150px] flex items-center justify-center">
@@ -21,7 +21,7 @@ const ReferNow = () => {
             using your earning money.
           </p>
         </div>
-        <ShareAndCode referCode="6GY48L" />
+        <ShareAndCode referCode={referCode} />
       </div>
     </div>
   );

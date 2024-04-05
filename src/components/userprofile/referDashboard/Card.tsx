@@ -10,7 +10,7 @@ const Card = ({
 }: {
   type: string;
   msg: string;
-  amount: number;
+  amount?: number;
   isWithdrawalActive?: boolean;
 }) => {
   return (

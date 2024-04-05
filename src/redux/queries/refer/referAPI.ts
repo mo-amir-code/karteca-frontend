@@ -15,9 +15,18 @@ const referAPI = createApi({
         credentials: "include",
       }),
     }),
+    getReferralDashboard: builder.query<APIRequestType, string>({
+      query: (userId) => ({
+        url: `dashboard/${userId}`,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      }),
+    }),
   }),
 });
 
-export const { useGetReferralEarningQuery } = referAPI;
+export const { useGetReferralEarningQuery, useGetReferralDashboardQuery } = referAPI;
 
 export default referAPI;
