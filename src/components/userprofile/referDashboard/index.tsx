@@ -16,7 +16,7 @@ const Index = () => {
   const {data, isLoading, isFetching, isError, isSuccess} = useGetReferralDashboardQuery(loggedInUserId!) as ReferDashboardAPIType;
 
   if(isLoading || isFetching){
-    return <FullLoader />
+    return <FullLoader />;
   }
 
   if(isError){
