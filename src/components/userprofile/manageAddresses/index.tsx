@@ -4,7 +4,6 @@ import Addresses from './Addresses'
 
 const index = () => {
   
-
   return (
     <div className='space-y-8' >
         <AddAddress />

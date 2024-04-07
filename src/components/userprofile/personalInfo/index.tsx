@@ -11,12 +11,12 @@ import {
 } from "@/redux/queries/user/userAPI";
 import { useAppSelector } from "@/redux/hooks";
 import { selectLoggedInUserId } from "@/redux/slices/auth/authSlice";
-import FullLoader from "@/components/loader/FullLoader";
 import toast from "react-hot-toast";
 import CommonButton from "@/components/buttons/CommonButton";
 import { useUserContext } from "@/context/UserContext";
 import { UpdateUserType } from "@/redux/queries/user/userTypes";
 import { APIRequestType } from "@/redux/RootTypes";
+import IsLoading from "@/HOC/IsLoading";
 
 const PersonalInfoIndex = () => {
   const [isButtonLoading, setIsButtonLoading] = useState<boolean>(false);
@@ -26,14 +26,6 @@ const PersonalInfoIndex = () => {
   );
   const [updateUser] = useUpdateUserInfoMutation();
   const { name, email, phone, gender, dispatch } = useUserContext();
-
-  if (isError && loggedInUserId) {
-    toast.error("Something went wrong!");
-  }
-
-  if (isLoading) {
-    return <FullLoader />;
-  }
 
   const handleSubmit = async () => {
     if (!name || !email || !phone || !gender) {
@@ -51,19 +43,19 @@ const PersonalInfoIndex = () => {
       gender,
     };
 
-    dispatch({type: "disableedit"});
+    dispatch({ type: "disableedit" });
 
     const { data } = (await updateUser(newState)) as { data: APIRequestType };
 
     if (!data.success) toast.error("Internal Error Occurred!");
-    else toast.success("Changes has been done")
+    else toast.success("Changes has been done");
 
     setIsButtonLoading(false);
   };
 
   return (
     <>
-      {isSuccess ? (
+      <IsLoading isLoading={isLoading} isSuccess={isSuccess} isError={isError}>
         <div className="space-y-6 max-w-[600px]">
           <div className="space-y-4">
             {/* Name area */}
@@ -83,11 +75,13 @@ const PersonalInfoIndex = () => {
               <PersonalMobile phone={data?.data?.phone} />
             </UserPersonalHOC>
           </div>
-          <CommonButton name="Submit" handleClick={handleSubmit} isLoading={isButtonLoading} />
+          <CommonButton
+            name="Submit"
+            handleClick={handleSubmit}
+            isLoading={isButtonLoading}
+          />
         </div>
-      ) : (
-        <div>Server error</div>
-      )}
+      </IsLoading>
     </>
   );
 };

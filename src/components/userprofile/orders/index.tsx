@@ -6,28 +6,33 @@ import { selectLoggedInUserId } from "@/redux/slices/auth/authSlice";
 import FullLoader from "@/components/loader/FullLoader";
 import { GetOrderType } from "@/redux/queries/order/orderTypes";
 import Empty from "@/components/notfound/Empty";
+import IsLoading from "@/HOC/IsLoading";
 
 const Index = () => {
   const loggedInUserId = useAppSelector(selectLoggedInUserId);
-  const {data, isLoading, isFetching, isSuccess} = useGetOrderQuery(loggedInUserId!);
+  const { data, isLoading, isFetching, isSuccess, isError } = useGetOrderQuery(
+    loggedInUserId!
+  );
 
-  if(isLoading || isFetching){
-    return <FullLoader />
+  if (isLoading || isFetching) {
+    return <FullLoader />;
   }
 
   return (
     <div className="space-y-8">
       <h2 className="text-secondary-color font-medium">My Orders</h2>
-      <div>
-        {
-          !!isSuccess && data?.data?.length>0? data?.data?.map((order:GetOrderType, idx:number) => {
-            if(idx === 0) return <Order isFirst data={order} />
-            else return <Order data={order} />
-          })
-          : 
-          <Empty msg="There is nothing" />
-        }
-      </div>
+      <IsLoading isLoading={isLoading || isFetching} isSuccess={isSuccess} isError={isError} >
+        <div>
+          {data?.data?.length > 0 ? (
+            data?.data?.map((order: GetOrderType, idx: number) => {
+              if (idx === 0) return <Order isFirst data={order} />;
+              else return <Order data={order} />;
+            })
+          ) : (
+            <Empty msg="There is nothing" />
+          )}
+        </div>
+      </IsLoading>
     </div>
   );
 };

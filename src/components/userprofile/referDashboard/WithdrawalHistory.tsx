@@ -10,22 +10,33 @@ const WithdrawalHistory = ({ data }: { data: ReferWithdrawalType[] }) => {
         subline="Your withdrawal history"
       />
       <table className="w-full bg-white">
-        <thead className="py-4 text-text-color rounded-lg max-md:text-sm bg-primary-color">
-          <tr>
-            <th>Date</th>
-            <th>Amount</th>
-            <th>Status</th>
-          </tr>
-        </thead>
-        <tbody className="text-sm max-md:text-xs space-y-2">
-          {data.map((withdrawal) => (
-            <tr key={withdrawal._id} className="border">
-              <td className="text-center">12/12/1212</td>
-              <td className="text-center">₹{withdrawal.amount}</td>
-              <td style={{color: selectWithdrawalColor(withdrawal.status)}} className="text-center">{withdrawal.status}</td>
-            </tr>
-          ))}
-        </tbody>
+        {data.length ? (
+          <>
+            <thead className="py-4 text-text-color rounded-lg max-md:text-sm bg-primary-color">
+              <tr>
+                <th>Date</th>
+                <th>Amount</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody className="text-sm max-md:text-xs space-y-2">
+              {data.map((withdrawal) => (
+                <tr key={withdrawal._id} className="border">
+                  <td className="text-center">12/12/1212</td>
+                  <td className="text-center">₹{withdrawal.amount}</td>
+                  <td
+                    style={{ color: selectWithdrawalColor(withdrawal.status) }}
+                    className="text-center"
+                  >
+                    {withdrawal.status}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </>
+        ) : (
+          <p className="text-center w-full">0 Withdrawal</p>
+        )}
       </table>
     </div>
   );

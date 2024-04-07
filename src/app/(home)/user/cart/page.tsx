@@ -2,6 +2,7 @@
 import CartBill from "@/components/cart/CartBill";
 import CartItems from "@/components/cart/CartItems";
 import useFetchCartItems from "@/components/customHooks/useFetchCartItems";
+import Error from "@/components/error/Error";
 import FullLoader from "@/components/loader/FullLoader";
 import Empty from "@/components/notfound/Empty";
 import { CartItemDataType } from "@/redux/queries/cart/cartTypes";
@@ -9,7 +10,8 @@ import { memo } from "react";
 import toast from "react-hot-toast";
 
 const Cart = () => {
-  const {data, totalAmount, isSuccess, isLoading, isError} = useFetchCartItems();
+  const { data, totalAmount, isSuccess, isLoading, isError } =
+    useFetchCartItems();
 
   if (isError) {
     toast.error("Internal Error Occurred");
@@ -18,7 +20,6 @@ const Cart = () => {
   if (isLoading) {
     return <FullLoader />;
   }
-  
 
   return (
     <div className="mx-auto w-full">
@@ -31,10 +32,12 @@ const Cart = () => {
             </div>
           </div>
         ) : (
-          <div className="flex items-center justify-center min-h-[80vh] max-md:min-h-[65vh]" ><Empty msg="Items Not Found" /></div>
+          <div className="flex items-center justify-center min-h-[80vh] max-md:min-h-[65vh]">
+            <Empty msg="Items Not Found" />
+          </div>
         )
       ) : (
-        <h2>Server Error</h2>
+        <Error />
       )}
     </div>
   );
