@@ -35,7 +35,7 @@ const WithdrawalHistory = ({ data }: { data: ReferWithdrawalType[] }) => {
             </tbody>
           </>
         ) : (
-          <p className="text-center w-full">0 Withdrawal</p>
+          <p className="text-center w-full max-md:text-sm">0 Withdrawal</p>
         )}
       </table>
     </div>

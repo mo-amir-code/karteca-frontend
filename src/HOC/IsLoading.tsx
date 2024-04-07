@@ -14,6 +14,8 @@ const IsLoading = ({
   isSuccess?:boolean,
   isError?: boolean
 }) => {
+
+
   if (isLoading) {
     return (
       <div className="h-[300px] flex items-center justify-center w-full">
@@ -24,11 +26,8 @@ const IsLoading = ({
 
 
 
-  if(isError){
+  if(isError && !isSuccess){
     toast.error("Something went wrong!");
-  }
-
-  if(!isSuccess){
     return <Error />
   }
 

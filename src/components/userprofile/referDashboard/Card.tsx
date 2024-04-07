@@ -15,7 +15,7 @@ const Card = ({
   isWithdrawalActive?: boolean;
 }) => {
   return (
-    <div className="p-3 w-[120px] max-sm:w-[100px transition-all duration-200 space-y-1 shadow-md rounded-[12px] bg-white text-secondary-color">
+    <div className="p-3 w-[120px] max-sm:w-[100px] transition-all duration-200 space-y-1 shadow-md rounded-[12px] bg-white text-secondary-color">
       {(() => {
         switch (type) {
           case "totalEarning":
@@ -34,7 +34,7 @@ const Card = ({
             return;
         }
       })()}
-      <p className="text-xs max-sm:text-[10px]">{msg}</p>
+      <p className="text-xs max-sm:text-[10px] text-wrap">{msg}</p>
       <CardButton type={type} amount={amount} isWithdrawalActive={isWithdrawalActive} />
     </div>
   );

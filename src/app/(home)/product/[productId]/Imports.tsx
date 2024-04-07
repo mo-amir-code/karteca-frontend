@@ -7,16 +7,16 @@ import { useParams } from "next/navigation";
 
 const Imports = () => {
   const { productId } = useParams();
-  const { data, isLoading, isSuccess } = useGetProductByIdQuery(
+  const { data, isLoading, isSuccess, isError } = useGetProductByIdQuery(
     productId.toString() || "123465456"
   );
 
 
   return (
     <>
-      <IsLoading isLoading={false} isSuccess={isSuccess}>
+      <IsLoading isLoading={isLoading} isSuccess={isSuccess} isError={isError}>
         <>
-          <Hero data={data?.data.product as ProductDetailsType} totalRating={data?.data.totalRating} totalReviews={data?.data.totalReviews} avgRating={data?.data.avgRating} />
+          <Hero data={data?.data?.product as ProductDetailsType} totalRating={data?.data.totalRating} totalReviews={data?.data.totalReviews} avgRating={data?.data.avgRating} />
           <ProductSpecifications description={data?.data.product.description} highlights={data?.data.product.highlights} specs={data?.data.product.specifications} warranty={data?.data.product.warranty} />
         </>
       </IsLoading>
