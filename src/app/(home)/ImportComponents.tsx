@@ -9,23 +9,19 @@ import FooterBanner from "../../components/footerBanner/FooterBanner";
 import HeroSlider from "../../components/heroSlider";
 import TopProducts from "../../components/topProducts";
 import { memo } from "react";
-import Error from "@/components/error/Error";
 
 const ImportComponents = () => {
   const {
     isLoading: isTopLoading,
-    data: topData,
-    isSuccess: isTopSuccess,
+    data: topData
   } = useGetTopProductsQuery("");
   const {
     isLoading: isLatestLoading,
-    data: latestData,
-    isSuccess: isLatestSuccess,
+    data: latestData
   } = useGetLatestProductsQuery("");
   const {
     isLoading: isCombosLoading,
-    data: combosData,
-    isSuccess: isCombosSuccess,
+    data: combosData
   } = useGetBestCombosProductsQuery("");
 
   // useEffect(() => {
@@ -61,7 +57,6 @@ const ImportComponents = () => {
     <>
       <HeroSlider />
       <Categories />
-      {(isTopSuccess || isLatestSuccess || isCombosSuccess) ? (
         <>
           <TopProducts
             products={topData?.success ? topData.data : []}
@@ -79,9 +74,6 @@ const ImportComponents = () => {
             text="Best Combo's"
           />
         </>
-      ) : (
-        <Error />
-      )}
       <FooterBanner />
     </>
   );
