@@ -11,7 +11,10 @@ const initialState = {
         searchTag: null
     },
     isPaymentStatusPageEnable: false,
-    currentOrderId: null
+    currentOrderId: null,
+    refer:{
+        isAddMoneyModalOpen: false
+    }
 } as AppSliceType
 
 
@@ -35,14 +38,18 @@ const appSlice = createSlice({
         setCurrentOrderId(state, action){
             state.currentOrderId = action.payload;
         },
+        setReferAddMoneyModal(state, action){
+            state.refer.isAddMoneyModalOpen = action.payload;
+        },
     }
 });
 
-export const {setProfile, setMobileProfileMenu, setPaymentStatusPage, setSearchTag, setCurrentOrderId} = appSlice.actions;
+export const {setProfile, setMobileProfileMenu, setPaymentStatusPage, setSearchTag, setCurrentOrderId, setReferAddMoneyModal} = appSlice.actions;
 export const selectDesktop = (state: RootState) => state.app.desktop;
 export const selectMobile = (state: RootState) => state.app.mobile;
 export const selectIsPaymentStatusPageEnable = (state: RootState) => state.app.isPaymentStatusPageEnable;
 export const selectSearchTag = (state: RootState) => state.app.mobile.searchTag;
 export const selectCurrentOrderId = (state: RootState) => state.app.currentOrderId;
+export const selectReferAddMoneyModal = (state: RootState) => state.app.refer.isAddMoneyModalOpen;
 
 export default appSlice

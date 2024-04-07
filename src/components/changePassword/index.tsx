@@ -63,7 +63,7 @@ const ChangePassword = () => {
   }, []);
 
   return (
-    <div className="w-full h-full flex bg-black/50 items-center justify-center absolute_center">
+    <div className="w-full h-full flex bg-black/50 items-center justify-center fixed_center">
       <div className="w-[500px] max-md:w-[400px] mx-4 relative rounded-lg bg-white p-4" >
         <h2 className="text-lg font-medium pb-4 max-md:text-base">Change Password</h2>
         <form

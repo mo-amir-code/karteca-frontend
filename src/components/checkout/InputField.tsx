@@ -10,6 +10,7 @@ import { LuNetwork } from "react-icons/lu";
 import { BsGenderAmbiguous } from "react-icons/bs";
 import { MdHomeWork } from "react-icons/md";
 import { MdLockReset } from "react-icons/md";
+import { FaMoneyBills } from "react-icons/fa6";
 
 
 const InputField = ({
@@ -62,6 +63,8 @@ const InputField = ({
                 return <MdOutlinePassword size={20} />;
               case "newPassword":
                 return <MdLockReset size={20} />;
+              case "amount":
+                return <FaMoneyBills size={20} />;
               case "otp":
                 return <MdOutlinePassword size={20} />;
               case "type":

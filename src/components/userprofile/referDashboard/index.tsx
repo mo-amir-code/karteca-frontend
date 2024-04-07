@@ -9,15 +9,18 @@ import { useAppSelector } from "@/redux/hooks";
 import { selectLoggedInUserId } from "@/redux/slices/auth/authSlice";
 import { ReferDashboardAPIType } from "@/redux/queries/refer/referTypes";
 import IsLoading from "@/HOC/IsLoading";
+import { selectReferAddMoneyModal } from "@/redux/slices/app/appSlice";
+import AddPaymentModal from "./AddPaymentModal";
 
 const Index = () => {
   const loggedInUserId = useAppSelector(selectLoggedInUserId);
-  const { data, isLoading, isFetching, isError, isSuccess } =
-    useGetReferralDashboardQuery(loggedInUserId!) as ReferDashboardAPIType;
+  const { data, isLoading, isFetching, isError, isSuccess } = useGetReferralDashboardQuery(loggedInUserId!) as ReferDashboardAPIType;
+  const isModalOpen = useAppSelector(selectReferAddMoneyModal)
 
   return (
     <>
       <IsLoading isLoading={isFetching || isLoading} isSuccess={isSuccess} isError={isError}>
+        <>
         <div>
           <h4 className="font-medium font-poppins">Dashboard</h4>
           <div className="flex flex-wrap items-center mt-4 max-sm:gap-2 max-sm:justify-center gap-4">
@@ -33,7 +36,7 @@ const Index = () => {
             />
             <Card
               type="isWithdrawalActive"
-              msg={`Bank withdrawal is ${true ? "active" : "locked"}.`}
+              msg={`Bank withdrawal is`}
               isWithdrawalActive={data?.data?.isWithdrawalPermission || false}
             />
           </div>
@@ -46,6 +49,8 @@ const Index = () => {
           </div>
           <ReferNow referCode={data?.data?.referCode} />
         </div>
+        {isModalOpen? <AddPaymentModal /> : null}
+        </>
       </IsLoading>
     </>
   );

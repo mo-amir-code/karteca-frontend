@@ -1,6 +1,7 @@
 import { GiCash } from "react-icons/gi";
 import { IoIosCash } from "react-icons/io";
 import { PiBankFill } from "react-icons/pi";
+import CardButton from "./CardButton";
 
 const Card = ({
   type,
@@ -14,7 +15,7 @@ const Card = ({
   isWithdrawalActive?: boolean;
 }) => {
   return (
-    <div className="p-3 w-[120px] max-sm:w-[100px] smooth_transition space-y-1 shadow-md rounded-[12px] bg-white text-secondary-color">
+    <div className="p-3 w-[120px] max-sm:w-[100px transition-all duration-200 space-y-1 shadow-md rounded-[12px] bg-white text-secondary-color">
       {(() => {
         switch (type) {
           case "totalEarning":
@@ -34,23 +35,7 @@ const Card = ({
         }
       })()}
       <p className="text-xs max-sm:text-[10px]">{msg}</p>
-      <p
-        className={`font-medium max-sm:text-xs ${
-          type === "totalEarning"
-            ? "text-green-color"
-            : type === "totalWithdrawal"
-            ? "text-red-color"
-            : isWithdrawalActive
-            ? "text-green-color text-sm"
-            : "text-red-color text-sm"
-        }`}
-      >
-        {type === "isWithdrawalActive"
-          ? isWithdrawalActive
-            ? "active"
-            : "Lock"
-          : `₹${amount}`}
-      </p>
+      <CardButton type={type} amount={amount} isWithdrawalActive={isWithdrawalActive} />
     </div>
   );
 };

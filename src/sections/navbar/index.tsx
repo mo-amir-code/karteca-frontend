@@ -5,7 +5,6 @@ import { HiWallet, HiUserCircle } from "react-icons/hi2";
 import { FaCartShopping } from "react-icons/fa6";
 import { memo, useCallback, useLayoutEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import Link from "next/link";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import {
   selectDesktop,

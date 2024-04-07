@@ -24,9 +24,20 @@ const referAPI = createApi({
         credentials: "include",
       }),
     }),
+    addReferMoney: builder.mutation<APIRequestType, {userId:string, amount:number}>({
+      query: (data) => ({
+        url: `addmoney`,
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: data,
+        credentials: "include",
+      }),
+    }),
   }),
 });
 
-export const { useGetReferralEarningQuery, useGetReferralDashboardQuery } = referAPI;
+export const { useGetReferralEarningQuery, useGetReferralDashboardQuery, useAddReferMoneyMutation } = referAPI;
 
 export default referAPI;

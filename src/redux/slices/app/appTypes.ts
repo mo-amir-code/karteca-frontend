@@ -2,7 +2,8 @@ export interface AppSliceType{
     desktop:DesktopApp,
     mobile:MobileApp,
     isPaymentStatusPageEnable: boolean,
-    currentOrderId: string | null
+    currentOrderId: string | null,
+    refer: ReferType
 }
 
 interface DesktopApp{
@@ -12,4 +13,8 @@ interface DesktopApp{
 interface MobileApp{
     isProfileMenuOpen: boolean;
     searchTag: string | null
+}
+
+interface ReferType {
+    isAddMoneyModalOpen: boolean
 }

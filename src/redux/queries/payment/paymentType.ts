@@ -8,5 +8,6 @@ export interface VerifyPaymentType{
     orderId: string,
     paymentId: string,
     signature: string,
-    transactionId: string
+    transactionId: string,
+    isFrom?: "refer" | "main"
 }
