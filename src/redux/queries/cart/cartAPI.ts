@@ -28,6 +28,15 @@ const cartAPI = createApi({
       }),
       providesTags: ["updateCart"],
     }),
+    getWallets: builder.query<APIRequestType, string>({
+      query: (userId) => ({
+        url: `/wallets/${userId}`,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      }),
+    }),
     addToCart: builder.mutation<APIRequestType, APICartType>({
       query: (cartData) => ({
         url: "/",
@@ -74,7 +83,8 @@ export const {
   useGetCartItemsQuery,
   useUpdateCartMutation,
   useDeleteCartMutation,
-  useGetCartCountsQuery
+  useGetCartCountsQuery,
+  useGetWalletsQuery
 } = cartAPI;
 
 export default cartAPI;

@@ -1,4 +1,5 @@
 "use client"
+import toast from "react-hot-toast";
 import { FaShare } from "react-icons/fa";
 import { IoCopy } from "react-icons/io5";
 
@@ -6,6 +7,7 @@ const ShareAndCode = ({ referCode }: { referCode: string }) => {
   const handleReferCodeCopy = async () => {
     try {
       await navigator.clipboard.writeText(referCode);
+      toast.success("copied")
     } catch (error) {
       console.log(error);
     }

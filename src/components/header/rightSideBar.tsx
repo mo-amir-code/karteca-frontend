@@ -33,7 +33,7 @@ const RightSideBar = () => {
 
   const handleWallet = () => {
     if (isUserLoggedIn) {
-      router.push(`/user/${loggedInUserName}`);
+      router.push(`/user/${loggedInUserName?.replace(" ", "").toLowerCase()}`);
       dispatch(setProfile({ profile: "dashboard" }));
     } else router.push("/auth/signin");
   };

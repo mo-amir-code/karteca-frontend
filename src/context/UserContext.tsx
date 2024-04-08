@@ -18,7 +18,11 @@ export interface UserContextReducerType {
   selectedAddress: string | null;
   selectedPaymentMode: string,
   itemTotalAmount: number,
-  isChangePassword: boolean
+  isChangePassword: boolean,
+  wallet?: {
+    name: string,
+    amount: number
+  } | null
 }
 
 const userContextReducerInitialeValue = {
@@ -33,7 +37,7 @@ const userContextReducerInitialeValue = {
   selectedAddress: null,
   selectedPaymentMode: "online",
   itemTotalAmount:0,
-  isChangePassword: false
+  isChangePassword: false,
 };
 
 interface UserContextType extends UserContextReducerType {
@@ -82,6 +86,10 @@ const UserContextProvider = ({ children }: { children: ReactNode }) => {
         return {...state, itemTotalAmount: action.payload};
       case "changePassword":
         return {...state, isChangePassword: action.payload};
+      case "addWallet":
+        return {...state, wallet: { name:action.payload.name, amount: action.payload.amount }};
+      case "removeWallet":
+        return {...state, wallet: null};
       default:
         return state;
     }
@@ -94,7 +102,7 @@ const UserContextProvider = ({ children }: { children: ReactNode }) => {
 
   return (
     <UserContext.Provider value={{ ...state, dispatch, isAddressEdit, setIsAddressEdit }}>
-      {children}0
+      {children}
     </UserContext.Provider>
   );
 };

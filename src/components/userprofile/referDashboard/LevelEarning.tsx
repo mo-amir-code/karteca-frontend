@@ -2,10 +2,10 @@ import { ReferLevelEarningType } from "@/redux/queries/refer/referTypes"
 import TableHeading from "./TableHeading"
 
 
-const LevelEarning = ({data, currenAmount}:{data:ReferLevelEarningType[], currenAmount:number}) => {
+const LevelEarning = ({data, currenAmount, isWithdrawalActive}:{data:ReferLevelEarningType[], currenAmount:number, isWithdrawalActive?:boolean}) => {
   return (
     <div className="space-y-4" >
-        <TableHeading amount={currenAmount} isWallet title="Levels Of Earning" subline="Your referral earning of each level" />
+        <TableHeading amount={currenAmount} isWallet={!isWithdrawalActive} title="Levels Of Earning" subline="Your referral earning of each level" />
         <table className="w-full bg-white" >
             <thead className="py-4 rounded-lg max-md:text-sm text-text-color bg-primary-color" >
                 <tr>

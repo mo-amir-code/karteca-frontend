@@ -1,7 +1,11 @@
 export interface PostOrderType {
   userId: string,
-  paymentMode: "online" | "cash",
-  orders: [PostOrderItemType]
+  paymentMode: "online" | "cash" | "wallet",
+  orders: [PostOrderItemType],
+  wallet?:{
+    name: string,
+    amount: number
+  }
 }
 
 export interface PostOrderItemType {

@@ -44,6 +44,7 @@ const Index = () => {
             <LevelEarning
               data={data?.data?.levelsEarning || []}
               currenAmount={data?.data?.currentEarning || 0}
+              isWithdrawalActive={data?.data?.isWithdrawalPermission || false}
             />
             <WithdrawalHistory data={data?.data?.withdrawalHistory || []} />
           </div>

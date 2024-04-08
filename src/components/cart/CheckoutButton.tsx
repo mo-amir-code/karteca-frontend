@@ -25,14 +25,14 @@ import {
 import { setPaymentStatusPage } from "@/redux/slices/app/appSlice";
 
 interface PaymentModeType extends APIRequestType{
-  paymentMode: "online" | "cash"
+  paymentMode: "online" | "cash" | "wallet"
 }
 
 const CheckoutButton = () => {
   const router = useRouter();
   const path = usePathname().split("/").at(-1);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const { selectedAddress, selectedPaymentMode } = useUserContext();
+  const { selectedAddress, selectedPaymentMode, wallet } = useUserContext();
   const { data } = useFetchCartItems();
   const loggedInUserId = useAppSelector(selectLoggedInUserId);
   const [createOrder] = useCreateOrderMutation();
@@ -92,17 +92,24 @@ const CheckoutButton = () => {
         }
       );
 
-      const completeOrders: PostOrderType = {
+      let completeOrders: PostOrderType = {
         orders,
-        paymentMode: selectedPaymentMode as "online" | "cash",
+        paymentMode: selectedPaymentMode as "online" | "cash" | "wallet",
         userId: loggedInUserId,
       };
+
+      if(wallet){
+        completeOrders.wallet = {
+          name: wallet.name,
+          amount: wallet.amount
+        }
+      }
+
 
       const { data: resData } = (await createOrder(
         completeOrders
       )) as {
-        data: PaymentModeType;
-        paymentMode: "cash" | "online";
+        data: PaymentModeType
       };
 
       if (resData?.success && resData.paymentMode === "online") {
@@ -134,7 +141,7 @@ const CheckoutButton = () => {
         razr.open();
       }
 
-      if (resData?.success && resData.paymentMode === "cash") {
+      if (resData?.success && resData.paymentMode === "cash" || resData.paymentMode === "wallet") {
         dispatch(setPaymentStatusPage(true));
         router.push("/payment/success?mode=cash");
       }
@@ -150,7 +157,8 @@ const CheckoutButton = () => {
     data,
     selectedAddress,
     selectedPaymentMode,
-    createOrder
+    createOrder,
+    wallet
   ]);
 
   return (

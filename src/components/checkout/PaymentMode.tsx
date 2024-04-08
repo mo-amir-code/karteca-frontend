@@ -5,7 +5,7 @@ import { IoCash } from "react-icons/io5";
 import { PiContactlessPaymentFill } from "react-icons/pi";
 
 const PaymentMode = () => {
-  const {selectedPaymentMode, dispatch} = useUserContext();
+  const {selectedPaymentMode, wallet, dispatch} = useUserContext();
 
   const handlePaymentModeChange = useCallback(
     (value: "cash" | "online") => {
@@ -38,6 +38,7 @@ const PaymentMode = () => {
           type="radio"
           name="engine"
           checked={selectedPaymentMode === "cash"}
+          disabled={wallet? true : false}
         />
         <span className="radio-tile selectedMode">
           <span className="radio-icon">
