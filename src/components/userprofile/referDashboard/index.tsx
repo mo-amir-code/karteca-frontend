@@ -31,7 +31,7 @@ const Index = () => {
             />
             <Card
               type="totalWithdrawal"
-              msg="Your total withdrawal is"
+              msg="Your total used money is"
               amount={data?.data?.totalWithdrawal || 0}
             />
             <Card

@@ -6,8 +6,8 @@ const WithdrawalHistory = ({ data }: { data: ReferWithdrawalType[] }) => {
   return (
     <div className="space-y-4">
       <TableHeading
-        title="Withdrawal History"
-        subline="Your withdrawal history"
+        title="Transaction History"
+        subline="Your Transaction history"
       />
       <table className="w-full bg-white">
         {data.length ? (
@@ -22,8 +22,8 @@ const WithdrawalHistory = ({ data }: { data: ReferWithdrawalType[] }) => {
             <tbody className="text-sm max-md:text-xs space-y-2">
               {data.map((withdrawal) => (
                 <tr key={withdrawal._id} className="border">
-                  <td className="text-center">12/12/1212</td>
-                  <td className="text-center">₹{withdrawal.amount}</td>
+                  <td className="text-center">{getData(withdrawal.createdAt)}</td>
+                  <td className="text-center">₹{withdrawal.wallet.amount}</td>
                   <td
                     style={{ color: selectWithdrawalColor(withdrawal.status) }}
                     className="text-center"
@@ -41,5 +41,16 @@ const WithdrawalHistory = ({ data }: { data: ReferWithdrawalType[] }) => {
     </div>
   );
 };
+
+const getData = (dateString:string) => {
+  const date = new Date(dateString);
+  const day = date.getDate().toString().padStart(2, '0'); // Get the day of the month
+  const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Get the month (adding 1 because months are zero-indexed)
+  const year = date.getFullYear().toString(); // Get the full year
+  const hour = date.getHours().toString().padStart(2, '0'); // Get the hour
+  const minute = date.getMinutes().toString().padStart(2, '0'); // Get the minute
+
+  return `${day}/${month}/${year} - ${hour}:${minute}`;
+}
 
 export default WithdrawalHistory;
