@@ -31,3 +31,10 @@ export interface ReferDashboardAPIType {
   isSuccess: boolean;
   isError: any;
 }
+
+export interface ShortDashboardType{
+  totalEarning: number,
+  totalWithdrawal: number,
+  totalActive: number,
+  totalDeactive: number
+}

@@ -1,14 +1,26 @@
+"use client"
 import React from 'react'
 import Box from './Box'
+import { useGetShortReferralDashboardQuery } from '@/redux/queries/refer/referAPI'
+import { useAppSelector } from '@/redux/hooks'
+import { selectLoggedInUserId } from '@/redux/slices/auth/authSlice'
+import IsLoading from '@/HOC/IsLoading'
+import { ShortDashboardType } from '@/redux/queries/refer/referTypes'
 
 const ShortDashboard = () => {
+  const loggedInUserId = useAppSelector(selectLoggedInUserId);
+  const { data, isLoading, isSuccess, isFetching, isError } = useGetShortReferralDashboardQuery(loggedInUserId!);
+  const { totalEarning, totalWithdrawal, totalActive, totalDeactive } = data?.data || { totalEarning:0, totalWithdrawal:0, totalActive:0, totalDeactive:0 } as ShortDashboardType;
+
   return (
+    <IsLoading isLoading={isLoading || isFetching} isSuccess={isSuccess} isError={isError} >
     <div className='grid grid-cols-2 gap-2' >
-        <Box amount={104} message={"Withdrawal activated connections"} />
-        <Box amount={32} message={"Withdrawal Locked connections"} />
-        <Box amount={"₹51647"} message={"Total earned money"} />
-        <Box amount={"₹5647"} message={"Total withdrawal money"} />
+        <Box amount={totalActive} message={"Withdrawal activated connections"} />
+        <Box amount={totalDeactive} message={"Withdrawal Locked connections"} />
+        <Box amount={totalEarning} message={"Total earned money"} />
+        <Box amount={totalWithdrawal} message={"Total withdrawal money"} />
     </div>
+    </IsLoading>
   )
 }
 
