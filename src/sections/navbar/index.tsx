@@ -11,8 +11,13 @@ import {
   setMobileProfileMenu,
   setProfile,
 } from "@/redux/slices/app/appSlice";
-import { selectIsUserLoggedIn, selectLoggedInUserName } from "@/redux/slices/auth/authSlice";
+import {
+  selectIsUserLoggedIn,
+  selectLoggedInUserId,
+  selectLoggedInUserName,
+} from "@/redux/slices/auth/authSlice";
 import { selectUserCartItems } from "@/redux/slices/user/userSlice";
+import { useGetUserNotificationsQuery } from "@/redux/queries/notification/notificationAPI";
 
 const MobileNavbar = () => {
   const [selected, setSelected] = useState(0);
@@ -21,11 +26,13 @@ const MobileNavbar = () => {
   const dispatch = useAppDispatch();
   const isUserLoggedIn = useAppSelector(selectIsUserLoggedIn);
   const loggedInUserName = useAppSelector(selectLoggedInUserName);
+  const loggedInUserId = useAppSelector(selectLoggedInUserId);
   const cartItems = useAppSelector(selectUserCartItems);
   const { profile } = useAppSelector(selectDesktop);
+  const { data } = useGetUserNotificationsQuery(loggedInUserId!);
 
   const handleMobileNavbar = useCallback(
-    ({ target, path }: { target: string, path:string }) => {
+    ({ target, path }: { target: string; path: string }) => {
       if (isUserLoggedIn) {
         if (target === "home" || target === "cart" || target === "profile") {
           dispatch(setProfile({ profile: "profile" }));
@@ -36,7 +43,7 @@ const MobileNavbar = () => {
         dispatch(setProfile({ profile: target }));
         dispatch(setMobileProfileMenu({ isProfileMenuOpen: false }));
         router.push(path);
-      }else{
+      } else {
         router.push("/auth/signin");
       }
     },
@@ -78,56 +85,82 @@ const MobileNavbar = () => {
               selected === idx ? "text-primary-color" : ""
             } smooth_transition relative`}
           >
-              {(() => {
-                switch (nav.name) {
-                  case "Home":
-                    return (
-                      <HiHome
-                        onClick={() => handleMobileNavbar({ target: "home", path: nav.path })}
-                        size={24}
-                      />
-                    );
-                  case "Notifications":
-                    return (
+            {(() => {
+              switch (nav.name) {
+                case "Home":
+                  return (
+                    <HiHome
+                      onClick={() =>
+                        handleMobileNavbar({ target: "home", path: nav.path })
+                      }
+                      size={24}
+                    />
+                  );
+                case "Notifications":
+                  return (
+                    <>
                       <HiBell
                         onClick={() =>
-                          handleMobileNavbar({ target: "notification", path: nav.path })
+                          handleMobileNavbar({
+                            target: "notification",
+                            path: nav.path,
+                          })
                         }
                         size={24}
                       />
-                    );
-                  case "Wallet":
-                    return (
-                      <HiWallet
-                        onClick={() =>
-                          handleMobileNavbar({ target: "dashboard", path: `${nav.path}${loggedInUserName}` })
-                        }
-                        size={24}
-                      />
-                    );
-                  case "User":
-                    return (
-                      <HiUserCircle
-                        onClick={() =>
-                          handleMobileNavbar({ target: "profile", path: `${nav.path}${loggedInUserName?.replace(" ", "").toLowerCase()}` })
-                        }
-                        size={24}
-                      />
-                    );
-                  case "Cart":
-                    return (
-                      <>
+                      {data?.data?.notificationCount > 0 ? (
+                        <span className="absolute -top-[40%] text-white w-4 h-4 flex items-center justify-center -right-1/3 text-[10px] p-1 rounded-full bg-primary-color font-semibold">
+                          {data?.data?.notificationCount}
+                        </span>
+                      ) : null}
+                    </>
+                  );
+                case "Wallet":
+                  return (
+                    <HiWallet
+                      onClick={() =>
+                        handleMobileNavbar({
+                          target: "dashboard",
+                          path: `${nav.path}${loggedInUserName}`,
+                        })
+                      }
+                      size={24}
+                    />
+                  );
+                case "User":
+                  return (
+                    <HiUserCircle
+                      onClick={() =>
+                        handleMobileNavbar({
+                          target: "profile",
+                          path: `${nav.path}${loggedInUserName
+                            ?.replace(" ", "")
+                            .toLowerCase()}`,
+                        })
+                      }
+                      size={24}
+                    />
+                  );
+                case "Cart":
+                  return (
+                    <>
                       <FaCartShopping
-                        onClick={() => handleMobileNavbar({ target: "cart", path: nav.path })}
+                        onClick={() =>
+                          handleMobileNavbar({ target: "cart", path: nav.path })
+                        }
                         size={24}
-                        />
-                        {cartItems?.length? <span className="absolute -top-[40%] text-white w-4 h-4 flex items-center justify-center -right-1/3 text-[10px] p-1 rounded-full bg-primary-color font-semibold" >{cartItems?.length}</span> : null }
-                        </>
-                    );
-                  default:
-                    return;
-                }
-              })()}
+                      />
+                      {cartItems?.length ? (
+                        <span className="absolute -top-[40%] text-white w-4 h-4 flex items-center justify-center -right-1/3 text-[10px] p-1 rounded-full bg-primary-color font-semibold">
+                          {cartItems?.length}
+                        </span>
+                      ) : null}
+                    </>
+                  );
+                default:
+                  return;
+              }
+            })()}
           </li>
         ))}
       </ul>

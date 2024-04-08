@@ -42,7 +42,7 @@ const WithdrawalHistory = ({ data }: { data: ReferWithdrawalType[] }) => {
   );
 };
 
-const getData = (dateString:string) => {
+export const getData = (dateString:string) => {
   const date = new Date(dateString);
   const day = date.getDate().toString().padStart(2, '0'); // Get the day of the month
   const month = (date.getMonth() + 1).toString().padStart(2, '0'); // Get the month (adding 1 because months are zero-indexed)

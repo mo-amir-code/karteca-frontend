@@ -8,6 +8,7 @@ import cartAPI from "./queries/cart/cartAPI";
 import orderAPI from "./queries/order/orderAPI";
 import paymentAPI from "./queries/payment/paymentAPI";
 import referAPI from "./queries/refer/referAPI";
+import ntfAPI from "./queries/notification/notificationAPI";
 
 export const store = configureStore({
   reducer: persistedReducer,
@@ -19,7 +20,8 @@ export const store = configureStore({
       cartAPI.middleware,
       orderAPI.middleware,
       paymentAPI.middleware,
-      referAPI.middleware
+      referAPI.middleware,
+      ntfAPI.middleware
     ]),
 });
 
