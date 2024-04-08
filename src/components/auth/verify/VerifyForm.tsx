@@ -2,7 +2,9 @@
 import SubmitButton from "@/components/auth/SubmitButton";
 import InputField from "@/components/checkout/InputField";
 import { APIRequestType } from "@/redux/RootTypes";
+import { useAppDispatch } from "@/redux/hooks";
 import { useVerifyUserMutation } from "@/redux/queries/auth/authAPI";
+import { loginUser } from "@/redux/slices/auth/authSlice";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -12,6 +14,8 @@ const VerifyForm = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [verifyUser] = useVerifyUserMutation();
     const router = useRouter();
+    const dispatch = useAppDispatch();
+
   
     const { register, handleSubmit, reset } = useForm<FormData>();
   
@@ -24,6 +28,7 @@ const VerifyForm = () => {
         };
   
         if (resData?.success) {
+          dispatch(loginUser({userId:resData.data.userId, name:resData.data.name}));
           router.push("/");
           toast.success("Signed up");
         }
