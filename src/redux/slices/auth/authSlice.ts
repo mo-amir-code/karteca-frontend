@@ -19,7 +19,7 @@ const authSlice = createSlice({
             state.isUserLoggedIn = true;
             state.loggedInUserId = userId;
             state.loggedInUserName = name;
-            setCookie("isUserLoggedIn", true);
+            setCookie("isUserLoggedIn", true, { maxAge: 4 * 24 * 60 * 60 });
         },
         logoutUser(state, action){
             Object.assign(state, initialState);

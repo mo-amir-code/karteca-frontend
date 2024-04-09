@@ -1,24 +1,20 @@
+import { deleteCookie } from 'cookies-next';
 import { NextResponse } from 'next/server'
 import type { NextRequest } from 'next/server'
  
 // This function can be marked `async` if using `await` inside
-export async function middleware(request: NextRequest) {
-  const isUserLoggedIn = request.cookies.get("isUserLoggedIn")?.value;
-  const sessionToken = request.cookies.get("sessiontoken")?.value;
+export async function middleware(req: NextRequest) {
+  const isUserLoggedIn = req.cookies.get("isUserLoggedIn")?.value;
 
-  const isCookieValid = isUserLoggedIn && sessionToken;
-
-  if(request.nextUrl.pathname.startsWith("/user") && !isCookieValid){
-    request.cookies.delete("isUserLoggedIn")
-    request.cookies.delete("sessiontoken")
-    return NextResponse.redirect(new URL('/auth/signin', request.url))
+  if(req.nextUrl.pathname.startsWith("/user") && !isUserLoggedIn){
+    return NextResponse.redirect(new URL('/auth/signin', req.url))
   }
 
-  if(request.nextUrl.pathname.startsWith("/auth") && isCookieValid){
-    return NextResponse.redirect(new URL('/', request.url))
+  if(req.nextUrl.pathname.startsWith("/auth") && isUserLoggedIn){
+    return NextResponse.redirect(new URL('/', req.url))
   }
 
-  return NextResponse.next();
+  return NextResponse.next();;
 }
  
 // See "Matching Paths" below to learn more
