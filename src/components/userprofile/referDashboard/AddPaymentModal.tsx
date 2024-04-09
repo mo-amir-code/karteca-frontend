@@ -22,7 +22,7 @@ const AddPaymentModal = () => {
   const dispatch = useAppDispatch();
   const [addMoney] = useAddReferMoneyMutation();
   const [verifyPayment] = useVerifyPaymentMutation();
-  const { refetch } = useGetReferralDashboardQuery(loggedInUserId!);
+  const { refetch } = useGetReferralDashboardQuery(loggedInUserId!, { skip: loggedInUserId? false : true });
 
   const {
     register,

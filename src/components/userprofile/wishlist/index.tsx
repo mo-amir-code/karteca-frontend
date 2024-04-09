@@ -9,7 +9,7 @@ import { selectLoggedInUserId } from "@/redux/slices/auth/authSlice";
 const Wishlist = () => {
   const loggedInUserId = useAppSelector(selectLoggedInUserId);
   const { data, isSuccess, isError, isLoading, isFetching } =
-    useGetUserWishlistQuery(loggedInUserId!);
+    useGetUserWishlistQuery(loggedInUserId!, { skip: loggedInUserId? false : true });
 
 
   return (

@@ -9,7 +9,7 @@ import { ShortDashboardType } from '@/redux/queries/refer/referTypes'
 
 const ShortDashboard = () => {
   const loggedInUserId = useAppSelector(selectLoggedInUserId);
-  const { data, isLoading, isSuccess, isFetching, isError } = useGetShortReferralDashboardQuery(loggedInUserId!);
+  const { data, isLoading, isSuccess, isFetching, isError } = useGetShortReferralDashboardQuery(loggedInUserId!, { skip: loggedInUserId? false : true });
   const { totalEarning, totalWithdrawal, totalActive, totalDeactive } = data?.data || { totalEarning:0, totalWithdrawal:0, totalActive:0, totalDeactive:0 } as ShortDashboardType;
 
   return (

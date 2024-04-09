@@ -7,7 +7,7 @@ import { useEffect, useMemo } from "react";
 
 const useFetchCartItems = () => {
   const loggedInUserId = useAppSelector(selectLoggedInUserId);
-  const { data, isLoading, isSuccess, isError } = useGetCartItemsQuery(loggedInUserId!);
+  const { data, isLoading, isSuccess, isError } = useGetCartItemsQuery(loggedInUserId!, { skip: loggedInUserId? false : true });
   const { dispatch } = useUserContext();
 
   const totalAmount = useMemo(() => {

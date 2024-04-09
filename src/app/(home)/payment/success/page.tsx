@@ -16,7 +16,7 @@ const Success = () => {
   const loggedInUserName = useAppSelector(selectLoggedInUserName);
   const loggedInUserId = useAppSelector(selectLoggedInUserId);
   const dispatch = useAppDispatch();
-  const {refetch} = useGetCartCountsQuery(loggedInUserId!);
+  const {refetch} = useGetCartCountsQuery(loggedInUserId!, { skip: loggedInUserId? false : true });
   const {refetch:refetchCartItems} = useGetCartItemsQuery(loggedInUserId!);
   const mode = queries.get("mode");
   

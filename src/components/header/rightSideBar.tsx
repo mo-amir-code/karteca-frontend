@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { setProfile } from "@/redux/slices/app/appSlice";
 import {
+  logoutUser,
   selectIsUserLoggedIn,
   selectLoggedInUserId,
   selectLoggedInUserName,
@@ -19,6 +20,7 @@ import {
 } from "@/redux/slices/user/userSlice";
 import { useGetUserWishlistItemsQuery } from "@/redux/queries/user/userAPI";
 import useFetchReferEarning from "../customHooks/useFetchReferEarning";
+import { getCookie } from "cookies-next";
 
 const RightSideBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -27,9 +29,10 @@ const RightSideBar = () => {
   const loggedInUserName = useAppSelector(selectLoggedInUserName);
   const loggedInUserId = useAppSelector(selectLoggedInUserId);
   const isUserLoggedIn = useAppSelector(selectIsUserLoggedIn);
-  const { data, isSuccess } = useGetCartCountsQuery(loggedInUserId!);
-  const { data: wishlistData, isSuccess: wishtlistSuccess } = useGetUserWishlistItemsQuery(loggedInUserId!);
-  const { referData, referIsSuccess } = useFetchReferEarning(loggedInUserId!);
+  const { data, isSuccess } = useGetCartCountsQuery(loggedInUserId!, { skip: !isUserLoggedIn });
+  const { data: wishlistData, isSuccess: wishtlistSuccess } = useGetUserWishlistItemsQuery(loggedInUserId!, { skip: !isUserLoggedIn });
+  const { referData, referIsSuccess } = useFetchReferEarning(loggedInUserId);
+  const isUserLoggedInCookie = getCookie("isUserLoggedIn")
 
   const handleWallet = () => {
     if (isUserLoggedIn) {
@@ -49,7 +52,12 @@ const RightSideBar = () => {
       if (isSuccess) dispatch(setUserCartItems(data?.data));
       if (wishtlistSuccess) dispatch(setUserWishlistItems(wishlistData?.data));
     }
-  }, [data, wishlistData]);
+
+    if(!isUserLoggedInCookie){
+      dispatch(logoutUser(null));
+    }
+
+  }, [data, wishlistData, isUserLoggedInCookie]);
 
   return (
     <div>

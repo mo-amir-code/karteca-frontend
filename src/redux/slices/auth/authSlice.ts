@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { AuthSliceType } from "./authTypes";
 import { RootState } from "@/redux/store";
+import { deleteCookie, setCookie } from "cookies-next";
 
 
 const initialState = {
@@ -18,9 +19,11 @@ const authSlice = createSlice({
             state.isUserLoggedIn = true;
             state.loggedInUserId = userId;
             state.loggedInUserName = name;
+            setCookie("isUserLoggedIn", true);
         },
         logoutUser(state, action){
             Object.assign(state, initialState);
+            deleteCookie("isUserLoggedIn");
         }
     }
 })

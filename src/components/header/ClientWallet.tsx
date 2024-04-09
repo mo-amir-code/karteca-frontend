@@ -6,7 +6,7 @@ import useFetchReferEarning from "../customHooks/useFetchReferEarning"
 
 const ClientWallet = () => {
     const loggedInUserId = useAppSelector(selectLoggedInUserId);
-    const { referData, referIsSuccess } = useFetchReferEarning(loggedInUserId!);
+    const { referData, referIsSuccess } = useFetchReferEarning(loggedInUserId);
 
   return (
     <> 

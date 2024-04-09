@@ -11,7 +11,7 @@ import IsLoading from "@/HOC/IsLoading";
 const Index = () => {
   const loggedInUserId = useAppSelector(selectLoggedInUserId);
   const { data, isLoading, isFetching, isSuccess, isError } = useGetOrderQuery(
-    loggedInUserId!
+    loggedInUserId!, { skip: loggedInUserId? false : true }
   );
 
   if (isLoading || isFetching) {

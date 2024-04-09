@@ -29,7 +29,7 @@ const MobileNavbar = () => {
   const loggedInUserId = useAppSelector(selectLoggedInUserId);
   const cartItems = useAppSelector(selectUserCartItems);
   const { profile } = useAppSelector(selectDesktop);
-  const { data } = useGetUserNotificationsQuery(loggedInUserId!);
+  const { data } = useGetUserNotificationsQuery(loggedInUserId!, { skip: !isUserLoggedIn });
 
   const handleMobileNavbar = useCallback(
     ({ target, path }: { target: string; path: string }) => {

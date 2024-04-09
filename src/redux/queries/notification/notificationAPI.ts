@@ -15,9 +15,19 @@ const ntfAPI = createApi({
         credentials: "include",
       }),
     }),
+    readUserNotifications: builder.mutation<APIRequestType, string>({
+      query: (userId) => ({
+        url: `/read/${userId}`,
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      }),
+    }),
   }),
 });
 
-export const { useGetUserNotificationsQuery } = ntfAPI;
+export const { useGetUserNotificationsQuery, useReadUserNotificationsMutation } = ntfAPI;
 
 export default ntfAPI;

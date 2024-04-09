@@ -14,7 +14,7 @@ import AddPaymentModal from "./AddPaymentModal";
 
 const Index = () => {
   const loggedInUserId = useAppSelector(selectLoggedInUserId);
-  const { data, isLoading, isFetching, isError, isSuccess } = useGetReferralDashboardQuery(loggedInUserId!) as ReferDashboardAPIType;
+  const { data, isLoading, isFetching, isError, isSuccess } = useGetReferralDashboardQuery(loggedInUserId!, { skip: loggedInUserId? false : true }) as ReferDashboardAPIType;
   const isModalOpen = useAppSelector(selectReferAddMoneyModal)
 
   return (

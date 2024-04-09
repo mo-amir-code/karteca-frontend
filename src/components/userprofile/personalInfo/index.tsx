@@ -22,7 +22,7 @@ const PersonalInfoIndex = () => {
   const [isButtonLoading, setIsButtonLoading] = useState<boolean>(false);
   const loggedInUserId = useAppSelector(selectLoggedInUserId);
   const { data, isLoading, isError, isSuccess } = useGetUserInfoQuery(
-    loggedInUserId as string
+    loggedInUserId as string, { skip: loggedInUserId? false : true }
   );
   const [updateUser] = useUpdateUserInfoMutation();
   const { name, email, phone, gender, dispatch } = useUserContext();

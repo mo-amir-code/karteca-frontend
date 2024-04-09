@@ -1,17 +1,25 @@
 "use client";
-import { memo } from "react";
+import { memo, useEffect } from "react";
 import Notification from "./Notification";
 import { useAppSelector } from "@/redux/hooks";
 import { selectLoggedInUserId } from "@/redux/slices/auth/authSlice";
-import { useGetUserNotificationsQuery } from "@/redux/queries/notification/notificationAPI";
+import { useGetUserNotificationsQuery, useReadUserNotificationsMutation } from "@/redux/queries/notification/notificationAPI";
 import IsLoading from "@/HOC/IsLoading";
 import { NotificationType } from "@/redux/queries/notification/ntfTypes";
 import Empty from "@/components/notfound/Empty";
 
 const Index = () => {
   const loggedInUserId = useAppSelector(selectLoggedInUserId);
-  const { data, isLoading, isFetching, isSuccess, isError } =
-    useGetUserNotificationsQuery(loggedInUserId!);
+  const { data, isLoading, isFetching, isSuccess, isError } = useGetUserNotificationsQuery(loggedInUserId!, { skip: loggedInUserId? false : true });
+  const [readNotifications] = useReadUserNotificationsMutation();
+
+  const handleReadNtfs = async () => {
+    await readNotifications(loggedInUserId!)
+  }
+
+  useEffect(() => {
+    if(loggedInUserId) handleReadNtfs();
+  }, []);
 
   return (
     <IsLoading
