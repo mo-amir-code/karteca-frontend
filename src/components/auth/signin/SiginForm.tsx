@@ -28,14 +28,17 @@ const SigninForm = () => {
         password: data.password,
       };
 
-      const {data:resData} = await signinUser(newData) as {data:APIRequestType};
+      const res = await signinUser(newData) as {data:APIRequestType, error?:{status:number, data:APIRequestType}};
 
-      if(resData.success){
-        dispatch(loginUser({userId:resData.data.userId, name:resData.data.name}));
+      if(res?.data?.success){
+        dispatch(loginUser({userId:res.data.data.userId, name:res.data.data.name}));
         router.push("/");
         toast.success("Logged In");
       }
 
+      if(res?.error?.data.success === false){
+        toast.error(res?.error?.data?.message);
+      }
       
       setIsLoading(false);
       reset();

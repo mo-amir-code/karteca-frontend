@@ -23,14 +23,19 @@ const VerifyForm = () => {
       try {
         setIsLoading(true);
   
-        const { data: resData } = (await verifyUser({ otp: data.otp })) as {
+        const { data: resData, error } = (await verifyUser({ otp: data.otp })) as {
           data: APIRequestType;
+          error?:{status:number, data:APIRequestType}
         };
   
         if (resData?.success) {
           dispatch(loginUser({userId:resData.data.userId, name:resData.data.name}));
           router.push("/");
           toast.success("Signed up");
+        }
+
+        if(error?.data?.success === false){
+          toast.error(error?.data?.message);
         }
   
         setIsLoading(false);

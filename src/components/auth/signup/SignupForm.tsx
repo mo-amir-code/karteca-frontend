@@ -50,14 +50,14 @@ const SignupForm = () => {
       const { data: resData, error } = (await signupUser(newData)) as {
         data: APIRequestType;
         error?: {
-          data: any;
+          data: APIRequestType;
           status: number;
         };
       };
       setIsLoading(false);
       reset();
 
-      if (error?.status === 409) {
+      if (error?.data?.success === false) {
         toast.error(error.data.message);
       }
       

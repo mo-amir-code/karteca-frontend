@@ -19,13 +19,18 @@ const ForgotPasswordForm = () => {
       try {
         setIsLoading(true);
   
-        const { data: resData } = (await forgotPassword({ email: data.email })) as {
+        const { data: resData, error } = (await forgotPassword({ email: data.email })) as {
           data: APIRequestType;
+          error?:{status:number, data:APIRequestType}
         };
   
         if (resData?.success) {
             router.push("/auth/reset-password")
             toast.success(resData.message);
+        }
+
+        if(error?.data?.success === false){
+          toast.error(error?.data?.message);
         }
   
         setIsLoading(false);

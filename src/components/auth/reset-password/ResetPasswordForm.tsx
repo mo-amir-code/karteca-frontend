@@ -39,13 +39,18 @@ const ResetPasswordForm = () => {
         otp: data.otp
       }
 
-      const { data: resData } = (await resetPassword(apiData)) as {
+      const { data: resData, error } = (await resetPassword(apiData)) as {
         data: APIRequestType;
+        error?:{status:number, data:APIRequestType}
       };
 
       if (resData?.success) {
           router.push("/auth/signin");
           toast.success(resData.message);
+      }
+
+      if(error?.data?.success === false){
+        toast.error(error?.data?.message);
       }
 
       setIsLoading(false);

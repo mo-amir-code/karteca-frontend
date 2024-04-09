@@ -37,13 +37,16 @@ const AddressForm = ({data, setIsOpen}:{data?: UserAddressType, setIsOpen?:Funct
     }
 
     let resData;
+    let error;
 
     if(data){
-      const res = await updateUserAddress(newAddress) as {data: APIRequestType};
+      const res = await updateUserAddress(newAddress) as {data: APIRequestType, error?:{status:number, data:APIRequestType}};
       resData = res.data;
+      error = res?.error;
     }else{ 
-      const res = await addUserNewAddress(newAddress) as {data: APIRequestType};
+      const res = await addUserNewAddress(newAddress) as {data: APIRequestType, error?:{status:number, data:APIRequestType}};
       resData = res.data;
+      error = res?.error;
     }
 
     if(setIsOpen) setIsOpen(false);
@@ -51,8 +54,10 @@ const AddressForm = ({data, setIsOpen}:{data?: UserAddressType, setIsOpen?:Funct
 
     if(resData?.success){
       toast.success(data? "Address Upadated" :"Address Added");
-    }else{
-      toast.error("Something went wrong");
+    }
+
+    if(error?.data?.success === false){
+      toast.error(error?.data?.message);
     }
     
     reset();
