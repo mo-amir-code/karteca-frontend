@@ -3,6 +3,7 @@ import IsLoading from "@/HOC/IsLoading";
 import Empty from "@/components/notfound/Empty";
 import ProductCard from "@/components/productCard";
 import { useAppSelector } from "@/redux/hooks";
+import { ProductCardType } from "@/redux/queries/products/productsType";
 import { useGetUserWishlistQuery } from "@/redux/queries/user/userAPI";
 import { selectLoggedInUserId } from "@/redux/slices/auth/authSlice";
 

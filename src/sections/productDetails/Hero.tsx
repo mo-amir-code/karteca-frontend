@@ -1,5 +1,6 @@
 import Images from "@/components/productDetails/Images";
 import ProductDetails from "@/components/productDetails/ProductDetails";
+import { ProductDetailsType } from "@/redux/queries/products/productsType";
 
 export interface ProductDetailsHeroType{
   data:ProductDetailsType, 

@@ -2,6 +2,7 @@ import ProductCard from "../productCard";
 import Heading2 from "../Heading2";
 import { memo } from "react";
 import FullLoader from "../loader/FullLoader";
+import { ProductCardType } from "@/redux/queries/products/productsType";
 
 const TopProducts = ({text, products, isLoading}:{text:string, products:ProductCardType[], isLoading:boolean}) => {
 
