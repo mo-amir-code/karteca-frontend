@@ -7,6 +7,7 @@ import FullLoader from "../loader/FullLoader";
 import Empty from "../notfound/Empty";
 import Pagination from "./Pagination";
 import Error from "../error/Error";
+import { ProductCardType } from "@/redux/queries/products/productsType";
 
 const Products = () => {
   const [query, setQuery] = useState<string>("");
@@ -41,7 +42,7 @@ const Products = () => {
           <>
             <div className="flex items-center justify-between pb-2 px-1 max-md:hidden">
               <p className="text-xl text-secondary-color font-semibold font-poppins">
-                Products {data?.data?.products?.length}
+                Products {data?.data?.totalResults}
               </p>
             </div>
             <div className="w-full grid grid-cols-4 max-[1200px]:grid-cols-3 max-[950px]:grid-cols-2 max-md:grid-cols-3 max-[680px]:grid-cols-2 gap-2">

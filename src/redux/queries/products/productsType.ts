@@ -1,4 +1,4 @@
-interface ProductCardType{
+export interface ProductCardType{
     _id: string;
     title: string;
     price: number;
@@ -28,4 +28,8 @@ interface ProductDetailsType extends ProductCardType{
   };
   specifications: object;
   importantNote?: string;
+}
+export interface ProductCategoryWithImageType{
+  name:string;
+  image: string
 }
