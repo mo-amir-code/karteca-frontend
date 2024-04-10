@@ -28,6 +28,11 @@ const SigninForm = () => {
         password: data.password,
       };
 
+      if(newData.password.length < 4){
+        toast.error("Password length must be 4 or greater");
+        return;
+      }
+
       const res = await signinUser(newData) as {data:APIRequestType, error?:{status:number, data:APIRequestType}};
 
       if(res?.data?.success){

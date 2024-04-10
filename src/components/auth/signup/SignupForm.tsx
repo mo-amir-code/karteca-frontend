@@ -25,6 +25,12 @@ const SignupForm = () => {
 
   const handleOnSubmit = async (data: any) => {
     try {
+
+      if(data?.password?.length < 4 || data?.confirmPassword?.length < 4){
+        toast.error("Password length must be 4 or greater");
+        return;
+      }
+
       if (data.password !== data.confirmPassword) {
         setPasswordMatch(true);
         return;
