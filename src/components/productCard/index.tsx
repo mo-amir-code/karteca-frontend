@@ -3,6 +3,7 @@ import { calculateDiscountedPrice, shortProductTitle } from "@/utils/services";
 import Stars from "./Stars";
 import Actions from "./Actions";
 import Link from "next/link";
+import { ProductCardType } from "@/redux/queries/products/productsType";
 
 const ProductCard = ({data}:{data?:ProductCardType}) => {
   return (
