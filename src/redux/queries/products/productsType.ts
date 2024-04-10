@@ -8,13 +8,13 @@ export interface ProductCardType{
     ratingAndReviews?: RatingAndReviewsType
 }
 
-interface RatingAndReviewsType{
+export interface RatingAndReviewsType{
   totalRating:number;
   totalReviews:number;
   avgRating:number
 }
 
-interface ProductDetailsType extends ProductCardType{
+export interface ProductDetailsType extends ProductCardType{
   description: object;
   colors: string[];
   thumbnail: string;

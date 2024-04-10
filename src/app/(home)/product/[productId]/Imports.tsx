@@ -1,6 +1,7 @@
 "use client";
 import IsLoading from "@/HOC/IsLoading";
 import { useGetProductByIdQuery } from "@/redux/queries/products/productsAPI";
+import { ProductDetailsType } from "@/redux/queries/products/productsType";
 import Hero from "@/sections/productDetails/Hero";
 import ProductSpecifications from "@/sections/productDetails/ProductSpecifications";
 import { useParams } from "next/navigation";
