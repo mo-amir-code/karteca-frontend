@@ -9,12 +9,12 @@ const layout = ({
   children: React.ReactNode;
 }>) => {
   return (
-    <main className="max-w-5xl flex items-center justify-center h-[95vh] overflow-hidden w-full mx-auto py-12 px-4">
-      <div className="w-full max-h-[440px] h-[80vh] overflow-hidden flex bg-white rounded-lg shadow-lg">
+    <main className="max-w-5xl flex items-center justify-center min-h-screen md:h-[95vh] md:overflow-hidden w-full mx-auto py-12 px-4">
+      <div className="w-full md:max-h-[440px] md:h-[80vh] md:overflow-hidden flex bg-white rounded-lg shadow-lg">
         <div className="flex-grow max-md:hidden overflow-hidden rounded-l-lg">
           <Image src={authBg} alt="sigin" className="object-cover h-full" />
         </div>
-        <div className="w-[2200px] hide_scrollbar overflow-y-auto px-8 py-8 flex items-start justify-center">
+        <div className="w-[2200px] hide_scrollbar md:overflow-y-auto px-8 py-8 flex items-start justify-center">
           <div className="flex flex-col justify-center w-full gap-12">
             <div className="">
               <h1 className="font-bold font-teko text-4xl text-secondary-color max-md:text-2xl">
