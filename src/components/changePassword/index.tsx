@@ -38,7 +38,6 @@ const ChangePassword = () => {
     setIsLoading(true);
     const res = await updatePassword({userId: loggedInUserId, ...data}) as {data: APIRequestType, status: number, error?:{status:number, data:APIRequestType}};
 
-    setIsLoading(false);
     if(res?.data?.success){
       toast.success(res?.data?.message);
       handleClose();
@@ -47,7 +46,8 @@ const ChangePassword = () => {
     if(res?.error?.status === 401){
       toast.error(res?.error?.data?.message);
     }
-
+    
+    setIsLoading(false);
   };
 
   const handleClose = () => {

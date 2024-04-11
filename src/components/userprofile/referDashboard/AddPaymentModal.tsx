@@ -37,6 +37,7 @@ const AddPaymentModal = () => {
     response: RazorpayReponseType;
     transactionId: string;
   }) => {
+    try{
     const verifyAPIData: VerifyPaymentType = {
       orderId: response.razorpay_order_id,
       paymentId: response.razorpay_payment_id,
@@ -52,14 +53,21 @@ const AddPaymentModal = () => {
     if(verifyData?.success){
         toast.success("Wallet activated");
         refetch();
+        setIsLoading(false);
     }else toast.error("Something went wrong");
     dispatch(setReferAddMoneyModal(false));
-    
+  }catch(error){
+    setIsLoading(false);
+    console.log(error);
+    toast.error("Something went wrong");
+  }
   };
 
   const handleOnSubmit = useCallback(async (amount: number) => {
     setIsLoading(true);
     setError(null);
+
+    try{
     if (amount > PAYMENT_MAX_AMOUNT || amount < PAYMENT_MIN_AMOUNT) {
       setError(`minimum and maximum amount should be ₹${PAYMENT_MIN_AMOUNT} and ₹${PAYMENT_MAX_AMOUNT}`);
       reset();
@@ -98,7 +106,12 @@ const AddPaymentModal = () => {
           razr.open();
     }else toast.error("Something went wrong");
 
+  }catch(error){
+    console.log(error);
     setIsLoading(false);
+    toast.error("Something went wrong");
+  }
+
   },  [isLoading, error, addMoney, reset]);
 
   const handleClose = () => dispatch(setReferAddMoneyModal(false));
