@@ -89,14 +89,14 @@ const SignupForm = () => {
       >
         <InputField
           register={register}
-          placeHolder="Full Name"
+          placeHolder="Full Name*"
           type="text"
           icon="name"
           required
         />
         <InputField
           register={register}
-          placeHolder="Email"
+          placeHolder="Email*"
           type="email"
           icon="email"
           required
@@ -109,7 +109,7 @@ const SignupForm = () => {
         />
         <InputField
           register={register}
-          placeHolder="Male, Female or Transgender"
+          placeHolder="Male, Female or Transgender*"
           type="text"
           icon="gender"
           required
@@ -122,28 +122,28 @@ const SignupForm = () => {
         />
         <InputField
           register={register}
-          placeHolder="State"
+          placeHolder="State*"
           type="text"
           icon="state"
           required
         />
         <InputField
           register={register}
-          placeHolder="City"
+          placeHolder="City*"
           type="text"
           icon="city"
           required
         />
         <InputField
           register={register}
-          placeHolder="Password"
+          placeHolder="Password*"
           type="password"
           icon="password"
           required
         />
         <InputField
           register={register}
-          placeHolder="Confirm Password"
+          placeHolder="Confirm Password*"
           type="password"
           icon="confirmPassword"
           required
