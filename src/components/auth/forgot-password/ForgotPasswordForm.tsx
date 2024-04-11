@@ -54,6 +54,9 @@ const ForgotPasswordForm = () => {
           type="email"
           icon="email"
         />
+        <p className="text-xs text-center">
+        Enter registered email id to reset your password
+      </p>
         <SubmitButton name="Send OTP" isLoading={isLoading} />
       </form>
     );

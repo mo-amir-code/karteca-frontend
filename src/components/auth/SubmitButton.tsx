@@ -1,9 +1,10 @@
 import ButtonLoader from "../loader/ButtonLoader";
 
-const SubmitButton = ({ name, icon, isLoading }: { name: string; icon?: string, isLoading?:boolean }) => {
+const SubmitButton = ({ name, icon, isLoading, isDisable }: { name: string; icon?: string, isLoading?:boolean, isDisable?:boolean }) => {
   return (
     <div className="flex items-center justify-center">
       <button
+        disabled={isDisable}
         type="submit"
         className="px-8 h-10 w-full gap-1 border-2 border-primary-color smooth_transition hover:shadow-lg py-2 flex items-center justify-center"
       >

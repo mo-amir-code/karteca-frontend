@@ -39,13 +39,15 @@ const SignupForm = () => {
       }
       setIsLoading(true);
 
+      console.log(data);
+
       const newData: AuthSignupUserType = {
         name: data.name,
         email: data.email,
         referredUserReferCode: data.referredUserReferCode,
         gender: data.gender,
         password: data.password,
-        phone: data.phone,
+        phone: data.phone || undefined,
         address: {
           country: "INDIA",
           state: data.state,
