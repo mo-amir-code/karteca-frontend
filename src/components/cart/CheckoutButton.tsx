@@ -106,11 +106,16 @@ const CheckoutButton = () => {
       }
 
 
-      const { data: resData } = (await createOrder(
+      const { data: resData, error } = (await createOrder(
         completeOrders
       )) as {
+        error: { data:APIRequestType },
         data: PaymentModeType
       };
+
+      if(error?.data){
+        toast.error(error?.data?.message);
+      }
 
       if (resData?.success && resData.paymentMode === "online") {
         const {
@@ -146,7 +151,6 @@ const CheckoutButton = () => {
         router.push("/payment/success?mode=cash");
       }
     } catch (error) {
-      toast.error("Something went wrong");
       setIsLoading(false);
     } finally {
       setIsLoading(false);

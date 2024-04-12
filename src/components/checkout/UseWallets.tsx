@@ -11,7 +11,7 @@ const UseWallets = () => {
     const [selectedWallet, setSelectedWallet] = useState<string | null>(null);
     const [walletBalance, setWalletBalance] = useState<number | null>(null);
     const loggedInUser = useAppSelector(selectLoggedInUserId);
-    const { dispatch } = useUserContext();
+    const { dispatch, selectedPaymentMode } = useUserContext();
     const { data, isLoading, isFetching, isSuccess, isError } = useGetWalletsQuery(loggedInUser!);
     const { totalAmount } = useFetchCartItems();
 
@@ -40,15 +40,15 @@ const UseWallets = () => {
       <div className="container select-none my-4 space-y-4">
         <form>
           <label>
-            <input onClick={()=> selectWallet("mainBalance", data?.data?.mainBalance)} type="radio" name="radio" disabled={shouldDisable(data?.data?.mainBalance)} checked={selectedWallet === "mainBalance"}  />
+            <input onClick={()=> selectWallet("mainBalance", data?.data?.mainBalance)} type="radio" name="radio" disabled={shouldDisable(data?.data?.mainBalance) ||  selectedPaymentMode === "cash"} checked={selectedWallet === "mainBalance"}  />
             <span className="max-md:text-sm" >Main Balance: ₹{checkIsSelected(totalAmount, (data?.data?.mainBalance || 0), selectedWallet, "mainBalance")}</span>
           </label>
           <label>
-            <input onClick={()=> selectWallet("coinBalance", data?.data?.coinBalance)} type="radio" name="radio" disabled={shouldDisable(data?.data?.coinBalance)} checked={selectedWallet === "coinBalance"} />
+            <input onClick={()=> selectWallet("coinBalance", data?.data?.coinBalance)} type="radio" name="radio" disabled={shouldDisable(data?.data?.coinBalance) ||  selectedPaymentMode === "cash"} checked={selectedWallet === "coinBalance"} />
             <span className="max-md:text-sm" >Shopping Coins: ₹{checkIsSelected(totalAmount, (data?.data?.coinBalance || 0), selectedWallet, "coinBalance")}</span>
           </label>
           <label>
-            <input onClick={()=> selectWallet("currentReferralEarning", data?.data?.currentReferralEarning)} type="radio" name="radio" disabled={shouldDisable(data?.data?.currentReferralEarning)} checked={selectedWallet === "currentReferralEarning"} />
+            <input onClick={()=> selectWallet("currentReferralEarning", data?.data?.currentReferralEarning)} type="radio" name="radio" disabled={shouldDisable(data?.data?.currentReferralEarning) ||  selectedPaymentMode === "cash"} checked={selectedWallet === "currentReferralEarning"} />
             <span className="max-md:text-sm" >Referral Earning: ₹{checkIsSelected(totalAmount, (data?.data?.currentReferralEarning || 0), selectedWallet, "currentReferralEarning")}</span>
           </label>
         </form>
