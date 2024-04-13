@@ -18,9 +18,7 @@ const FilterWithState = ({
   isSort,
   isFromMobile,
 }: FilterWithStateType) => {
-  const [selected, setSelected] = useState<ListType | ListType[]>(
-    isSort ? list[0] : []
-  );
+  const [selected, setSelected] = useState<ListType | ListType[]>([]);
 
   return (
     <>
