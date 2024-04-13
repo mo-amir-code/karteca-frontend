@@ -8,8 +8,7 @@ const SearchBar = ({ isOnMobile }: { isOnMobile?: boolean }) => {
   const router = useRouter();
   const pathname = usePathname();
 
-  const handleSearch = useCallback(() => {
-      setQuery(null);  
+  const handleSearch = useCallback(() => {  
       router.push(`/search?query=${query}`);
   }, [query]);
 
