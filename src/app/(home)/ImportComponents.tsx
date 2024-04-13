@@ -9,8 +9,10 @@ import FooterBanner from "../../components/footerBanner/FooterBanner";
 import HeroSlider from "../../components/heroSlider";
 import TopProducts from "../../components/topProducts";
 import { memo } from "react";
+import FullLoader from "@/components/loader/FullLoader";
 
 const ImportComponents = () => {
+
   const {
     isLoading: isTopLoading,
     data: topData
@@ -57,23 +59,20 @@ const ImportComponents = () => {
     <>
       <HeroSlider />
       <Categories />
-        <>
+        {!(isTopLoading || isLatestLoading || isCombosLoading) ? <>
           <TopProducts
             products={topData?.success ? topData.data : []}
-            isLoading={isTopLoading}
             text="Top Products"
           />
           <TopProducts
             products={latestData?.success ? latestData.data : []}
-            isLoading={isLatestLoading}
             text="Latest Products"
           />
           <TopProducts
             products={combosData?.success ? combosData.data : []}
-            isLoading={isCombosLoading}
             text="Best Combo's"
           />
-        </>
+        </> : <FullLoader />}
       <FooterBanner />
     </>
   );
