@@ -1,7 +1,7 @@
 import Script from "next/script";
 
 interface RazorpayInstance {
-  new(options: RazorpayOptions): Razorpay;
+  new (options: RazorpayOptions): Razorpay;
 }
 
 interface RazorpayOptions {
@@ -35,6 +35,20 @@ const Headers = () => {
   return (
     <>
       <Script src="https://checkout.razorpay.com/v1/checkout.js" />
+      {/* <!-- Google tag (gtag.js) --> */}
+      <Script
+        async
+        src="https://www.googletagmanager.com/gtag/js?id=G-6EKRN7BPLY"
+      />
+      <Script id="google-analytics" >
+        {`
+           window.dataLayer = window.dataLayer || [];
+           function gtag(){dataLayer.push(arguments);}
+           gtag('js', new Date());
+  
+           gtag('config', 'G-6EKRN7BPLY');
+        `}
+      </Script>
     </>
   );
 };
