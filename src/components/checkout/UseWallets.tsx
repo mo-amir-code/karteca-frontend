@@ -61,7 +61,7 @@ const UseWallets = () => {
 const checkIsSelected = (paidAmout:number, currentAmount:number, selected:string | null, current:string) => {
   if(selected === current){
     if(paidAmout >= currentAmount) return 0;
-    else currentAmount - paidAmout;
+    else return currentAmount - paidAmout;
   }
   return currentAmount;
 }

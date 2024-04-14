@@ -54,10 +54,12 @@ const AddPaymentModal = () => {
         toast.success("Wallet activated");
         refetch();
         setIsLoading(false);
-    }else toast.error("Something went wrong");
+    }else{
+      toast.error("Something went wrong");
+      setIsLoading(false);
+    }
     dispatch(setReferAddMoneyModal(false));
   }catch(error){
-    setIsLoading(false);
     console.log(error);
     toast.error("Something went wrong");
   }
@@ -104,7 +106,10 @@ const AddPaymentModal = () => {
   
           const razr = new window.Razorpay(options);
           razr.open();
-    }else toast.error("Something went wrong");
+    }else{
+      toast.error("Something went wrong");
+      setIsLoading(false);
+    }
 
   }catch(error){
     console.log(error);

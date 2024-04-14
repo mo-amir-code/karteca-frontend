@@ -60,6 +60,7 @@ const CheckoutButton = () => {
     if (verifyData?.success) {
       dispatch(setPaymentStatusPage(true));
       router.push("/payment/success");
+      setIsLoading(false);
     } else {
       router.push("/payment/failure");
     }
@@ -151,8 +152,6 @@ const CheckoutButton = () => {
         router.push("/payment/success?mode=cash");
       }
     } catch (error) {
-      setIsLoading(false);
-    } finally {
       setIsLoading(false);
     }
   }, [
