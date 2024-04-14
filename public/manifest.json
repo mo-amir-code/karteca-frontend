@@ -1,0 +1,18 @@
+{
+    "id": "1",
+    "name": "PayKart - Earning & Shopping Platform",
+    "short_name": "You can earn upto 7 levels and can do widthrawal and shopping",
+    "icons": [
+      {
+        "src": "/logo.png",
+        "sizes": "192x192",
+        "type": "image/png",
+        "purpose": "any maskable"
+      }
+    ],
+    "theme_color": "#744CCD",
+    "background_color": "#744CCD",
+    "start_url": "/",
+    "display": "standalone",
+    "orientation": "portrait"
+  }

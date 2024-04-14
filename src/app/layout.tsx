@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import ReduxProvider from "@/components/ReduxProvider";
 import { Toaster } from "react-hot-toast";
@@ -6,8 +6,13 @@ import Headers from "./Headers";
 import { Poppins, Teko } from "next/font/google";
 
 export const metadata: Metadata = {
+  manifest: "/manifest.json",
   title: "Paykart - Earn & Shop",
   description: "Share & Earn money | Shop on PayKart",
+};
+
+export const viewport: Viewport = {
+  themeColor: "#744CCD",
 };
 
 const poppins = Poppins({
