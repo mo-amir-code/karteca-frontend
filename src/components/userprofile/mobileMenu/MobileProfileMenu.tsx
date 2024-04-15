@@ -32,6 +32,7 @@ const MobileProfileMenu = ({title, list, icon}:{title:string, list?:[{name:strin
         break;
       case "Notifications":
         newTarget = "notification";
+        break;
       case "Change Password":
         userContextDispatch({type: "changePassword", payload: true});
         break;
