@@ -10,9 +10,9 @@ import useFetchCartItems from "../customHooks/useFetchCartItems";
 const UseWallets = () => {
     const [selectedWallet, setSelectedWallet] = useState<string | null>(null);
     const [walletBalance, setWalletBalance] = useState<number | null>(null);
-    const loggedInUser = useAppSelector(selectLoggedInUserId);
+    const loggedInUserId = useAppSelector(selectLoggedInUserId);
     const { dispatch, selectedPaymentMode } = useUserContext();
-    const { data, isLoading, isFetching, isSuccess, isError } = useGetWalletsQuery(loggedInUser!);
+    const { data, isLoading, isFetching, isSuccess, isError } = useGetWalletsQuery(loggedInUserId!);
     const { totalAmount } = useFetchCartItems();
 
     const selectWallet = (wallet:string, amount:number) => {

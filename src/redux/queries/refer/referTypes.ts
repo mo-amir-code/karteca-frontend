@@ -7,11 +7,12 @@ export interface ReferLevelEarningType {
 
 export interface ReferWithdrawalType {
   _id: string;
-  wallet: {
+  wallet?: {
     name: string,
     amount:number
   };
   status: "pending" | "processing" | "failed" | "success";
+  amount: number;
   createdAt: string;
 }
 

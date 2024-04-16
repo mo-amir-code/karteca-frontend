@@ -14,6 +14,8 @@ const useMainProfile = ({ profile }: { profile: string }) => {
   switch (profile) {
     case "profile":
       return <UserPersonalInfo />;
+    case "wallets":
+      return <MyWallets />;
     case "addresses":
       return <ManageAddresses />;
     case "notification":
@@ -54,4 +56,7 @@ const OrderDetails = withLoadingIndicator(
 );
 const Wishlist = withLoadingIndicator(
   () => import("@/components/userprofile/wishlist")
+);
+const MyWallets = withLoadingIndicator(
+  () => import("@/components/userprofile/wallets")
 );

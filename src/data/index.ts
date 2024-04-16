@@ -242,29 +242,18 @@ export const accountSettings = [
 ];
 
 export const payments = [
-  {
-    name: "Save UPI",
-    path: "",
-  },
-  {
-    name: "Cards",
-    path: "",
-  },
+  // {
+  //   name: "Save UPI",
+  // },
+  // {
+  //   name: "Cards",
+  // },
   {
     name: "My Wallets",
-    path: "",
   },
 ];
 
 export const mystuffs = [
-  // {
-  //     name:"My Coupon",
-  //     path: ""
-  // },
-  // {
-  //     name:"Reviews & Rating",
-  //     path: ""
-  // },
   {
     name: "Notifications",
   },

@@ -23,7 +23,7 @@ const WithdrawalHistory = ({ data }: { data: ReferWithdrawalType[] }) => {
               {data.map((withdrawal) => (
                 <tr key={withdrawal._id} className="border">
                   <td className="text-center">{getData(withdrawal.createdAt)}</td>
-                  <td className="text-center">₹{withdrawal.wallet.amount}</td>
+                  <td className="text-center">₹{withdrawal.wallet?.amount || withdrawal.amount}</td>
                   <td
                     style={{ color: selectWithdrawalColor(withdrawal.status) }}
                     className="text-center"

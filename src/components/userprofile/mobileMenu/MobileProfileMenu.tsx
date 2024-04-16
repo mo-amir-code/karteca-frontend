@@ -39,6 +39,9 @@ const MobileProfileMenu = ({title, list, icon}:{title:string, list?:[{name:strin
       case "Wishlist":
         newTarget = "wishlist";
         break;
+      case "My Wallets":
+        newTarget = "wallets";
+        break;
       case "Log out":
         dispatch(logoutUser(null));
         router.push("/auth/signin");

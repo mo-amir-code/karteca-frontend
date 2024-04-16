@@ -12,7 +12,7 @@ const ProfilePath = ({
   title,
   icon
 }: {
-  list?: [{ name: string; path: string }];
+  list?: [{ name: string }];
   title: string;
   icon:string
 }) => {
@@ -24,6 +24,9 @@ const ProfilePath = ({
   const handleProfileNavigate = (target: string) => {
     let newTarget;
     switch (target) {
+      case "My Wallets":
+        newTarget = "wallets";
+        break;
       case "My Orders":
         newTarget = "orders";
         break;
@@ -79,6 +82,9 @@ const ProfilePath = ({
           break;
         case "Wishlist":
           newTarget = "wishlist";
+          break;
+        case "My Wallets":
+          newTarget = "wallets";
           break;
         default:
           return false;

@@ -28,6 +28,15 @@ const userAPI = createApi({
       }),
       providesTags: ["updateAddress"],
     }),
+    getUserTransactions: builder.query<APIRequestType, string>({
+      query: (userId) => ({
+        url: `transactions/${userId}`,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      }),
+    }),
     getUserWishlistItems: builder.query<APIRequestType, string>({
       query: (userId) => ({
         url: `wishlist/items/${userId}`,
@@ -145,7 +154,8 @@ export const {
   useAddUserWishlistItemMutation,
   useDeleteUserWishlistItemMutation,
   useGetUserWishlistQuery,
-  useUpdateUserPasswordMutation
+  useUpdateUserPasswordMutation,
+  useGetUserTransactionsQuery
 } = userAPI;
 
 export default userAPI;

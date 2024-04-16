@@ -3,6 +3,7 @@ import { MdSpaceDashboard } from "react-icons/md";
 import { HiUserCircle } from "react-icons/hi";
 import { MdFolderZip } from "react-icons/md";
 import { BiSupport } from "react-icons/bi";
+import { IoIosWallet } from "react-icons/io";
 
 const useProfileIcons = ({icon}:{icon:string}) => {
     switch(icon){
@@ -12,6 +13,8 @@ const useProfileIcons = ({icon}:{icon:string}) => {
             return <MdSpaceDashboard className="w-[30px] h-[30px] max-md:w-[20px] max-md:h-[20px]" />
         case "account":
             return <HiUserCircle className="w-[30px] h-[30px] max-md:w-[20px] max-md:h-[20px]" />
+        case "payment":
+            return <IoIosWallet className="w-[30px] h-[30px] max-md:w-[20px] max-md:h-[20px]" />
         case "stuff":
             return <MdFolderZip className="w-[30px] h-[30px] max-md:w-[20px] max-md:h-[20px]" />
         case "support":
