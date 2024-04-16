@@ -6,6 +6,8 @@ import { useGetWalletsQuery } from "@/redux/queries/cart/cartAPI";
 import { selectLoggedInUserId } from "@/redux/slices/auth/authSlice";
 import React, { useEffect, useState } from "react";
 import useFetchCartItems from "../customHooks/useFetchCartItems";
+import { returnWalletAmount } from "@/utils/services";
+import { COIN_BALANCE } from "@/utils/constants";
 
 const UseWallets = () => {
     const [selectedWallet, setSelectedWallet] = useState<string | null>(null);
@@ -44,8 +46,8 @@ const UseWallets = () => {
             <span className="max-md:text-sm" >Main Balance: ₹{checkIsSelected(totalAmount, (data?.data?.mainBalance || 0), selectedWallet, "mainBalance")}</span>
           </label>
           <label>
-            <input onClick={()=> selectWallet("coinBalance", data?.data?.coinBalance)} type="radio" name="radio" disabled={shouldDisable(data?.data?.coinBalance) ||  selectedPaymentMode === "cash"} checked={selectedWallet === "coinBalance"} />
-            <span className="max-md:text-sm" >Shopping Coins: ₹{checkIsSelected(totalAmount, (data?.data?.coinBalance || 0), selectedWallet, "coinBalance")}</span>
+            <input onClick={()=> selectWallet(COIN_BALANCE, data?.data?.coinBalance)} type="radio" name="radio" disabled={shouldDisable(data?.data?.coinBalance) ||  selectedPaymentMode === "cash"} checked={selectedWallet === COIN_BALANCE} />
+            <span className="max-md:text-sm" >Shopping Coins: ₹{checkIsSelected(totalAmount, (data?.data?.coinBalance || 0), selectedWallet, COIN_BALANCE)}</span>
           </label>
           <label>
             <input onClick={()=> selectWallet("currentReferralEarning", data?.data?.currentReferralEarning)} type="radio" name="radio" disabled={shouldDisable(data?.data?.currentReferralEarning) ||  selectedPaymentMode === "cash"} checked={selectedWallet === "currentReferralEarning"} />
@@ -59,6 +61,10 @@ const UseWallets = () => {
 };
 
 const checkIsSelected = (paidAmout:number, currentAmount:number, selected:string | null, current:string) => {
+  if(selected === COIN_BALANCE && selected === current){
+    return currentAmount - returnWalletAmount({ totalAmount:paidAmout, amount:currentAmount, name:selected })
+  }
+
   if(selected === current){
     if(paidAmout >= currentAmount) return 0;
     else return currentAmount - paidAmout;

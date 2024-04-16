@@ -1,6 +1,7 @@
 import { ListType } from "@/components/filter/FilterField";
 import { FilterFieldType } from "@/components/filter/tags/Tags";
 import { ReadonlyURLSearchParams } from "next/navigation";
+import { COIN_BALANCE } from "./constants";
 
 export const shortProductTitle = ({ title }: { title: string }) => {
   return `${title.slice(0, 18)}...`;
@@ -161,4 +162,27 @@ export const selectWithdrawalColor = (status: "pending" | "processing" | "failed
       return "#000000"
   }  
 
+}
+
+export const returnWalletAmount = ({name, amount, totalAmount}:{name?:string | undefined, amount?:number | undefined, totalAmount:number}):number => {
+  if(!name || !amount){
+    return 0
+  }
+
+  if(name === COIN_BALANCE){
+    if(totalAmount < 500){
+       if(amount <= 10) return amount;
+       else return 10 
+    }else if(totalAmount <= 1000){
+      if(amount <= 20) return amount;
+      else return 20
+    } else if(totalAmount <= 2000){
+      if(amount <= 30) return amount;
+      else return 30
+    } else if(totalAmount > 2000){
+      if(amount <= 40) return amount;
+      else return 40
+    }
+    return 0
+  }else return amount || 0
 }
