@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import logo from "@/assets/brand/logo.png";
+import logo from "@/assets/brand/Logo.svg";
 import { FiArrowLeft } from "react-icons/fi";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { selectDesktop, selectMobile, setMobileProfileMenu, setProfile } from "@/redux/slices/app/appSlice";
@@ -22,7 +22,7 @@ const Logo = () => {
         <Link href={"/"}>
           <Image
             src={logo}
-            alt="memik logo"
+            alt={process.env.NEXT_PUBLIC_COMPANY_NAME || "karteca"}
             layout="fixed"
             height={48}
             width={48}

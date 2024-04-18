@@ -1,5 +1,5 @@
 import Image from "next/image";
-import logo from "@/assets/brand/logo.png";
+import logo from "@/assets/brand/Logo.svg";
 import SearchBar from "@/components/searchbar";
 import MaxWidthLayout from "@/HOC/MaxWidthLayout";
 import RightSideBar from "@/components/header/rightSideBar";
@@ -23,10 +23,10 @@ const HeaderContent = () => {
         <div className="w-full flex items-center gap-3">
           <div className="flex items-center justify-center gap-1">
             <div className="flex items-center justify-center w-12 h-12 cursor-pointer max-sm:w-10 max-sm:h-10">
-              <Link href={"/"}>
+              <Link href={"/"} >
                 <Image
                   src={logo}
-                  alt="memik logo"
+                  alt={process.env.NEXT_PUBLIC_COMPANY_NAME || "karteca"}
                   layout="fixed"
                   height={48}
                   width={48}
