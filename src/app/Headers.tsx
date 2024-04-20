@@ -38,7 +38,7 @@ const Headers = () => {
       {/* <!-- Google tag (gtag.js) --> */}
       <Script
         async
-        src="https://www.googletagmanager.com/gtag/js?id=G-6EKRN7BPLY"
+        src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GTAG}`}
       />
       <Script id="google-analytics" >
         {`
@@ -46,7 +46,7 @@ const Headers = () => {
            function gtag(){dataLayer.push(arguments);}
            gtag('js', new Date());
   
-           gtag('config', 'G-6EKRN7BPLY');
+           gtag('config', '${process.env.NEXT_PUBLIC_GTAG}');
         `}
       </Script>
     </>
