@@ -1,5 +1,6 @@
 "use client";
 import { useUserContext } from "@/context/UserContext";
+import { COIN_BALANCE } from "@/utils/constants";
 import React, { useCallback } from "react";
 import { IoCash } from "react-icons/io5";
 import { PiContactlessPaymentFill } from "react-icons/pi";
@@ -38,7 +39,7 @@ const PaymentMode = () => {
           type="radio"
           name="engine"
           checked={selectedPaymentMode === "cash"}
-          disabled={wallet? true : false}
+          disabled={(wallet && wallet?.name !== COIN_BALANCE)? true : false}
         />
         <span className="radio-tile selectedMode">
           <span className="radio-icon">

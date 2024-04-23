@@ -46,7 +46,7 @@ const UseWallets = () => {
             <span className="max-md:text-sm" >Main Balance: ₹{checkIsSelected(totalAmount, (data?.data?.mainBalance || 0), selectedWallet, "mainBalance")}</span>
           </label>
           <label>
-            <input onClick={()=> selectWallet(COIN_BALANCE, data?.data?.coinBalance)} type="radio" name="radio" disabled={shouldDisable(data?.data?.coinBalance) ||  selectedPaymentMode === "cash"} checked={selectedWallet === COIN_BALANCE} />
+            <input onClick={()=> selectWallet(COIN_BALANCE, data?.data?.coinBalance)} type="radio" name="radio" disabled={shouldDisable(data?.data?.coinBalance)} checked={selectedWallet === COIN_BALANCE} />
             <span className="max-md:text-sm" >Shopping Coins: ₹{checkIsSelected(totalAmount, (data?.data?.coinBalance || 0), selectedWallet, COIN_BALANCE)}</span>
           </label>
           <label>

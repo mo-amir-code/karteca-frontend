@@ -6,6 +6,8 @@ import { filterSearchQueryField, handleSelectUtil, setSortQuery } from "@/utils/
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { selectSearchTag, setSearchTag } from "@/redux/slices/app/appSlice";
 import { useQueryContext } from "@/context/QueryContext";
+import CommonButton from "../buttons/CommonButton";
+import MobileFilterButton from "../buttons/MobileFilterButton";
 
 export interface MobileTagType{
   title: string;
@@ -107,7 +109,7 @@ const MobileTag = ({
     <div
       onClick={() => handleTagToggle()}
       style={{ maxWidth: "max-content" }}
-      className="flex font-lato items-center gap-1 justify-between font-medium pr-1 pl-3 py-2 rounded-full text-xs border-[1.5px]"
+      className={`flex font-lato items-center gap-1 justify-between ${isOpen? "border-2 border-primary-color" : null} font-medium pr-1 pl-3 py-2 rounded-full text-xs border-[1.5px]`}
     >
       <span className="whitespace-nowrap">{title}</span>
       <IoIosArrowDown
@@ -120,15 +122,21 @@ const MobileTag = ({
     <div
         className={`fixed bottom-0 left-0 w-full py-4 ${
           isOpen ? "translate-y-0" : "translate-y-[100%] hidden"
-        } smooth_transition bg-white z-10`}
+        } smooth_transition bg-white z-10 space-y-3 border border-t`}
       >
+        <div className="max-h-[30vh] overflow-auto" >
         <FilterFieldOptions
           list={list}
           handleClick={handleSelect}
           selected={selected}
           isSort={isSort ? true : false}
           fieldName={title.toLowerCase()}
-        />
+          />
+          </div>
+        <div className="flex items-center justify-center px-3 gap-2" >
+          <MobileFilterButton name="Cancel" type="danger" handle={handleTagToggle} />
+          <MobileFilterButton name="Done" type="success" handle={handleTagToggle} />
+        </div>
       </div>
     </>
   );
