@@ -22,6 +22,11 @@ const SigninForm = () => {
 
   const handleOnSubmit = async (data: AuthSigninUserType) => {
     try {
+      if(!data.email){
+        toast.error("Enter email and password to login your account");
+        return;
+      }
+
       setIsLoading(true);
       const newData: AuthSigninUserType = {
         email: data.email,
@@ -30,6 +35,7 @@ const SigninForm = () => {
 
       if(newData.password.length < 4){
         toast.error("Password length must be 4 or greater");
+        setIsLoading(false);
         return;
       }
 

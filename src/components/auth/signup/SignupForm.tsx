@@ -26,12 +26,19 @@ const SignupForm = () => {
   const handleOnSubmit = async (data: any) => {
     try {
 
-      if(data?.password?.length < 4 || data?.confirmPassword?.length < 4){
+      const { email, name, password,  confirmPassword, gender, state, city} = data;
+
+      if(!email || !name || !password || !confirmPassword || !gender || !state || !city){
+        toast.error("Enter all required fields");
+        return;
+      }
+
+      if(password?.length < 4 || confirmPassword?.length < 4){
         toast.error("Password length must be 4 or greater");
         return;
       }
 
-      if (data.password !== data.confirmPassword) {
+      if (password !== confirmPassword) {
         setPasswordMatch(true);
         return;
       } else {
@@ -39,19 +46,17 @@ const SignupForm = () => {
       }
       setIsLoading(true);
 
-      console.log(data);
-
       const newData: AuthSignupUserType = {
-        name: data.name,
-        email: data.email,
+        name: name,
+        email: email,
         referredUserReferCode: data.referredUserReferCode,
-        gender: data.gender,
-        password: data.password,
+        gender: gender,
+        password: password,
         phone: data.phone || undefined,
         address: {
           country: "INDIA",
-          state: data.state,
-          city: data.city,
+          state: state,
+          city: city,
         },
       };
 
@@ -150,7 +155,7 @@ const SignupForm = () => {
           error={passwordMatch ? "Password did not matched" : null}
         />
         <div className="flex items-center justify-between">
-          <span className="hover:text-primary-color max-md:text-sm max-sm:text-xs smooth_transition">
+          <span className="max-md:text-sm max-sm:text-xs">
             Already a member?{" "}
             <Link
               href={"/auth/signin"}

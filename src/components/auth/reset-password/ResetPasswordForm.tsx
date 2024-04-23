@@ -29,6 +29,13 @@ const ResetPasswordForm = () => {
     confirmPassword: string;
   }) => {
     try {
+      const {otp, password, confirmPassword} = data;
+
+      if(!otp || !password || !confirmPassword){
+        toast.error("Enter all required fields");
+        return;
+      }
+
       setIsLoading(true);
       if (data.password !== data.confirmPassword) {
         setIsLoading(false);

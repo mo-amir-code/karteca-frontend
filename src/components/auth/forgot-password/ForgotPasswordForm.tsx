@@ -17,6 +17,12 @@ const ForgotPasswordForm = () => {
   
     const handleOnSubmit = async (data: { email: string }) => {
       try {
+
+        if(!data.email){
+          toast.error("Enter registered email to reset your password");
+          return;
+        }
+
         setIsLoading(true);
   
         const { data: resData, error } = (await forgotPassword({ email: data.email })) as {

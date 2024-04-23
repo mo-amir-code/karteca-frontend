@@ -29,6 +29,12 @@ const VerifyForm = () => {
   const handleOnSubmit = useCallback(
     async (data: { otp: number }) => {
       try {
+
+        if(!data.otp){
+          toast.error("Enter OTP");
+          return;
+        }
+
         setIsLoading(true);
 
         const { data: resData, error } = (await verifyUser({
