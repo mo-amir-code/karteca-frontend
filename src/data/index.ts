@@ -1,8 +1,13 @@
 import slider1 from "@/assets/slider/1.png";
 import slider2 from "@/assets/slider/2.png";
 import slider3 from "@/assets/slider/3.png";
+import phonepe from "@/assets/upiapp/phonepe.png"
+import gpay from "@/assets/upiapp/gpay.png"
+import paytm from "@/assets/upiapp/paytm.png"
+import bhimupi from "@/assets/upiapp/bhimupi.png"
 
 export const MAX_VALUE = 5000;
+export const PREMIUM_SUBSCRIPTION_AMOUNT = 100
 
 export const navbarData = [
   {
@@ -281,3 +286,22 @@ export const quantities = [
   1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22,
   23, 24, 25, 26, 27, 28, 29, 30,
 ];
+
+export const upiapp = [
+  {
+    name: "gpay",
+    img: gpay
+  },
+  {
+    name: "phonepe",
+    img: phonepe
+  },
+  {
+    name: "paytm",
+    img: paytm
+  },
+  {
+    name: "bhimupi",
+    img: bhimupi
+  },
+]

@@ -1,7 +1,7 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { fetchBaseQueryBaseUrlConfiguration } from "../products/productsAPI";
 import { APIRequestType } from "@/redux/RootTypes";
-import { VerifyPaymentType } from "./paymentType";
+import { CancelPaymentType, CreateSubscriptionType, VerifyPaymentRequestType, VerifyPaymentType } from "./paymentType";
 
 
 const paymentAPI = createApi({
@@ -18,10 +18,43 @@ const paymentAPI = createApi({
                 body:data,
                 credentials: "include"
             })
-        })
+        }),
+        verifyPaymentRequest: builder.mutation<APIRequestType, VerifyPaymentRequestType>({
+            query: (data) => ({
+                url: "verify-request",
+                method: "POST",
+                headers:{
+                    "Content-Type":"application/json"
+                },
+                body:data,
+                credentials: "include"
+            })
+        }),
+        cancelPayment: builder.mutation<APIRequestType, CancelPaymentType>({
+            query: (data) => ({
+                url: "/cancel",
+                method: "PATCH",
+                headers:{
+                    "Content-Type":"application/json"
+                },
+                body:data,
+                credentials: "include"
+            })
+        }),
+        buySubscription: builder.mutation<APIRequestType, CreateSubscriptionType>({
+            query: (data) => ({
+                url: "/subscription",
+                method: "POST",
+                headers:{
+                    "Content-Type":"application/json"
+                },
+                body:data,
+                credentials: "include"
+            })
+        }),
     })
 });
 
-export const {useVerifyPaymentMutation} = paymentAPI;
+export const {useVerifyPaymentMutation, useVerifyPaymentRequestMutation, useCancelPaymentMutation, useBuySubscriptionMutation} = paymentAPI;
 
 export default paymentAPI;

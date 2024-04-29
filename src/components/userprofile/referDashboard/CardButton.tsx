@@ -1,6 +1,5 @@
 "use client"
-import { useAppDispatch } from "@/redux/hooks";
-import { setReferAddMoneyModal } from "@/redux/slices/app/appSlice";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const CardButton = ({
@@ -12,12 +11,13 @@ const CardButton = ({
     amount?: number;
     isWithdrawalActive?: boolean;
   }) => {
-    const dispatch = useAppDispatch();
+    const router = useRouter();
+    
 
 
     const handleUnlockWithdrawal = () => {
       if(type === "isWithdrawalActive" && !isWithdrawalActive){
-        dispatch(setReferAddMoneyModal(true));
+        router.push("/premium");
       }
     }
 

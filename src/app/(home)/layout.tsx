@@ -2,6 +2,7 @@ import MaxWidthLayout from "@/HOC/MaxWidthLayout";
 import Header from "@/sections/header/Header";
 import MobileHeader from "@/sections/header/MobileHeader";
 import MobileNavbar from "@/sections/navbar";
+import CollectPayment from "@/components/collectPayment"
 
 function HomeLayout({
   children,
@@ -16,6 +17,7 @@ function HomeLayout({
         <MaxWidthLayout>{children}</MaxWidthLayout>
       </main>
       <MobileNavbar />
+      <CollectPayment />
     </>
   );
 }

@@ -9,5 +9,22 @@ export interface VerifyPaymentType{
     paymentId: string,
     signature: string,
     transactionId: string,
-    isFrom?: "refer" | "main"
+    isFrom?: "subscription" | "shopping"
 }
+
+export interface VerifyPaymentRequestType{
+    userId: string;
+    transactionId: string;
+    amount: number;
+    isFrom?: "subscription" | "shopping"
+}
+
+export interface CancelPaymentType{
+    transactionId: string
+}
+
+export interface CreateSubscriptionType{
+    userId: string,
+    type: "basic" | "pro" | "premium",
+    amount: number
+  }

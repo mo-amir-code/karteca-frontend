@@ -10,19 +10,20 @@ import { useUserContext } from "@/context/UserContext";
 import useFetchCartItems from "../customHooks/useFetchCartItems";
 import {
   CartItemDataType,
-  PaymentOrderType,
+  // PaymentOrderType,
 } from "@/redux/queries/cart/cartTypes";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { selectLoggedInUserId } from "@/redux/slices/auth/authSlice";
 import toast from "react-hot-toast";
 import { useCreateOrderMutation } from "@/redux/queries/order/orderAPI";
 import { APIRequestType } from "@/redux/RootTypes";
-import { useVerifyPaymentMutation } from "@/redux/queries/payment/paymentAPI";
-import {
-  RazorpayReponseType,
-  VerifyPaymentType,
-} from "@/redux/queries/payment/paymentType";
+// import { useVerifyPaymentMutation } from "@/redux/queries/payment/paymentAPI";
+// import {
+//   RazorpayReponseType,
+//   VerifyPaymentType,
+// } from "@/redux/queries/payment/paymentType";
 import { setPaymentStatusPage } from "@/redux/slices/app/appSlice";
+import { updateCollectPaymentModal, updateIsFrom, updatePaymentModalInfo } from "@/redux/slices/payment/paymentSlice";
 
 interface PaymentModeType extends APIRequestType{
   paymentMode: "online" | "cash" | "wallet"
@@ -36,35 +37,35 @@ const CheckoutButton = () => {
   const { data } = useFetchCartItems();
   const loggedInUserId = useAppSelector(selectLoggedInUserId);
   const [createOrder] = useCreateOrderMutation();
-  const [verifyPayment] = useVerifyPaymentMutation();
+  // const [verifyPayment] = useVerifyPaymentMutation();
   const dispatch = useAppDispatch();
 
-  const handleVerifyPayment = async ({
-    response,
-    transactionId,
-  }: {
-    response: RazorpayReponseType;
-    transactionId: string;
-  }) => {
-    const verifyAPIData: VerifyPaymentType = {
-      orderId: response.razorpay_order_id,
-      paymentId: response.razorpay_payment_id,
-      signature: response.razorpay_signature,
-      transactionId: transactionId,
-    };
+  // const handleVerifyPayment = async ({
+  //   response,
+  //   transactionId,
+  // }: {
+  //   response: RazorpayReponseType;
+  //   transactionId: string;
+  // }) => {
+  //   const verifyAPIData: VerifyPaymentType = {
+  //     orderId: response.razorpay_order_id,
+  //     paymentId: response.razorpay_payment_id,
+  //     signature: response.razorpay_signature,
+  //     transactionId: transactionId,
+  //   };
 
-    const { data: verifyData } = (await verifyPayment(verifyAPIData)) as {
-      data: APIRequestType;
-    };
+  //   const { data: verifyData } = (await verifyPayment(verifyAPIData)) as {
+  //     data: APIRequestType;
+  //   };
 
-    if (verifyData?.success) {
-      dispatch(setPaymentStatusPage(true));
-      router.push("/payment/success");
-      setIsLoading(false);
-    } else {
-      router.push("/payment/failure");
-    }
-  };
+  //   if (verifyData?.success) {
+  //     dispatch(setPaymentStatusPage(true));
+  //     router.push("/payment/success");
+  //     setIsLoading(false);
+  //   } else {
+  //     router.push("/payment/failure");
+  //   }
+  // };
 
   const handleCheckout = useCallback(async () => {
     setIsLoading(true);
@@ -119,32 +120,38 @@ const CheckoutButton = () => {
       }
 
       if (resData?.success && resData.paymentMode === "online") {
-        const {
-          key,
-          name,
-          currency,
-          amount,
-          orderId,
-          theme,
-          prefill,
-          transactionId,
-        } = resData.data as PaymentOrderType;
+        // const {
+        //   key,
+        //   name,
+        //   currency,
+        //   amount,
+        //   orderId,
+        //   theme,
+        //   prefill,
+        //   transactionId,
+        // } = resData.data as PaymentOrderType;
 
-        const options = {
-          key: key,
-          name: name,
-          currency: currency,
-          amount: amount,
-          order_id: orderId,
-          image: "",
-          handler: async (response: RazorpayReponseType) =>
-            await handleVerifyPayment({ response, transactionId }),
-          prefill,
-          theme,
-        };
+        // const options = {
+        //   key: key,
+        //   name: name,
+        //   currency: currency,
+        //   amount: amount,
+        //   order_id: orderId,
+        //   image: "",
+        //   handler: async (response: RazorpayReponseType) =>
+        //     await handleVerifyPayment({ response, transactionId }),
+        //   prefill,
+        //   theme,
+        // };
 
-        const razr = new window.Razorpay(options);
-        razr.open();
+        // const razr = new window.Razorpay(options);
+        // razr.open();
+
+        const { totalAmount, transactionId, paymentQrCodeUrl } = resData?.data
+
+        dispatch(updateCollectPaymentModal({ status: true, paymentQR: paymentQrCodeUrl }));
+        dispatch(updatePaymentModalInfo({ payableAmount: totalAmount, transactionId: transactionId }));
+        dispatch(updateIsFrom("shopping"));
       }
 
       if (resData?.success && resData.paymentMode === "cash" || resData.paymentMode === "wallet") {

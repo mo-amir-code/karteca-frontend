@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
 import success from "@/assets/payment/success.svg";
 import { useRouter } from "next/navigation";
@@ -16,18 +16,18 @@ const Success = () => {
   const loggedInUserName = useAppSelector(selectLoggedInUserName);
   const loggedInUserId = useAppSelector(selectLoggedInUserId);
   const dispatch = useAppDispatch();
-  const {refetch} = useGetCartCountsQuery(loggedInUserId!, { skip: loggedInUserId? false : true });
-  const {refetch:refetchCartItems} = useGetCartItemsQuery(loggedInUserId!);
+  const {refetch} = useGetCartCountsQuery(loggedInUserId!, { skip: !loggedInUserId });
+  const {refetch:refetchCartItems} = useGetCartItemsQuery(loggedInUserId!, { skip: !loggedInUserId });
   const mode = queries.get("mode");
   
-  const handleRedirect = async () => {
+  const handleRedirect = useCallback(async () => {
     await refetch();
     await refetchCartItems();
     dispatch(setProfile({ profile: "orders" }));
     dispatch(setMobileProfileMenu({ isProfileMenuOpen: false }));
     dispatch(setPaymentStatusPage(false));
     router.push(`/user/${loggedInUserName?.replace(" ", "").toLocaleLowerCase()}`);
-  };
+  }, [dispatch, setProfile, setMobileProfileMenu, setPaymentStatusPage, router, loggedInUserName]);
 
   useEffect(() => {
     const countInterval = setInterval(() => {
@@ -54,7 +54,7 @@ const Success = () => {
           className="w-[400px] max-md:w-[300px] max-sm:w-[200px]"
         />
         <p className="w-full text-green-color md:text-2xl text-xl text-center font-semibold">
-          {mode === "online"? "Payment Recieved" : "Order placed"}
+          {mode === "online"? "Payment verification request has been sent. Please wait for next 2 hours." : "Order placed"}
         </p>
         <span className="max-md:text-sm">
           You will be redirect in {count} seconds

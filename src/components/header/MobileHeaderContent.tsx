@@ -1,5 +1,4 @@
 import { memo } from "react";
-import MobileWallet from "@/components/buttons/MobileWallet";
 import SearchBar from "@/components/searchbar";
 import Logo from "./Logo";
 import ClientWallet from "./ClientWallet";

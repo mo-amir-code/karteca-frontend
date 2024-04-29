@@ -9,13 +9,13 @@ import { useAppSelector } from "@/redux/hooks";
 import { selectLoggedInUserId } from "@/redux/slices/auth/authSlice";
 import { ReferDashboardAPIType } from "@/redux/queries/refer/referTypes";
 import IsLoading from "@/HOC/IsLoading";
-import { selectReferAddMoneyModal } from "@/redux/slices/app/appSlice";
-import AddPaymentModal from "./AddPaymentModal";
+// import { selectReferAddMoneyModal } from "@/redux/slices/app/appSlice";
+// import AddPaymentModal from "./AddPaymentModal";
 
 const Index = () => {
   const loggedInUserId = useAppSelector(selectLoggedInUserId);
   const { data, isLoading, isFetching, isError, isSuccess } = useGetReferralDashboardQuery(loggedInUserId!, { skip: loggedInUserId? false : true }) as ReferDashboardAPIType;
-  const isModalOpen = useAppSelector(selectReferAddMoneyModal)
+  // const isModalOpen = useAppSelector(selectReferAddMoneyModal)
 
   return (
     <>
@@ -50,7 +50,7 @@ const Index = () => {
           </div>
           <ReferNow referCode={data?.data?.referCode} />
         </div>
-        {isModalOpen? <AddPaymentModal /> : null}
+        {/* {isModalOpen? <AddPaymentModal /> : null} */}
         </>
       </IsLoading>
     </>

@@ -148,13 +148,15 @@ export const deliveryStatus = (status:string) => {
 
 }
 
-export const selectWithdrawalColor = (status: "pending" | "processing" | "failed" | "success") => {
+export const selectWithdrawalColor = (status: "pending" | "processing" | "failed" | "success" | "cancelled") => {
   switch(status){
     case "pending":
       return "#FFCC00";
     case "processing":
       return "#FFCC00";
     case "failed":
+      return "#DC2626";
+    case "cancelled":
       return "#DC2626";
     case "success":
       return "#00b533";
