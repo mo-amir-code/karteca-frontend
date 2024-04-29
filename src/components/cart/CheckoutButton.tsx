@@ -158,6 +158,8 @@ const CheckoutButton = () => {
         dispatch(setPaymentStatusPage(true));
         router.push("/payment/success?mode=cash");
       }
+
+      setIsLoading(false);
     } catch (error) {
       setIsLoading(false);
     }
