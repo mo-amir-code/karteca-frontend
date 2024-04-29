@@ -43,7 +43,7 @@ const AddPaymentModal = () => {
       paymentId: response.razorpay_payment_id,
       signature: response.razorpay_signature,
       transactionId: transactionId,
-      isFrom: "refer"
+      isFrom: undefined
     };
 
     const { data: verifyData } = (await verifyPayment(verifyAPIData)) as {
