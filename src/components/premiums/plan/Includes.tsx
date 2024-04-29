@@ -4,7 +4,7 @@ import { TiTick } from "react-icons/ti";
 const Includes = () => {
   return (
     <div className='space-y-2' >
-        <p className='text-sm text-text-secondary-color' >What's includes premium:</p>
+        <p className='text-sm text-text-secondary-color' >{"What's"} includes premium:</p>
         <div>
             <Include msg='Referral Earning Withdrawal' />
             <Include msg="50+ Extra Coupon's" />
