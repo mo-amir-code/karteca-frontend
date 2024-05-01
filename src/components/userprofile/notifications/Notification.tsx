@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-import ntfLogo from "@/assets/brand/logo.png"
+import ntfLogo from "@/assets/brand/Logo.svg"
 import { NotificationType } from '@/redux/queries/notification/ntfTypes'
 import { getData } from '../referDashboard/WithdrawalHistory'
 
