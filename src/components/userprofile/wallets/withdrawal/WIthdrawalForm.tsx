@@ -56,7 +56,7 @@ const WIthdrawalForm = ({ currentEarning }:{ currentEarning:number }) => {
       const { data:resData, error } = await withdrawalRequest(apiData) as { data: APIRequestType, error: { data: APIRequestType } }
 
       if(resData?.success){
-        toast.success("Withdrawal request sent. Amount will be sent to your upi id under 6 hours");
+        toast.success(resData.message);
         reset();
       }
 
