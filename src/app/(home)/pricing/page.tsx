@@ -1,7 +1,7 @@
 import React from 'react'
 import Plans from "@/components/premiums"
 
-const Premium = () => {
+const Pricing = () => {
   return (
     <div>
         <Plans />
@@ -9,4 +9,4 @@ const Premium = () => {
   )
 }
 
-export default Premium;
+export default Pricing;

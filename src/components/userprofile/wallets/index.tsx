@@ -6,6 +6,7 @@ import { selectLoggedInUserId } from "@/redux/slices/auth/authSlice";
 import IsLoading from "@/HOC/IsLoading";
 import { useGetUserTransactionsQuery } from "@/redux/queries/user/userAPI";
 import WithdrawalHistory from "../referDashboard/WithdrawalHistory";
+import Withdrawal from "./withdrawal"
 
 const Index = () => {
   const loggedInUserId = useAppSelector(selectLoggedInUserId);
@@ -24,6 +25,9 @@ const Index = () => {
           <Wallet amount={data?.data?.coinBalance} name="Total Coins" icon="coin" />
           <Wallet amount={data?.data?.currentReferralEarning} name="Referral Earning" icon="refer" />
         </div>}
+
+        <Withdrawal amount={data?.data?.currentReferralEarning}  />
+
         <IsLoading isLoading={txnIsLoading || txnIsFetching} isError={txnIsError} isSuccess={txnIsSuccess} >
           <WithdrawalHistory data={txnData?.data} />
         </IsLoading>

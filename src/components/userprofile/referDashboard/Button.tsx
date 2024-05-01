@@ -7,7 +7,7 @@ const Button = () => {
     
 
     const handleModalOpen = () => {
-      router.push("/premium");
+      router.push("/pricing");
     }
 
   return (

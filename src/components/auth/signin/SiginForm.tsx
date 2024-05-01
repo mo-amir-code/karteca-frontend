@@ -12,13 +12,18 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
+interface SigninFormType{
+  email: string,
+  password: string
+}
+
 const SigninForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [signinUser] = useSigninUserMutation();
   const router = useRouter()
   const dispatch = useAppDispatch()
 
-  const { register, handleSubmit, reset } = useForm<FormData>();
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<SigninFormType>();
 
   const handleOnSubmit = async (data: AuthSigninUserType) => {
     try {
@@ -71,12 +76,16 @@ const SigninForm = () => {
         placeHolder="Email"
         type="email"
         icon="email"
+        required="Enter email id"
+        error={errors.email?.message as string | undefined}
       />
       <InputField
         register={register}
         placeHolder="Password"
         type="password"
         icon="password"
+        required="Enter password"
+        error={errors.password?.message as string | undefined}
       />
       <div className="flex items-center justify-between">
         <span className="hover:text-primary-color max-md:text-sm max-sm:text-xs smooth_transition">

@@ -17,7 +17,7 @@ const AddressForm = ({data, setIsOpen}:{data?: UserAddressType, setIsOpen?:Funct
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<FormData>();
+  } = useForm<UserAddressFormType>();
   const {setIsAddressEdit} = useUserContext();
   const loggedInUserId = useAppSelector(selectLoggedInUserId);
   const [addUserNewAddress] = useAddUserAddressMutation();
@@ -80,8 +80,8 @@ const AddressForm = ({data, setIsOpen}:{data?: UserAddressType, setIsOpen?:Funct
           register={register}
           type="text"
           placeholder="Name"
-          isRequired={true}
-          errors={errors}
+          isRequired="Enter name"
+          errors={errors.name?.message as string | undefined}
           defaultValue={data?.name}
         />
         <AddressInputField
@@ -89,8 +89,8 @@ const AddressForm = ({data, setIsOpen}:{data?: UserAddressType, setIsOpen?:Funct
           register={register}
           type="email"
           placeholder="Email"
-          isRequired={true}
-          errors={errors}
+          isRequired="Enter email id"
+          errors={errors.email?.message as string | undefined}
           defaultValue={data?.email}
         />
       </div>
@@ -99,8 +99,8 @@ const AddressForm = ({data, setIsOpen}:{data?: UserAddressType, setIsOpen?:Funct
         register={register}
         type="text"
         placeholder="Enter Address"
-        isRequired={true}
-        errors={errors}
+        isRequired="Enter address"
+        errors={errors.address?.message as string | undefined}
         defaultValue={data?.address}
       />
       <div className="flex items-center gap-4">
@@ -109,8 +109,8 @@ const AddressForm = ({data, setIsOpen}:{data?: UserAddressType, setIsOpen?:Funct
           register={register}
           type="text"
           placeholder="State"
-          isRequired={true}
-          errors={errors}
+          isRequired="state"
+          errors={errors.state?.message as string | undefined}
           defaultValue={data?.state}
         />
         <AddressInputField
@@ -118,8 +118,8 @@ const AddressForm = ({data, setIsOpen}:{data?: UserAddressType, setIsOpen?:Funct
           register={register}
           type="text"
           placeholder="City/District/Town"
-          isRequired={true}
-          errors={errors}
+          isRequired="Enter city"
+          errors={errors.city?.message as string | undefined}
           defaultValue={data?.city}
         />
       </div>
@@ -129,8 +129,8 @@ const AddressForm = ({data, setIsOpen}:{data?: UserAddressType, setIsOpen?:Funct
           register={register}
           type="number"
           placeholder="Pin Code"
-          isRequired={true}
-          errors={errors}
+          isRequired="Postcal code is required"
+          errors={errors.postalCode?.message as string | undefined}
           defaultValue={data?.postalCode}
         />
         <AddressInputField
@@ -138,8 +138,8 @@ const AddressForm = ({data, setIsOpen}:{data?: UserAddressType, setIsOpen?:Funct
           register={register}
           type="number"
           placeholder="10-digit mobile number"
-          isRequired={true}
-          errors={errors}
+          isRequired="Mobile number is required"
+          errors={errors.phone?.message as string | undefined}
           defaultValue={data?.phone}
         />
       </div>

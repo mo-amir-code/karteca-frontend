@@ -11,6 +11,7 @@ import { BsGenderAmbiguous } from "react-icons/bs";
 import { MdHomeWork } from "react-icons/md";
 import { MdLockReset } from "react-icons/md";
 import { FaMoneyBills } from "react-icons/fa6";
+import { IoIosQrScanner } from "react-icons/io";
 
 
 const InputField = ({
@@ -26,7 +27,7 @@ const InputField = ({
     icon: string;
     type: string;
     register?: any;
-    required?: boolean;
+    required?: boolean | string;
     isCenter?: boolean;
     error?:string | null
   }) => {
@@ -71,7 +72,13 @@ const InputField = ({
                 return <MdHomeWork size={20} />;
               case "gender":
                 return <BsGenderAmbiguous size={20} />;
-              default:
+              case "amount":
+                return <FaMoneyBills size={20} />;
+              case "cUpi":
+                return <IoIosQrScanner size={20} />;
+              case "upi":
+                return <IoIosQrScanner size={20} />;
+              default:0
                 console.log("something went wrong");
             }
           })()}
@@ -84,7 +91,7 @@ const InputField = ({
             placeholder={placeHolder}
           />
         </div>
-        <span className="text-xs text-red-color" >{error?? null}</span>
+        <span className="text-xs block text-red-color" >{error?? null}</span>
       </div>
     );
   };

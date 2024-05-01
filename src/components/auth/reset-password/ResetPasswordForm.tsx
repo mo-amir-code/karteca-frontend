@@ -9,6 +9,12 @@ import { useResendOTPMutation, useResetPasswordMutation } from "@/redux/queries/
 import { APIRequestType } from "@/redux/RootTypes";
 import { useQueryContext } from "@/context/QueryContext";
 
+interface ResetPasswordFormType{
+  otp: number,
+  password: string,
+  confirmPassword: string
+}
+
 const ResetPasswordForm = () => {
   const [otpCountDown, setOtpCountDown] = useState<number>(30);
   const [otpCountLoading, setOtpCountDownLoading] = useState<boolean>(false);
@@ -21,7 +27,7 @@ const ResetPasswordForm = () => {
   const [resetPassword] = useResetPasswordMutation();
   const [resendOTP] = useResendOTPMutation();
 
-  const { register, handleSubmit, reset } = useForm<FormData>();
+  const { register, handleSubmit, reset, formState: {errors} } = useForm<ResetPasswordFormType>();
 
   const handleOnSubmit = useCallback(async (data: {
     otp: number;
@@ -139,6 +145,8 @@ const ResetPasswordForm = () => {
         placeHolder="Enter OTP*"
         type="number"
         icon="otp"
+        required="Enter OTP"
+        error={errors?.otp?.message as string | undefined}
         />
         <button
           type="button"
@@ -153,16 +161,19 @@ const ResetPasswordForm = () => {
         </div>
       <InputField
         register={register}
-        placeHolder="Enter Password*"
+        placeHolder="Enter new Password*"
         type="password"
         icon="password"
+        required="Enter new password"
+        error={errors?.password?.message as string | undefined}
       />
       <InputField
         register={register}
         placeHolder="Confirm Password*"
         type="password"
         icon="confirmPassword"
-        error={passwordMatch ? "Password did not matched" : null}
+        required="Confirm new password"
+        error={errors?.confirmPassword?.message as string | undefined}
       />
       <p className="text-xs text-red-color text-center">
         Please check your Gmail spam for the OTP (One Time Password)

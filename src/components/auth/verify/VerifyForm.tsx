@@ -14,6 +14,10 @@ import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
+interface VerifyFormType{
+  otp: number
+}
+
 const VerifyForm = () => {
   const [otpCountDown, setOtpCountDown] = useState<number>(30);
   const [otpCountLoading, setOtpCountDownLoading] = useState<boolean>(false);
@@ -24,10 +28,10 @@ const VerifyForm = () => {
   const router = useRouter();
   const dispatch = useAppDispatch();
 
-  const { register, handleSubmit, reset } = useForm<FormData>();
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<VerifyFormType>();
 
   const handleOnSubmit = useCallback(
-    async (data: { otp: number }) => {
+    async (data: VerifyFormType) => {
       try {
 
         if(!data.otp){
@@ -132,6 +136,8 @@ const VerifyForm = () => {
           placeHolder="Enter OTP here"
           type="number"
           icon="otp"
+          required="Enter OTP"
+          error={errors?.otp?.message as string | undefined}
           isCenter
         />
         <button

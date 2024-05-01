@@ -10,6 +10,18 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
+interface SingupFormType{
+  name: string,
+  email: string,
+  phone?: number,
+  gender: string,
+  referredUserReferCode?: string,
+  state: string,
+  city: string,
+  password: string,
+  confirmPassword: string
+}
+
 const SignupForm = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [signupUser] = useSignupUserMutation();
@@ -21,7 +33,7 @@ const SignupForm = () => {
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<FormData>();
+  } = useForm<SingupFormType>();
 
   const handleOnSubmit = async (data: any) => {
     try {
@@ -97,14 +109,16 @@ const SignupForm = () => {
           placeHolder="Full Name*"
           type="text"
           icon="name"
-          required
+          required="Enter your full name"
+          error={errors.name?.message as string | undefined}
         />
         <InputField
           register={register}
           placeHolder="Email*"
           type="email"
           icon="email"
-          required
+          required="Enter your email id"
+          error={errors.email?.message as string | undefined}
         />
         <InputField
           register={register}
@@ -117,7 +131,8 @@ const SignupForm = () => {
           placeHolder="Male, Female or Transgender*"
           type="text"
           icon="gender"
-          required
+          required="Enter your gender male/female/transgender"
+          error={errors.gender?.message as string | undefined}
         />
         <InputField
           register={register}
@@ -130,29 +145,32 @@ const SignupForm = () => {
           placeHolder="State*"
           type="text"
           icon="state"
-          required
+          required="Enter your state"
+          error={errors.state?.message as string | undefined}
         />
         <InputField
           register={register}
           placeHolder="City*"
           type="text"
           icon="city"
-          required
+          required="Enter your city"
+          error={errors.city?.message as string | undefined}
         />
         <InputField
           register={register}
           placeHolder="Password*"
           type="password"
           icon="password"
-          required
+          required="Enter password"
+          error={errors.password?.message as string | undefined}
         />
         <InputField
           register={register}
           placeHolder="Confirm Password*"
           type="password"
           icon="confirmPassword"
-          required
-          error={passwordMatch ? "Password did not matched" : null}
+          required="Enter confirm password"
+          error={passwordMatch ? "Password did not matched. Enter correct password" : null || errors?.confirmPassword?.message as string | undefined}
         />
         <div className="flex items-center justify-between">
           <span className="max-md:text-sm max-sm:text-xs">

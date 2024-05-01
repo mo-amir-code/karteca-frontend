@@ -11,7 +11,7 @@ const AddressInputField = ({
   placeholder: string;
   type: string;
   register: any;
-  isRequired?: boolean;
+  isRequired?: boolean | string;
   errors: any;
   defaultValue?: string | number
 }) => {
@@ -21,12 +21,12 @@ const AddressInputField = ({
         <input
           type={type}
           placeholder={placeholder}
-          {...register(name, { required: isRequired ? true : false })}
+          {...register(name, { required: isRequired })}
           className="bg-transparent outline-none w-full"
           defaultValue={defaultValue}
         />
       </div>
-      <p className="text-red-color text-xs px-1 mt-1 h-4" >{errors[name] && `${name} is required`}</p>
+      <p className="text-red-color text-xs px-1 mt-1 h-4" >{errors?? null}</p>
     </div>
   );
 };

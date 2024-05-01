@@ -18,7 +18,7 @@ export interface ChangePasswordType {
 
 const ChangePassword = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const { register, handleSubmit, reset } = useForm<FormData>();
+  const { register, handleSubmit, reset, formState: { errors } } = useForm<ChangePasswordType>();
   const {dispatch} = useUserContext();
   const [updatePassword] = useUpdateUserPasswordMutation();
   const loggedInUserId = useAppSelector(selectLoggedInUserId);
@@ -75,12 +75,16 @@ const ChangePassword = () => {
             type="password"
             placeHolder="Enter Old Password"
             icon="password"
+            required="Enter old password"
+            error={errors.password?.message as string | undefined}
           />
           <InputField
             register={register}
             type="password"
             placeHolder="Enter New Password"
             icon="newPassword"
+            required="Enter new password"
+            error={errors.newPassword?.message as string | undefined}
           />
           <SubmitButton isLoading={isLoading} name="Change Password" />
         </form>

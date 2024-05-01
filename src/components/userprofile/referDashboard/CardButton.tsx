@@ -17,7 +17,7 @@ const CardButton = ({
 
     const handleUnlockWithdrawal = () => {
       if(type === "isWithdrawalActive" && !isWithdrawalActive){
-        router.push("/premium");
+        router.push("/pricing");
       }
     }
 

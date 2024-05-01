@@ -8,14 +8,18 @@ import toast from 'react-hot-toast';
 import { useRouter } from 'next/navigation';
 import { APIRequestType } from '@/redux/RootTypes';
 
+interface ForgotPasswordFormType{
+  email: string
+}
+
 const ForgotPasswordForm = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [forgotPassword] = useForgotPasswordMutation();
     const router = useRouter();
   
-    const { register, handleSubmit, reset } = useForm<FormData>();
+    const { register, handleSubmit, reset, formState: { errors } } = useForm<ForgotPasswordFormType>();
   
-    const handleOnSubmit = async (data: { email: string }) => {
+    const handleOnSubmit = async (data: ForgotPasswordFormType) => {
       try {
 
         if(!data.email){
@@ -49,7 +53,7 @@ const ForgotPasswordForm = () => {
   
     return (
       <form
-        onSubmit={handleSubmit((data: any) => {
+        onSubmit={handleSubmit((data) => {
           handleOnSubmit(data);
         })}
         className="flex flex-col gap-4 w-full"
@@ -59,6 +63,8 @@ const ForgotPasswordForm = () => {
           placeHolder="Enter Email Id*"
           type="email"
           icon="email"
+          required="Enter email id to reset your password"
+          error={errors?.email?.message as string | undefined}
         />
         <p className="text-xs text-center">
         Enter registered email id to reset your password

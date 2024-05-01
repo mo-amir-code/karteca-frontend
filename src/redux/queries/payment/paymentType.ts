@@ -28,3 +28,10 @@ export interface CreateSubscriptionType{
     type: "basic" | "pro" | "premium",
     amount: number
   }
+
+
+export interface WithdrawalRequestType{
+    userId: string,
+    amount: number,
+    upi: string
+}
