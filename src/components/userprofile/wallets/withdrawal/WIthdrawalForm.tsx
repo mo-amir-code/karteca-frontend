@@ -60,7 +60,7 @@ const WIthdrawalForm = ({ currentEarning }:{ currentEarning:number }) => {
         reset();
       }
 
-      if(!error?.data?.success){
+      if(error?.data?.success === false){
         toast.error(error?.data?.message);
       }
 
