@@ -102,7 +102,7 @@ const WIthdrawalForm = ({ currentEarning }:{ currentEarning:number }) => {
           error={errors.cUpi?.message as string | undefined}
         />
         </div>
-        <button type='submit' className="font-medium px-5 md:hover:shadow-md py-2 smooth_transition rounded-md bg-primary-color text-white" >{isLoading? <ButtonLoader color /> : "Withdrawal"}</button>
+        <button type='submit' className="font-medium px-5 md:hover:shadow-md py-2 smooth_transition rounded-md max-sm:text-sm bg-primary-color text-white" >{isLoading? <ButtonLoader color /> : "Withdrawal"}</button>
     </form>
   )
 }
