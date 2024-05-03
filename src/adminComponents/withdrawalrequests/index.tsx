@@ -1,26 +1,26 @@
 "use client"
 import IsLoading from "@/HOC/IsLoading";
-import { useFetchUserTransactionRequestsQuery } from "@/redux/queries/admin/adminAPI";
-import SelectStatus from "./SelectStatus";
+import { useFetchUserWithdrawalRequestsQuery } from "@/redux/queries/admin/adminAPI";
+import SelectWithdrawalStatus from "./SelectWithdrawalStatus";
 
 interface TransactionRequestType{
   _id: string,
   name: string,
   amount: number,
   phone?: number,
-  utrId: string,
-  status: string,
+  upiId: string,
+  status:  "success" | "failed" | "verified" | "pending" | "processing",
   type: "shopping" | "subscription"
 }
 
 const Index = () => {
-  const { data, isError, isFetching, isLoading, isSuccess } = useFetchUserTransactionRequestsQuery(null);
+  const { data, isError, isFetching, isLoading, isSuccess } = useFetchUserWithdrawalRequestsQuery(null);
 
 
   return (
     <IsLoading isLoading={isLoading || isFetching} isSuccess={isSuccess} isError={isError} >
     <article className="space-y-2" >
-      <h2 className=" font-semibold text-2xl">Transaction Requests</h2>
+      <h2 className=" font-semibold text-2xl">Withdrawal Requests</h2>
 
       <table className="w-full bg-white">
         <>
@@ -29,7 +29,7 @@ const Index = () => {
               <th>Name</th>
               <th>Amount</th>
               <th>Mobile No.</th>
-              <th>UTR Id</th>
+              <th>UPI Id</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -38,8 +38,8 @@ const Index = () => {
               <td className="text-center">{txn.name}</td>
               <td className="text-center">₹{txn.amount}</td>
               <td className="text-center">{txn.phone?? "-"}</td>
-              <td className="text-center">{txn.utrId}</td>
-              <td className="text-center"><SelectStatus selectedValue={txn.status} utrId={txn.utrId} isFrom={txn.type} /></td>
+              <td className="text-center">{txn.upiId}</td>
+              <td className="text-center"><SelectWithdrawalStatus selectedValue={txn.status} withdrawalRequestId={txn._id} /></td>
             </tr>))}
           </tbody>
         </>

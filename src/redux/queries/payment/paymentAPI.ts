@@ -8,6 +8,7 @@ import {
   VerifyPaymentType,
   WithdrawalRequestType,
 } from "./paymentType";
+import { WithdrawalRequestVerificationType } from "../admin/adminTypes";
 
 const paymentAPI = createApi({
   reducerPath: "paymentAPI",
@@ -71,6 +72,17 @@ const paymentAPI = createApi({
         credentials: "include",
       }),
     }),
+    withdrawalVerify: builder.mutation<APIRequestType, WithdrawalRequestVerificationType>({
+      query: (data) => ({
+        url: "/withdrawal/verify",
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: data,
+        credentials: "include",
+      }),
+    }),
   }),
 });
 
@@ -79,7 +91,8 @@ export const {
   useVerifyPaymentRequestMutation,
   useCancelPaymentMutation,
   useBuySubscriptionMutation,
-  useWithdrawalRequestMutation
+  useWithdrawalRequestMutation,
+  useWithdrawalVerifyMutation
 } = paymentAPI;
 
 export default paymentAPI;

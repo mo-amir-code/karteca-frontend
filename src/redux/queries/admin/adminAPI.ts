@@ -15,11 +15,31 @@ const adminApi = createApi({
           credentials: "include",
         }),
     }),
+    fetchUserWithdrawalRequests: builder.query<APIRequestType, null>({
+        query: () => ({
+          url: `/withdrawal/requests`,
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        }),
+    }),
+    fetchUserCount: builder.query<APIRequestType, null>({
+        query: () => ({
+          url: `/user/count`,
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        }),
+    }),
   })
 });
 
 export const {
-    useFetchUserTransactionRequestsQuery
+    useFetchUserTransactionRequestsQuery,
+    useFetchUserWithdrawalRequestsQuery,
+    useFetchUserCountQuery
 } = adminApi;
 
 export default adminApi;

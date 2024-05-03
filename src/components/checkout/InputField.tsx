@@ -8,6 +8,7 @@ import { BsGenderAmbiguous } from "react-icons/bs";
 import { MdLockReset, MdHomeWork, MdNoteAlt, MdOutlinePassword, MdEmail } from "react-icons/md";
 import { FaMoneyBills, FaMapLocationDot } from "react-icons/fa6";
 import { IoIosQrScanner } from "react-icons/io";
+import { GrTransaction } from "react-icons/gr";
 
 
 const InputField = ({
@@ -76,6 +77,8 @@ const InputField = ({
                 return <IoIosQrScanner size={20} />;
               case "note":
                 return <MdNoteAlt size={20} />;
+              case "utrId":
+                return <GrTransaction size={20} />;
               default:0
                 console.log("something went wrong");
             }

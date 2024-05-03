@@ -6,6 +6,7 @@ import { useAppSelector } from '@/redux/hooks'
 import { useWithdrawalRequestMutation } from '@/redux/queries/payment/paymentAPI'
 import { WithdrawalRequestType } from '@/redux/queries/payment/paymentType'
 import { selectLoggedInUserId } from '@/redux/slices/auth/authSlice'
+import { PAYMENT_MAX_AMOUNT } from '@/utils/constants'
 import React, { useCallback, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import toast from 'react-hot-toast'
@@ -33,10 +34,15 @@ const WIthdrawalForm = ({ currentEarning }:{ currentEarning:number }) => {
         return;
       }
 
-      if(amount > currentEarning){
-        toast.error("Insufficient balance");
-        return;
-      }
+      // if(amount > currentEarning){
+      //   toast.error("Insufficient balance");
+      //   return;
+      // }
+
+      // if(amount < PAYMENT_MAX_AMOUNT){
+      //   toast.error("Enter minimum ₹100");
+      //   return;
+      // }
 
       if(upi !== cUpi){
         toast.error("Confirm upi id is not matched");
