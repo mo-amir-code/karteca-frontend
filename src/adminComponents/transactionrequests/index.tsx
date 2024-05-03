@@ -36,7 +36,7 @@ const Index = () => {
             </tr>
           </thead>
           <tbody className="text-sm max-md:text-xs space-y-2">
-            {data?.data?.map((txn:TransactionRequestType)=>(<tr className="border">
+            {data?.data?.map((txn:TransactionRequestType)=>(<tr key={txn._id} className="border">
               <td className="text-center">{txn.name}</td>
               <td className="text-center">₹{txn.amount}</td>
               <td className="text-center">{txn.phone?? "-"}</td>
