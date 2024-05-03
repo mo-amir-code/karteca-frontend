@@ -40,7 +40,7 @@ const ProfilePath = ({
         newTarget = "addresses";
         break;
       case "Log out":
-        dispatch(logoutUser(null));
+        dispatch(logoutUser());
         router.push("/");
         break;
       case "Notifications":

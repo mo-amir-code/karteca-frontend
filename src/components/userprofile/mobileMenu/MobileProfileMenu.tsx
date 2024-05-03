@@ -43,7 +43,7 @@ const MobileProfileMenu = ({title, list, icon}:{title:string, list?:[{name:strin
         newTarget = "wallets";
         break;
       case "Log out":
-        dispatch(logoutUser(null));
+        dispatch(logoutUser());
         router.push("/auth/signin");
         break;
       default:

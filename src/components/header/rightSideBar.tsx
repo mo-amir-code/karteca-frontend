@@ -54,7 +54,7 @@ const RightSideBar = () => {
     }
 
     if(!isUserLoggedInCookie){
-      dispatch(logoutUser(null));
+      dispatch(logoutUser());
     }
 
   }, [data, wishlistData, isUserLoggedInCookie]);
