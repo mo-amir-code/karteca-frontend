@@ -14,6 +14,7 @@ import paymentAPI from "./queries/payment/paymentAPI";
 import referAPI from "./queries/refer/referAPI";
 import ntfAPI from "./queries/notification/notificationAPI";
 import paymentSlice from "./slices/payment/paymentSlice";
+import adminApi from "./queries/admin/adminAPI";
 
 
 const appPersistConfig: PersistConfig<any> = {
@@ -41,7 +42,8 @@ const rootReducer = combineReducers({
     [orderAPI.reducerPath]: orderAPI.reducer,
     [paymentAPI.reducerPath]: paymentAPI.reducer,
     [referAPI.reducerPath]: referAPI.reducer,
-    [ntfAPI.reducerPath]: ntfAPI.reducer
+    [ntfAPI.reducerPath]: ntfAPI.reducer,
+    [adminApi.reducerPath]: adminApi.reducer,
 });
 
 

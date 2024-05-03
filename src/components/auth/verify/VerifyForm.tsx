@@ -49,8 +49,9 @@ const VerifyForm = () => {
         };
 
         if (resData?.success) {
+          const {userId, name, role} = resData?.data;
           dispatch(
-            loginUser({ userId: resData.data.userId, name: resData.data.name })
+            loginUser({ userId: userId, name: name, role:role })
           );
           router.push("/");
           toast.success("Signed up");

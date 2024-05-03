@@ -1,16 +1,12 @@
 import { FaAddressCard } from "react-icons/fa";
-import { FaMapLocationDot } from "react-icons/fa6";
 import { GiFamilyHouse } from "react-icons/gi";
-import { MdEmail } from "react-icons/md";
 import { RiEarthFill } from "react-icons/ri";
 import { TbBuildingEstate, TbDialpadFilled } from "react-icons/tb";
 import { TiUser } from "react-icons/ti";
-import { MdOutlinePassword } from "react-icons/md";
 import { LuNetwork } from "react-icons/lu";
 import { BsGenderAmbiguous } from "react-icons/bs";
-import { MdHomeWork } from "react-icons/md";
-import { MdLockReset } from "react-icons/md";
-import { FaMoneyBills } from "react-icons/fa6";
+import { MdLockReset, MdHomeWork, MdNoteAlt, MdOutlinePassword, MdEmail } from "react-icons/md";
+import { FaMoneyBills, FaMapLocationDot } from "react-icons/fa6";
 import { IoIosQrScanner } from "react-icons/io";
 
 
@@ -78,6 +74,8 @@ const InputField = ({
                 return <IoIosQrScanner size={20} />;
               case "upi":
                 return <IoIosQrScanner size={20} />;
+              case "note":
+                return <MdNoteAlt size={20} />;
               default:0
                 console.log("something went wrong");
             }
@@ -91,7 +89,7 @@ const InputField = ({
             placeholder={placeHolder}
           />
         </div>
-        <span className="text-xs block text-red-color" >{error?? null}</span>
+        <span className="text-xs text-start block text-red-color" >{error?? null}</span>
       </div>
     );
   };

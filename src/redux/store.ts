@@ -9,6 +9,7 @@ import orderAPI from "./queries/order/orderAPI";
 import paymentAPI from "./queries/payment/paymentAPI";
 import referAPI from "./queries/refer/referAPI";
 import ntfAPI from "./queries/notification/notificationAPI";
+import adminApi from "./queries/admin/adminAPI";
 
 export const store = configureStore({
   reducer: persistedReducer,
@@ -21,7 +22,8 @@ export const store = configureStore({
       orderAPI.middleware,
       paymentAPI.middleware,
       referAPI.middleware,
-      ntfAPI.middleware
+      ntfAPI.middleware,
+      adminApi.middleware
     ]),
 });
 

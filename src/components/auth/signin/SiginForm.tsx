@@ -47,7 +47,8 @@ const SigninForm = () => {
       const res = await signinUser(newData) as {data:APIRequestType, error?:{status:number, data:APIRequestType}};
 
       if(res?.data?.success){
-        dispatch(loginUser({userId:res.data.data.userId, name:res.data.data.name}));
+        const {userId, name, role} = res?.data?.data;
+        dispatch(loginUser({userId:userId, name:name, role: role}));
         router.push("/");
         toast.success("Logged In");
       }

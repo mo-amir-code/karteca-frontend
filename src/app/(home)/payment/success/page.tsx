@@ -6,7 +6,7 @@ import { useRouter } from "next/navigation";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { selectLoggedInUserId, selectLoggedInUserName } from "@/redux/slices/auth/authSlice";
 import { setMobileProfileMenu, setPaymentStatusPage, setProfile } from "@/redux/slices/app/appSlice";
-import { useGetCartCountsQuery, useGetCartItemsQuery } from "@/redux/queries/cart/cartAPI";
+// import { useGetCartCountsQuery, useGetCartItemsQuery } from "@/redux/queries/cart/cartAPI";
 import { useQueryContext } from "@/context/QueryContext";
 
 const Success = () => {
@@ -14,15 +14,15 @@ const Success = () => {
   const router = useRouter();
   const { queries } = useQueryContext();
   const loggedInUserName = useAppSelector(selectLoggedInUserName);
-  const loggedInUserId = useAppSelector(selectLoggedInUserId);
+  // const loggedInUserId = useAppSelector(selectLoggedInUserId);
   const dispatch = useAppDispatch();
-  const {refetch} = useGetCartCountsQuery(loggedInUserId!, { skip: !loggedInUserId });
-  const {refetch:refetchCartItems} = useGetCartItemsQuery(loggedInUserId!, { skip: !loggedInUserId });
+  // useGetCartCountsQuery(loggedInUserId!, { skip: !loggedInUserId });
+  // useGetCartItemsQuery(loggedInUserId!, { skip: !loggedInUserId });
   const mode = queries.get("mode");
   
   const handleRedirect = useCallback(async () => {
-    await refetch();
-    await refetchCartItems();
+    // await refetch();
+    // await refetchCartItems();
     dispatch(setProfile({ profile: "orders" }));
     dispatch(setMobileProfileMenu({ isProfileMenuOpen: false }));
     dispatch(setPaymentStatusPage(false));

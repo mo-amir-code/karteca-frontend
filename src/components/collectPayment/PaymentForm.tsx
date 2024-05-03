@@ -31,12 +31,13 @@ const PaymentForm = () => {
 
   const handleVerifyPaymentRequest = async () => {
     try {
+
       if (inputValue.length < 12) {
         toast.error("Please Enter Correct ID");
         return;
       }
 
-      if (!loggedInUserId) {
+      if (!loggedInUserId || !collectPaymentModalInfo?.transactionId) {
         toast.error("Something went wrong!");
         return;
       }
@@ -45,7 +46,8 @@ const PaymentForm = () => {
 
       const apiData: VerifyPaymentRequestType = {
         amount: collectPaymentModalInfo?.payableAmount,
-        transactionId: inputValue,
+        transactionId: collectPaymentModalInfo?.transactionId,
+        utrId: inputValue,
         userId: loggedInUserId,
         isFrom: isFrom? isFrom : undefined
       };

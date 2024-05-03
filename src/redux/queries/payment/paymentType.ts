@@ -4,17 +4,18 @@ export interface RazorpayReponseType{
     razorpay_signature: string
 }
 
-export interface VerifyPaymentType{
-    orderId: string,
-    paymentId: string,
-    signature: string,
-    transactionId: string,
-    isFrom?: "subscription" | "shopping"
+export interface VerifyPaymentType{  
+  paymentStatus: "success" | "failed" | "pending" | "processing",
+  // transactionId: string,
+  utrId: string,
+  adminNote: string,
+  isFrom?: "subscription" | "shopping"
 }
 
 export interface VerifyPaymentRequestType{
     userId: string;
     transactionId: string;
+    utrId: string,
     amount: number;
     isFrom?: "subscription" | "shopping"
 }
