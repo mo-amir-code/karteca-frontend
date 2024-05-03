@@ -30,94 +30,94 @@ const AddPaymentModal = () => {
     reset,
   } = useForm<FormData>();
 
-  const handleVerifyPayment = async ({
-    response,
-    transactionId,
-  }: {
-    response: RazorpayReponseType;
-    transactionId: string;
-  }) => {
-    try{
-    const verifyAPIData: VerifyPaymentType = {
-      orderId: response.razorpay_order_id,
-      paymentId: response.razorpay_payment_id,
-      signature: response.razorpay_signature,
-      transactionId: transactionId,
-      isFrom: undefined
-    };
+  // const handleVerifyPayment = async ({
+  //   response,
+  //   transactionId,
+  // }: {
+  //   response: RazorpayReponseType;
+  //   transactionId: string;
+  // }) => {
+  //   try{
+  //   const verifyAPIData: VerifyPaymentType = {
+  //     orderId: response.razorpay_order_id,
+  //     paymentId: response.razorpay_payment_id,
+  //     signature: response.razorpay_signature,
+  //     transactionId: transactionId,
+  //     isFrom: undefined
+  //   };
 
-    const { data: verifyData } = (await verifyPayment(verifyAPIData)) as {
-      data: APIRequestType;
-    };
+  //   const { data: verifyData } = (await verifyPayment(verifyAPIData)) as {
+  //     data: APIRequestType;
+  //   };
 
-    if(verifyData?.success){
-        toast.success("Wallet activated");
-        refetch();
-        setIsLoading(false);
-    }else{
-      toast.error("Something went wrong");
-      setIsLoading(false);
-    }
-    dispatch(setReferAddMoneyModal(false));
-  }catch(error){
-    console.log(error);
-    toast.error("Something went wrong");
-  }
-  };
+  //   if(verifyData?.success){
+  //       toast.success("Wallet activated");
+  //       refetch();
+  //       setIsLoading(false);
+  //   }else{
+  //     toast.error("Something went wrong");
+  //     setIsLoading(false);
+  //   }
+  //   dispatch(setReferAddMoneyModal(false));
+  // }catch(error){
+  //   console.log(error);
+  //   toast.error("Something went wrong");
+  // }
+  // };
 
-  const handleOnSubmit = useCallback(async (amount: number) => {
-    setIsLoading(true);
-    setError(null);
+  // const handleOnSubmit = useCallback(async (amount: number) => {
+  //   setIsLoading(true);
+  //   setError(null);
 
-    try{
-    if (amount > PAYMENT_MAX_AMOUNT || amount < PAYMENT_MIN_AMOUNT) {
-      setError(`minimum and maximum amount should be ₹${PAYMENT_MIN_AMOUNT} and ₹${PAYMENT_MAX_AMOUNT}`);
-      reset();
-      setIsLoading(false);
-      return;
-    }
+  //   try{
+  //   if (amount > PAYMENT_MAX_AMOUNT || amount < PAYMENT_MIN_AMOUNT) {
+  //     setError(`minimum and maximum amount should be ₹${PAYMENT_MIN_AMOUNT} and ₹${PAYMENT_MAX_AMOUNT}`);
+  //     reset();
+  //     setIsLoading(false);
+  //     return;
+  //   }
 
-    const { data } = await addMoney({userId:loggedInUserId!, amount}) as { data:APIRequestType }
+  //   const { data } = await addMoney({userId:loggedInUserId!, amount}) as { data:APIRequestType }
 
-    if(data?.success){
-        const {
-            key,
-            name,
-            currency,
-            amount,
-            orderId,
-            theme,
-            prefill,
-            transactionId,
-          } = data?.data as PaymentOrderType;
+  //   if(data?.success){
+  //       const {
+  //           key,
+  //           name,
+  //           currency,
+  //           amount,
+  //           orderId,
+  //           theme,
+  //           prefill,
+  //           transactionId,
+  //         } = data?.data as PaymentOrderType;
   
-          const options = {
-            key: key,
-            name: name,
-            currency: currency,
-            amount: amount,
-            order_id: orderId,
-            image: "",
-            handler: async (response: RazorpayReponseType) =>
-              await handleVerifyPayment({ response, transactionId }),
-            prefill,
-            theme,
-          };
+  //         const options = {
+  //           key: key,
+  //           name: name,
+  //           currency: currency,
+  //           amount: amount,
+  //           order_id: orderId,
+  //           image: "",
+  //           handler: async (response: RazorpayReponseType) =>
+  //             await handleVerifyPayment({ response, transactionId }),
+  //           prefill,
+  //           theme,
+  //         };
   
-          const razr = new window.Razorpay(options);
-          razr.open();
-    }else{
-      toast.error("Something went wrong");
-      setIsLoading(false);
-    }
+  //         const razr = new window.Razorpay(options);
+  //         razr.open();
+  //   }else{
+  //     toast.error("Something went wrong");
+  //     setIsLoading(false);
+  //   }
 
-  }catch(error){
-    console.log(error);
-    setIsLoading(false);
-    toast.error("Something went wrong");
-  }
+  // }catch(error){
+  //   console.log(error);
+  //   setIsLoading(false);
+  //   toast.error("Something went wrong");
+  // }
 
-  },  [isLoading, error, addMoney, reset]);
+  // },  [isLoading, error, addMoney, reset]);
 
   const handleClose = () => dispatch(setReferAddMoneyModal(false));
 
@@ -135,7 +135,8 @@ const AddPaymentModal = () => {
         <h2 className="font-medium text-lg">Add Money</h2>
         <form
           onSubmit={handleSubmit((data: any) =>
-            handleOnSubmit(data.amount as number)
+            // handleOnSubmit(data.amount as number)
+            console.log(data)
           )}
           className="space-y-3"
         >
