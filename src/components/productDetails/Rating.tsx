@@ -9,6 +9,7 @@ const Rating = ({
     totalRatings: number;
     totalReviews: number;
   }) => {
+
     return (
       <div className="flex bottom_to_top_ani items-center justify-start gap-2">
         <RatingCard avgRating={avgRating} />

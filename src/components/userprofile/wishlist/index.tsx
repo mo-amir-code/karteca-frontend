@@ -12,6 +12,8 @@ const Wishlist = () => {
   const { data, isSuccess, isError, isLoading, isFetching } =
     useGetUserWishlistQuery(loggedInUserId!, { skip: loggedInUserId? false : true });
 
+    console.log(data)
+
 
   return (
     <IsLoading isLoading={isLoading || isFetching} isSuccess={isSuccess} isError={isError}>

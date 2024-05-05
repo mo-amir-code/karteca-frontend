@@ -11,7 +11,7 @@ const CartItem = ({cartData}:{cartData:CartItemDataType}) => {
     <div className="w-full bottom_to_top_ani smooth_transition">
       <div className="flex smooth_transition border-b max-sm:hidden border-secondary-color py-4 ">
         <div className="max-w-[250px] max-sm:max-w-[200px] rounded-lg overflow-hidden shadow-lg">
-          <Image src={cartData.product.thumbnail} priority={false} alt="cart image" width={250} height={200} />
+          <Image src={cartData?.product?.thumbnail} priority={false} alt="cart image" width={250} height={200} />
         </div>
         <div className="flex-grow">
           <div className="max-md:space-y-2 flex flex-col max-sm:gap-4 justify-between h-full">

@@ -9,6 +9,19 @@ import { MdLockReset, MdHomeWork, MdNoteAlt, MdOutlinePassword, MdEmail } from "
 import { FaMoneyBills, FaMapLocationDot } from "react-icons/fa6";
 import { IoIosQrScanner } from "react-icons/io";
 import { GrTransaction } from "react-icons/gr";
+import { MdTitle } from "react-icons/md";
+import { TbFileDescription } from "react-icons/tb";
+import { IoMdPricetags } from "react-icons/io";
+import { FaBoxes } from "react-icons/fa";
+import { IoMdColorFill } from "react-icons/io";
+import { BiSolidDiscount } from "react-icons/bi";
+import { CgNotes } from "react-icons/cg";
+import { FaHighlighter } from "react-icons/fa";
+import { VscWorkspaceTrusted } from "react-icons/vsc";
+import { RiDeviceRecoverLine } from "react-icons/ri";
+import { BiSolidCategoryAlt } from "react-icons/bi";
+import { TbCategoryPlus } from "react-icons/tb";
+
 
 
 const InputField = ({
@@ -71,6 +84,8 @@ const InputField = ({
                 return <BsGenderAmbiguous size={20} />;
               case "amount":
                 return <FaMoneyBills size={20} />;
+              case "price":
+                return <IoMdPricetags size={20} />;
               case "cUpi":
                 return <IoIosQrScanner size={20} />;
               case "upi":
@@ -79,6 +94,28 @@ const InputField = ({
                 return <MdNoteAlt size={20} />;
               case "utrId":
                 return <GrTransaction size={20} />;
+              case "title":
+                return <MdTitle size={20} />;
+              case "description":
+                return <TbFileDescription size={20} />;
+              case "stock":
+                return <FaBoxes size={20} />;
+              case "colors":
+                return <IoMdColorFill size={20} />;
+              case "discount":
+                return <BiSolidDiscount size={20} />;
+              case "importantNote":
+                return <CgNotes size={20} />;
+              case "highlights":
+                return <FaHighlighter size={20} />;
+              case "warrantyType":
+                return <VscWorkspaceTrusted size={20} />;
+              case "warrantyCover":
+                return <RiDeviceRecoverLine size={20} />;
+              case "category":
+                return <BiSolidCategoryAlt size={20} />;
+              case "subCategory":
+                return <TbCategoryPlus size={20} />;
               default:0
                 console.log("something went wrong");
             }

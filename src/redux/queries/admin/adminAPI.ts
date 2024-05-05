@@ -1,6 +1,7 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { fetchBaseQueryBaseUrlConfiguration } from "../products/productsAPI";
 import { APIRequestType } from "@/redux/RootTypes";
+import { CreateCategoryType, ProductCreateType } from "./adminTypes";
 
 const adminApi = createApi({
   reducerPath: "adminAPI",
@@ -33,13 +34,71 @@ const adminApi = createApi({
           credentials: "include",
         }),
     }),
+    fetchProductCategories: builder.query<APIRequestType, { parentCategory?:string | null }>({
+        query: ({ parentCategory }) => ({
+          url: `/product/categories?${parentCategory? "parentCategory="+parentCategory : null}`,
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        }),
+    }),
+    createProduct: builder.mutation<APIRequestType, ProductCreateType>({
+        query: (data) => ({
+          url: `/product`,
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: data,
+          credentials: "include",
+        }),
+    }),
+    uploadProductImage: builder.mutation<APIRequestType, any>({
+        query: (data) => ({
+          url: `/product/image/upload`,
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: data,
+          credentials: "include",
+        }),
+    }),
+    deleteProductImage: builder.mutation<APIRequestType, { publicId:string }>({
+        query: (data) => ({
+          url: `/product/image`,
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: data,
+          credentials: "include",
+        }),
+    }),
+    createCategory: builder.mutation<APIRequestType, CreateCategoryType>({
+        query: (data) => ({
+          url: `/category`,
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: data,
+          credentials: "include",
+        }),
+    }),
   })
 });
 
 export const {
     useFetchUserTransactionRequestsQuery,
     useFetchUserWithdrawalRequestsQuery,
-    useFetchUserCountQuery
+    useFetchUserCountQuery,
+    useFetchProductCategoriesQuery,
+    useCreateProductMutation,
+    useUploadProductImageMutation,
+    useDeleteProductImageMutation,
+    useCreateCategoryMutation
 } = adminApi;
 
 export default adminApi;
