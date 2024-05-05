@@ -11,7 +11,7 @@ const WithdrawalHistory = ({ data }: { data: ReferWithdrawalType[] }) => {
       />
       <div className="h-[50vh] hide_scrollbar overflow-y-auto" >
       <table className="w-full bg-white">
-        {data.length ? (
+        {data?.length ? (
           <>
             <thead className="py-4 text-text-color rounded-lg max-md:text-sm bg-primary-color">
               <tr>
