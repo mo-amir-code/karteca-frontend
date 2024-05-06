@@ -1,11 +1,12 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { fetchBaseQueryBaseUrlConfiguration } from "../products/productsAPI";
 import { APIRequestType } from "@/redux/RootTypes";
-import { CreateCategoryType, ProductCreateType } from "./adminTypes";
+import { CreateAdminType, CreateCategoryType, ProductCreateType } from "./adminTypes";
 
 const adminApi = createApi({
   reducerPath: "adminAPI",
   baseQuery: fetchBaseQueryBaseUrlConfiguration("admin"),
+  tagTypes: ["getupis"],
   endpoints: (builder) => ({
     fetchUserTransactionRequests: builder.query<APIRequestType, null>({
         query: () => ({
@@ -87,6 +88,39 @@ const adminApi = createApi({
           credentials: "include",
         }),
     }),
+    createAdmin: builder.mutation<APIRequestType, CreateAdminType>({
+        query: (data) => ({
+          url: `/create`,
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: data,
+          credentials: "include",
+        }),
+    }),
+    fetchAdminUpis: builder.query<APIRequestType, null>({
+        query: () => ({
+          url: `/upi`,
+          headers: {
+            "Content-Type": "application/json",
+          },
+          credentials: "include",
+        }),
+        providesTags: ["getupis"]
+    }),
+    activeUpi: builder.mutation<APIRequestType, { userId:string }>({
+      query: (data) => ({
+        url: `/upi/active`,
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: data,
+        credentials: "include",
+      }),
+      invalidatesTags: ["getupis"]
+  }),
   })
 });
 
@@ -98,7 +132,10 @@ export const {
     useCreateProductMutation,
     useUploadProductImageMutation,
     useDeleteProductImageMutation,
-    useCreateCategoryMutation
+    useCreateCategoryMutation,
+    useCreateAdminMutation,
+    useFetchAdminUpisQuery,
+    useActiveUpiMutation
 } = adminApi;
 
 export default adminApi;

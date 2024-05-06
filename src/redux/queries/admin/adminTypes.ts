@@ -51,3 +51,8 @@ type ImageType = {
   url: string;
   publicId: string;
 }
+
+export interface CreateAdminType {
+  email: string,
+  upi: string
+}

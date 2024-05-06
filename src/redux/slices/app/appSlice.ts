@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { AppSliceType } from "./appTypes";
 import { RootState } from "../../store";
+import { getCookie } from "cookies-next";
 
 const initialState = {
     desktop:{
@@ -25,9 +26,19 @@ const appSlice = createSlice({
         setProfile(state, action){
             if(action.payload.profile !== "orderDetails") state.currentOrderId = null;
             state.desktop.profile = action.payload.profile;
+            const isUserLoggedInCookie = getCookie("isUserLoggedIn");
+            console.log(isUserLoggedInCookie)
+            if(!isUserLoggedInCookie){
+                window.location.reload();
+            }
+
         },
         setMobileProfileMenu(state, action){
             state.mobile.isProfileMenuOpen = action.payload.isProfileMenuOpen;
+            const isUserLoggedInCookie = getCookie("isUserLoggedIn");
+            if(!isUserLoggedInCookie){
+                window.location.reload();
+            }
         },
         setPaymentStatusPage(state, action){
             state.isPaymentStatusPageEnable = action.payload;
