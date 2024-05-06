@@ -14,44 +14,57 @@ import IsLoading from "@/HOC/IsLoading";
 
 const Index = () => {
   const loggedInUserId = useAppSelector(selectLoggedInUserId);
-  const { data, isLoading, isFetching, isError, isSuccess } = useGetReferralDashboardQuery(loggedInUserId!, { skip: loggedInUserId? false : true }) as ReferDashboardAPIType;
+  const { data, isLoading, isFetching, isError, isSuccess } =
+    useGetReferralDashboardQuery(loggedInUserId!, {
+      skip: loggedInUserId ? false : true,
+    }) as ReferDashboardAPIType;
   // const isModalOpen = useAppSelector(selectReferAddMoneyModal)
 
   return (
     <>
-      <IsLoading isLoading={isFetching || isLoading} isSuccess={isSuccess} isError={isError}>
-        <>
-        <div>
-          <h4 className="font-medium font-poppins">Dashboard</h4>
-          <div className="flex flex-wrap items-center mt-4 max-sm:gap-2 max-sm:justify-center gap-4">
-            <Card
-              type="totalEarning"
-              msg="Your referral total earning is"
-              amount={data?.data?.totalEarning || 0}
-            />
-            <Card
-              type="totalWithdrawal"
-              msg="Your total used money is"
-              amount={data?.data?.totalWithdrawal || 0}
-            />
-            <Card
-              type="isWithdrawalActive"
-              msg={`Bank withdrawal is`}
-              isWithdrawalActive={data?.data?.isWithdrawalPermission || false}
-            />
-          </div>
-          <div className="mt-12 space-y-20">
-            <LevelEarning
-              data={data?.data?.levelsEarning || []}
-              currenAmount={data?.data?.currentEarning || 0}
-              isWithdrawalActive={data?.data?.isWithdrawalPermission || false}
-            />
-            <WithdrawalHistory data={data?.data?.withdrawalHistory || []} />
-          </div>
-          <ReferNow referCode={data?.data?.referCode} />
-        </div>
-        {/* {isModalOpen? <AddPaymentModal /> : null} */}
-        </>
+      <IsLoading
+        isLoading={isFetching || isLoading}
+        isSuccess={isSuccess}
+        isError={isError}
+      >
+        {data?.data ? (
+          <>
+            <div>
+              <h4 className="font-medium font-poppins">Dashboard</h4>
+              <div className="flex flex-wrap items-center mt-4 max-sm:gap-2 max-sm:justify-center gap-4">
+                <Card
+                  type="totalEarning"
+                  msg="Your referral total earning is"
+                  amount={data?.data?.totalEarning || 0}
+                />
+                <Card
+                  type="totalWithdrawal"
+                  msg="Your total used money is"
+                  amount={data?.data?.totalWithdrawal || 0}
+                />
+                <Card
+                  type="isWithdrawalActive"
+                  msg={`Bank withdrawal is`}
+                  isWithdrawalActive={
+                    data?.data?.isWithdrawalPermission || false
+                  }
+                />
+              </div>
+              <div className="mt-12 space-y-20">
+                <LevelEarning
+                  data={data?.data?.levelsEarning || []}
+                  currenAmount={data?.data?.currentEarning || 0}
+                  isWithdrawalActive={
+                    data?.data?.isWithdrawalPermission || false
+                  }
+                />
+                <WithdrawalHistory data={data?.data?.withdrawalHistory || []} />
+              </div>
+              <ReferNow referCode={data?.data?.referCode} />
+            </div>
+            {/* {isModalOpen? <AddPaymentModal /> : null} */}
+          </>
+        ) : null}
       </IsLoading>
     </>
   );
