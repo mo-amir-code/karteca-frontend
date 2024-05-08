@@ -1,7 +1,7 @@
 import { createApi } from "@reduxjs/toolkit/query/react";
 import { fetchBaseQueryBaseUrlConfiguration } from "../products/productsAPI";
 import { APIRequestType } from "@/redux/RootTypes";
-import { CreateAdminType, CreateCategoryType, ProductCreateType } from "./adminTypes";
+import { ChildCreateCategoryType, CreateAdminType, CreateCategoryType, ProductCreateType } from "./adminTypes";
 
 const adminApi = createApi({
   reducerPath: "adminAPI",
@@ -88,6 +88,17 @@ const adminApi = createApi({
           credentials: "include",
         }),
     }),
+    createChildCategory: builder.mutation<APIRequestType, ChildCreateCategoryType>({
+        query: (data) => ({
+          url: `/child/category`,
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: data,
+          credentials: "include",
+        }),
+    }),
     createAdmin: builder.mutation<APIRequestType, CreateAdminType>({
         query: (data) => ({
           url: `/create`,
@@ -135,7 +146,8 @@ export const {
     useCreateCategoryMutation,
     useCreateAdminMutation,
     useFetchAdminUpisQuery,
-    useActiveUpiMutation
+    useActiveUpiMutation,
+    useCreateChildCategoryMutation
 } = adminApi;
 
 export default adminApi;

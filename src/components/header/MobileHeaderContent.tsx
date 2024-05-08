@@ -1,16 +1,18 @@
 import { memo } from "react";
 import SearchBar from "@/components/searchbar";
 import Logo from "./Logo";
-import ClientWallet from "./ClientWallet";
+import MobileButtons from "./MobileButtons";
 
 const MobileHeaderContent = ({
   isUp,
   isScroll,
-  path
+  path,
+  isUserLoggedIn
 }: {
   isUp: boolean;
   isScroll: boolean;
-  path:string
+  path:string,
+  isUserLoggedIn: boolean
 }) => {
 
   return (
@@ -25,7 +27,7 @@ const MobileHeaderContent = ({
     >
       <div className="flex items-center justify-between gap-1">
         <Logo />
-        <ClientWallet />
+        <MobileButtons isUserLoggedIn={isUserLoggedIn} />
       </div>
 
       <SearchBar isOnMobile={true} />

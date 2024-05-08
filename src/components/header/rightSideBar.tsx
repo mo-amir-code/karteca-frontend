@@ -21,6 +21,7 @@ import {
 import { useGetUserWishlistItemsQuery } from "@/redux/queries/user/userAPI";
 import useFetchReferEarning from "../customHooks/useFetchReferEarning";
 import { getCookie } from "cookies-next";
+import CommonButton from "../buttons/CommonButton";
 
 const RightSideBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -29,10 +30,13 @@ const RightSideBar = () => {
   const loggedInUserName = useAppSelector(selectLoggedInUserName);
   const loggedInUserId = useAppSelector(selectLoggedInUserId);
   const isUserLoggedIn = useAppSelector(selectIsUserLoggedIn);
-  const { data, isSuccess } = useGetCartCountsQuery(loggedInUserId!, { skip: !isUserLoggedIn });
-  const { data: wishlistData, isSuccess: wishtlistSuccess } = useGetUserWishlistItemsQuery(loggedInUserId!, { skip: !isUserLoggedIn });
+  const { data, isSuccess } = useGetCartCountsQuery(loggedInUserId!, {
+    skip: !isUserLoggedIn,
+  });
+  const { data: wishlistData, isSuccess: wishtlistSuccess } =
+    useGetUserWishlistItemsQuery(loggedInUserId!, { skip: !isUserLoggedIn });
   const { referData, referIsSuccess } = useFetchReferEarning(loggedInUserId);
-  const isUserLoggedInCookie = getCookie("isUserLoggedIn")
+  const isUserLoggedInCookie = getCookie("isUserLoggedIn");
 
   const handleWallet = () => {
     if (isUserLoggedIn) {
@@ -47,16 +51,17 @@ const RightSideBar = () => {
     } else router.push("/auth/signin");
   };
 
+  const handleNavigateToAuth = () => router.push("/auth/signin");
+
   useEffect(() => {
     if (isUserLoggedIn) {
       if (isSuccess) dispatch(setUserCartItems(data?.data));
       if (wishtlistSuccess) dispatch(setUserWishlistItems(wishlistData?.data));
     }
 
-    if(!isUserLoggedInCookie){
+    if (!isUserLoggedInCookie) {
       dispatch(logoutUser());
     }
-
   }, [data, wishlistData, isUserLoggedInCookie]);
 
   return (
@@ -101,10 +106,14 @@ const RightSideBar = () => {
             <span>{item.name}</span>
           </li>
         ))}
-        {!!referIsSuccess && (
-          <li>
-            <Wallet handleClick={handleWallet} amount={referData?.data} />
-          </li>
+        {isUserLoggedIn ? (
+          !!referIsSuccess && (
+            <li>
+              <Wallet handleClick={handleWallet} amount={referData?.data} />
+            </li>
+          )
+        ) : (
+          <CommonButton name="Log In" handleClick={handleNavigateToAuth} />
         )}
       </ul>
       <span className="w-8 h-8 hidden max-md:block cursor-pointer sm:hidden">

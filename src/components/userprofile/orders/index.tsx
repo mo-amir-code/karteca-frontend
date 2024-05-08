@@ -25,8 +25,8 @@ const Index = () => {
         <div>
           {data?.data?.length > 0 ? (
             data?.data?.map((order: GetOrderType, idx: number) => {
-              if (idx === 0) return <Order isFirst data={order} />;
-              else return <Order data={order} />;
+              if (idx === 0) return <Order key={idx} isFirst data={order} />;
+              else return <Order key={idx} data={order} />;
             })
           ) : (
             <Empty msg="There is nothing" />

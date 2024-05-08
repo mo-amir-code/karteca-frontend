@@ -6,19 +6,20 @@ import InputField from "@/components/checkout/InputField";
 import { useForm } from "react-hook-form";
 import ButtonLoader from "@/components/loader/ButtonLoader";
 import toast from "react-hot-toast";
-import { CreateCategoryType } from "@/redux/queries/admin/adminTypes";
-import { useCreateCategoryMutation } from "@/redux/queries/admin/adminAPI";
+import { ChildCreateCategoryType } from "@/redux/queries/admin/adminTypes";
+import { useCreateChildCategoryMutation } from "@/redux/queries/admin/adminAPI";
 import { APIRequestType } from "@/redux/RootTypes";
 
 interface CategoryFormType {
-  category: string
+  category: string;
+  subCategory: string;
 }
 
 const CategoryForm = () => {
-  const [category, setCategory] = useState<ImageType | null>(null);
   const [isImageUploading, setIsImageUploading] = useState<boolean>(false);
+  const [subCategory, setSubCategory] = useState<ImageType | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [createCategory] = useCreateCategoryMutation();
+  const [createChildCategory] = useCreateChildCategoryMutation();
 
   const {
     register,
@@ -29,29 +30,30 @@ const CategoryForm = () => {
 
   const handleOnSubmit = useCallback(async (data:CategoryFormType) => {
 
-    if(!category || (category && !category.url)){
+    if(!subCategory || (subCategory && !subCategory.url)){
         toast.error("Categories image not found");
         return;
     }
 
-    const { category:parentCategory } = data;
+    const { subCategory:childCategory, category: parentName } = data;
 
-    const apiData:CreateCategoryType = {
-        parentName: parentCategory,
-        parentImage: {
-            url: category.url,
-            publicId: category.publicId
+    const apiData:ChildCreateCategoryType = {
+        parentName,
+        childName: childCategory,
+        childImage: {
+            url: subCategory.url,
+            publicId: subCategory.publicId
         }
     }
 
     setIsLoading(true);
 
     try {
-        const { data:resData } = await createCategory(apiData) as { data:APIRequestType }
+        const { data:resData } = await createChildCategory(apiData) as { data:APIRequestType }
 
         if(resData.success){
             toast.success(resData.message);
-            setCategory(null)
+            setSubCategory(null)
             reset();
         }else{
             toast.success("Something went wrong!");
@@ -67,12 +69,12 @@ const CategoryForm = () => {
     register,
     errors,
     handleSubmit,
-    category
+    subCategory
   ]);
 
   return (
     <form onSubmit={handleSubmit(handleOnSubmit)} className="max-w-2xl mx-auto space-y-2 px-4">
-      <h2 className="text-lg font-semibold ">Create Parent Category</h2>
+      <h2 className="text-lg font-semibold ">Create Sub Category</h2>
       <InputField
         register={register}
         type="text"
@@ -81,10 +83,18 @@ const CategoryForm = () => {
         error={errors.category?.message || undefined}
         icon="category"
       />
+      <InputField
+        register={register}
+        type="text"
+        placeHolder="Enter sub category"
+        required="Sub category is required"
+        error={errors.subCategory?.message || undefined}
+        icon="subCategory"
+      />
       <SingleImageForm
-        selectedImage={category}
-        setSelectedImage={setCategory}
-        name="Upload Category Image"
+        selectedImage={subCategory}
+        setSelectedImage={setSubCategory}
+        name="Upload Sub Category Image"
         isFrom="category"
         setIsUploading={setIsImageUploading}
       />
@@ -94,7 +104,7 @@ const CategoryForm = () => {
         type="submit"
         className="px-3 py-2 rounded-md bg-primary-color text-white text-sm"
       >
-        {isLoading ? <ButtonLoader color /> : "Create Parent Category"}
+        {isLoading ? <ButtonLoader color /> : "Create Sub Category"}
       </button>
     </form>
   );

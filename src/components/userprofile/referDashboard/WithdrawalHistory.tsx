@@ -9,7 +9,7 @@ const WithdrawalHistory = ({ data }: { data: ReferWithdrawalType[] }) => {
         title="Transaction History"
         subline="Your Transaction history"
       />
-      <div className="h-[50vh] hide_scrollbar overflow-y-auto" >
+      <div className="max-h-[50vh] hide_scrollbar overflow-y-auto" >
       <table className="w-full bg-white">
         {data?.length ? (
           <>

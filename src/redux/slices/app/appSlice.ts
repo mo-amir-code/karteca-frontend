@@ -27,7 +27,6 @@ const appSlice = createSlice({
             if(action.payload.profile !== "orderDetails") state.currentOrderId = null;
             state.desktop.profile = action.payload.profile;
             const isUserLoggedInCookie = getCookie("isUserLoggedIn");
-            console.log(isUserLoggedInCookie)
             if(!isUserLoggedInCookie){
                 window.location.reload();
             }

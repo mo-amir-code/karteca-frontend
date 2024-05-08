@@ -42,8 +42,12 @@ export interface ProductCreateType extends ProductFormType{
 
 export interface CreateCategoryType {
   parentName: string;
-  childName: string;
   parentImage: ImageType;
+}
+
+export interface ChildCreateCategoryType {
+  parentName: string;
+  childName: string;
   childImage: ImageType;
 }
 

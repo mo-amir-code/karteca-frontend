@@ -11,6 +11,8 @@ const withLoadingIndicator = (
   });
 
 const useMainProfile = ({ profile }: { profile: string }) => {
+  
+
   switch (profile) {
     case "profile":
       return <UserPersonalInfo />;
@@ -40,7 +42,7 @@ const UserPersonalInfo = dynamic(
   { ssr: false }
 );
 const ManageAddresses = withLoadingIndicator(
-  () => import("@/components/userprofile/manageAddresses")
+  () => import("@/components/userprofile/manageAddresses"),
 );
 const Notifications = withLoadingIndicator(
   () => import("@/components/userprofile/notifications")

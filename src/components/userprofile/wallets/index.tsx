@@ -7,6 +7,7 @@ import IsLoading from "@/HOC/IsLoading";
 import { useGetUserTransactionsQuery } from "@/redux/queries/user/userAPI";
 import WithdrawalHistory from "../referDashboard/WithdrawalHistory";
 import Withdrawal from "./withdrawal"
+import { memo } from "react";
 
 const Index = () => {
   const loggedInUserId = useAppSelector(selectLoggedInUserId);
@@ -36,4 +37,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default memo(Index);

@@ -6,6 +6,7 @@ import { useAppSelector } from "@/redux/hooks";
 import { ProductCardType } from "@/redux/queries/products/productsType";
 import { useGetUserWishlistQuery } from "@/redux/queries/user/userAPI";
 import { selectLoggedInUserId } from "@/redux/slices/auth/authSlice";
+import { memo } from "react";
 
 const Wishlist = () => {
   const loggedInUserId = useAppSelector(selectLoggedInUserId);
@@ -33,4 +34,4 @@ const Wishlist = () => {
   );
 };
 
-export default Wishlist;
+export default memo(Wishlist);
