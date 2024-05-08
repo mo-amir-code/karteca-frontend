@@ -17,10 +17,7 @@ export interface RatingAndReviewsType{
 export interface ProductDetailsType extends ProductCardType{
   description: object;
   colors: string[];
-  thumbnail: string;
   images: string[];
-  category: "audio" | "audio and video" | "gadgets";
-  subCategory: "wired" | "wireless" | "analog" | "smart";
   highlights: string[];
   warranty: {
     serviceType: string;
