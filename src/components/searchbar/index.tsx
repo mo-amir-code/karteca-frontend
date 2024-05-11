@@ -1,4 +1,5 @@
 "use client";
+import { useQueryContext } from "@/context/QueryContext";
 import { usePathname, useRouter } from "next/navigation";
 import { memo, useCallback, useState } from "react";
 import { TfiSearch } from "react-icons/tfi";
@@ -7,9 +8,15 @@ const SearchBar = ({ isOnMobile }: { isOnMobile?: boolean }) => {
   const [query, setQuery] = useState<string | null>(null);
   const router = useRouter();
   const pathname = usePathname();
+  const { queries, handleSetQueries } = useQueryContext();
 
-  const handleSearch = useCallback(() => {  
+  const handleSearch = useCallback(() => {
+    if (pathname !== "/search") {
       router.push(`/search?query=${query}`);
+    } else {
+      queries.set("query", query);
+      handleSetQueries();
+    }
   }, [query]);
 
   return (
@@ -20,21 +27,35 @@ const SearchBar = ({ isOnMobile }: { isOnMobile?: boolean }) => {
           isOnMobile ? "border-[1.5px]" : "hover:shadow-md"
         }`}
       >
-        {!(!!query) && <TfiSearch size={20} className="text-secondary-color" />}
+        {!!!query && <TfiSearch size={20} className="text-secondary-color" />}
         <input
           type="text"
           value={query || ""}
-          onKeyDown={(event)=>{
-            if(event.key === "Enter" && query) handleSearch()
+          onKeyDown={(event) => {
+            if (event.key === "Enter" && query) handleSearch();
           }}
           onChange={(e) => setQuery(e.target.value)}
           placeholder="Search on Memik"
           className="outline-none text-sm py-1 bg-transparent w-full"
         />
       </div>
-      {!!query && <button onClick={()=>handleSearch()} className={`${pathname.startsWith("/user/")? "bg-white" : "bg-primary-color" } px-4 rounded-md`}>
-        <TfiSearch size={20} className={pathname.startsWith("/user/")? "text-primary-color" : "text-white"} />
-      </button>}
+      {!!query && (
+        <button
+          onClick={() => handleSearch()}
+          className={`${
+            pathname.startsWith("/user/") ? "bg-white" : "bg-primary-color"
+          } px-4 rounded-md`}
+        >
+          <TfiSearch
+            size={20}
+            className={
+              pathname.startsWith("/user/")
+                ? "text-primary-color"
+                : "text-white"
+            }
+          />
+        </button>
+      )}
     </div>
   );
 };
