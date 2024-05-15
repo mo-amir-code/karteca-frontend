@@ -18,7 +18,7 @@ const layout = ({
           <div className="flex flex-col justify-center w-full gap-12">
             <div className="">
               <h1 className="font-bold font-teko text-4xl text-secondary-color max-md:text-2xl">
-                Welcome to <Link href={"/"} className="text-primary-color">PayKart</Link>
+                Welcome to <Link href={"/"} className="text-primary-color">Karteca</Link>
               </h1>
               <Heading />
             </div>

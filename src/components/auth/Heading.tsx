@@ -8,7 +8,7 @@ const Heading = () => {
     const getByPath = (path:string) => { 
         const endpoint = path.split("/").at(-1);
         switch(endpoint){
-            case "signup": return "Be A Part Of PayKart (Signup)"
+            case "signup": return "Be A Part Of Karteca (Signup)"
             case "signin": return "Sigin Now"
             case "forgot-password": return "Send An OTP"
             case "reset-password": return "Change Password"

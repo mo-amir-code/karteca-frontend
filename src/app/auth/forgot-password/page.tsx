@@ -9,7 +9,7 @@ export default ForgotPassword
 
 export async function generateMetadata() {
     return {
-      title: "PayKart - Reset Your Password",
-      description: "Share & Earn money | Shop on PayKart",
+      title: "Karteca - Reset Your Password",
+      description: "Share & Earn money | Shop on Karteca",
     };
   }

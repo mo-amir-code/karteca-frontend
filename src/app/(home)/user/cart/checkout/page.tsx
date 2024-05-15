@@ -17,4 +17,11 @@ const Checkout = () => {
   );
 };
 
+export async function generateMetadata() {
+  return {
+    title: "Karteca - Checkout",
+    description: "Buy now with multiple payment options",
+  };
+}
+
 export default Checkout;

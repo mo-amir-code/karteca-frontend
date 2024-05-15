@@ -8,7 +8,7 @@ export default Signin;
 
 export async function generateMetadata() {
   return {
-    title: "PayKart - Signin your account",
-    description: "Share & Earn money | Shop on PayKart",
+    title: "Karteca - Signin your account",
+    description: "Share & Earn money | Shop on Karteca",
   };
 }

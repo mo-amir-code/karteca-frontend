@@ -21,6 +21,14 @@ const Search = () => {
   );
 };
 
+export async function generateMetadata() {
+  return {
+    title: "Karteca - Search Products",
+    description: "Shop hassle free",
+  };
+}
+
+
 export default Search;
 
 const DynamicImports = withLoadingIndicator(() => import("./Imports"));

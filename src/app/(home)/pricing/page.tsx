@@ -9,4 +9,12 @@ const Pricing = () => {
   )
 }
 
+export async function generateMetadata() {
+  return {
+    title: "Karteca - Pricing",
+    description: "Unlock your full potential",
+  };
+}
+
+
 export default Pricing;

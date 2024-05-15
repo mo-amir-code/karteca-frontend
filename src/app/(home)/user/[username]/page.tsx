@@ -14,4 +14,12 @@ const UserProfile = () => {
   );
 };
 
+export async function generateMetadata() {
+  return {
+    title: "Karteca - (You)",
+    description: "Share & Earn money | Shop on Karteca",
+  };
+}
+
+
 export default UserProfile;

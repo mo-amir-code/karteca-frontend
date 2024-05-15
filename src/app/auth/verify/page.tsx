@@ -9,7 +9,7 @@ export default Verify;
 
 export async function generateMetadata() {
   return {
-    title: "PayKart - Verify Your Account",
-    description: "Share & Earn money | Shop on PayKart",
+    title: "Karteca - Verify Your Account",
+    description: "Share & Earn money | Shop on Karteca",
   };
 }

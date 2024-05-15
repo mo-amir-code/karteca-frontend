@@ -45,4 +45,12 @@ const Failure = () => {
   )
 }
 
+export async function generateMetadata() {
+    return {
+      title: "Karteca - Payment Failed",
+      description: "Share & Earn money | Shop on Karteca",
+    };
+  }
+  
+
 export default Failure

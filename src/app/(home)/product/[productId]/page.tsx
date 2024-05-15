@@ -17,6 +17,14 @@ const ProductDetails = () => {
     )
 }
 
+// export async function generateMetadata() {
+//   return {
+//     title: "Karteca - Ohh! You like it",
+//     description: "Share & Earn money | Shop on Karteca",
+//   };
+// }
+
+
 export default ProductDetails
 
 const DynamicImport = withLoadingIndicator(() => import("./Imports"));

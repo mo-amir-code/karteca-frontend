@@ -7,8 +7,8 @@ import { Poppins, Teko } from "next/font/google";
 
 export const metadata: Metadata = {
   manifest: "/manifest.json",
-  title: "Paykart - Earn & Shop",
-  description: "Share & Earn money | Shop on PayKart",
+  title: "Karteca - Earn & Shop",
+  description: "Share & Earn money | Shop on Karteca",
 };
 
 export const viewport: Viewport = {
