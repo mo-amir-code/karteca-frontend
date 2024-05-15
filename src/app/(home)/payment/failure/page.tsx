@@ -5,11 +5,13 @@ import failure from "@/assets/payment/failure.svg"
 import { useRouter } from 'next/navigation'
 import { useAppDispatch } from '@/redux/hooks'
 import { setPaymentStatusPage } from '@/redux/slices/app/appSlice'
+import { generateMetadata } from '@/utils/generateMetadata'
 
 const Failure = () => {
     const [count, setCount] = useState<number>(10);
     const router = useRouter();
     const dispatch = useAppDispatch();
+    generateMetadata({title:"Payment Failed"});
 
     useEffect(() => {
         const countInterval = setInterval(() => {
@@ -45,12 +47,12 @@ const Failure = () => {
   )
 }
 
-export async function generateMetadata() {
-    return {
-      title: "Karteca - Payment Failed",
-      description: "Share & Earn money | Shop on Karteca",
-    };
-  }
+// export async function generateMetadata() {
+//     return {
+//       title: "Karteca - Payment Failed",
+//       description: "Share & Earn money | Shop on Karteca",
+//     };
+//   }
   
 
 export default Failure

@@ -70,13 +70,4 @@ const Success = () => {
   );
 };
 
-
-export async function generateMetadata() {
-  return {
-    title: "Karteca - Payment Success",
-    description: "Share & Earn money | Shop on Karteca",
-  };
-}
-
-
 export default Success;

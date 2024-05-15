@@ -43,12 +43,5 @@ const Cart = () => {
   );
 };
 
-export async function generateMetadata() {
-  return {
-    title: "Karteca - Cart",
-    description: "Share & Earn money | Shop on Karteca",
-  };
-}
-
 
 export default memo(Cart);
