@@ -12,19 +12,11 @@ import { memo } from "react";
 import FullLoader from "@/components/loader/FullLoader";
 
 const ImportComponents = () => {
-
-  const {
-    isLoading: isTopLoading,
-    data: topData
-  } = useGetTopProductsQuery("");
-  const {
-    isLoading: isLatestLoading,
-    data: latestData
-  } = useGetLatestProductsQuery("");
-  const {
-    isLoading: isCombosLoading,
-    data: combosData
-  } = useGetBestCombosProductsQuery("");
+  const { isLoading: isTopLoading, data: topData } = useGetTopProductsQuery("");
+  const { isLoading: isLatestLoading, data: latestData } =
+    useGetLatestProductsQuery("");
+  const { isLoading: isCombosLoading, data: combosData } =
+    useGetBestCombosProductsQuery("");
 
   // useEffect(() => {
   //   const latestObserver = new IntersectionObserver((entries) => {
@@ -57,9 +49,10 @@ const ImportComponents = () => {
 
   return (
     <>
-      <HeroSlider />
-      <Categories />
-        {!(isTopLoading || isLatestLoading || isCombosLoading) ? <>
+      {!(isTopLoading || isLatestLoading || isCombosLoading) ? (
+        <>
+          <HeroSlider />
+          <Categories />
           <TopProducts
             products={topData?.success ? topData.data : []}
             text="Top Products"
@@ -72,8 +65,11 @@ const ImportComponents = () => {
             products={combosData?.success ? combosData.data : []}
             text="Best Combo's"
           />
-        </> : <FullLoader />}
-      <FooterBanner />
+          <FooterBanner />
+        </>
+      ) : (
+        <FullLoader />
+      )}
     </>
   );
 };
