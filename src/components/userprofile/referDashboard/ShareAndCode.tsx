@@ -17,7 +17,7 @@ const ShareAndCode = ({ referCode }: { referCode: string }) => {
     const shareData = {
       title: process.env.NEXT_PUBLIC_COMPANY_NAME,
       text: `Shop with us and get cash rewards! Share your referral link with friends and earn money when they buy subscription. It's simple: share, earn, and withdraw your cash anytime. Transform your shopping experience with endless benefits. Start sharing and earning today!`,
-      url: process.env.NEXT_PUBLIC_CLIENT_ORIGIN,
+      url: `${process.env.NEXT_PUBLIC_CLIENT_ORIGIN}/auth/signup?refercode=${referCode}`,
     };
     if (navigator.share) {
       try {
