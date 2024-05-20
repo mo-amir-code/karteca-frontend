@@ -35,7 +35,7 @@ const SearchBar = ({ isOnMobile }: { isOnMobile?: boolean }) => {
             if (event.key === "Enter" && query) handleSearch();
           }}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder="Search on Memik"
+          placeholder={`Search on ${process.env.NEXT_PUBLIC_COMPANY_NAME}`}
           className="outline-none text-sm py-1 bg-transparent w-full"
         />
       </div>
