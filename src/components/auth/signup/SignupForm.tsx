@@ -1,6 +1,7 @@
 "use client";
 import SubmitButton from "@/components/auth/SubmitButton";
 import InputField from "@/components/checkout/InputField";
+import { useQueryContext } from "@/context/QueryContext";
 import { APIRequestType } from "@/redux/RootTypes";
 import { useSignupUserMutation } from "@/redux/queries/auth/authAPI";
 import { AuthSignupUserType } from "@/redux/queries/auth/authTypes";
@@ -26,6 +27,7 @@ const SignupForm = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [signupUser] = useSignupUserMutation();
   const [passwordMatch, setPasswordMatch] = useState<boolean>(false);
+  const { queries } = useQueryContext();
   const router = useRouter();
 
   const {
@@ -139,6 +141,7 @@ const SignupForm = () => {
           placeHolder="Referral Code"
           type="text"
           icon="referredUserReferCode"
+          defaultValue={queries.get("refercode") || undefined}
         />
         <InputField
           register={register}
