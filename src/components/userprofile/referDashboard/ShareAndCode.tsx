@@ -15,8 +15,9 @@ const ShareAndCode = ({ referCode }: { referCode: string }) => {
 
   const handleShare = async () => {
     const shareData = {
-      text: 'Check out this cool content!',
-      url: 'https://paykart-frontend.vercel.app',
+      title: process.env.NEXT_PUBLIC_COMPANY_NAME,
+      text: `Shop with us and get cash rewards! Share your referral link with friends and earn money when they buy subscription. It's simple: share, earn, and withdraw your cash anytime. Transform your shopping experience with endless benefits. Start sharing and earning today!`,
+      url: process.env.NEXT_PUBLIC_SERVER_ORIGIN,
     };
     if (navigator.share) {
       try {
