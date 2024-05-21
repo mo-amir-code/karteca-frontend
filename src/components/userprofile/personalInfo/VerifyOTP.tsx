@@ -4,14 +4,12 @@ import { useForm } from "react-hook-form";
 import InputField from "../../checkout/InputField";
 import { IoIosClose } from "react-icons/io";
 import { useUserContext } from "@/context/UserContext";
-import { useUpdateUserPasswordMutation } from "@/redux/queries/user/userAPI";
 import { useAppSelector } from "@/redux/hooks";
 import { selectLoggedInUserId } from "@/redux/slices/auth/authSlice";
 import toast from "react-hot-toast";
 import { APIRequestType } from "@/redux/RootTypes";
 import SubmitButton from "../../auth/SubmitButton";
 import {
-  useSendOTPMutation,
   useVerifyUserMutation,
 } from "@/redux/queries/auth/authAPI";
 
@@ -20,10 +18,10 @@ export interface OTPVerifyType {
 }
 
 const VerifyOTP = ({
-  setIsProfileUpdateAllow,
+  setIsUpdateAllow,
   setIsVerifyOTPOpen
 }: {
-  setIsProfileUpdateAllow: Function;
+  setIsUpdateAllow: Function;
   setIsVerifyOTPOpen: Function;
 }) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -57,7 +55,7 @@ const VerifyOTP = ({
 
       if (res?.data?.success) {
         // toast.success(res?.data?.message);
-        setIsProfileUpdateAllow(true);
+        setIsUpdateAllow(true);
       }
 
       if (res?.error?.data.success === false) {

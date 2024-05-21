@@ -143,7 +143,7 @@ const PersonalInfoIndex = () => {
           />
         </div>
       </IsLoading>
-      {!!isVerifyOTPOpen && <VerifyOTP setIsVerifyOTPOpen={setIsVerifyOTPOpen} setIsProfileUpdateAllow={setIsProfileUpdateAllow} />}
+      {!!isVerifyOTPOpen && <VerifyOTP setIsVerifyOTPOpen={setIsVerifyOTPOpen} setIsUpdateAllow={setIsProfileUpdateAllow} />}
     </>
   );
 };

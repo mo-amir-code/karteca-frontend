@@ -34,15 +34,15 @@ const WIthdrawalForm = ({ currentEarning }:{ currentEarning:number }) => {
         return;
       }
 
-      // if(amount > currentEarning){
-      //   toast.error("Insufficient balance");
-      //   return;
-      // }
+      if(amount > currentEarning){
+        toast.error("Insufficient balance");
+        return;
+      }
 
-      // if(amount < PAYMENT_MAX_AMOUNT){
-      //   toast.error("Enter minimum ₹100");
-      //   return;
-      // }
+      if(amount < PAYMENT_MAX_AMOUNT){
+        toast.error("Enter minimum ₹100");
+        return;
+      }
 
       if(upi !== cUpi){
         toast.error("Confirm upi id is not matched");
@@ -70,6 +70,7 @@ const WIthdrawalForm = ({ currentEarning }:{ currentEarning:number }) => {
         toast.error(error?.data?.message);
       }
 
+      setIsLoading(false)
     } catch (error) {   
       console.log(error)
       toast.error("Something went wrong!");
