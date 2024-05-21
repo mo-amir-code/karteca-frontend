@@ -4,7 +4,7 @@ import PersonalEmail from "./PersonalEmail";
 import PersonalInfo from "./PersonalInfo";
 import PersonalMobile from "./PersonalMobile";
 import UserGender from "./UserGender";
-import { memo, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import {
   useGetUserInfoQuery,
   useUpdateUserInfoMutation,
@@ -17,41 +17,101 @@ import { useUserContext } from "@/context/UserContext";
 import { UpdateUserType } from "@/redux/queries/user/userTypes";
 import { APIRequestType } from "@/redux/RootTypes";
 import IsLoading from "@/HOC/IsLoading";
+import { useSendOTPMutation } from "@/redux/queries/auth/authAPI";
+import VerifyOTP from "./VerifyOTP";
+import { returnWalletAmount } from "@/utils/services";
 
 const PersonalInfoIndex = () => {
+  const [isVerifyOTPOpen, setIsVerifyOTPOpen] = useState<boolean>(false);
   const [isButtonLoading, setIsButtonLoading] = useState<boolean>(false);
+  const [isProfileUpdateAllow, setIsProfileUpdateAllow] = useState<boolean>(false);
   const loggedInUserId = useAppSelector(selectLoggedInUserId);
   const { data, isLoading, isError, isSuccess } = useGetUserInfoQuery(
-    loggedInUserId as string, { skip: loggedInUserId? false : true }
+    loggedInUserId as string,
+    { skip: loggedInUserId ? false : true }
   );
   const [updateUser] = useUpdateUserInfoMutation();
+  const [sendOTP] = useSendOTPMutation();
   const { name, email, phone, gender, dispatch } = useUserContext();
 
   const handleSubmit = async () => {
+
+    if(!email || !loggedInUserId){
+      toast.error("Something went wrong!");
+      return;
+    }
+
+
+    if (data?.data?.email !== email) {
+
+      try {
+        setIsVerifyOTPOpen(true);
+        const { data:resData, error } = await sendOTP({email, userId:loggedInUserId}) as {data:APIRequestType, error: { data:APIRequestType }}
+        
+        if(resData?.success){
+          toast.success(resData?.message);
+        }
+        
+        if(error?.data?.success === false){
+          toast.error(error?.data?.message);
+          setIsVerifyOTPOpen(false);
+        }
+      } catch (error) {
+        console.error(error);
+        setIsVerifyOTPOpen(false);
+        toast.error("Something Error Happened!");
+      }
+
+    }else{
+      handleChangeProfileInfo();
+    }
+  };
+
+  const handleChangeProfileInfo = async () => {
     if (!name || !email || !phone || !gender) {
       toast.error("Something went wrong");
       return;
     }
 
-    setIsButtonLoading(true);
+    try {
+      setIsVerifyOTPOpen(false);
+      setIsButtonLoading(true);
 
-    const newState: UpdateUserType = {
-      userId: loggedInUserId!,
-      name,
-      email,
-      phone,
-      gender,
-    };
+      const newState: UpdateUserType = {
+        userId: loggedInUserId!,
+        name,
+        email,
+        phone,
+        gender,
+      };
 
-    dispatch({ type: "disableedit" });
+      dispatch({ type: "disableedit" });
 
-    const { data } = (await updateUser(newState)) as { data: APIRequestType };
+      const { data: resData } = (await updateUser(newState)) as {
+        data: APIRequestType;
+      };
 
-    if (!data.success) toast.error("Internal Error Occurred!");
-    else toast.success("Changes has been done");
+      if (!resData?.success){
+        toast.error("Internal Error Occurred!");
+      }
+      else {
+        toast.success("Changes has been done");
+      }
 
-    setIsButtonLoading(false);
+      setIsProfileUpdateAllow(false);
+      setIsButtonLoading(false);
+    } catch (error) {
+      console.error(error);
+      toast.error("Somehting Error Happened!");
+      setIsProfileUpdateAllow(false);
+    }
   };
+
+  useEffect(() => {
+    if(isProfileUpdateAllow){
+      handleChangeProfileInfo();
+    }
+  }, [isProfileUpdateAllow]);
 
   return (
     <>
@@ -82,6 +142,7 @@ const PersonalInfoIndex = () => {
           />
         </div>
       </IsLoading>
+      {!!isVerifyOTPOpen && <VerifyOTP setIsVerifyOTPOpen={setIsVerifyOTPOpen} setIsProfileUpdateAllow={setIsProfileUpdateAllow} />}
     </>
   );
 };

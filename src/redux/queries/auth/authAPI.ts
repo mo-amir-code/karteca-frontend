@@ -28,7 +28,7 @@ const authApi = createApi({
       }),
     }),
 
-    verifyUser: builder.mutation<APIRequestType, { otp: number }>({
+    verifyUser: builder.mutation<APIRequestType, { otp: number, from?:string }>({
       query: (post) => ({
         url: "verify",
         method: "POST",
@@ -40,6 +40,15 @@ const authApi = createApi({
     resendOTP: builder.mutation<APIRequestType, { token: string }>({
       query: (post) => ({
         url: "resend-otp",
+        method: "POST",
+        body: post,
+        credentials: "include",
+      }),
+    }),
+
+    sendOTP: builder.mutation<APIRequestType, { userId: string, email:string }>({
+      query: (post) => ({
+        url: "send-otp",
         method: "POST",
         body: post,
         credentials: "include",
@@ -75,7 +84,8 @@ export const {
   useVerifyUserMutation,
   useForgotPasswordMutation,
   useResetPasswordMutation,
-  useResendOTPMutation
+  useResendOTPMutation,
+  useSendOTPMutation
 } = authApi;
 
 export default authApi;

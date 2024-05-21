@@ -10,17 +10,19 @@ import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import SelectInputField from "./SelectInputField";
+import { genders } from "@/data";
 
-interface SingupFormType{
-  name: string,
-  email: string,
-  phone?: number,
-  gender: string,
-  referredUserReferCode?: string,
-  state: string,
-  city: string,
-  password: string,
-  confirmPassword: string
+interface SingupFormType {
+  name: string;
+  email: string;
+  phone?: number;
+  gender: string;
+  referredUserReferCode?: string;
+  state: string;
+  city: string;
+  password: string;
+  confirmPassword: string;
 }
 
 const SignupForm = () => {
@@ -39,15 +41,23 @@ const SignupForm = () => {
 
   const handleOnSubmit = async (data: any) => {
     try {
+      const { email, name, password, confirmPassword, gender, state, city } =
+        data;
 
-      const { email, name, password,  confirmPassword, gender, state, city} = data;
-
-      if(!email || !name || !password || !confirmPassword || !gender || !state || !city){
+      if (
+        !email ||
+        !name ||
+        !password ||
+        !confirmPassword ||
+        !gender ||
+        !state ||
+        !city
+      ) {
         toast.error("Enter all required fields");
         return;
       }
 
-      if(password?.length < 4 || confirmPassword?.length < 4){
+      if (password?.length < 4 || confirmPassword?.length < 4) {
         toast.error("Password length must be 4 or greater");
         return;
       }
@@ -87,10 +97,10 @@ const SignupForm = () => {
       if (error?.data?.success === false) {
         toast.error(error.data.message);
       }
-      
+
       if (resData?.success) {
         router.push("/auth/verify");
-        toast.success("OTP sent")
+        toast.success("OTP sent");
       }
     } catch (error: any) {
       console.error("Error happend during signup", error);
@@ -128,13 +138,13 @@ const SignupForm = () => {
           type="number"
           icon="phone"
         />
-        <InputField
+        <SelectInputField
+          name="gender"
+          list={genders as [string]}
           register={register}
-          placeHolder="Male, Female or Transgender*"
-          type="text"
-          icon="gender"
           required="Enter your gender male/female/transgender"
           error={errors.gender?.message as string | undefined}
+          defaultValue="Select Gender"
         />
         <InputField
           register={register}
@@ -173,7 +183,11 @@ const SignupForm = () => {
           type="password"
           icon="confirmPassword"
           required="Enter confirm password"
-          error={passwordMatch ? "Password did not matched. Enter correct password" : null || errors?.confirmPassword?.message as string | undefined}
+          error={
+            passwordMatch
+              ? "Password did not matched. Enter correct password"
+              : null || (errors?.confirmPassword?.message as string | undefined)
+          }
         />
         <div className="flex items-center justify-between">
           <span className="max-md:text-sm max-sm:text-xs">

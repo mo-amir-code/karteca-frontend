@@ -7,7 +7,7 @@ export interface AppSliceType{
 }
 
 interface DesktopApp{
-    profile: "orders" | "dashboard" | "profile" | "addresses" | "notification" | "wishlist" | "orderDetails"
+    profile: "orders" | "dashboard" | "profile" | "addresses" | "notification" | "wishlist" | "orderDetails" | "wallets"
 }
 
 interface MobileApp{

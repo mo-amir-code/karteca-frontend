@@ -30,7 +30,6 @@ const appSlice = createSlice({
             if(!isUserLoggedInCookie){
                 window.location.reload();
             }
-
         },
         setMobileProfileMenu(state, action){
             state.mobile.isProfileMenuOpen = action.payload.isProfileMenuOpen;

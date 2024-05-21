@@ -305,3 +305,9 @@ export const upiapp = [
     img: bhimupi
   },
 ]
+
+export const genders = [
+  "Male",
+  "Female",
+  "Transgender"
+]

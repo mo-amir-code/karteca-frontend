@@ -40,5 +40,5 @@ export interface ShortDashboardType{
   totalEarning: number,
   totalWithdrawal: number,
   totalActive: number,
-  totalDeactive: number
+  totalConnections: number
 }
