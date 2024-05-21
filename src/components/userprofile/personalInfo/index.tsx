@@ -86,15 +86,17 @@ const PersonalInfoIndex = () => {
 
       dispatch({ type: "disableedit" });
 
-      const { data: resData } = (await updateUser(newState)) as {
+      const { data: resData, error } = (await updateUser(newState)) as {
         data: APIRequestType;
+        error: { data: APIRequestType}
       };
 
-      if (!resData?.success){
-        toast.error("Internal Error Occurred!");
-      }
-      else {
+      if (resData?.success){
         toast.success("Changes has been done");
+      }
+      
+      if(error?.data){
+        toast.error(error?.data?.message);
       }
 
       setIsProfileUpdateAllow(false);
