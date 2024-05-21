@@ -19,7 +19,6 @@ import { APIRequestType } from "@/redux/RootTypes";
 import IsLoading from "@/HOC/IsLoading";
 import { useSendOTPMutation } from "@/redux/queries/auth/authAPI";
 import VerifyOTP from "./VerifyOTP";
-import { returnWalletAmount } from "@/utils/services";
 
 const PersonalInfoIndex = () => {
   const [isVerifyOTPOpen, setIsVerifyOTPOpen] = useState<boolean>(false);
@@ -46,7 +45,7 @@ const PersonalInfoIndex = () => {
 
       try {
         setIsVerifyOTPOpen(true);
-        const { data:resData, error } = await sendOTP({email, userId:loggedInUserId}) as {data:APIRequestType, error: { data:APIRequestType }}
+        const { data:resData, error } = await sendOTP({email, userId:loggedInUserId, from:"newEmail"}) as {data:APIRequestType, error: { data:APIRequestType }}
         
         if(resData?.success){
           toast.success(resData?.message);

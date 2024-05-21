@@ -46,7 +46,7 @@ const authApi = createApi({
       }),
     }),
 
-    sendOTP: builder.mutation<APIRequestType, { userId: string, email:string }>({
+    sendOTP: builder.mutation<APIRequestType, { userId: string, email:string, from?:string }>({
       query: (post) => ({
         url: "send-otp",
         method: "POST",
