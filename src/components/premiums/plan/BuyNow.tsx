@@ -48,7 +48,7 @@ const BuyNow = () => {
   return (
     <button onClick={()=> handleBuyPlan()} className=' text-white flex shadow-lg active:scale-95 smooth_transition hover:scale-105 items-center gap-2 justify-center bg-primary-color rounded-full w-full p-3' >
         <span className='text-sm' >
-        Withdraw Money
+        Activate Withdrawal
         </span>
         <FaArrowRight className='w-4 h-4' />
     </button>
