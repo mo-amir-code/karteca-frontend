@@ -107,7 +107,7 @@ const Images = ({
           ))}
         </div>
         <div className="flex items-center justify-center w-full">
-          <div className="w-[340px]">
+          <div className="w-[340px] h-[425px]">
             <Slider ref={sliderRef} {...settings}>
               {images.map((img, idx) => (
                 <Image
