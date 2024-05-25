@@ -13,7 +13,7 @@ const Categories = () => {
     }
 
   return isSuccess ? (
-    <div className="flex items-center bottom_to_top_ani justify-around p-4 max-sm:py-2 max-sm:px-0 shadow-md bg-white">
+    <div className="sm:flex max-sm:gap-1 grid grid-cols-3 sm:items-center bottom_to_top_ani justify-around p-4 max-sm:py-2 max-sm:px-0 shadow-md bg-white">
       {data?.data?.map((item: ProductCategoryWithImageType, idx: number) => (
         <Category key={idx} name={item.name} image={item.image} />
       ))}

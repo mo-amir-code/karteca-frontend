@@ -35,7 +35,7 @@ const Color = ({ colors }: { colors: string[] }) => {
         <span
           onClick={() => handleSelectColor(color)}
           key={idx}
-          style={{ backgroundColor: color }}
+          style={{ backgroundColor: `#${color}` }}
           className={`w-6 h-6 rounded-md smooth_transition ${
             selectedColor === color
               ? "shadow-md scale-110 border-primary-color"
