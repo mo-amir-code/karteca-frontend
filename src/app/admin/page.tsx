@@ -1,4 +1,5 @@
 import AdminUPI from "@/adminComponents/adminupis";
+import FlushRedis from "@/adminComponents/buttons/FlushRedis";
 import CreateAdminForm from "@/adminComponents/forms/CreateAdminForm";
 import TotalUsers from "@/adminComponents/totalUsers";
 import TransactionRequests from "@/adminComponents/transactionrequests";
@@ -15,6 +16,7 @@ export default function Home() {
         <WithdrawalRequests />
         <CreateAdminForm />
         <AdminUPI />
+        <FlushRedis />
       </Suspense>
     </main>
   );
