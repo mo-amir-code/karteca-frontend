@@ -52,7 +52,7 @@ const Images = ({
     // setThumbnail(newImages[idx]);
     // newImages[idx] = newThumbnail;
     // setImages(newImages
-    if(sliderRef.current){
+    if (sliderRef.current) {
       sliderRef.current.slickGoTo(idx);
     }
   };
@@ -102,24 +102,34 @@ const Images = ({
               className="cursor-pointer"
               width={60}
               height={60}
-              onClick={()=>handleScrollByImageSelection(idx)}
+              onClick={() => handleScrollByImageSelection(idx)}
             />
           ))}
         </div>
         <div className="flex items-center justify-center w-full">
-          <div className="w-[340px] h-[425px]">
-            <Slider ref={sliderRef} {...settings}>
-              {images.map((img, idx) => (
-                <Image
-                  key={idx}
-                  src={img}
-                  alt="product"
-                  className="object-cover"
-                  width={500}
-                  height={500}
-                />
-              ))}
-            </Slider>
+          <div className="w-[340px]">
+            {images.length === 1 ? (
+              <Image
+                src={images[0]}
+                alt="product"
+                className="object-cover"
+                width={500}
+                height={500}
+              />
+            ) : (
+              <Slider ref={sliderRef} {...settings}>
+                {images.map((img, idx) => (
+                  <Image
+                    key={idx}
+                    src={img}
+                    alt="product"
+                    className="object-cover"
+                    width={500}
+                    height={500}
+                  />
+                ))}
+              </Slider>
+            )}
           </div>
         </div>
         <span
