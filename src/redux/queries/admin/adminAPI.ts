@@ -17,9 +17,10 @@ const adminApi = createApi({
           credentials: "include",
         }),
     }),
-    flushRedis: builder.query<APIRequestType, null>({
+    flushRedis: builder.mutation<APIRequestType, null>({
         query: () => ({
           url: `/redis/flush`,
+          method: "POST",
           headers: {
             "Content-Type": "application/json",
           },
@@ -157,7 +158,7 @@ export const {
     useFetchAdminUpisQuery,
     useActiveUpiMutation,
     useCreateChildCategoryMutation,
-    useFlushRedisQuery
+    useFlushRedisMutation
 } = adminApi;
 
 export default adminApi;
