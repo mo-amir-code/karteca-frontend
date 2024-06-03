@@ -17,6 +17,8 @@
 /build
 .env
 ecosystem.config.js
+public/sw.js.map
+public/swe-worker-development.js
 
 # misc
 .DS_Store
